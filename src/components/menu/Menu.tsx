@@ -45,10 +45,15 @@ const StyledLi = styled.li<StyledLiProps>`
 
   ${({ isActive }) => isActive && css`
     background: #FF333B;
+    &:hover{
+      color: #FF333B;
+      background: #F1F1F0;
+      transition: 0.3s ease-out;
+    }
   `}
 
   &:hover{
-    background: #FF333B;
+    color: #FF333B;
     transition: 0.3s ease-out;
   }
 `;
