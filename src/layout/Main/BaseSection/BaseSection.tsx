@@ -19,7 +19,7 @@ export const BaseSection = (props: BaseSectionProps) => {
             }
         };
         fetchItem();
-    }, []);
+    }, [props.url]);
     return (
         <StyledSeasonDiv>
             <div>
@@ -59,17 +59,6 @@ const StyledWrapper = styled.div `
   margin-top: 20px;
   gap: 25px;
   display: flex;
-`
-const ButtonWrap = styled.div `
-  display: flex;
-`
-const ButtonStyled = styled.button `
-  width: 149px;
-  height: 49px;
-  background: #FF333B;
-  border-radius: 5px;
-  color: white;
-  border: none;
 `
 const StyledP = styled.p `
   font-style: normal;

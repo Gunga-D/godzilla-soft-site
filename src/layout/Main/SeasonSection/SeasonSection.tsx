@@ -19,7 +19,7 @@ export const SeasonSection = (props: SeasonSectionProps) => {
             }
         };
         fetchItem();
-    }, []);
+    }, [props.url]);
     return (
             <StyledSeasonDiv>
                 <StyledH2>{props.mainTitle}</StyledH2>
