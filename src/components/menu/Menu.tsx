@@ -6,15 +6,16 @@ type MenuProps = {
 }
 
 export const Menu = (props: MenuProps) => {
-    const activeItem = props.activePage;
+    // const activeItem = props.activePage;
+    // <StyledLi isActive={activeItem === 'Игры'}>Игры</StyledLi>
 
     return (
         <StyledMenu>
             <StyledUl>
-                <StyledLi isActive={activeItem === 'Каталог'}>Каталог</StyledLi>
-                <StyledLi isActive={activeItem === 'Игры'}>Игры</StyledLi>
-                <StyledLi isActive={activeItem === 'Пополнение'}>Пополнение</StyledLi>
-                <StyledLi isActive={activeItem === 'Подписки'}>Подписки</StyledLi>
+                <StyledLi>Каталог</StyledLi>
+                <StyledLi isActive>Игры</StyledLi>
+                <StyledLi isActive>Пополнение</StyledLi>
+                <StyledLi isActive>Подписки</StyledLi>
             </StyledUl>
         </StyledMenu>
     );
@@ -34,7 +35,7 @@ const StyledUl = styled.ul`
 `;
 
 type StyledLiProps = {
-    isActive: boolean;
+    isActive?: boolean;
 };
 
 const StyledLi = styled.li<StyledLiProps>`
@@ -43,17 +44,11 @@ const StyledLi = styled.li<StyledLiProps>`
   cursor: pointer;
   border-radius: 5px;
 
-  ${({ isActive }) => isActive && css`
-    background: #FF333B;
-    &:hover{
-      color: #FF333B;
-      background: #F1F1F0;
-      transition: 0.3s ease-out;
-    }
-  `}
+  
 
   &:hover{
+    cursor: pointer;
     color: #FF333B;
-    transition: 0.3s ease-out;
+    transition: 0.2s ease-out;
   }
 `;

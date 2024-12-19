@@ -30,6 +30,6 @@ const StyledImg = styled.img <ImageProps>`
   cursor: ${props => props.cursor ? 'pointer' : 'default'};
   &:hover {
     cursor: ${props => props.cursor ? 'pointer' : 'default'};
-    transform: ${props => props.hoverEffect ? 'scale(1.04)' : 'none'};
+    transform: ${props => props.hoverEffect ? 'scale(1.1)' : 'none'};
   }
 `

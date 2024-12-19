@@ -12,6 +12,8 @@ export const Footer = () => {
                     <StyledLi>Игры</StyledLi>
                     <StyledLi>Пополнение</StyledLi>
                     <StyledLi>Подписки</StyledLi>
+                    <StyledLi>Контакты</StyledLi>
+                    <StyledLi>Поддержка</StyledLi>
                 </NavUl>
                 <PaymentUl>
                     <Icon iconId="VISA" width="74" height="23" viewBox="0 0 74 23"/>
@@ -47,7 +49,7 @@ const NavUl = styled.ul `
   font-size: 14px;
   line-height: 17px;
   flex-direction: row;
-  gap: 28px;
+  gap: 27px;
 `
 const StyledLi = styled.li `
   text-decoration: none;

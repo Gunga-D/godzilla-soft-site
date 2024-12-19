@@ -5,7 +5,7 @@ import {Icon} from "../icon/Icon";
 type PropsInput = {
     onClick?: React.MouseEventHandler<HTMLInputElement>;
 }
-export const InputFound = (props: PropsInput) => {
+export const InputFound = () => {
     const [inputValue, setInputValue] = useState('');
 
     return (
@@ -26,13 +26,11 @@ export const InputFound = (props: PropsInput) => {
 
 const InputContainer = styled.div`
   display: flex;
-  font-family: 'EastmanRoman';
   align-items: center;
   width: 347px;
   margin-left: 72px;
   height: 46px;
   
-  background: rgba(255, 255, 255, 0.2);
   border: 1px solid #FFFFFF;
   backdrop-filter: blur(44.9px);
   border-radius: 5px;

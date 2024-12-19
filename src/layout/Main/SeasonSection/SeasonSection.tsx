@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Item} from "../../../common/api/item/item";
 import {itemApi} from "../../../common/api/item/item-api";
 import {CardForGames} from "../../../components/cardForGames/CardForGames";
-
+import SeasonBackground from "../../../assets/images/SeasonSection/NewYearBanner.png"
 type SeasonSectionProps = {
     mainTitle?: string,
     url?: string,
@@ -25,7 +25,15 @@ export const SeasonSection = (props: SeasonSectionProps) => {
                 <StyledH2>{props.mainTitle}</StyledH2>
                 <StyledWrapper>
                     {item?.slice(0, 4).map((item, index) => (
-                        <CardForGames height={'239px'} width={'239px'} imageUrl={item.thumbnail_url} key={index}/>
+                        <CardForGames height={'239px'}
+                                      width={'239px'}
+                                      imageUrl={item.thumbnail_url}
+                                      key={index}
+                                      nameGame={item.title}
+                                      oldPrice={item.old_price}
+                                      newPrice={item.current_price}
+
+                        />
                     ))}
                 </StyledWrapper>
                 <ButtonWrap>
@@ -42,7 +50,7 @@ const StyledSeasonDiv = styled.div `
   padding-left: 34px;
   border-radius: 5px;
   margin-top: 72px;
-  background: linear-gradient(360deg, #D91E18 0%, #000000 74.86%);
+  background-image: url("${SeasonBackground}");
 `
 const StyledH2 = styled.h3 `
   font-style: normal;
