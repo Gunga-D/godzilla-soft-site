@@ -1,11 +1,11 @@
 import React from 'react';
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 type MenuProps = {
     activePage?: string,
 }
 
-export const Menu = (props: MenuProps) => {
+export const Menu = () => {
     // const activeItem = props.activePage;
     // <StyledLi isActive={activeItem === 'Игры'}>Игры</StyledLi>
 

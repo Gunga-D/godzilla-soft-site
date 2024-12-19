@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {Icon} from "../icon/Icon";
-
-type PropsInput = {
-    onClick?: React.MouseEventHandler<HTMLInputElement>;
-}
+//
+// type PropsInput = {
+//     onClick?: React.MouseEventHandler<HTMLInputElement>;
+// }
 export const InputFound = () => {
     const [inputValue, setInputValue] = useState('');
 
