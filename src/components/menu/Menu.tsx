@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 
-type MenuProps = {
-    activePage?: string,
-}
+// type MenuProps = {
+//     activePage?: string,
+// }
 
 export const Menu = () => {
     // const activeItem = props.activePage;
