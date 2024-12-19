@@ -15,7 +15,7 @@ export const Header = (props: HeaderProps) => {
             <Container>
                 <HeaderWrap>
                     <Logo/>
-                    <Menu activePage={props.activePage}/>
+                    <Menu/>
                     <InputFound/>
                     <LogIn/>
                 </HeaderWrap>
