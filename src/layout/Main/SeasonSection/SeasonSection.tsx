@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Item} from "../../../common/api/item/item";
 import {itemApi} from "../../../common/api/item/item-api";
-import {CardForGames} from "../../../components/cardForGames/CardForGames";
 import SeasonBackground from "../../../assets/images/SeasonSection/NewYearBanner.png"
+import {BigCardForGame} from "../../../components/cardForGames/BigCardForGame";
 type SeasonSectionProps = {
     mainTitle?: string,
     url?: string,
@@ -25,13 +25,16 @@ export const SeasonSection = (props: SeasonSectionProps) => {
                 <StyledH2>{props.mainTitle}</StyledH2>
                 <StyledWrapper>
                     {item?.slice(0, 4).map((item, index) => (
-                        <CardForGames height={'239px'}
+                        <BigCardForGame height={'239px'}
                                       width={'239px'}
                                       imageUrl={item.thumbnail_url}
                                       key={index}
+                                      transform={true}
                                       nameGame={item.title}
                                       oldPrice={item.old_price}
+                                      is_for_sale={item.is_for_sale}
                                       newPrice={item.current_price}
+                                      cardType='bigCard'
 
                         />
                     ))}

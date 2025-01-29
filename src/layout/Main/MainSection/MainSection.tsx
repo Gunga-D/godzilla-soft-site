@@ -1,6 +1,6 @@
 import React from 'react';
 import {DefaultBanner} from "../../../components/defaultBanner/DefaultBanner";
-import image from "../../../assets/images/godzilaPaint.png"
+import image from "../../../assets/images/Banners/ActualBanner.jpg"
 import styled from "styled-components";
 import {Image} from "../../../components/image/Image";
 import firstPic from "../../../assets/images/picturesForCatalog/popolnenieSteam.png"
@@ -14,17 +14,22 @@ export const MainSection = () => {
     const Description = 'описание чегото, какойто классный текст, хз что писать, в целом для вида и пишу, да! но это не все, ибо мне для дизайна нужно больше текста';
     return (
         <div>
-            <DefaultBanner height='110' width="379"
+            <DefaultBanner height='' width=""
                            src={image} viewBox='0 0 379 110' iconId='godzillaSoft'
-                           heightImg='350px' widthImg='535px' mainText={MainText} secondaryText={SecondaryText}
+                           heightImg='350px' widthImg='1120px' mainText={MainText} secondaryText={SecondaryText}
                            description={Description}
             />
-            <StyledWrapper>
-                <Link to={'catalog/invoice'}><Image hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
-                <Link to={'catalog'}> <Image hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
-                <Link to={'catalog/games'}><Image hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
-                <Link to={'catalog/invoice'}><Image hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
-            </StyledWrapper>
+            {/*<StyledWrapper>*/}
+            {/*    <Link to={'catalog/invoice'}><Image transform={true}*/}
+            {/*                                        hoverEffect={true}*/}
+            {/*                                        cursor={true}*/}
+            {/*                                        src={firstPic}*/}
+            {/*                                        height='220px'*/}
+            {/*                                        width='260px'/></Link>*/}
+            {/*    <Link to={'catalog'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>*/}
+            {/*    <Link to={'catalog/games'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>*/}
+            {/*    <Link to={'catalog/invoice'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>*/}
+            {/*</StyledWrapper>*/}
         </div>
     );
 };

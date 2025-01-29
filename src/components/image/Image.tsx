@@ -8,6 +8,7 @@ type ImageProps = {
     onClick?: () => void,
     hoverEffect?: boolean,
     cursor?: boolean,
+    transform?: boolean,
 }
 export const Image = (props: ImageProps) => {
     return (
@@ -18,6 +19,7 @@ export const Image = (props: ImageProps) => {
                    width={props.width}
                    height={props.height}
                    cursor = {props.cursor}
+                   transform={props.transform}
         />
     );
 };
@@ -30,6 +32,6 @@ const StyledImg = styled.img <ImageProps>`
   cursor: ${props => props.cursor ? 'pointer' : 'default'};
   &:hover {
     cursor: ${props => props.cursor ? 'pointer' : 'default'};
-    transform: ${props => props.hoverEffect ? 'scale(1.1)' : 'none'};
+    transform: ${props => props.transform ? 'scale(1.1)' : 'none'};
   }
 `

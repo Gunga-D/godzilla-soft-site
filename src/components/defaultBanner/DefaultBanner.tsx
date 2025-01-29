@@ -18,25 +18,15 @@ type DefaultBannerType = {
 export const DefaultBanner = (props: DefaultBannerType) => {
     return (
         <StyledWrapper>
-            <PlaceForText>
-                <DivForIcon>
-                    <Icon width={'379'} iconId={'godzillaSoft'} height={'110'} viewBox={'0 0 379 110'}/>
-                </DivForIcon>
-                <StyledH1>{props.mainText}</StyledH1>
-                <StyledH2>{props.secondaryText}</StyledH2>
-                <StyledP>{props.description}</StyledP>
-            </PlaceForText>
-            <PlaceForImg>
                 <Image src={props.src} width={props.widthImg} height={props.heightImg}/>
-            </PlaceForImg>
         </StyledWrapper>
     );
 };
 const StyledWrapper = styled.div `
     display: flex;
-    margin-top: 84px;
-  width: 1120px;
-  height: 350px;
+    margin-top: 90px;
+  //width: 1120px;
+  //height: 350px;
   background: #FFFFFF;
   justify-content: space-between;
   border-radius: 5px;

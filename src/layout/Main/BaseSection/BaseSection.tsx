@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Item} from "../../../common/api/item/item";
 import {itemApi} from "../../../common/api/item/item-api";
-import {CardForGames} from "../../../components/cardForGames/CardForGames";
+import {MediumCardForGames} from "../../../components/cardForGames/MediumCardForGames";
 
 type BaseSectionProps = {
     mainTitle?: string,
@@ -29,11 +29,19 @@ export const BaseSection = (props: BaseSectionProps) => {
 
             <StyledWrapper>
                 {item?.slice(0, 5).map((item, index) => (
-                    <CardForGames
+                    <MediumCardForGames
+                        // bigCard = {true}
+                        is_for_sale={item.is_for_sale}
+                        nameGame={item.title}
+                        oldPrice={item.old_price}
+                        newPrice={item.current_price}
+                        transform={true}
                         imageUrl={item.thumbnail_url}
                         height={'204px'}
                         width={'204px'}
-                        key={index}/>
+                        key={index}
+
+                    />
                 ))}
             </StyledWrapper>
         </StyledSeasonDiv>

@@ -1,25 +1,27 @@
 import React from 'react';
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // type MenuProps = {
 //     activePage?: string,
 // }
 
 export const Menu = () => {
-    // const activeItem = props.activePage;
-    // <StyledLi isActive={activeItem === 'Игры'}>Игры</StyledLi>
-
     return (
         <StyledMenu>
             <StyledUl>
-                <StyledLi>Каталог</StyledLi>
-                <StyledLi isActive>Игры</StyledLi>
-                <StyledLi isActive>Пополнение</StyledLi>
-                <StyledLi isActive>Подписки</StyledLi>
+                <StyledLink to={'/catalog'}><StyledLi>Каталог</StyledLi></StyledLink>
+                <StyledLink to={'/games'}><StyledLi>Игры</StyledLi></StyledLink>
+                <StyledLink to={'/catalog/games'}><StyledLi>Пополнение</StyledLi></StyledLink>
+                <StyledLink to={'/catalog/invoice'}><StyledLi>Подписки</StyledLi></StyledLink>
             </StyledUl>
         </StyledMenu>
     );
 };
+
+const StyledLink = styled(Link)`
+  text-decoration: none;  
+`;
 
 const StyledMenu = styled.menu`
   padding-left: 48px;
@@ -43,11 +45,12 @@ const StyledLi = styled.li<StyledLiProps>`
   padding: 5px 11px;
   cursor: pointer;
   border-radius: 5px;
+  color: white;
+  text-decoration: none;
 
-  
-
-  &:hover{
+  &:hover {
     cursor: pointer;
+    text-decoration: none;  
     color: #FF333B;
     transition: 0.2s ease-out;
   }

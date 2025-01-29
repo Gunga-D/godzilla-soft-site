@@ -17,9 +17,8 @@ export const Header = (props: HeaderProps) => {
                     <Logo/>
                     <Menu/>
                     <InputFound/>
-                    <LogIn/>
+                    {/*<LogIn/>*/}
                 </HeaderWrap>
-
             </Container>
         </StyledHeader>
     );

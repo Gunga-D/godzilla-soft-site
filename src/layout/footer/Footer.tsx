@@ -2,18 +2,20 @@ import React from 'react';
 import styled from "styled-components";
 import {Container} from "../../styles/Container";
 import {Icon} from "../../components/icon/Icon";
+import { Link } from 'react-router-dom';
+
 
 export const Footer = () => {
     return (
         <Container>
             <StyledFooter>
                 <NavUl>
-                    <StyledLi>Каталог</StyledLi>
-                    <StyledLi>Игры</StyledLi>
-                    <StyledLi>Пополнение</StyledLi>
-                    <StyledLi>Подписки</StyledLi>
-                    <StyledLi>Контакты</StyledLi>
-                    <StyledLi>Поддержка</StyledLi>
+                    <StyledLink to={'/catalog'}><StyledLi>Каталог</StyledLi></StyledLink>
+                    <StyledLink to={'/games'}><StyledLi>Игры</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/invoice'}><StyledLi>Пополнение</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/invoice'}><StyledLi>Подписки</StyledLi></StyledLink>
+                    <StyledLink to="https://t.me/GungaD"><StyledLi>Контакты</StyledLi></StyledLink>
+                    <StyledLink to="https://t.me/GungaD"><StyledLi>Поддержка</StyledLi></StyledLink>
                 </NavUl>
                 <PaymentUl>
                     <Icon iconId="VISA" width="74" height="23" viewBox="0 0 74 23"/>
@@ -49,15 +51,26 @@ const NavUl = styled.ul `
   font-size: 14px;
   line-height: 17px;
   flex-direction: row;
-  gap: 27px;
-`
-const StyledLi = styled.li `
+
   text-decoration: none;
   list-style-type: none;
-  font-style: normal;
-  color: #FFFFFF;
-  cursor: pointer;
+  gap: 27px;
 `
+const StyledLi = styled.li`
+  transition: background 0.3s ease-out, padding 0.3s ease-out, border-radius 0.3s ease-out;
+  padding: 5px 11px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: #FF333B;
+    transition: 0.2s ease-out;
+  }
+`;
 const StyledLiDocs = styled.li `
   text-decoration: none;
   list-style-type: none;
@@ -92,4 +105,7 @@ const PrivacyPolitics = styled.div `
   line-height: 15px;
   text-align: center;
   color: #FFFFFF;
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;  
 `;
