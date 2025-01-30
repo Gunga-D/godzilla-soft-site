@@ -1,9 +1,9 @@
 export type SearchItem = {
-    id?: number,
-    title?: string,
-    currentPrice?: number,
-    isForSale?: boolean,
-    oldPrice?: number,
-    url?: string,
+    item_id?: number,
+    item_title?: string,
+    item_current_price?: number,
+    item_is_for_sale?: boolean,
+    item_old_price?: number,
+    item_thumbnail_url?: string,
     probability?: string,
 }
