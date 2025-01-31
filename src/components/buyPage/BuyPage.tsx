@@ -183,4 +183,7 @@ const StyledWrapper = styled.div `
   margin-top: 20px;
   gap: 25px;
   display: flex;
+  img {
+    object-fit: cover;
+  }
 `
