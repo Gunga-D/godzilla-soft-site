@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {Item} from "../../../common/api/item/item";
 import {itemApi} from "../../../common/api/item/item-api";
 import {MediumCardForGames} from "../../../components/cardForGames/MediumCardForGames";
+import {Link, useNavigate} from "react-router-dom";
 
 type BaseSectionProps = {
     mainTitle?: string,
@@ -10,6 +11,11 @@ type BaseSectionProps = {
 }
 export const BaseSection = (props: BaseSectionProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
+    const navigate = useNavigate();
+
+    const handleCardClick = (id: number | undefined) => {
+        navigate(`/catalog/${id}`);
+    };
     useEffect(() => {
         const fetchItem = async () => {
             try {
@@ -24,7 +30,7 @@ export const BaseSection = (props: BaseSectionProps) => {
         <StyledSeasonDiv>
             <div>
                 <StyledH2>{props.mainTitle}</StyledH2>
-                <StyledP>Показать все</StyledP>
+                <StyledLink to={'/catalog'}><StyledP>Показать все</StyledP> </StyledLink>
             </div>
 
             <StyledWrapper>
@@ -40,6 +46,7 @@ export const BaseSection = (props: BaseSectionProps) => {
                         height={'204px'}
                         width={'204px'}
                         key={index}
+                        onClick = {() => handleCardClick(item.id)}
 
                     />
                 ))}
@@ -78,6 +85,13 @@ const StyledP = styled.p `
   text-align: right;
   margin-top: 9px;
   &:hover{
+    color: white;
+    transition: 0.3s ;
 
   }
 `
+
+const StyledLink = styled(Link)`
+  text-decoration: none;  
+  //color: white;
+`;

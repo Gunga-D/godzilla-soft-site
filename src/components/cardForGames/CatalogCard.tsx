@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {Image} from "../image/Image";
 
-type BigCardForGameProps = {
+type CatalogCardForGameProps = {
     imageUrl?: string,
     width?: string,
     height?: string,
@@ -14,10 +14,9 @@ type BigCardForGameProps = {
     transform?: boolean,
     cardType?: 'bigCard' | 'mediumCard' | 'catalogCard'
     is_for_sale?: boolean,
-    onClick?: () => void,
-
+    onClick: () => void;
 }
-export const BigCardForGame = (props: BigCardForGameProps) => {
+export const CatalogCard = (props: CatalogCardForGameProps) => {
     let discount;
     if (props.is_for_sale == true && props.oldPrice && props.newPrice ) {
         discount = Math.round(((props.oldPrice - props.newPrice) / props.oldPrice) * 100);
@@ -27,17 +26,17 @@ export const BigCardForGame = (props: BigCardForGameProps) => {
     }
     return (
         <StyledCard
-            onClick={props.onClick}
             cursor={props.cursor}
             transform={props.transform}
             cardType = {props.cardType}
+            onClick={props.onClick}
         >
             <StyledButton>Купить</StyledButton>
 
             <StyledWrapForPrice>
                 <StyledName>{props.nameGame}</StyledName>
                 <StyledPrice>
-                    <StyledPNewPrice>{props.newPrice}₽</StyledPNewPrice>
+                    {props.newPrice && <StyledPNewPrice>{props.newPrice}₽</StyledPNewPrice>}
                     {props.oldPrice && <StyledPOldPrice>{props.oldPrice}</StyledPOldPrice>}
                 </StyledPrice>
 
@@ -52,7 +51,7 @@ export const BigCardForGame = (props: BigCardForGameProps) => {
     );
 };
 
-const StyledCard = styled.div <BigCardForGameProps> `
+const StyledCard = styled.div <CatalogCardForGameProps> `
   position: relative;
   z-index: 0;
   transition: transform 0.3s ease;
@@ -70,7 +69,7 @@ const GradientOverlay = styled.div`
     bottom: 0;
     cursor: pointer;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.11) 42.26%, #000000 100%);
-    
+    width: 100%;
     z-index: 1;
 `;
 
@@ -88,12 +87,12 @@ const SaleIcon = styled.div`
     font-weight: 900;
     font-size: 11px;
 `;
-const StyledP = styled.p<BigCardForGameProps>`
+const StyledP = styled.p<CatalogCardForGameProps>`
   color: white;
   position: absolute;
   font-size: ${props =>
-    props.cardType === 'bigCard' ? '20px' : 
-            props.cardType === 'mediumCard' ? '16px' :
+    props.cardType === 'bigCard' ? '20px' :
+        props.cardType === 'mediumCard' ? '16px' :
             '12px'
 };
   
@@ -108,8 +107,8 @@ const StyledButton = styled.button `
   font-weight: 900;
   border: none;
   position: absolute;
-  top: 188px;
-  right: 15px;
+  top: 270px;
+  right: 25px;
   z-index: 100;
   cursor: pointer;
   &:hover {

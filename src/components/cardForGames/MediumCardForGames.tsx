@@ -14,9 +14,10 @@ type CardForGamesProps = {
     transform?: boolean,
     cardType?: 'bigCard' | 'mediumCard' | 'catalogCard'
     is_for_sale?: boolean,
+    onClick?: () => void,
 }
 export const MediumCardForGames = (props: CardForGamesProps) => {
-    let discount, leftDirSale, topDirSale, topDirBut, topLeftBut;
+    let discount;
     if (props.is_for_sale == true && props.oldPrice && props.newPrice ) {
          discount = Math.round(((props.oldPrice - props.newPrice) / props.oldPrice) * 100);
     }
@@ -25,6 +26,7 @@ export const MediumCardForGames = (props: CardForGamesProps) => {
     }
     return (
         <StyledCard
+            onClick={props.onClick}
             cursor={props.cursor}
             transform={props.transform}
             cardType = {props.cardType}

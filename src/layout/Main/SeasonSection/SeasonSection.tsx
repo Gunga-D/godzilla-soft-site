@@ -4,12 +4,18 @@ import {Item} from "../../../common/api/item/item";
 import {itemApi} from "../../../common/api/item/item-api";
 import SeasonBackground from "../../../assets/images/SeasonSection/NewYearBanner.png"
 import {BigCardForGame} from "../../../components/cardForGames/BigCardForGame";
+import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 type SeasonSectionProps = {
     mainTitle?: string,
     url?: string,
 }
 export const SeasonSection = (props: SeasonSectionProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
+    const navigate = useNavigate();
+    const handleCardClick = (id: number | undefined) => {
+        navigate(`/catalog/${id}`);
+    };
     useEffect(() => {
         const fetchItem = async () => {
             try {
@@ -35,14 +41,19 @@ export const SeasonSection = (props: SeasonSectionProps) => {
                                       is_for_sale={item.is_for_sale}
                                       newPrice={item.current_price}
                                       cardType='bigCard'
+                                        onClick = {() => handleCardClick(item.id)}
 
                         />
                     ))}
                 </StyledWrapper>
                 <ButtonWrap>
+                    <StyledLink to={'/catalog'}>
                     <ButtonStyled>
-                        Смотреть все
+
+                            Смотреть все
+
                     </ButtonStyled>
+                    </StyledLink>
                 </ButtonWrap>
             </StyledSeasonDiv>
     );
@@ -87,3 +98,8 @@ const ButtonStyled = styled.button `
     transition: 0.1s ease-out;
   }
 `
+
+const StyledLink = styled(Link)`
+  text-decoration: none;  
+  color: white;
+`;

@@ -7,6 +7,7 @@ import {GlobalStyles} from "./styles/GlobalStyles";
 import {ThemeProvider} from "styled-components";
 import {theme} from "./styles/ThemeStyles";
 import {BrowserRouter} from "react-router-dom";
+import {ScrollToTop} from "./components/scrollToTop/ScrollToTop";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,6 +16,7 @@ root.render(
   <React.StrictMode>
       <ThemeProvider theme={theme}>
           <BrowserRouter>
+              <ScrollToTop />
               <App />
               <GlobalStyles />
           </BrowserRouter>

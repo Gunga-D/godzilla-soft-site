@@ -11,9 +11,9 @@ export const Menu = () => {
         <StyledMenu>
             <StyledUl>
                 <StyledLink to={'/catalog'}><StyledLi>Каталог</StyledLi></StyledLink>
-                <StyledLink to={'/games'}><StyledLi>Игры</StyledLi></StyledLink>
-                <StyledLink to={'/catalog/games'}><StyledLi>Пополнение</StyledLi></StyledLink>
-                <StyledLink to={'/catalog/invoice'}><StyledLi>Подписки</StyledLi></StyledLink>
+                <StyledLink to={'/catalog/games'}><StyledLi>Игры</StyledLi></StyledLink>
+                <StyledLink to={'/catalog/invoice'}><StyledLi>Пополнение</StyledLi></StyledLink>
+                <StyledLink to={'/catalog/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
             </StyledUl>
         </StyledMenu>
     );

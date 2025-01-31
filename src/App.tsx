@@ -8,6 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import {Catalog} from "./layout/Catalog/Catalog";
 import {NotFoundPage} from "./layout/NotFoundPage/NotFoundPage";
 import {LogIn} from "./layout/LogIn/Login";
+import {GamePage} from "./layout/GamePage/GamePage";
 function App() {
   return (
       <StyledBackground>
@@ -24,26 +25,25 @@ function App() {
                                   element={<NotFoundPage/>}/>
                           </Route>
                           <Route path='/catalog'>
-                              <Route
-                                  path=''
-                                  element={<Catalog />}
-                              />
-
-
-                              <Route path='?filter=subscriptions'
-                                     element={<Catalog path='subscriptions'/>}
-                              />
-                              <Route path='invoice'
-                                     element={<Catalog path='invoice'/>}
-                              />
-
-                              <Route path='games'
-                                     element={<Catalog path='games'/>}
-                              >
-                                  <Route path='id' element={<Catalog path='gamesid'/>} />
-                              </Route>
+                                  <Route
+                                      path=''
+                                      element={<Catalog id='0' />}
+                                  />
+                                  <Route path='subscriptions'
+                                         element={<Catalog id = '1'/>}
+                                  />
+                                  <Route path='invoice'
+                                         element={<Catalog id = '2'/>}
+                                  />
+                                  <Route path='games'
+                                         element={<Catalog id='0'/>}
+                                  >
+                                  </Route>
+                                  <Route
+                                      path=':id'
+                                      element={<GamePage />}
+                                  />
                           </Route>
-                          {/*Добавить тут проверку на авторизацию*/}
                           <Route path='/register' />
                           <Route path='/login' element={<LogIn/>}/>
                       </Routes>
