@@ -199,6 +199,7 @@ const StyledContent = styled.div`
     color: white;
     text-align: left;
     height: 80px;
+    font-weight: 900;
     overflow-x: scroll;
     h3 {
         font-size: 24px;

@@ -3,7 +3,11 @@ import styled from "styled-components";
 import {Container} from "../../styles/Container";
 import {Icon} from "../../components/icon/Icon";
 import { Link } from 'react-router-dom';
+// @ts-ignore
+import privacy_security from '../../pdf/privacy_security.pdf'
+// @ts-ignore
 
+import service_agreement from '../../pdf/service_agreement.pdf'
 
 export const Footer = () => {
     return (
@@ -24,8 +28,8 @@ export const Footer = () => {
                 </PaymentUl>
                 <StyledDocuments>
                     <StyledLiDocs>Пользовательское соглашение</StyledLiDocs>
-                    <StyledLiDocs>Политика конфиденциальности</StyledLiDocs>
-                    <StyledLiDocs>Лицензионный договор-оферта</StyledLiDocs>
+                    <StyledLiDocs><StyledA href={privacy_security}>Политика конфиденциальности</StyledA></StyledLiDocs>
+                    <StyledLiDocs><StyledA href={service_agreement}>Лицензионный договор-оферта</StyledA></StyledLiDocs>
                     <StyledLiDocs>Договор-оферта оказания услуг</StyledLiDocs>
                 </StyledDocuments>
                 <PrivacyPolitics>
@@ -42,7 +46,7 @@ const PaymentUl = styled.div `
   display: flex;
   flex-direction: row;
   gap: 24px;
-  
+
 `
 
 const NavUl = styled.ul `
@@ -107,5 +111,9 @@ const PrivacyPolitics = styled.div `
   color: #FFFFFF;
 `;
 const StyledLink = styled(Link)`
-  text-decoration: none;  
+  text-decoration: none;
 `;
+const StyledA = styled.a `
+  text-decoration: none;
+  color: white;
+`

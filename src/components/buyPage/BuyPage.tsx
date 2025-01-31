@@ -89,10 +89,14 @@ const StyledH4 = styled.h4 `
   color: #FFFFFF;
 `
 const StyledInput = styled.input `
+  &::placeholder {
+    color: #FFFFFF;
+    opacity: 0.5;
+  }
+  color: rgba(217, 217, 217, 0.2);
   width: 579px;
   height: 56px;
-  background: #D9D9D9;
-  opacity: 0.2;
+  background: rgba(217, 217, 217, 0.2); 
   border-radius: 5px;
   outline: none;
   border: none;
@@ -101,7 +105,7 @@ const StyledInput = styled.input `
   font-weight: 900;
   font-size: 16px;
   line-height: 150%;
-  color: #4d4949;
+  
 `
 const PaymentWrapper = styled.div `
   display: flex;
