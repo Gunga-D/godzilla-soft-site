@@ -160,7 +160,7 @@ const StyledSmallText = styled.div `/* Нажимая кнопку "Оплати
   color: #FFFFFF;
   width: 579px;
 text-align: left;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 
 `
 const StyledH3 = styled.h3 `

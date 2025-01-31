@@ -1,4 +1,5 @@
 export type SearchItem = {
+    currentPrice: any;
     item_id?: number,
     item_title?: string,
     item_current_price?: number,

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 // @ts-ignore
 import privacy_security from '../../pdf/privacy_security.pdf'
 // @ts-ignore
-
 import service_agreement from '../../pdf/service_agreement.pdf'
 
 export const Footer = () => {
@@ -27,13 +26,11 @@ export const Footer = () => {
                     <Icon iconId="MasterCard" width="133" height="26" viewBox="0 0 133 26"/>
                 </PaymentUl>
                 <StyledDocuments>
-                    <StyledLiDocs>Пользовательское соглашение</StyledLiDocs>
                     <StyledLiDocs><StyledA href={privacy_security}>Политика конфиденциальности</StyledA></StyledLiDocs>
                     <StyledLiDocs><StyledA href={service_agreement}>Лицензионный договор-оферта</StyledA></StyledLiDocs>
-                    <StyledLiDocs>Договор-оферта оказания услуг</StyledLiDocs>
                 </StyledDocuments>
                 <PrivacyPolitics>
-                    ©2023 — 2024 IGM Key Store. Все права защищены. Копирование любых материалов сайта запрещено! Все названия продуктов и игр, компаний и марок, логотипы, товарные знаки и другие материалы являются собственностью соответствующих владельцев. Только лицензионные ключи ко всем игровым платформам: Steam, Uplay, Battle.net, Origin и другие. Все продаваемые ключи закупаются у официальных дистрибьюторов и напрямую у издателей.
+                    GodzillaSoft лучше всех
                 </PrivacyPolitics>
             </StyledFooter>
         </Container>

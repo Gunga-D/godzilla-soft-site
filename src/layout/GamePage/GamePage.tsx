@@ -55,12 +55,7 @@ export const GamePage = () => {
                         {item.slip}
                     </StyledContent>
                 );
-            case 'Описание':
-                return (
-                    <StyledContent>
-                        <p>{item.description}</p>
-                    </StyledContent>
-                );
+
             default:
                 return null;
         }
@@ -90,12 +85,6 @@ export const GamePage = () => {
                                 onClick={() => handleButtonClick('Активация и доставка')}
                             >
                                 Активация и доставка
-                            </StyledMiniButton>
-                            <StyledMiniButton
-                                isActive={activeButton === 'Описание'}
-                                onClick={() => handleButtonClick('Описание')}
-                            >
-                                Описание
                             </StyledMiniButton>
                         </StyledButtonWrapper>
                         <StyledContentWrapper>
@@ -128,7 +117,7 @@ const StyledMainPage = styled.div`
 `;
 
 const StyledH2 = styled.h2`
-  font-size: 55px;
+  font-size: 40px;
   overflow-x: hidden;
   color: white;
   max-height: 100px;

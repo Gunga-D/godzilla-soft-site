@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Icon } from '../icon/Icon';
 import { SearchItem } from '../../common/api/searchItem/searchItem';
 import {searchApi} from "../../common/api/searchItem/search-api";
+import {useNavigate} from "react-router-dom";
 
 export const InputFound = () => {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -27,16 +28,20 @@ export const InputFound = () => {
         setIsLoading(false)
       }
     }
+    const navigate = useNavigate();
+
+    const handleCardClick = (id: number | undefined) => {
+        navigate(`/catalog/${id}`);
+    };
     return (
         <InputContainer>
-            <CustomPlaceholder>
+            <CustomPlaceholder onBlur={onBlurHandler}>
                 <Icon iconId="loops" width="20" height="20" viewBox="0 0 20 20" />
                 <StyledInput
                     type="text"
                     placeholder="Найти"
                     onChange={changeHandler}
                     onFocus={onFocusHandler}
-                    onBlur={onBlurHandler}
                 />
 
                 {isPopupOpen && (
@@ -49,7 +54,7 @@ export const InputFound = () => {
                             <GameList>
                                 {searchResults.map((game, index) => (
                                     <GameItem key={index}>
-                                        <div>
+                                        <div onMouseDown={()=>handleCardClick(game.item_id)}>
                                           <img src={game.item_thumbnail_url} width={100} height={100} style={{borderRadius: '10px'}}></img>
                                         </div>
                                         <div style={{marginLeft: '25px'}}>
