@@ -124,6 +124,7 @@ const StyledH2 = styled.h2`
   padding-top: 0;
   text-align: left;
   margin-bottom: 20px;
+  
 `;
 
 const StyledDescription = styled.p`
