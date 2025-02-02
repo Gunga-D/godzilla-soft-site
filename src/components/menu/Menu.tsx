@@ -1,19 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {catalogApi} from "../../common/api/catalogItem/catalog-api";
+import {CategoryDTO} from "../../common/api/catalogItem/catalogItem";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// type MenuProps = {
-//     activePage?: string,
-// }
-
 export const Menu = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [categories, setCategories] = useState<CategoryDTO[]>([]);
+    useEffect(() => {
+        const fetchCategories = async () => {
+            setIsLoading(true)
+            try {
+                const data = await catalogApi.getCategoriesTree();
+                setCategories(data);
+            } catch (err) {
+              console.log(err)
+            }
+            finally {
+              setIsLoading(false)
+            }
+        };
+        fetchCategories();
+    }, []);
     return (
         <StyledMenu>
             <StyledUl>
                 <StyledLink to={'/catalog'}><StyledLi>Каталог</StyledLi></StyledLink>
-                <StyledLink to={'/catalog/games'}><StyledLi>Игры</StyledLi></StyledLink>
-                <StyledLink to={'/catalog/invoice'}><StyledLi>Пополнение</StyledLi></StyledLink>
-                <StyledLink to={'/catalog/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
+                {isLoading && (
+                  <StyledLi>Загрузка</StyledLi>
+                )}
+                {isLoading && (
+                  <StyledLi>Загрузка</StyledLi>
+                )}
+                {isLoading && (
+                  <StyledLi>Загрузка</StyledLi>
+                )}
+                {!isLoading && categories?.map((category, index) => (
+                    <StyledLink to={`/catalog/category/${category.id}`} key={index}><StyledLi>{category.name}</StyledLi></StyledLink>
+                ))}
             </StyledUl>
         </StyledMenu>
     );
