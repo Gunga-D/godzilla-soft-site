@@ -60,6 +60,10 @@ const StyledCard = styled.div <CatalogCardForGameProps> `
     cursor: ${props => props.cursor ? 'pointer' : 'default'};
     transform: ${props => props.transform ? 'scale(1.03)' : 'none'};
   }
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
 `
 const GradientOverlay = styled.div`
     position: absolute;
@@ -71,6 +75,7 @@ const GradientOverlay = styled.div`
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.11) 42.26%, #000000 100%);
     width: 100%;
     z-index: 1;
+  
 `;
 
 const SaleIcon = styled.div`

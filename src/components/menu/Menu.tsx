@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {catalogApi} from "../../common/api/catalogItem/catalog-api";
-import {CategoryDTO} from "../../common/api/catalogItem/catalogItem";
+import {Category} from "../../common/api/catalogItem/catalogItem";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Menu = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [categories, setCategories] = useState<CategoryDTO[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
     useEffect(() => {
         const fetchCategories = async () => {
             setIsLoading(true)
@@ -25,26 +25,20 @@ export const Menu = () => {
     return (
         <StyledMenu>
             <StyledUl>
-                <StyledLink to={'/catalog'}><StyledLi>Каталог</StyledLi></StyledLink>
-                {isLoading && (
-                  <StyledLi>Загрузка</StyledLi>
-                )}
-                {isLoading && (
-                  <StyledLi>Загрузка</StyledLi>
-                )}
-                {isLoading && (
-                  <StyledLi>Загрузка</StyledLi>
-                )}
-                {!isLoading && categories?.map((category, index) => (
-                    <StyledLink to={`/catalog/category/${category.id}`} key={index}><StyledLi>{category.name}</StyledLi></StyledLink>
-                ))}
+                <StyledLink to={'/catalog/category/10001'}><StyledLi>Каталог</StyledLi></StyledLink>
+                <StyledLink to={`/catalog/category/10001`}><StyledLi>Игры</StyledLi></StyledLink>
+                <StyledLink to={`/catalog/category/10004`}><StyledLi>Подписки</StyledLi></StyledLink>
+                <StyledLink to={`/catalog/category/10002`}><StyledLi>Пополнения</StyledLi></StyledLink>
+                {/*{!isLoading && categories?.map((category, index) => (*/}
+                {/*    <StyledLink to={`/catalog/category/${category.id}`} key={index}><StyledLi>{category.name}</StyledLi></StyledLink>*/}
+                {/*))}*/}
             </StyledUl>
         </StyledMenu>
     );
 };
 
 const StyledLink = styled(Link)`
-  text-decoration: none;  
+  text-decoration: none;
 `;
 
 const StyledMenu = styled.menu`
@@ -74,7 +68,7 @@ const StyledLi = styled.li<StyledLiProps>`
 
   &:hover {
     cursor: pointer;
-    text-decoration: none;  
+    text-decoration: none;
     color: #FF333B;
     transition: 0.2s ease-out;
   }

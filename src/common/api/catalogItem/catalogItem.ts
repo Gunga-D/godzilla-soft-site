@@ -1,4 +1,4 @@
-export type CategoryDTO = {
+export type Category = {
     id?: string,
     name?: string,
     children?: any,

@@ -26,18 +26,15 @@ function App() {
                           </Route>
                           <Route path='/catalog'>
                                   <Route
-                                      path=''
+                                      path='category'
                                       element={<Catalog id='0' />}
                                   />
-                                  <Route path='subscriptions'
-                                         element={<Catalog id = '1'/>}
-                                  />
-                                  <Route path='invoice'
-                                         element={<Catalog id = '2'/>}
-                                  />
-                                  <Route path='games'
-                                         element={<Catalog id='0'/>}
+                                  <Route path='category'
                                   >
+                                      <Route
+                                          path=':id'
+                                          element={<Catalog />}
+                                      />
                                   </Route>
                                   <Route
                                       path=':id'

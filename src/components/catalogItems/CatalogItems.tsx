@@ -4,29 +4,31 @@ import {catalogApi} from "../../common/api/catalogItem/catalog-api";
 import {CatalogItem} from "../../common/api/catalogItem/catalogItem";
 import {CatalogCard} from "../cardForGames/CatalogCard";
 import {useLocation, useNavigate} from "react-router-dom";
+import {Item} from "../../common/api/item/item";
 
 type CatalogProps = {
     active?: string,
 }
 
 export const CatalogItems = (props: CatalogProps) => {
-    const [item, setItem] = useState<CatalogItem[] | null>(null);
-    const [activeItem, setActiveItem] = useState(props.active || '1');
+    const [item, setItem] = useState<Item[] | null>(null);
+    const [activeItem, setActiveItem] = useState(props.active || '10001');
     const location = useLocation();
     const navigate = useNavigate();
 
-    const handleCardClick = (id: string | undefined) => {
+    const handleCardClick = (id: number | undefined) => {
         navigate(`/catalog/${id}`);
     };
 
     useEffect(() => {
         const fetchItem = async () => {
             try {
-                const data = await catalogApi.getItem(activeItem);
+                const data = await catalogApi.getItems(activeItem);
                 setItem(data);
                 setActiveItem(activeItem)
 
             } catch (err) {
+
             }
         };
         fetchItem();
@@ -35,20 +37,20 @@ export const CatalogItems = (props: CatalogProps) => {
         <StyledDiv>
             <StyledButtons>
                 <StyledButton
-                    onClick={() => setActiveItem('0')}
-                    isActive={activeItem === '0'}
+                    onClick={() => setActiveItem('10001')}
+                    isActive={activeItem === '10001'}
                 >
                     Игры
                 </StyledButton>
                 <StyledButton
-                    onClick={() => setActiveItem('2')}
-                    isActive={activeItem === '2'}
+                    onClick={() => setActiveItem('10004')}
+                    isActive={activeItem === '10004'}
                 >
                     Пополнение
                 </StyledButton>
                 <StyledButton
-                    onClick={() => setActiveItem('1')}
-                    isActive={activeItem === '1'}
+                    onClick={() => setActiveItem('10002')}
+                    isActive={activeItem === '10002'}
                 >
                     Подписки
                 </StyledButton>
@@ -61,8 +63,10 @@ export const CatalogItems = (props: CatalogProps) => {
                         height="325px"
                         width="253px"
                         cardType="catalogCard"
-                        nameGame={game.name}
+                        nameGame={game.title}
+                        imageUrl = {game.thumbnail_url}
                         onClick={() => handleCardClick(game.id)}
+                        transform={true}
                     />
                 ))}
             </StyledCatalog>

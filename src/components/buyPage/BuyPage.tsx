@@ -28,7 +28,7 @@ export const BuyPage = () => {
             }
         };
         fetchItem();
-    }, [item]);
+    }, []);
     return (
         <StyledDiv>
             <StyledH2 id = 'dostavka'>Доставка цифрового товара</StyledH2>

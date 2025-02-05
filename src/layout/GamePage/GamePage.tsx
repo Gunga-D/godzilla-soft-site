@@ -27,7 +27,7 @@ export const GamePage = () => {
             }
         };
         fetchItem();
-    }, [id]);
+    }, []);
 
     if (!item) {
         return <div>Загрузка...</div>;

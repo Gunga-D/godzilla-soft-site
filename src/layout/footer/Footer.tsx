@@ -29,9 +29,7 @@ export const Footer = () => {
                     <StyledLiDocs><StyledA href={privacy_security}>Политика конфиденциальности</StyledA></StyledLiDocs>
                     <StyledLiDocs><StyledA href={service_agreement}>Лицензионный договор-оферта</StyledA></StyledLiDocs>
                 </StyledDocuments>
-                <PrivacyPolitics>
-                    GodzillaSoft лучше всех
-                </PrivacyPolitics>
+
             </StyledFooter>
         </Container>
 
@@ -95,6 +93,7 @@ const StyledFooter = styled.footer `
 const StyledDocuments = styled.div `
   margin-top: 31px;
   display: flex;
+  margin-bottom: 70px;
   gap: 124px;
 `;
 const PrivacyPolitics = styled.div `
