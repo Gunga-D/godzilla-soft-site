@@ -30,7 +30,9 @@ export const GamePage = () => {
     }, []);
 
     if (!item) {
-        return null
+        return (
+            <StyledContentError>Товара нет в наличии</StyledContentError>
+        );
     }
 
     const handleButtonClick = (buttonName: string) => {
@@ -102,6 +104,11 @@ export const GamePage = () => {
     );
 };
 
+const StyledContentError = styled.div `
+  margin-top: 250px;
+  color: white;
+  margin-bottom: 100px;
+`
 const StyledGamePage = styled.div`
   margin-top: 140px;
   max-width: 1200px;

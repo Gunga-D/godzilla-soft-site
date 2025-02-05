@@ -21,15 +21,10 @@ export const MainSection = () => {
                            description={Description}
             />
             <StyledWrapper>
-                <Link to={'catalog/invoice'}><Image transform={true}
-                                                    hoverEffect={true}
-                                                    cursor={true}
-                                                    src={firstPic}
-                                                    height='220px'
-                                                    width='260px'/></Link>
-                <Link to={'catalog'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
-                <Link to={'catalog/games'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
-                <Link to={'catalog/invoice'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
+                <Link to={'/catalog/category/10001'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
+                <Link to={'/catalog/category/10001'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
+                <Link to={'/catalog/category/10001'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
+                <Link to={'/catalog/category/10001'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
             </StyledWrapper>
         </div>
     );
