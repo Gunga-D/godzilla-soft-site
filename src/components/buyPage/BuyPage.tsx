@@ -99,6 +99,8 @@ const StyledInput = styled.input `
   background: rgba(217, 217, 217, 0.2); 
   border-radius: 5px;
   outline: none;
+  color: #FFFFFF; 
+  opacity: 0.5;
   border: none;
   padding: 10px;
   margin-bottom: 50px;
