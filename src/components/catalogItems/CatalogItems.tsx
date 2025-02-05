@@ -67,6 +67,9 @@ export const CatalogItems = (props: CatalogProps) => {
                         imageUrl = {game.thumbnail_url}
                         onClick={() => handleCardClick(game.id)}
                         transform={true}
+                        oldPrice={game.old_price}
+                        newPrice={game.current_price}
+                        is_for_sale={game.is_for_sale}
                     />
                 ))}
             </StyledCatalog>

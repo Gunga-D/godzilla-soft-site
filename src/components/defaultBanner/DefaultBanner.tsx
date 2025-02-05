@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {Icon} from "../icon/Icon";
 import {Image} from "../image/Image";
+import {useLocation, useNavigate} from "react-router-dom";
 
 type DefaultBannerType = {
     mainText?: string,
@@ -16,9 +17,15 @@ type DefaultBannerType = {
     heightImg?: string,
 }
 export const DefaultBanner = (props: DefaultBannerType) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const clickOnLogo = () => {
+        navigate('/catalog/category/10001');
+
+    };
     return (
-        <StyledWrapper>
-                <Image src={props.src} width={props.widthImg} height={props.heightImg}/>
+        <StyledWrapper onClick={clickOnLogo}>
+                <Image src={props.src} width={props.widthImg} cursor={true} height={props.heightImg}/>
         </StyledWrapper>
     );
 };

@@ -13,11 +13,11 @@ export const Footer = () => {
         <Container>
             <StyledFooter>
                 <NavUl>
-                    <StyledLink to={'/catalog'}><StyledLi>Каталог</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/games'}><StyledLi>Игры</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/invoice'}><StyledLi>Пополнение</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
-                    <StyledLink to="https://t.me/GungaD"><StyledLi>Контакты</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/10001'}><StyledLi>Каталог</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/10001'}><StyledLi>Игры</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/10002'}><StyledLi>Пополнение</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/10003'}><StyledLi>Подписки</StyledLi></StyledLink>
+                    <StyledLink to={'/contacts'}><StyledLi>Контакты</StyledLi></StyledLink>
                     <StyledLink to="https://t.me/GungaD"><StyledLi>Поддержка</StyledLi></StyledLink>
                 </NavUl>
                 <PaymentUl>

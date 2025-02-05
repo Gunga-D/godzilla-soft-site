@@ -30,7 +30,7 @@ export const BaseSection = (props: BaseSectionProps) => {
         <StyledSeasonDiv>
             <div>
                 <StyledH2>{props.mainTitle}</StyledH2>
-                <StyledLink to={'/catalog'}><StyledP>Показать все</StyledP> </StyledLink>
+                <StyledLink to={'/catalog/category/10001'}><StyledP>Показать все</StyledP> </StyledLink>
             </div>
 
             <StyledWrapper>

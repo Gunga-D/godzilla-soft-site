@@ -9,6 +9,7 @@ import {Catalog} from "./layout/Catalog/Catalog";
 import {NotFoundPage} from "./layout/NotFoundPage/NotFoundPage";
 import {LogIn} from "./layout/LogIn/Login";
 import {GamePage} from "./layout/GamePage/GamePage";
+import {Contacts} from "./layout/Contacts/Contacts";
 function App() {
   return (
       <StyledBackground>
@@ -41,6 +42,7 @@ function App() {
                                       element={<GamePage />}
                                   />
                           </Route>
+                          <Route path='/contacts' element={<Contacts/>} />
                           <Route path='/register' />
                           <Route path='/login' element={<LogIn/>}/>
                       </Routes>

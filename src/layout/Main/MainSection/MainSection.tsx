@@ -14,7 +14,8 @@ export const MainSection = () => {
     const Description = 'описание чегото, какойто классный текст, хз что писать, в целом для вида и пишу, да! но это не все, ибо мне для дизайна нужно больше текста';
     return (
         <div>
-            <DefaultBanner height='' width=""
+            <DefaultBanner
+                            height='' width=""
                            src={image} viewBox='0 0 379 110' iconId='godzillaSoft'
                            heightImg='350px' widthImg='1120px' mainText={MainText} secondaryText={SecondaryText}
                            description={Description}

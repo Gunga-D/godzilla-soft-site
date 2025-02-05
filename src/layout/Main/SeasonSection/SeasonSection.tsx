@@ -47,7 +47,7 @@ export const SeasonSection = (props: SeasonSectionProps) => {
                     ))}
                 </StyledWrapper>
                 <ButtonWrap>
-                    <StyledLink to={'/catalog'}>
+                    <StyledLink to={'/catalog/category/10001'}>
                     <ButtonStyled>
 
                             Смотреть все
