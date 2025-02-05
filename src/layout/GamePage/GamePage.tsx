@@ -30,7 +30,7 @@ export const GamePage = () => {
     }, []);
 
     if (!item) {
-        return <div>Загрузка...</div>;
+        return null
     }
 
     const handleButtonClick = (buttonName: string) => {
@@ -102,17 +102,23 @@ export const GamePage = () => {
     );
 };
 
-// Стили
 const StyledGamePage = styled.div`
-    margin-top: 140px;
+  margin-top: 140px;
+  max-width: 1200px;
+  margin-left: 0;
+  padding-left: 0;
 `;
 
 const StyledMainPage = styled.div`
   display: flex;
   gap: 50px;
+  
   width: 100%;
   img {
     object-fit: cover;
+    width: 375px;
+    height: 481px;
+    width: 100%;
   }
 `;
 
@@ -131,24 +137,24 @@ const StyledDescription = styled.p`
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
-  height: 90px;
-  overflow-x: scroll;
+  min-height: 90px;
   line-height: 18px;
   text-align: left;
   color: #FFFFFF;
   margin-bottom: 20px;
+  overflow-x: auto;
 `;
 
 const StyledTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  width: 600px;
   max-height: 490px;
 `;
 
 const StyledButtonWrapper = styled.div`
   display: flex;
-  width: 100%;
+  width: 600px;
   flex-direction: row;
   gap: 40px;
 `;
@@ -188,10 +194,10 @@ const StyledContentWrapper = styled.div`
 const StyledContent = styled.div`
     color: white;
     text-align: left;
-    height: 80px;
+    min-height: 80px;
     font-weight: 900;
-    overflow-x: scroll;
-    h3 {
+  overflow-x: auto;
+  h3 {
         font-size: 24px;
         margin-bottom: 10px;
     }
@@ -224,6 +230,7 @@ const StyledBuyButton = styled.button `
   width: 178px;
   height: 51px;
   background: red;
+  box-sizing: border-box;
   border: none;
   color: #ffffff;
   border-radius: 5px;
