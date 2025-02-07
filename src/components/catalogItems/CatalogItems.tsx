@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
-import {catalogApi} from "../../common/api/catalogItem/catalog-api";
-import {CatalogItem} from "../../common/api/catalogItem/catalogItem";
-import {CatalogCard} from "../cardForGames/CatalogCard";
-import {useLocation, useNavigate} from "react-router-dom";
-import {Item} from "../../common/api/item/item";
+import { catalogApi } from "../../common/api/catalogItem/catalog-api";
+import { CatalogItem } from "../../common/api/catalogItem/catalogItem";
+import { CatalogCard } from "../cardForGames/CatalogCard";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Item } from "../../common/api/item/item";
 
 type CatalogProps = {
     active?: string,
@@ -12,9 +12,10 @@ type CatalogProps = {
 
 export const CatalogItems = (props: CatalogProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
-    const [activeItem, setActiveItem] = useState(props.active || '10001');
+    const [activeItem, setActiveItem] = useState<any>(props.active || '10001');
     const location = useLocation();
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const handleCardClick = (id: number | undefined) => {
         navigate(`/catalog/${id}`);
@@ -23,16 +24,16 @@ export const CatalogItems = (props: CatalogProps) => {
     useEffect(() => {
         const fetchItem = async () => {
             try {
-                const data = await catalogApi.getItems(activeItem);
+                setActiveItem(id || activeItem);
+                const data = await catalogApi.getItems(id || activeItem);
                 setItem(data);
-                setActiveItem(activeItem)
-
             } catch (err) {
-
+                console.error("Ошибка при загрузке данных:", err);
             }
         };
         fetchItem();
-    }, [activeItem, location]);
+    }, [id, activeItem, location]);
+
     return (
         <StyledDiv>
             <StyledButtons>
@@ -64,7 +65,7 @@ export const CatalogItems = (props: CatalogProps) => {
                         width="253px"
                         cardType="catalogCard"
                         nameGame={game.title}
-                        imageUrl = {game.thumbnail_url}
+                        imageUrl={game.thumbnail_url}
                         onClick={() => handleCardClick(game.id)}
                         transform={true}
                         oldPrice={game.old_price}
@@ -77,15 +78,17 @@ export const CatalogItems = (props: CatalogProps) => {
     );
 };
 
-const StyledDiv = styled.div `
-    display: flex;
+const StyledDiv = styled.div`
+  display: flex;
   flex-direction: column;
   gap: 15px;
-`
-const StyledButtons = styled.div `
+`;
+
+const StyledButtons = styled.div`
   display: flex;
   gap: 20px;
-`
+`;
+
 const StyledCatalog = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(239px, 1fr));
@@ -95,24 +98,24 @@ const StyledCatalog = styled.div`
 `;
 
 const StyledButton = styled.div<{ isActive: boolean }>`
-    width: 253px;
-    height: 45px;
-    border: 2px solid #FF333B;
-    border-radius: 5px;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 24px;
-    color: #FFFFFF;
-    background-color: ${({ isActive }) => (isActive ? '#FF333B' : 'transparent')};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  width: 253px;
+  height: 45px;
+  border: 2px solid #FF333B;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+  background-color: ${({ isActive }) => (isActive ? '#FF333B' : 'transparent')};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
-    &:hover {
-        cursor: pointer;
-        background-color: #FF333B;
-        color: #FFFFFF;
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: #FF333B;
+    color: #FFFFFF;
+  }
 `;

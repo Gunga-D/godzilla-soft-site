@@ -15,8 +15,8 @@ export const Footer = () => {
                 <NavUl>
                     <StyledLink to={'/catalog/category/10001'}><StyledLi>Каталог</StyledLi></StyledLink>
                     <StyledLink to={'/catalog/category/10001'}><StyledLi>Игры</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/10002'}><StyledLi>Пополнение</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/10003'}><StyledLi>Подписки</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/10004'}><StyledLi>Пополнение</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/10002'}><StyledLi>Подписки</StyledLi></StyledLink>
                     <StyledLink to={'/contacts'}><StyledLi>Контакты</StyledLi></StyledLink>
                     <StyledLink to="https://t.me/GungaD"><StyledLi>Поддержка</StyledLi></StyledLink>
                 </NavUl>

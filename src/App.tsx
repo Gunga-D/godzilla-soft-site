@@ -34,7 +34,7 @@ function App() {
                                   >
                                       <Route
                                           path=':id'
-                                          element={<Catalog />}
+                                          element={<Catalog  />}
                                       />
                                   </Route>
                                   <Route
