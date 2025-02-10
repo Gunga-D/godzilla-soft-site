@@ -95,7 +95,7 @@ export const FilterPlatform = () => {
                                 <StyledInput
                                     type="radio"
                                     name="platform"
-                                    value="another"
+                                    value=""
                                     checked={selectedOption === ""}
                                     onChange={PlatformChange}
                                 />
