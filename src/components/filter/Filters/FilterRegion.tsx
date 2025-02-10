@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Icon} from "../../icon/Icon";
+import {useStore} from "zustand/react";
+import {FilterStore} from "../../../common/store/FilterStatus/FilterStatus";
 
 
 export const FilterRegion = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const {changeRegion } = useStore(FilterStore);
 
     const toggleFilter = () => {
         setIsOpen(!isOpen);
+        setSelectedOption('');
+        changeRegion('');
     };
 
+    const RegionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setSelectedOption(value);
+        changeRegion(value)
+    };
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedOption(event.target.value);
     };
@@ -31,7 +41,7 @@ export const FilterRegion = () => {
                                     name="region"
                                     value="RUS"
                                     checked={selectedOption === 'RUS'}
-                                    onChange={handleOptionChange}
+                                    onChange={RegionChange}
                                 />
                                 <StyledPrice>Россия</StyledPrice>
                             </label>
@@ -43,7 +53,7 @@ export const FilterRegion = () => {
                                     name="region"
                                     value="SNG"
                                     checked={selectedOption === 'SNG'}
-                                    onChange={handleOptionChange}
+                                    onChange={RegionChange}
                                 />
                                 <StyledPrice>Россия + СНГ</StyledPrice>
                             </label>
@@ -55,7 +65,7 @@ export const FilterRegion = () => {
                                     name="region"
                                     value="USA"
                                     checked={selectedOption === 'USA'}
-                                    onChange={handleOptionChange}
+                                    onChange={RegionChange}
                                 />
                                 <StyledPrice>США</StyledPrice>
                             </label>
@@ -67,7 +77,7 @@ export const FilterRegion = () => {
                                     name="region"
                                     value="SNGNORF"
                                     checked={selectedOption === 'SNGNORF'}
-                                    onChange={handleOptionChange}
+                                    onChange={RegionChange}
                                 />
                                 <StyledPrice>СНГ (Без РФ и РБ)</StyledPrice>
                             </label>
@@ -79,7 +89,7 @@ export const FilterRegion = () => {
                                     name="region"
                                     value="any"
                                     checked={selectedOption === 'any'}
-                                    onChange={handleOptionChange}
+                                    onChange={RegionChange}
                                 />
                                 <StyledPrice>Любой</StyledPrice>
                             </label>
@@ -163,12 +173,6 @@ const StyledInput = styled.input`
   cursor: pointer;
 `;
 
-const InputContainer = styled.div `
-  display: flex;
-  flex-direction: row;
-  gap:  10px;
-  margin-bottom: 15px;
-`
 const StyledPrice = styled.div `
 
   font-weight: 900;
@@ -180,15 +184,4 @@ const StyledPrice = styled.div `
   opacity: 0.5;
 
 `
-const InputStyled = styled.input `
-  width: 123px;
-  height: 37px;
-  background: #FFFFFF;
-  opacity: 0.2;
-  border: 1px solid #FFFFFF;
-  border-radius: 10px;
-  outline: none;
-  padding: 10px 15px;
-  color: rgba(0, 0, 0, 0.62);
 
-`

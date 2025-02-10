@@ -21,7 +21,7 @@ export const MainSection = () => {
                            description={Description}
             />
             <StyledWrapper>
-                {/*нет страницы*/}
+
                 <Link to={'/catalog/category/10004'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
                 <Link to={'*'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
                 <Link to={'/catalog/category/10001'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>

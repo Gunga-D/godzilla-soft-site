@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { catalogApi } from "../../common/api/catalogItem/catalog-api";
-import { CatalogItem } from "../../common/api/catalogItem/catalogItem";
 import { CatalogCard } from "../cardForGames/CatalogCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Item } from "../../common/api/item/item";
+import {Link} from "react-router-dom";
+import {useStore} from "zustand/react";
+import {FilterStore} from "../../common/store/FilterStatus/FilterStatus";
 
 type CatalogProps = {
     active?: string,
@@ -12,49 +14,63 @@ type CatalogProps = {
 
 export const CatalogItems = (props: CatalogProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
-    const [activeItem, setActiveItem] = useState<any>(props.active || '10001');
+    const [activeItem, setActiveItem] = useState<any>(props.active || '');
     const location = useLocation();
     const navigate = useNavigate();
     const { id } = useParams();
+    const {min_price,max_price, region, platform } = useStore(FilterStore);
 
     const handleCardClick = (id: number | undefined) => {
         navigate(`/catalog/${id}`);
     };
 
     useEffect(() => {
+        const filters = {
+            min_price: min_price,
+            max_price: max_price,
+            platform: platform,
+            region: region
+        };
         const fetchItem = async () => {
             try {
                 setActiveItem(id || activeItem);
-                const data = await catalogApi.getItems(id || activeItem);
+                const data = await catalogApi.getItems(id || activeItem,filters);
                 setItem(data);
             } catch (err) {
                 console.error("Ошибка при загрузке данных:", err);
             }
         };
         fetchItem();
-    }, [id, activeItem, location]);
+    }, [ location, region, platform, max_price, min_price]);
 
     return (
         <StyledDiv>
             <StyledButtons>
-                <StyledButton
-                    onClick={() => setActiveItem('10001')}
-                    isActive={activeItem === '10001'}
-                >
-                    Игры
-                </StyledButton>
-                <StyledButton
-                    onClick={() => setActiveItem('10004')}
-                    isActive={activeItem === '10004'}
-                >
-                    Пополнение
-                </StyledButton>
-                <StyledButton
-                    onClick={() => setActiveItem('10002')}
-                    isActive={activeItem === '10002'}
-                >
-                    Подписки
-                </StyledButton>
+                <StyledLink to={'/catalog/category/10001'}>
+                    <StyledButton
+
+                        onClick={() => setActiveItem('10001')}
+                        isActive={activeItem === '10001'}
+                    >
+                        Игры
+                    </StyledButton>
+                </StyledLink>
+                <StyledLink to={'/catalog/category/10004'}>
+                    <StyledButton
+                        onClick={() => setActiveItem('10004')}
+                        isActive={activeItem === '10004'}
+                    >
+                        Пополнение
+                    </StyledButton>
+                </StyledLink>
+                <StyledLink to={'/catalog/category/10002'}>
+                    <StyledButton
+                        onClick={() => setActiveItem('10002')}
+                        isActive={activeItem === '10002'}
+                        >
+                        Подписки
+                    </StyledButton>
+                </StyledLink>
             </StyledButtons>
             <StyledCatalog>
                 {item?.map((game, index) => (
@@ -118,4 +134,7 @@ const StyledButton = styled.div<{ isActive: boolean }>`
     background-color: #FF333B;
     color: #FFFFFF;
   }
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

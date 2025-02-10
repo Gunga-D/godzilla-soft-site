@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import {useParams} from "react-router-dom";
 import {Filter} from "../../components/filter/Filter";
 import {CatalogItems} from "../../components/catalogItems/CatalogItems";
 
@@ -9,13 +8,12 @@ type CatalogProps = {
     id?: string,
 }
 export const Catalog = (props: CatalogProps) => {
-
     return (
         <StyledDiv>
             <StyledH2>Каталог</StyledH2>
             <StyledWrapper>
-                <Filter/>
-                <CatalogItems active={props.id}/>
+                    <Filter/>
+                    <CatalogItems active={props.id}/>
             </StyledWrapper>
         </StyledDiv>
     );

@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Icon} from "../../icon/Icon";
+import {useStore} from "zustand/react";
+import {FilterStore} from "../../../common/store/FilterStatus/FilterStatus";
 
 
 export const FilterPlatform = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const {changePlatform } = useStore(FilterStore);
 
     const toggleFilter = () => {
         setIsOpen(!isOpen);
+        setSelectedOption('');
+        changePlatform('');
     };
 
-    const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedOption(event.target.value);
+    const PlatformChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setSelectedOption(value);
+        changePlatform(value)
     };
-
     return (
         <div>
             <FilterDiv isOpen={isOpen}>
@@ -31,7 +37,7 @@ export const FilterPlatform = () => {
                                 name="platform"
                                 value="Steam"
                                 checked={selectedOption === 'Steam'}
-                                onChange={handleOptionChange}
+                                onChange={PlatformChange}
                             />
                             <StyledPrice>Steam</StyledPrice>
                         </label>
@@ -41,9 +47,9 @@ export const FilterPlatform = () => {
                             <StyledInput
                                 type="radio"
                                 name="platform"
-                                value="Ubisoft Connect (Uplay)"
-                                checked={selectedOption === 'Ubisoft Connect (Uplay)'}
-                                onChange={handleOptionChange}
+                                value="Ubisoft"
+                                checked={selectedOption === 'Ubisoft'}
+                                onChange={PlatformChange}
                             />
                             <StyledPrice>Ubisoft Connect (Uplay)</StyledPrice>
                         </label>
@@ -55,7 +61,7 @@ export const FilterPlatform = () => {
                                 name="platform"
                                 value="Battle.net"
                                 checked={selectedOption === 'Battle.net'}
-                                onChange={handleOptionChange}
+                                onChange={PlatformChange}
                             />
                             <StyledPrice>Battle.net</StyledPrice>
                         </label>
@@ -67,7 +73,7 @@ export const FilterPlatform = () => {
                                 name="platform"
                                 value="Rockstar"
                                 checked={selectedOption === 'Rockstar'}
-                                onChange={handleOptionChange}
+                                onChange={PlatformChange}
                             />
                             <StyledPrice>Rockstar</StyledPrice>
                         </label>
@@ -79,7 +85,7 @@ export const FilterPlatform = () => {
                                 name="platform"
                                 value="Epic Games Store"
                                 checked={selectedOption === 'Epic Games Store'}
-                                onChange={handleOptionChange}
+                                onChange={PlatformChange}
                             />
                             <StyledPrice>Epic Games Store</StyledPrice>
                         </label>
@@ -90,8 +96,8 @@ export const FilterPlatform = () => {
                                     type="radio"
                                     name="platform"
                                     value="another"
-                                    checked={selectedOption === "another"}
-                                    onChange={handleOptionChange}
+                                    checked={selectedOption === ""}
+                                    onChange={PlatformChange}
                                 />
                                 <StyledPrice>Другое</StyledPrice>
                             </label>
@@ -163,12 +169,6 @@ const StyledInput = styled.input`
   cursor: pointer;
 `;
 
-const InputContainer = styled.div `
-  display: flex;
-  flex-direction: row;
-  gap:  10px;
-  margin-bottom: 15px;
-`
 const StyledPrice = styled.div `
 
   font-weight: 900;
@@ -180,15 +180,4 @@ const StyledPrice = styled.div `
   opacity: 0.5;
 
 `
-const InputStyled = styled.input `
-  width: 123px;
-  height: 37px;
-  background: #FFFFFF;
-  opacity: 0.2;
-  border: 1px solid #FFFFFF;
-  border-radius: 10px;
-  outline: none;
-  padding: 10px 15px;
-  color: rgba(0, 0, 0, 0.62);
 
-`

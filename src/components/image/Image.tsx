@@ -12,7 +12,8 @@ type ImageProps = {
 }
 export const Image = (props: ImageProps) => {
     return (
-        <StyledImg onClick={props.onClick}
+        <StyledImg loading="lazy"
+                   onClick={props.onClick}
                    hoverEffect={props.hoverEffect}
                    src = {props.src}
                    radius={props.radius}

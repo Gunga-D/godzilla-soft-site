@@ -1,18 +1,44 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Icon} from "../../icon/Icon";
-
+import {useStore} from "zustand/react";
+import {FilterStore} from "../../../common/store/FilterStatus/FilterStatus";
 
 export const FilterPrice = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const {changeMinPrice, changeMaxPrice } = useStore(FilterStore);
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
 
     const toggleFilter = () => {
         setIsOpen(!isOpen);
+        setSelectedOption('');
+        changeMinPrice('');
+        changeMaxPrice('');
     };
 
-    const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedOption(event.target.value);
+    const handlePriceRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        const [min, max] = value.split('-').map((v) => v.trim());
+        setSelectedOption(value);
+        changeMinPrice(min);
+        changeMaxPrice(max);
+        setMinPrice(min);
+        setMaxPrice(max);
+
+    };
+
+    const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        changeMinPrice(value);
+        setMinPrice(value);
+    };
+
+    const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        changeMaxPrice(value);
+        setMaxPrice(value);
     };
 
     return (
@@ -25,19 +51,27 @@ export const FilterPrice = () => {
                 {isOpen && (
                     <OptionsContainer>
                         <InputContainer>
-                            <InputStyled placeholder='От 0'/>
-                            <InputStyled placeholder='До 90 000'/>
+                            <InputStyled
+                                placeholder='От 0'
+                                value={minPrice}
+                                onChange={handleMinChange}
+                            />
+                            <InputStyled
+                                placeholder='До 90 000'
+                                value={maxPrice}
+                                onChange={handleMaxChange}
+                            />
                         </InputContainer>
                         <Option>
                             <label>
                                 <StyledInput
                                     type="radio"
                                     name="price"
-                                    value="До 1000 ₽"
-                                    checked={selectedOption === 'До 1000 ₽'}
-                                    onChange={handleOptionChange}
+                                    value="0 - 1000"
+                                    checked={selectedOption === '0 - 1000'}
+                                    onChange={handlePriceRangeChange}
                                 />
-                            <StyledPrice>До 1000 ₽</StyledPrice>
+                                <StyledPrice>До 1000 ₽</StyledPrice>
                             </label>
                         </Option>
                         <Option>
@@ -45,11 +79,11 @@ export const FilterPrice = () => {
                                 <StyledInput
                                     type="radio"
                                     name="price"
-                                    value="1000 ₽ - 3000 ₽"
-                                    checked={selectedOption === '1000 ₽ - 3000 ₽'}
-                                    onChange={handleOptionChange}
+                                    value="1000 - 3000"
+                                    checked={selectedOption === '1000 - 3000'}
+                                    onChange={handlePriceRangeChange}
                                 />
-                            <StyledPrice>1000 ₽ - 3000 ₽</StyledPrice>
+                                <StyledPrice>1000 ₽ - 3000 ₽</StyledPrice>
                             </label>
                         </Option>
                         <Option>
@@ -57,11 +91,11 @@ export const FilterPrice = () => {
                                 <StyledInput
                                     type="radio"
                                     name="price"
-                                    value="3000 ₽ - 6000 ₽"
-                                    checked={selectedOption === '3000 ₽ - 6000 ₽'}
-                                    onChange={handleOptionChange}
+                                    value="3000 - 6000"
+                                    checked={selectedOption === '3000 - 6000'}
+                                    onChange={handlePriceRangeChange}
                                 />
-                            <StyledPrice>3000 ₽ - 6000 ₽</StyledPrice>
+                                <StyledPrice>3000 ₽ - 6000 ₽</StyledPrice>
                             </label>
                         </Option>
                         <Option>
@@ -69,23 +103,11 @@ export const FilterPrice = () => {
                                 <StyledInput
                                     type="radio"
                                     name="price"
-                                    value="6000 ₽ и выше"
-                                    checked={selectedOption === '6000 ₽ и выше'}
-                                    onChange={handleOptionChange}
+                                    value="6000 - 20000"
+                                    checked={selectedOption === '6000 - 20000'}
+                                    onChange={handlePriceRangeChange}
                                 />
                                 <StyledPrice>6000 ₽ и выше</StyledPrice>
-                            </label>
-                        </Option>
-                        <Option>
-                            <label>
-                                <StyledInput
-                                    type="radio"
-                                    name="price"
-                                    value="Рандом"
-                                    checked={selectedOption === 'Рандом'}
-                                    onChange={handleOptionChange}
-                                />
-                            <StyledPrice>Рандом</StyledPrice>
                             </label>
                         </Option>
                     </OptionsContainer>
@@ -97,7 +119,7 @@ export const FilterPrice = () => {
 
 const FilterDiv = styled.div<{ isOpen: boolean }>`
   width: 287px;
-  height: ${({ isOpen }) => (isOpen ? '278px' : '59px')};
+  height: ${({ isOpen }) => (isOpen ? '260px' : '59px')};
   background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   transition: height 0.4s ease-out;
@@ -114,11 +136,9 @@ const OptionsContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   margin-top: 20px;
-
 `;
 
 const Option = styled.div`
-  //margin-bottom: 13px;
   font-size: 13px;
   line-height: 16px;
   color: #FFFFFF;
@@ -155,32 +175,35 @@ const StyledInput = styled.input`
   cursor: pointer;
 `;
 
-const InputContainer = styled.div `
+const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap:  10px;
+  gap: 10px;
   margin-bottom: 15px;
-`
-const StyledPrice = styled.div `
- 
+`;
+
+const StyledPrice = styled.div`
   font-weight: 900;
   font-size: 13px;
   line-height: 16px;
-
   color: #FFFFFF;
-
   opacity: 0.5;
+`;
 
-`
-const InputStyled = styled.input `
+const InputStyled = styled.input`
   width: 123px;
   height: 37px;
-  background: #FFFFFF;
-  opacity: 0.2;
-  border: 1px solid #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 10px;
   outline: none;
   padding: 10px 15px;
-  color: rgba(0, 0, 0, 0.62);
-
-`
+  &::placeholder {
+    color: #FFFFFF;
+    opacity: 0.5;
+  }
+  font-weight: 900;
+  color: rgba(217, 217, 217, 0.2);
+  background: rgba(217, 217, 217, 0.2);
+  color: #FFFFFF;
+  opacity: 0.5;
+`;

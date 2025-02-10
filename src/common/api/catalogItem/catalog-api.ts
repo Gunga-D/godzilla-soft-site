@@ -1,8 +1,7 @@
 import axios from "axios";
-import {BaseUrl} from "../client";
-import { Category} from "./catalogItem";
-import {Item} from "../item/item";
-
+import { BaseUrl } from "../client";
+import { Category } from "./catalogItem";
+import { Item } from "../item/item";
 
 export const catalogApi = {
     async getCategoriesTree(): Promise<Category[]> {
@@ -10,9 +9,30 @@ export const catalogApi = {
         const response = await axios.get(requestUrl);
         return response.data.data;
     },
-    async getItems(num: string): Promise<Item[]> {
-        const requestUrl = BaseUrl + `/items?category_id=${num}`;
+
+    async getItems(categoryId: string, filters: {
+        min_price?: string;
+        max_price?: string;
+        platform?: string;
+        region?: string;
+    }): Promise<Item[]> {
+        const queryParams = new URLSearchParams();
+
+        if (filters.min_price) {
+            queryParams.append('min_price', filters.min_price);
+        }
+        if (filters.max_price) {
+            queryParams.append('max_price', filters.max_price);
+        }
+        if (filters.platform) {
+            queryParams.append('platform', filters.platform);
+        }
+        if (filters.region) {
+            queryParams.append('region', filters.region);
+        }
+
+        const requestUrl = `${BaseUrl}/items?category_id=${categoryId}&${queryParams.toString()}`;
         const response = await axios.get(requestUrl);
         return response.data.data;
-    }
-}
+    },
+};
