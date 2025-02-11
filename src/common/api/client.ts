@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-export const BaseUrl = 'https://godzillasoft.ru/api/v1';
+export const BaseUrl = 'https://api.godzillasoft.ru/v1';
 
 export type ApiConfig = {
     baseURL?: string;
