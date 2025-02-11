@@ -17,7 +17,7 @@ export const catalogApi = {
         region?: string;
     }): Promise<Item[]> {
         const queryParams = new URLSearchParams();
-
+        let requestUrl
         if (filters.min_price) {
             queryParams.append('min_price', filters.min_price);
         }
@@ -30,8 +30,12 @@ export const catalogApi = {
         if (filters.region) {
             queryParams.append('region', filters.region);
         }
+        if (filters.region || filters.max_price || filters.min_price || filters.platform){
+             requestUrl = `${BaseUrl}/items?category_id=${categoryId}&${queryParams.toString()}`;
+        } else {
+             requestUrl = `${BaseUrl}/items?category_id=${categoryId}`;
 
-        const requestUrl = `${BaseUrl}/items?category_id=${categoryId}&${queryParams.toString()}`;
+        }
         const response = await axios.get(requestUrl);
         return response.data.data;
     },

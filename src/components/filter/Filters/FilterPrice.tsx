@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Icon} from "../../icon/Icon";
 import {useStore} from "zustand/react";
@@ -17,7 +17,11 @@ export const FilterPrice = () => {
         changeMinPrice('');
         changeMaxPrice('');
     };
-
+    useEffect(() => {
+        setSelectedOption(null);
+        changeMaxPrice('');
+        changeMinPrice('');
+    }, []);
     const handlePriceRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         const [min, max] = value.split('-').map((v) => v.trim());

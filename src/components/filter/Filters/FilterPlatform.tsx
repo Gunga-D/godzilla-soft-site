@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Icon} from "../../icon/Icon";
 import {useStore} from "zustand/react";
@@ -21,6 +21,10 @@ export const FilterPlatform = () => {
         setSelectedOption(value);
         changePlatform(value)
     };
+    useEffect(() => {
+        setSelectedOption(null);
+        changePlatform('');
+    }, []);
     return (
         <div>
             <FilterDiv isOpen={isOpen}>
