@@ -32,11 +32,29 @@ export const BuyPage = () => {
             setError('Пожалуйста, введите email');
             return;
         }
-
         if (!/\S+@\S+\.\S+/.test(email)) {
             setError('Пожалуйста, введите корректный email');
             return;
         }
+
+        const createOrder = async() => {
+          try {
+            await itemApi.createOrder(Number(id), email)
+          } catch (err) {
+            setError(String(err));
+          }
+        }
+        const buyItem = async () => {
+            try {
+              await itemApi.cartItem(Number(id))
+            } catch (err) {
+              console.log("Ошибка")
+              setError('Произошла ошибка!');
+            }
+            createOrder();
+        };
+  
+        buyItem();
     };
 
     useEffect(() => {

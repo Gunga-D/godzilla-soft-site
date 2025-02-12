@@ -13,3 +13,8 @@ export type CartItemDTO = {
     price: number,
     currency: string,
 }
+
+export type CreateOrderDTO = {
+    payment_link: string,
+    order_id: string
+}

@@ -1,4 +1,4 @@
-import {Item, CartItemDTO} from "./item";
+import {Item, CartItemDTO, CreateOrderDTO} from "./item";
 import axios from "axios";
 import {BaseUrl} from "../client";
 
@@ -11,6 +11,10 @@ export const itemApi = {
     },
     async cartItem(itemId: number): Promise<CartItemDTO> {
         const response = await axios.post<{data:CartItemDTO}>(BaseUrl + "/cart_item", {item_id: itemId});
+        return response.data.data;
+    },
+    async createOrder(itemId: number, email: string): Promise<CreateOrderDTO> {
+        const response = await axios.post<{data:CreateOrderDTO}>(BaseUrl + "/create_order", {item_id: itemId, email: email});
         return response.data.data;
     }
 }
