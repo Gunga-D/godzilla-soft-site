@@ -8,3 +8,8 @@ export type Item = {
     old_price?: number,
     thumbnail_url?: string,
 }
+
+export type CartItemDTO = {
+    price: number,
+    currency: string,
+}
