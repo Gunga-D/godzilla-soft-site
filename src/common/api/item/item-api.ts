@@ -10,11 +10,17 @@ export const itemApi = {
         return response.data.data;
     },
     async cartItem(itemId: number): Promise<CartItemDTO> {
-        const response = await axios.post<{data:CartItemDTO}>(BaseUrl + "/cart_item", {item_id: itemId});
+        const response = await axios.post<{data:CartItemDTO, status: string, message: string}>(BaseUrl + "/cart_item", {item_id: itemId});
+        if (response.data.status === 'error') {
+            throw response.data.message
+        }
         return response.data.data;
     },
     async createOrder(itemId: number, email: string): Promise<CreateOrderDTO> {
-        const response = await axios.post<{data:CreateOrderDTO}>(BaseUrl + "/create_order", {item_id: itemId, email: email});
+        const response = await axios.post<{data:CreateOrderDTO, status: string, message: string}>(BaseUrl + "/create_order", {item_id: itemId, email: email});
+        if (response.data.status === 'error') {
+            throw response.data.message
+        }
         return response.data.data;
     }
 }

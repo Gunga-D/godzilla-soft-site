@@ -5,6 +5,7 @@ import MIR from '../../assets/images/Payment/mir.png';
 import TBANK from '../../assets/images/Payment/tbank.png';
 import { Image } from "../image/Image";
 import { itemApi } from "../../common/api/item/item-api";
+import { CreateOrderDTO } from '../../common/api/item/item';
 import { Item } from "../../common/api/item/item";
 import { MediumCardForGames } from "../cardForGames/MediumCardForGames";
 import { CatalogCard } from "../cardForGames/CatalogCard";
@@ -38,18 +39,21 @@ export const BuyPage = () => {
         }
 
         const createOrder = async() => {
+          let data : CreateOrderDTO
           try {
-            await itemApi.createOrder(Number(id), email)
+            data = await itemApi.createOrder(Number(id), email)
           } catch (err) {
             setError(String(err));
+            return
           }
+          window.open(data.payment_link,"_self")
         }
         const buyItem = async () => {
             try {
               await itemApi.cartItem(Number(id))
             } catch (err) {
-              console.log("Ошибка")
-              setError('Произошла ошибка!');
+              setError(String(err));
+              return
             }
             createOrder();
         };
