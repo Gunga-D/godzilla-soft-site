@@ -21,7 +21,6 @@ root.render(
               <GlobalStyles />
           </BrowserRouter>
       </ThemeProvider>
-
   </React.StrictMode>
 );
 
