@@ -19,6 +19,7 @@ export const BuyPage = () => {
 
     const handleCardClick = (id: number | undefined) => {
         navigate(`/catalog/${id}`);
+
     };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +49,7 @@ export const BuyPage = () => {
             }
         };
         fetchItem();
-    }, []);
+    }, [id]);
 
     return (
         <StyledDiv>
@@ -73,7 +74,7 @@ export const BuyPage = () => {
                 <StyledWrapper>
                     {item?.slice(0, 4).map((item, index) => (
                         <CatalogCard
-                            key={index}
+                            key={item.id}
                             imageUrl={item.thumbnail_url}
                             cursor={true}
                             height="325px"

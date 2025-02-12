@@ -3,7 +3,6 @@ export type Category = {
     name?: string,
     children?: any,
 }
-
 export type CatalogItem = {
     id?: string,
     name?: string,

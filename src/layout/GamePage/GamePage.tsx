@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { itemDetailsApi } from '../../common/api/item-details/item-details-api';
-import { useParams } from 'react-router-dom';
+import {useLocation, useParams} from 'react-router-dom';
 import { ItemDetail } from '../../common/api/item-details/item-detail';
 import { Container } from '../../styles/Container';
 import { Image } from '../../components/image/Image';
@@ -11,6 +11,7 @@ export const GamePage = () => {
     const [item, setItem] = useState<ItemDetail | null>(null);
     const { id } = useParams();
     const [activeButton, setActiveButton] = useState<string>('Характеристики');
+    const location = useLocation();
     const scroll = () => {
         const element = document.getElementById('dostavka');
         if (element) {
@@ -27,7 +28,7 @@ export const GamePage = () => {
             }
         };
         fetchItem();
-    }, []);
+    }, [location.key]);
 
     if (!item) {
         return (

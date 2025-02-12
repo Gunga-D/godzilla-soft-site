@@ -31,9 +31,9 @@ export const catalogApi = {
             queryParams.append('region', filters.region);
         }
         if (filters.region || filters.max_price || filters.min_price || filters.platform){
-             requestUrl = `${BaseUrl}/items?category_id=${categoryId}&${queryParams.toString()}`;
+             requestUrl = `${BaseUrl}/items?limit=100&category_id=${categoryId}&${queryParams.toString()}`;
         } else {
-             requestUrl = `${BaseUrl}/items?category_id=${categoryId}`;
+             requestUrl = `${BaseUrl}/items?limit=100&category_id=${categoryId}`;
 
         }
         const response = await axios.get(requestUrl);
