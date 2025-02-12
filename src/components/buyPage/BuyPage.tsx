@@ -36,9 +36,6 @@ export const BuyPage = () => {
             setError('Пожалуйста, введите корректный email');
             return;
         }
-
-        // Если email валиден, можно продолжить с оплатой
-        console.log('Оплата прошла успешно для email:', email);
     };
 
     useEffect(() => {
