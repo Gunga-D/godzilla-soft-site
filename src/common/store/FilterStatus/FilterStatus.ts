@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-
 type Store = {
     region?: string,
     platform?: string,
@@ -10,10 +9,7 @@ type Store = {
     changePlatform: (platform: string) => void,
     changeRegion: (regin: string) => void,
 }
-
 export const FilterStore = create<Store>()((set) => ({
-    // count: 1,
-    // inc: () => set((state) => ({ count: state.count + 1 })),
     region: '',
     changeRegion: (region) => set((state) => ({region: region})),
     platform: '',

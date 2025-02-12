@@ -1,47 +1,76 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
-import SBP from '../../assets/images/Payment/sbp.png'
-import MIR from '../../assets/images/Payment/mir.png'
-import TBANK from '../../assets/images/Payment/tbank.png'
-import {Image} from "../image/Image";
-import {itemApi} from "../../common/api/item/item-api";
-import {Item} from "../../common/api/item/item";
-import {MediumCardForGames} from "../cardForGames/MediumCardForGames";
-import {CatalogCard} from "../cardForGames/CatalogCard";
-import {useNavigate, useParams} from "react-router-dom";
-
+import SBP from '../../assets/images/Payment/sbp.png';
+import MIR from '../../assets/images/Payment/mir.png';
+import TBANK from '../../assets/images/Payment/tbank.png';
+import { Image } from "../image/Image";
+import { itemApi } from "../../common/api/item/item-api";
+import { Item } from "../../common/api/item/item";
+import { MediumCardForGames } from "../cardForGames/MediumCardForGames";
+import { CatalogCard } from "../cardForGames/CatalogCard";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const BuyPage = () => {
     const [item, setItem] = useState<Item[] | null>(null);
+    const [email, setEmail] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
     const { id } = useParams();
     const navigate = useNavigate();
 
     const handleCardClick = (id: number | undefined) => {
         navigate(`/catalog/${id}`);
     };
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+        setError(null);
+    };
+
+    const handlePayment = () => {
+        if (!email.trim()) {
+            setError('Пожалуйста, введите email');
+            return;
+        }
+
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Пожалуйста, введите корректный email');
+            return;
+        }
+
+        // Если email валиден, можно продолжить с оплатой
+        console.log('Оплата прошла успешно для email:', email);
+    };
+
     useEffect(() => {
         const fetchItem = async () => {
             try {
                 const data = await itemApi.getItem('/recomendation_items');
                 setItem(data);
             } catch (err) {
+                console.error(err);
             }
         };
         fetchItem();
     }, []);
+
     return (
         <StyledDiv>
-            <StyledH2 id = 'dostavka'>Доставка цифрового товара</StyledH2>
+            <StyledH2 id='dostavka'>Доставка цифрового товара</StyledH2>
             <StyledH4>Цифровой товар будет доставлен на указанный е-mail:</StyledH4>
-            <StyledInput placeholder='Введите email'/>
+            <StyledInput
+                placeholder='Введите email'
+                value={email}
+                onChange={handleEmailChange}
+            />
+            {error && <StyledError>{error}</StyledError>}
             <StyledP>доступные способы оплаты</StyledP>
             <PaymentWrapper>
-                <StyledDivImg><Image cursor={true} src={SBP} height='41px' width='52px'/></StyledDivImg>
-                <StyledDivImg><Image cursor={true} src={TBANK} height='23px' width='56px'/></StyledDivImg>
-                <StyledDivImg><Image cursor={true} src={MIR} width='52px' height='16px'/></StyledDivImg>
+                <StyledDivImg><Image cursor={true} src={SBP} height='41px' width='52px' /></StyledDivImg>
+                <StyledDivImg><Image cursor={true} src={TBANK} height='23px' width='56px' /></StyledDivImg>
+                <StyledDivImg><Image cursor={true} src={MIR} width='52px' height='16px' /></StyledDivImg>
             </PaymentWrapper>
-            <StyledButton>Оплатить</StyledButton>
-            <StyledSmallText>Нажимая кнопку "Оплатить", вы принимаете Договор-оферту оказания услуг и Политику конфиденциальности</StyledSmallText>
+            <StyledButton onClick={handlePayment}>Оплатить</StyledButton>
+            <StyledSmallText>Нажимая кнопку "Оплатить", вы принимаете Договор-оферту оказания услуг и Политику конфиденциальности</StyledSmallText>
             <Popular>
                 <StyledH3>Популярные</StyledH3>
                 <StyledWrapper>
@@ -51,10 +80,8 @@ export const BuyPage = () => {
                             imageUrl={item.thumbnail_url}
                             cursor={true}
                             height="325px"
-
                             width="253px"
                             cardType="catalogCard"
-
                             nameGame={item.title}
                             onClick={() => handleCardClick(item.id)}
                         />
@@ -65,30 +92,33 @@ export const BuyPage = () => {
     );
 };
 
-const StyledDiv = styled.div `
-    height: 100%; 
-    margin-top: 210px;
+const StyledDiv = styled.div`
+  height: 100%;
+  margin-top: 210px;
   display: flex;
   align-items: center;
   flex-direction: column;
-`
-const StyledH2 = styled.h2 `
+`;
+
+const StyledH2 = styled.h2`
   font-style: normal;
   font-weight: 900;
   font-size: 51px;
   line-height: 150%;
   color: #FFFFFF;
   margin-bottom: 80px;
-`
-const StyledH4 = styled.h4 `
+`;
+
+const StyledH4 = styled.h4`
   font-style: normal;
   font-weight: 900;
   font-size: 20px;
   margin-bottom: 30px;
   line-height: 150%;
   color: #FFFFFF;
-`
-const StyledInput = styled.input `
+`;
+
+const StyledInput = styled.input`
   &::placeholder {
     color: #FFFFFF;
     opacity: 0.5;
@@ -96,10 +126,10 @@ const StyledInput = styled.input `
   color: rgba(217, 217, 217, 0.2);
   width: 579px;
   height: 56px;
-  background: rgba(217, 217, 217, 0.2); 
+  background: rgba(217, 217, 217, 0.2);
   border-radius: 5px;
   outline: none;
-  color: #FFFFFF; 
+  color: #FFFFFF;
   opacity: 0.5;
   border: none;
   padding: 10px;
@@ -107,22 +137,23 @@ const StyledInput = styled.input `
   font-weight: 900;
   font-size: 16px;
   line-height: 150%;
-  
-`
-const PaymentWrapper = styled.div `
+`;
+
+const PaymentWrapper = styled.div`
   display: flex;
   gap: 5px;
-  
-`
-const StyledP = styled.p `
+`;
+
+const StyledP = styled.p`
   font-style: normal;
   font-weight: 900;
   font-size: 20px;
   line-height: 150%;
   margin-bottom: 25px;
   color: #FFFFFF;
-`
-const StyledDivImg = styled.div `
+`;
+
+const StyledDivImg = styled.div`
   width: 146.12px;
   height: 95.42px;
   background: #FFFFFF;
@@ -132,9 +163,10 @@ const StyledDivImg = styled.div `
   align-items: center;
   justify-content: center;
   margin-bottom: 60px;
-`
-const StyledButton = styled.button `
- background-color: #FF333B;
+`;
+
+const StyledButton = styled.button`
+  background-color: #FF333B;
   width: 579px;
   height: 65px;
   border-radius: 5px;
@@ -152,40 +184,48 @@ const StyledButton = styled.button `
     transition: 550ms;
     color: red;
   }
-`
-const StyledSmallText = styled.div `/* Нажимая кнопку "Оплатить", вы принимаете Договор-оферту оказания услуг и Политику конфиденциальности */
+`;
 
+const StyledSmallText = styled.div`
   font-style: normal;
   font-weight: 900;
   font-size: 12px;
   line-height: 150%;
   color: #FFFFFF;
   width: 579px;
-text-align: left;
+  text-align: left;
   margin-bottom: 100px;
+`;
 
-`
-const StyledH3 = styled.h3 `
+const StyledH3 = styled.h3`
   font-style: normal;
   font-weight: 900;
   font-size: 51px;
   line-height: 150%;
   color: #FFFFFF;
-text-align: left;
+  text-align: left;
   margin-left: 0;
-`
-const Popular = styled.div `
+`;
+
+const Popular = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
-`
-const StyledWrapper = styled.div `
+`;
+
+const StyledWrapper = styled.div`
   margin-top: 20px;
   gap: 25px;
   display: flex;
   img {
     object-fit: cover;
   }
-`
+`;
+
+const StyledError = styled.div`
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: -30px;
+`;
