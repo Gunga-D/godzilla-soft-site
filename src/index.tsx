@@ -19,8 +19,4 @@ root.render(
               <GlobalStyles />
           </BrowserRouter>
       </ThemeProvider>
-<<<<<<< HEAD
-  </React.StrictMode>
-=======
->>>>>>> ebefe35 (add handle buy)
 );
