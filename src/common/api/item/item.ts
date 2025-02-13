@@ -9,12 +9,12 @@ export type Item = {
     thumbnail_url?: string,
 }
 
-export type CartItemDTO = {
+export type CartItem = {
     price: number,
     currency: string,
 }
 
-export type CreateOrderDTO = {
+export type CreateOrder = {
     payment_link: string,
     order_id: string
 }

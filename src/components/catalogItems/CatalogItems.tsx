@@ -1,54 +1,78 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled from "styled-components";
 import { catalogApi } from "../../common/api/catalogItem/catalog-api";
 import { CatalogCard } from "../cardForGames/CatalogCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Item } from "../../common/api/item/item";
-import {Link} from "react-router-dom";
-import {useStore} from "zustand/react";
-import {FilterStore} from "../../common/store/FilterStatus/FilterStatus";
+import { Link } from "react-router-dom";
+import { useStore } from "zustand/react";
+import { FilterStore } from "../../common/store/FilterStatus/FilterStatus";
 
 type CatalogProps = {
     active?: string,
 }
 
 export const CatalogItems = (props: CatalogProps) => {
-    const [item, setItem] = useState<Item[] | null>(null);
-    const [activeItem, setActiveItem] = useState<any>(props.active || '');
+    const [items, setItems] = useState<Item[]>([]);
+    const [activeItem, setActiveItem] = useState<any>(props.active || '10001');
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
     const { id } = useParams();
-    const {min_price,max_price, region, platform } = useStore(FilterStore);
+    const { min_price, max_price, region, platform } = useStore(FilterStore);
 
     const handleCardClick = (id: number | undefined) => {
         navigate(`/catalog/${id}`);
     };
 
-    useEffect(() => {
+    const loadMoreItems = useCallback(async () => {
+        if (!hasMore) return;
+
         const filters = {
             min_price: min_price,
             max_price: max_price,
             platform: platform,
             region: region
         };
-        const fetchItem = async () => {
-            try {
-                setActiveItem(id || activeItem);
-                const data = await catalogApi.getItems(id || activeItem,filters);
-                setItem(data);
-            } catch (err) {
-                console.error("Ошибка при загрузке данных:", err);
+
+        try {
+            const data = await catalogApi.getItems(id || activeItem, filters);
+            if (data.length === 0) {
+                setHasMore(false);
+            } else {
+                setItems(prevItems => [...prevItems, ...data]);
+                setPage(prevPage => prevPage + 1);
             }
+        } catch (err) {
+            console.error("Ошибка при загрузке данных:", err);
+        }
+    }, [id, activeItem, min_price, max_price, platform, region, hasMore]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || !hasMore) {
+                return;
+            }
+            loadMoreItems();
         };
-        fetchItem();
-    }, [ location, region, platform, max_price, min_price]);
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [loadMoreItems, hasMore]);
+
+    useEffect(() => {
+        setItems([]); // Очистка старых данных при изменении фильтров
+        setPage(1);
+        setHasMore(true);
+        loadMoreItems();
+    }, [location, region, platform, max_price, min_price, id, activeItem]);
 
     return (
         <StyledDiv>
             <StyledButtons>
                 <StyledLink to={'/catalog/category/10001'}>
                     <StyledButton
-
                         onClick={() => setActiveItem('10001')}
                         isActive={activeItem === '10001'}
                     >
@@ -67,13 +91,13 @@ export const CatalogItems = (props: CatalogProps) => {
                     <StyledButton
                         onClick={() => setActiveItem('10002')}
                         isActive={activeItem === '10002'}
-                        >
+                    >
                         Подписки
                     </StyledButton>
                 </StyledLink>
             </StyledButtons>
             <StyledCatalog>
-                {item?.map((game, index) => (
+                {items.map((game, index) => (
                     <CatalogCard
                         key={index}
                         cursor={true}
@@ -90,6 +114,7 @@ export const CatalogItems = (props: CatalogProps) => {
                     />
                 ))}
             </StyledCatalog>
+            {!hasMore && <div>No more items to load</div>}
         </StyledDiv>
     );
 };
@@ -135,6 +160,7 @@ const StyledButton = styled.div<{ isActive: boolean }>`
     color: #FFFFFF;
   }
 `;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;

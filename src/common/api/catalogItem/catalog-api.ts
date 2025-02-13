@@ -9,7 +9,6 @@ export const catalogApi = {
         const response = await axios.get(requestUrl);
         return response.data.data;
     },
-
     async getItems(categoryId: string, filters: {
         min_price?: string;
         max_price?: string;
@@ -34,7 +33,6 @@ export const catalogApi = {
              requestUrl = `${BaseUrl}/items?limit=100&category_id=${categoryId}&${queryParams.toString()}`;
         } else {
              requestUrl = `${BaseUrl}/items?limit=100&category_id=${categoryId}`;
-
         }
         const response = await axios.get(requestUrl);
         return response.data.data;

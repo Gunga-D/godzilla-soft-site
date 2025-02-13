@@ -10,46 +10,26 @@ import {NotFoundPage} from "./layout/NotFoundPage/NotFoundPage";
 import {LogIn} from "./layout/LogIn/Login";
 import {GamePage} from "./layout/GamePage/GamePage";
 import {Contacts} from "./layout/Contacts/Contacts";
+
 function App() {
-  return (
-      <StyledBackground>
-          <FlexWrapper align='center' direction='column'>
-              <Layout pageId="">
-                      <Routes>
-                          <Route path='/'>
-                              <Route
-                                  path=''
-                                  element={<Main />}
-                                  />
-                              <Route
-                                  path='*'
-                                  element={<NotFoundPage/>}/>
-                          </Route>
-                          <Route path='/catalog'>
-                                  <Route
-                                      path='category'
-                                      element={<Catalog id='0' />}
-                                  />
-                                  <Route path='category'
-                                  >
-                                      <Route
-                                          path=':id'
-                                          element={<Catalog  />}
-                                      />
-                                  </Route>
-                                  <Route
-                                      path=':id'
-                                      element={<GamePage />}
-                                  />
-                          </Route>
-                          <Route path='/contacts' element={<Contacts/>} />
-                          <Route path='/register' />
-                          <Route path='/login' element={<LogIn/>}/>
-                      </Routes>
-              </Layout>
-          </FlexWrapper>
-      </StyledBackground>
-  );
+    return (
+        <StyledBackground>
+            <FlexWrapper align='center' direction='column'>
+                <Layout pageId="">
+                    <Routes>
+                        <Route path='/' element={<Main />} />
+                        <Route path='/catalog'>
+                            <Route path='category/:id' element={<Catalog />} />
+                            <Route path=':id' element={<GamePage />} />
+                        </Route>
+                        <Route path='/contacts' element={<Contacts/>} />
+                        <Route path='/login' element={<LogIn/>}/>
+                        <Route path='*' element={<NotFoundPage/>}/>
+                    </Routes>
+                </Layout>
+            </FlexWrapper>
+        </StyledBackground>
+    );
 }
 
 const StyledBackground = styled.div `
@@ -59,6 +39,6 @@ const StyledBackground = styled.div `
   background-position: top;
   width: 100%;
   min-height: 100%;
-  
-`
+`;
+
 export default App;

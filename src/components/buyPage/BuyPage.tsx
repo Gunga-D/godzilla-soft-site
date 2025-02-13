@@ -5,9 +5,8 @@ import MIR from '../../assets/images/Payment/mir.png';
 import TBANK from '../../assets/images/Payment/tbank.png';
 import { Image } from "../image/Image";
 import { itemApi } from "../../common/api/item/item-api";
-import { CreateOrderDTO } from '../../common/api/item/item';
+import { CreateOrder } from '../../common/api/item/item';
 import { Item } from "../../common/api/item/item";
-import { MediumCardForGames } from "../cardForGames/MediumCardForGames";
 import { CatalogCard } from "../cardForGames/CatalogCard";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -39,7 +38,7 @@ export const BuyPage = () => {
         }
 
         const createOrder = async() => {
-          let data : CreateOrderDTO
+          let data : CreateOrder
           try {
             data = await itemApi.createOrder(Number(id), email)
           } catch (err) {
@@ -57,7 +56,7 @@ export const BuyPage = () => {
             }
             createOrder();
         };
-  
+
         buyItem();
     };
 
