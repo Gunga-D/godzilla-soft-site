@@ -37,22 +37,25 @@ export const BuyPage = () => {
             return;
         }
 
-        const createOrder = async() => {
-          let data : CreateOrder
-          try {
-            data = await itemApi.createOrder(Number(id), email)
-          } catch (err) {
-            setError(String(err));
-            return
-          }
-          window.open(data.payment_link,"_self")
-        }
+        const createOrder = async () => {
+            let data: CreateOrder;
+            try {
+                data = await itemApi.createOrder(Number(id), email);
+            } catch (err) {
+                const errorMessage = getErrorMessage(err);
+                setError(errorMessage);
+                return;
+            }
+            window.open(data.payment_link, "_self");
+        };
+
         const buyItem = async () => {
             try {
-              await itemApi.cartItem(Number(id))
+                await itemApi.cartItem(Number(id));
             } catch (err) {
-              setError(String(err));
-              return
+                const errorMessage = getErrorMessage(err);
+                setError(errorMessage);
+                return;
             }
             createOrder();
         };
@@ -60,7 +63,16 @@ export const BuyPage = () => {
         buyItem();
     };
 
-    useEffect(() => {
+    const getErrorMessage = (err: unknown): string => {
+        if (typeof err === 'string') {
+            return err;
+        } else if (err instanceof Error) {
+            return err.message;
+        } else if (err && typeof err === 'object' && 'message' in err) {
+            return String(err.message);
+        }
+        return 'Произошла неизвестная ошибка';
+    };    useEffect(() => {
         const fetchItem = async () => {
             try {
                 const data = await itemApi.getItem('/recomendation_items');

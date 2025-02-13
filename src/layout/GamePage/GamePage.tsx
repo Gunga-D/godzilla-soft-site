@@ -54,9 +54,11 @@ export const GamePage = () => {
                 );
             case 'Активация и доставка':
                 return (
-                    <StyledContent>
-                        {item.slip}
-                    </StyledContent>
+                    <StyledContent
+                        dangerouslySetInnerHTML={{
+                            __html: item.slip ? item.slip.replace(/\n/g, '<br />') : 'Информация отсутствует',
+                        }}
+                    />
                 );
 
             default:
