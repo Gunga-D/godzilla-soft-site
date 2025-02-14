@@ -15,6 +15,8 @@ type CatalogCardForGameProps = {
     cardType?: 'bigCard' | 'mediumCard' | 'catalogCard'
     is_for_sale?: boolean,
     onClick: () => void;
+    divWidth?: string,
+    divHeight?: string,
 }
 export const CatalogCard = (props: CatalogCardForGameProps) => {
     let discount;
@@ -26,6 +28,8 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
     }
     return (
         <StyledCard
+            divWidth={props.divWidth}
+            divHeight={props.divHeight}
             cursor={props.cursor}
             transform={props.transform}
             cardType = {props.cardType}
@@ -54,7 +58,9 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
 const StyledCard = styled.div <CatalogCardForGameProps> `
   position: relative;
   z-index: 0;
-  width: 253px;
+  height: 250px;
+  width:  250px;
+
   //background: linear-gradient(180deg, rgba(0, 0, 0, 0.11) 42.26%, #000000 100%);
   border: 1px solid #FFFFFF;
   border-radius: 5px;
@@ -67,28 +73,24 @@ const StyledCard = styled.div <CatalogCardForGameProps> `
     transform: ${props => props.transform ? 'scale(1.03)' : 'none'};
   }
   img {
-    width: 250px;
-    height: 324px;
-    object-fit: cover;
+    width: 248px;
+    height: 248px;
+    object-fit: contain;
     object-position: center;
     border-radius: 5px;
 
   }
 `
 const GradientOverlay = styled.div`
-    position: absolute;
-    top: 0;  border-radius: 5px;
-
-
+  position: absolute;
+  top: 0;  
+  border-radius: 5px;
   left: 0;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.11) 42.26%, #000000 100%);
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.11) 42.26%, #000000 100%);
+  z-index: 1;
 `;
 
 const SaleIcon = styled.div`
@@ -125,8 +127,8 @@ const StyledButton = styled.button `
   font-weight: 900;
   border: none;
   position: absolute;
-  top: 270px;
-  right: 25px;
+  top: 195px;
+  right: 15px;
   z-index: 100;
   cursor: pointer;
   &:hover {
@@ -149,13 +151,11 @@ const StyledPOldPrice = styled.p`
   position: relative;
   display: inline-block;
   width: auto;
-
   &:after {
     content: "₽";
     font-size: 10px;
     margin-left: 2px;
   }
-
   &:before {
     content: "";
     position: absolute;

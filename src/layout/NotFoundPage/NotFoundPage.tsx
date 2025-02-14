@@ -1,15 +1,61 @@
 import React from 'react';
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const NotFoundPage = () => {
     return (
-        <StyledNotFound>
-            Извините ничего не нашли
-        </StyledNotFound>
+        <NotFoundGame>
+            <StyledH1>404</StyledH1>
+            <StyledSubtitle>Страница не найдена</StyledSubtitle>
+            <StyledText>Извините, запрашиваемая страница не существует.</StyledText>
+            <StyledLink to={'/catalog/category/10001'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
+        </NotFoundGame>
     );
 };
 
-const StyledNotFound = styled.div `
-    margin-top: 200px;
-  color: white; 
+const NotFoundGame = styled.div `
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+
 `
+const StyledH1 = styled.h1 `
+  font-size: 6rem;
+  margin: 0;
+  color: #ff4757;
+
+`
+const StyledSubtitle = styled.div `
+  font-size: 2rem;
+  margin: 10px 0;
+
+`
+const StyledText = styled.text `
+  font-size: 1.2rem;
+  margin: 10px 0;
+
+`
+const StyledReturn = styled.div `
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #FF333B;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    color: #FF333B;
+    background: white;
+  }
+
+`
+const  StyledLink = styled(Link)`
+  text-decoration: none;
+`;

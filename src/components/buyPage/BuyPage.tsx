@@ -59,7 +59,6 @@ export const BuyPage = () => {
             }
             createOrder();
         };
-
         buyItem();
     };
 
@@ -107,11 +106,16 @@ export const BuyPage = () => {
                 <StyledWrapper>
                     {item?.slice(0, 4).map((item, index) => (
                         <CatalogCard
+                            divHeight = '250px'
+                            divWidth='250px'
                             key={item.id}
+                            newPrice={item.current_price}
+                            oldPrice={item.old_price}
                             imageUrl={item.thumbnail_url}
                             cursor={true}
-                            height="325px"
-                            width="253px"
+                            is_for_sale={item.is_for_sale}
+                            height="250px"
+                            width="250px"
                             cardType="catalogCard"
                             nameGame={item.title}
                             onClick={() => handleCardClick(item.id)}
@@ -250,8 +254,9 @@ const StyledWrapper = styled.div`
   gap: 25px;
   display: flex;
   img {
-    object-fit: cover;
+    object-fit: contain;
   }
+  
 `;
 
 const StyledError = styled.div`
@@ -260,3 +265,4 @@ const StyledError = styled.div`
     margin-bottom: 10px;
     margin-top: -30px;
 `;
+

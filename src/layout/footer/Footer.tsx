@@ -85,6 +85,7 @@ const StyledLiDocs = styled.li `
 const StyledFooter = styled.footer `
   padding-top: 240px;
   width: 100%;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
