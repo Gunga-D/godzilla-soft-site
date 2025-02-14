@@ -49,12 +49,14 @@ export const GamePage = () => {
                         <ul>
                             <li>Регион: {item.region}</li>
                             <li>Платформа: {item.platform}</li>
+                            {item.creator && <li>Разработчик: {item.creator}</li>}
+                            {item.publisher && <li>Издатель: {item.publisher}</li>}
                         </ul>
                     </StyledContent>
                 );
             case 'Активация и доставка':
                 return (
-                    <StyledContent
+                    <StyledContentDescription
                         dangerouslySetInnerHTML={{
                             __html: item.slip ? item.slip.replace(/\n/g, '<br />') : 'Информация отсутствует',
                         }}
@@ -203,10 +205,11 @@ const StyledContentWrapper = styled.div`
 
 const StyledContent = styled.div`
     color: white;
+  height: 108px;
     text-align: left;
     min-height: 80px;
     font-weight: 900;
-  overflow-x: auto;
+    overflow-x: auto;
   h3 {
         font-size: 24px;
         margin-bottom: 10px;
@@ -227,6 +230,23 @@ const StyledContent = styled.div`
         font-size: 16px;
         line-height: 1.5;
     }
+`;
+const StyledContentDescription = styled.div`
+  color: white;
+  text-align: left;
+  min-height: 80px;
+  height: 108px;
+  font-weight: 600;
+  overflow-x: auto;
+  font-size: 16px;
+  line-height: 1.5;
+  h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    
+    
 `;
 const StyledPrice = styled.div `
   font-style: normal;

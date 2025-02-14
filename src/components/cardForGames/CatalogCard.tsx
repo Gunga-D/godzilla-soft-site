@@ -54,6 +54,12 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
 const StyledCard = styled.div <CatalogCardForGameProps> `
   position: relative;
   z-index: 0;
+  width: 253px;
+  //background: linear-gradient(180deg, rgba(0, 0, 0, 0.11) 42.26%, #000000 100%);
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+
+
   transition: transform 0.3s ease;
   cursor: ${props => props.cursor ? 'pointer' : 'default'};
   &:hover {
@@ -61,19 +67,26 @@ const StyledCard = styled.div <CatalogCardForGameProps> `
     transform: ${props => props.transform ? 'scale(1.03)' : 'none'};
   }
   img {
+    width: 250px;
+    height: 324px;
     object-fit: cover;
     object-position: center;
+    border-radius: 5px;
+
   }
 `
 const GradientOverlay = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0;  border-radius: 5px;
+
+
+  left: 0;
     right: 0;
     bottom: 0;
     cursor: pointer;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.11) 42.26%, #000000 100%);
     width: 100%;
+    height: 100%;
     z-index: 1;
   
 `;
@@ -168,6 +181,7 @@ const StyledName = styled.div `
   font-style: normal;
   font-weight: 900;
   font-size: 20px;
+  text-align: left;
   line-height: 24px;
   white-space: nowrap; 
   overflow: hidden; 

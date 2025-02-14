@@ -11,4 +11,7 @@ export type ItemDetail = {
     old_price?: number
     thumbnail_url?: string,
     slip?: string,
+    "publisher"?: string,
+    "creator"?: string,
+    "release_date"?: string,
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { catalogApi } from "../../common/api/catalogItem/catalog-api";
 import { CatalogCard } from "../cardForGames/CatalogCard";
@@ -14,21 +14,18 @@ type CatalogProps = {
 
 export const CatalogItems = (props: CatalogProps) => {
     const [items, setItems] = useState<Item[]>([]);
-    const [activeItem, setActiveItem] = useState<any>(props.active || '10001');
-    const [page, setPage] = useState(1);
-    const [hasMore, setHasMore] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
     const { id } = useParams();
+    const [activeItem, setActiveItem] = useState<any>(id || props.active || '10001');
+
     const { min_price, max_price, region, platform } = useStore(FilterStore);
 
     const handleCardClick = (id: number | undefined) => {
         navigate(`/catalog/${id}`);
     };
 
-    const loadMoreItems = useCallback(async () => {
-        if (!hasMore) return;
-
+    const loadItems = async () => {
         const filters = {
             min_price: min_price,
             max_price: max_price,
@@ -37,36 +34,22 @@ export const CatalogItems = (props: CatalogProps) => {
         };
 
         try {
-            const data = await catalogApi.getItems(id || activeItem, filters);
-            if (data.length === 0) {
-                setHasMore(false);
-            } else {
-                setItems(prevItems => [...prevItems, ...data]);
-                setPage(prevPage => prevPage + 1);
-            }
+            const data = await catalogApi.getItems(activeItem, filters); // Используем activeItem
+            setItems(data);
         } catch (err) {
             console.error("Ошибка при загрузке данных:", err);
         }
-    }, [id, activeItem, min_price, max_price, platform, region, hasMore]);
+    };
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || !hasMore) {
-                return;
-            }
-            loadMoreItems();
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [loadMoreItems, hasMore]);
+        if (id) {
+            setActiveItem(id);
+        }
+    }, [id]);
 
     useEffect(() => {
-        setItems([]); // Очистка старых данных при изменении фильтров
-        setPage(1);
-        setHasMore(true);
-        loadMoreItems();
-    }, [location, region, platform, max_price, min_price, id, activeItem]);
+        loadItems();
+    }, [activeItem, region, platform, max_price, min_price]);
 
     return (
         <StyledDiv>
@@ -114,7 +97,6 @@ export const CatalogItems = (props: CatalogProps) => {
                     />
                 ))}
             </StyledCatalog>
-            {!hasMore && <div>No more items to load</div>}
         </StyledDiv>
     );
 };

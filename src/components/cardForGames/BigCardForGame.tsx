@@ -164,6 +164,7 @@ const StyledName = styled.div `
   font-style: normal;
   font-weight: 900;
   font-size: 20px;
+  text-align: left;
   line-height: 24px;
   white-space: nowrap; 
   overflow: hidden; 
