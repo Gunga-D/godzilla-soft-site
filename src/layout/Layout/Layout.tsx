@@ -10,22 +10,21 @@ type LayoutProps = {
 
 export const Layout = (props: LayoutProps) => {
     return (
+        <>
         <StyledLayout>
             <Header activePage={props.pageId} />
             <StyledContent>
                 {props.children}
             </StyledContent>
-            <Footer />
         </StyledLayout>
-    );
+    <Footer />
+</>
+);
 };
 
 const StyledLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; 
+  
 `;
 
 const StyledContent = styled.div`
-  flex-grow: 1; 
 `;

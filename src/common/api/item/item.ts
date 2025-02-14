@@ -7,6 +7,7 @@ export type Item = {
     is_for_sale?: boolean,
     old_price?: number,
     thumbnail_url?: string,
+    background_url?: string,
 }
 
 export type CartItem = {

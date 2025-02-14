@@ -42,6 +42,7 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
                 <StyledPrice>
                     {props.newPrice && <StyledPNewPrice>{props.newPrice}₽</StyledPNewPrice>}
                     {props.oldPrice && <StyledPOldPrice>{props.oldPrice}</StyledPOldPrice>}
+                    
                 </StyledPrice>
 
             </StyledWrapForPrice>
@@ -197,3 +198,21 @@ const StyledPrice = styled.div `
   height: 20px;
   align-items: center;
 `
+const StyledDiscount = styled.span`
+  font-size: 11px;
+  font-weight: 900;
+  color: white;
+  background-color: #D91E18;
+  border-radius: 25px;
+  width: 40px;
+  height: 19.89px;
+  display: flex;
+  position: absolute;
+  bottom: 50px;
+  left: 10px;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start; 
+  margin-left: -10px;
+ 
+`;

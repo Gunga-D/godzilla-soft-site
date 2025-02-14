@@ -11,7 +11,7 @@ import {Skeleton} from "../../components/skeleton/Skeleton";
 
 export const GamePage = () => {
     const [item, setItem] = useState<ItemDetail | null>(null);
-    const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
+    const [isLoading, setIsLoading] = useState(true);
     const { id } = useParams();
     const [activeButton, setActiveButton] = useState<string>('Характеристики');
     const location = useLocation();
@@ -91,10 +91,11 @@ export const GamePage = () => {
     };
 
     return (
-        <StyledGamePage>
+        <StyledGamePage backgroundUrl={item.background_url} >
+            {item.background_url !=='' && <Background backgroundUrl={item.background_url}  hasBackground={true}/>}
             <Container>
                 <StyledMainPage>
-                    <Image src={item.thumbnail_url} height="481px" width="375px" />
+                    <Image src={item.thumbnail_url} height="500px" width="500px" />
                     <StyledTextWrapper>
                         <StyledH2>{item.title}</StyledH2>
                         <StyledDescription>{item.description}</StyledDescription>
@@ -133,27 +134,70 @@ export const GamePage = () => {
     );
 };
 
-const StyledGamePage = styled.div`
-  margin-top: 140px;
-  max-width: 1200px;
-  margin-left: 0;
-  padding-left: 0;
+const StyledGamePage = styled.div<{ backgroundUrl?: string }>`
+  width: 100vw;
+  img {
+    object-fit: contain;
+  }
+  
 `;
-
-const StyledMainPage = styled.div`
+const StyledMainPage = styled.div<{ backgroundUrl?: string }>`
   display: flex;
   gap: 50px;
+  padding: 20px;
+  position: relative; 
+  //height: 860px; 
   width: 100%;
-  img {
-    object-fit: cover;
-    width: 375px;
-    height: 481px;
+  margin-top: 150px;
+  z-index: 1;
+
+`;
+
+const Background = styled.div<{ backgroundUrl?: string; hasBackground: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: ${({ backgroundUrl }) =>
+          backgroundUrl
+                  ? `url(${backgroundUrl}) no-repeat center center/cover`
+                  : `transparent`};
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 2;
   }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 80px; 
+    background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0) 100%
+    ); 
+    backdrop-filter: blur(2px); 
+    z-index: 3;
+  }
+
+  
 `;
 
 const StyledH2 = styled.h2`
   font-size: 40px;
+  height: 50px;
   overflow-x: hidden;
   color: white;
   max-height: 100px;
@@ -292,7 +336,7 @@ const StyledPOldPrice = styled.p`
   position: relative;
   display: inline-block;
   margin: 0;
-  text-decoration: line-through; // Зачеркивание текста
+  text-decoration: line-through;
 
   &:after {
     content: "₽";
@@ -314,6 +358,7 @@ const StyledDiscount = styled.span`
   justify-content: center;
   align-self: flex-start; 
   margin-left: -10px;
+  margin-top: 7px;
  
 `;
 const StyledBuyButton = styled.button`

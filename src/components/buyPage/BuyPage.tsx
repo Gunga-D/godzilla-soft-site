@@ -106,6 +106,7 @@ export const BuyPage = () => {
                 <StyledWrapper>
                     {item?.slice(0, 4).map((item, index) => (
                         <CatalogCard
+                            transform = {true}
                             divHeight = '250px'
                             divWidth='250px'
                             key={item.id}
@@ -129,7 +130,7 @@ export const BuyPage = () => {
 
 const StyledDiv = styled.div`
   height: 100%;
-  margin-top: 210px;
+  margin-top: 260px;
   display: flex;
   align-items: center;
   flex-direction: column;

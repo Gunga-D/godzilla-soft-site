@@ -31,7 +31,7 @@ const StyledHeader = styled.header `
   width: 100%;
   height: 86px;
   top: 0;
-  z-index: 2;
+  z-index: 20;
   left: 0;
 `
 const HeaderWrap = styled.div `
