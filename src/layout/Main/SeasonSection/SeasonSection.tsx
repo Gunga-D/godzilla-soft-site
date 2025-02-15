@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Item} from "../../../common/api/item/item";
 import {itemApi} from "../../../common/api/item/item-api";
-import SeasonBackground from "../../../assets/images/SeasonSection/NewYearBanner.png"
+import SeasonBackground from "../../../assets/images/SeasonSection/23feb.png"
 import {BigCardForGame} from "../../../components/cardForGames/BigCardForGame";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
