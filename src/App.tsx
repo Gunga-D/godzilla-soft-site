@@ -19,6 +19,7 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Main />} />
                         <Route path='/catalog'>
+                            <Route index element={<Catalog />} />
                             <Route path='category/:id' element={<Catalog />} />
                             <Route path=':id' element={<GamePage />} />
                         </Route>

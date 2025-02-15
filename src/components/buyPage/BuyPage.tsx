@@ -159,7 +159,8 @@ const StyledInput = styled.input`
     color: #FFFFFF;
     opacity: 0.5;
   }
-  color: rgba(217, 217, 217, 0.2);
+
+  color: rgba(101, 99, 99, 0.2);
   width: 579px;
   height: 56px;
   background: rgba(217, 217, 217, 0.2);
