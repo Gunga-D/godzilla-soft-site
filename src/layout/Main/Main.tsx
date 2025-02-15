@@ -8,7 +8,7 @@ export const Main = () => {
     return (
         <Container>
             <MainSection/>
-            <SeasonSection mainTitle={"Пополни стим своему котику"} url={"/sales_items"}/>
+            <SeasonSection mainTitle={"Пополни стим своему котику"} url={"/items?limit=100&category_id=10004"}/>
             <BaseSection mainTitle={"Новинки"} url={"/new_items"}/>
             <BaseSection mainTitle={"Выбор редакции "} url={"/recomendation_items"}/>
         </Container>
