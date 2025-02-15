@@ -53,8 +53,8 @@ export const InputFound = () => {
                         ) : searchResults?.length > 0 ? (
                             <GameList>
                                 {searchResults.map((game, index) => (
-                                    <GameItem key={index}>
-                                        <div onMouseDown={()=>handleCardClick(game.item_id)}>
+                                    <GameItem onMouseDown={()=>handleCardClick(game.item_id)} key={index}>
+                                        <div >
                                           <img src={game.item_thumbnail_url} width={100} height={100} style={{borderRadius: '10px'}}></img>
                                         </div>
                                         <div style={{marginLeft: '25px'}}>
@@ -146,12 +146,13 @@ const GameList = styled.ul`
 const GameItem = styled.li`
   padding: 15px;
   border-bottom: 1px solid #ccc;
+  text-align: left;
   &:last-child {
     border-bottom: none;
   }
   display: flex;
   flex-wrap: wrap;
-  align-items: top;
+  cursor: pointer;
   justify-content: start;
 `;
 
@@ -176,6 +177,7 @@ const StyledGameName = styled.p`
   font-size: 24px;
   line-height: 12px;
   color: #fff;
+  text-align: left;
   position: relative;
   display: inline-block;
   width: auto;

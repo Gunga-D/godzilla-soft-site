@@ -69,12 +69,12 @@ export const GamePage = () => {
             case 'Характеристики':
                 return (
                     <StyledContent>
-                        <ul>
-                            <li>Регион: {item.region}</li>
-                            <li>Платформа: {item.platform}</li>
-                            {item.creator && <li>Разработчик: {item.creator}</li>}
-                            {item.publisher && <li>Издатель: {item.publisher}</li>}
-                        </ul>
+
+                            <StyledDiv>Регион: <StyledItem>{item.region}</StyledItem></StyledDiv>
+                            <StyledDiv>Платформа: <StyledItem>{item.platform}</StyledItem></StyledDiv>
+                            {item.creator && <StyledDiv>Разработчик: <StyledItem>{item.creator}</StyledItem></StyledDiv>}
+                            {item.publisher && <StyledDiv>Издатель: <StyledItem>{item.publisher}</StyledItem></StyledDiv>}
+
                     </StyledContent>
                 );
             case 'Активация и доставка':
@@ -91,8 +91,8 @@ export const GamePage = () => {
     };
 
     return (
-        <StyledGamePage backgroundUrl={item.background_url} >
-            {item.background_url !=='' && <Background backgroundUrl={item.background_url}  hasBackground={true}/>}
+        <StyledGamePage backgroundUrl={item.background_url}>
+            {item.background_url && <Background backgroundUrl={item.background_url} hasBackground={!!item.background_url} />}
             <Container>
                 <StyledMainPage>
                     <Image src={item.thumbnail_url} height="500px" width="500px" />
@@ -172,8 +172,9 @@ const Background = styled.div<{ backgroundUrl?: string; hasBackground: boolean }
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.5);
     z-index: 2;
+    display: ${({ hasBackground }) => (hasBackground ? 'block' : 'none')}; // Условное отображение
   }
 
   &::after {
@@ -182,28 +183,22 @@ const Background = styled.div<{ backgroundUrl?: string; hasBackground: boolean }
     bottom: -10px;
     left: 0;
     width: 100%;
-    height: 80px; 
-    background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.8) 0%,
-            rgba(0, 0, 0, 0) 100%
-    ); 
-    backdrop-filter: blur(2px); 
+    height: 80px;
+    backdrop-filter: blur(2px);
     z-index: 3;
   }
-
-  
 `;
-
 const StyledH2 = styled.h2`
-  font-size: 40px;
-  height: 50px;
+  font-size: 33px;
   overflow-x: hidden;
   color: white;
-  max-height: 100px;
+  height: 30px;
+  max-height: 210px;
   padding-top: 0;
+  
   text-align: left;
-  margin-bottom: 20px;
+  word-wrap: break-word; 
+  flex-grow: 1;
 `;
 
 const StyledDescription = styled.p`
@@ -214,6 +209,7 @@ const StyledDescription = styled.p`
   line-height: 18px;
   text-align: left;
   color: #ffffff;
+  
   margin-bottom: 20px;
   overflow-x: auto;
 `;
@@ -421,3 +417,12 @@ const StyledReturn = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+const StyledItem = styled.p `
+  color: #a8a8a8;
+`
+const StyledDiv = styled.div `
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: start;
+`

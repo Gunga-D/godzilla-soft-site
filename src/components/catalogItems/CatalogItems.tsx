@@ -56,7 +56,12 @@ export const CatalogItems = (props: CatalogProps) => {
             <StyledButtons>
                 <StyledLink to={'/catalog/category/10001'}>
                     <StyledButton
-                        onClick={() => setActiveItem('10001')}
+                        onClick={() => {
+                            setActiveItem('10001');
+                            setItems([]);
+
+                        }
+                    }
                         isActive={activeItem === '10001'}
                     >
                         Игры
@@ -64,7 +69,11 @@ export const CatalogItems = (props: CatalogProps) => {
                 </StyledLink>
                 <StyledLink to={'/catalog/category/10004'}>
                     <StyledButton
-                        onClick={() => setActiveItem('10004')}
+                        onClick={() => {
+                            setActiveItem('10004');
+                            setItems([]);
+                        }
+                    }
                         isActive={activeItem === '10004'}
                     >
                         Пополнение
@@ -72,7 +81,9 @@ export const CatalogItems = (props: CatalogProps) => {
                 </StyledLink>
                 <StyledLink to={'/catalog/category/10002'}>
                     <StyledButton
-                        onClick={() => setActiveItem('10002')}
+                        onClick={() => {setActiveItem('10002');
+                            setItems([]);
+                        }}
                         isActive={activeItem === '10002'}
                     >
                         Подписки

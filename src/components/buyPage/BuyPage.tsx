@@ -160,20 +160,26 @@ const StyledInput = styled.input`
     opacity: 0.5;
   }
 
-  color: rgba(101, 99, 99, 0.2);
   width: 579px;
   height: 56px;
-  background: rgba(217, 217, 217, 0.2);
+  background: rgba(44, 43, 43, 0.9);
+  backdrop-filter: blur(3px);
+  border: 2px solid #a6a6a6;
   border-radius: 5px;
   outline: none;
   color: #FFFFFF;
-  opacity: 0.5;
-  border: none;
   padding: 10px;
   margin-bottom: 50px;
   font-weight: 900;
   font-size: 16px;
   line-height: 150%;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+
+  &:focus {
+    border-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.2); 
+  }
+
 `;
 
 const PaymentWrapper = styled.div`
