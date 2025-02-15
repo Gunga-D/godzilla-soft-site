@@ -60,6 +60,7 @@ export const SeasonSection = (props: SeasonSectionProps) => {
 };
 const StyledSeasonDiv = styled.div `
   width: 100%;
+  object-fit: contain;
   height: 479px;
   padding-left: 34px;
   border-radius: 5px;
