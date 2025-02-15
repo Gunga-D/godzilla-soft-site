@@ -4,7 +4,6 @@ import {Container} from "../../styles/Container";
 import Logo from "../../components/logo/logo";
 import {Menu} from "../../components/menu/Menu";
 import {InputFound} from "../../components/input/InputFound";
-import {LogIn} from "../../components/logIn/LogIn";
 
 type HeaderProps = {
     activePage?: string
@@ -17,7 +16,6 @@ export const Header = (props: HeaderProps) => {
                     <Logo/>
                     <Menu/>
                     <InputFound/>
-                    {/*<LogIn/>*/}
                 </HeaderWrap>
             </Container>
         </StyledHeader>
