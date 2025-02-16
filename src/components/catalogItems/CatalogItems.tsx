@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { catalogApi } from "../../common/api/catalogItem/catalog-api";
 import { CatalogCard } from "../cardForGames/CatalogCard";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { Item } from "../../common/api/item/item";
 import { Link } from "react-router-dom";
 import { useStore } from "zustand/react";
@@ -14,7 +14,6 @@ type CatalogProps = {
 
 export const CatalogItems = (props: CatalogProps) => {
     const [items, setItems] = useState<Item[]>([]);
-    const location = useLocation();
     const navigate = useNavigate();
     const { id } = useParams();
     const [activeItem, setActiveItem] = useState<any>(id || props.active || '10001');
@@ -105,6 +104,8 @@ export const CatalogItems = (props: CatalogProps) => {
                         oldPrice={game.old_price}
                         newPrice={game.current_price}
                         is_for_sale={game.is_for_sale}
+                        region = {game.region}
+                        platform = {game.platform}
                     />
                 ))}
             </StyledCatalog>
