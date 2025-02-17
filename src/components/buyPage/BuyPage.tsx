@@ -120,6 +120,8 @@ export const BuyPage = () => {
                             cardType="catalogCard"
                             nameGame={item.title}
                             onClick={() => handleCardClick(item.id)}
+                            platform={item.platform}
+                            region={item.region}
                         />
                     ))}
                 </StyledWrapper>
