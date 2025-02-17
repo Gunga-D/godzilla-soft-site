@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {Image} from "../image/Image";
+import {Icon} from "../icon/Icon";
 
 type CardForGamesProps = {
     imageUrl?: string,
@@ -15,8 +16,43 @@ type CardForGamesProps = {
     cardType?: 'bigCard' | 'mediumCard' | 'catalogCard'
     is_for_sale?: boolean,
     onClick?: () => void,
+    platform?: string,
+    region?: string,
 }
 export const MediumCardForGames = (props: CardForGamesProps) => {
+    const [region, setRegion] = useState('');
+    const [platform, setPlatform] = useState('');
+    useEffect(() => {
+        if (props.region === 'РФ и СНГ' || props.region === 'РФ') {
+            setRegion('rus');
+        } else if (props.region === 'Весь мир') {
+            setRegion('allWorld');
+        } else if (props.region === 'Весь мир кроме РФ') {
+            setRegion('rusWithOutSng');
+        }
+
+        if (props.platform == 'Steam') {
+            setPlatform('Steam')
+        } else if (props.platform == 'Microsoft Store') {
+            setPlatform('Microsoft')
+        }
+        else if (props.platform == "Apple") {
+            setPlatform('Apple')
+        }
+        else if (props.platform == 'EA Play') {
+            setPlatform('Origin')
+        }
+        else if (props.platform == 'Rockstar') {
+            setPlatform('Rockstar')
+        }
+        else if (props.platform == "GOG") {
+            setPlatform('GOG')
+        }
+        else if (props.platform == 'Minecraft.net') {
+            setPlatform('Minecraft')
+        }
+    }, [props.region, props.platform]);
+
     let discount;
     if (props.is_for_sale == true && props.oldPrice && props.newPrice ) {
          discount = Math.round(((props.oldPrice - props.newPrice) / props.oldPrice) * 100);
@@ -31,8 +67,21 @@ export const MediumCardForGames = (props: CardForGamesProps) => {
             transform={props.transform}
             cardType = {props.cardType}
         >
+            { region &&
+                <IconWrap>
+
+                    <Icon iconId={region} height={'20'} width={'18'} viewBox={'0 0 20 18'} />
+                </IconWrap>
+            }
+            { platform &&
+                <PlatformWrap>
+                    <Icon iconId={platform} height={'22px'} width={'22px'} viewBox={'0 0 22 22'} />
+                    <PlatfromName>{platform}</PlatfromName>
+                </PlatformWrap>
+            }
             <StyledButton>Купить</StyledButton>
             <StyledWrap>
+
                <StyledName>{props.nameGame}</StyledName>
                 <PriceWrap>
                     <StyledNewPrice>{props.newPrice}₽</StyledNewPrice>
@@ -174,4 +223,37 @@ const StyledName = styled.div `
   text-overflow: ellipsis;
   max-width: 110px;
   color: #FFFFFF;
+`
+const IconWrap = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: rgba(140, 139, 139, 0.58);
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+
+`;
+const  PlatformWrap = styled.div `
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(140, 139, 139, 0.58);
+  width: auto;
+  height: 30px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 8px;
+  border-radius: 50px;
+  gap: 5px;
+`
+const PlatfromName = styled.p `
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
 `

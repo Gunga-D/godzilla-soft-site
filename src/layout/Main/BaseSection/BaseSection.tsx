@@ -47,6 +47,9 @@ export const BaseSection = (props: BaseSectionProps) => {
                         width={'204px'}
                         key={index}
                         onClick = {() => handleCardClick(item.id)}
+                        platform={item.platform}
+                        region={item.region}
+
 
                     />
                 ))}

@@ -32,16 +32,18 @@ export const SeasonSection = (props: SeasonSectionProps) => {
                 <StyledWrapper>
                     {item?.slice(0, 4).map((item, index) => (
                         <BigCardForGame height={'239px'}
-                                      width={'239px'}
-                                      imageUrl={item.thumbnail_url}
-                                      key={index}
-                                      transform={true}
-                                      nameGame={item.title}
-                                      oldPrice={item.old_price}
-                                      is_for_sale={item.is_for_sale}
-                                      newPrice={item.current_price}
-                                      cardType='bigCard'
+                                        width={'239px'}
+                                        imageUrl={item.thumbnail_url}
+                                        key={index}
+                                        transform={true}
+                                        nameGame={item.title}
+                                        oldPrice={item.old_price}
+                                        is_for_sale={item.is_for_sale}
+                                        newPrice={item.current_price}
+                                        cardType='bigCard'
                                         onClick = {() => handleCardClick(item.id)}
+                                        region={item.region}
+                                        platform={item.platform}
 
                         />
                     ))}
