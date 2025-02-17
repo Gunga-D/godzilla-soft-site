@@ -10,6 +10,8 @@ import {NotFoundPage} from "./layout/NotFoundPage/NotFoundPage";
 import {LogIn} from "./layout/LogIn/Login";
 import {GamePage} from "./layout/GamePage/GamePage";
 import {Contacts} from "./layout/Contacts/Contacts";
+import {PaymentError} from "./layout/PaymentPage/PaymentError";
+import {PaymentSuccess} from "./layout/PaymentPage/PaymentSuccess";
 
 function App() {
     return (
@@ -26,6 +28,8 @@ function App() {
                         <Route path='/contacts' element={<Contacts/>} />
                         <Route path='/login' element={<LogIn/>}/>
                         <Route path='*' element={<NotFoundPage/>}/>
+                        <Route path='/payment_success' element={<PaymentSuccess/>}/>
+                        <Route path='/payment_error' element={<PaymentError/>}/>
                     </Routes>
                 </Layout>
             </FlexWrapper>
