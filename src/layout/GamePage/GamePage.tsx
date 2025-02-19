@@ -53,7 +53,7 @@ export const GamePage = () => {
             <NotFoundGame>
                 <StyledSubtitle>К сожалению, данный товар закончился</StyledSubtitle>
                 <StyledText>Но он скоро появится! </StyledText>
-                <StyledLink to={'/catalog/category/10001'}>
+                <StyledLink to={'/catalog/category/games'}>
                     <StyledReturn>Вернуться на главную</StyledReturn>
                 </StyledLink>
             </NotFoundGame>

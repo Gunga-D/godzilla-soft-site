@@ -8,7 +8,7 @@ export const NotFoundPage = () => {
             <StyledH1>404</StyledH1>
             <StyledSubtitle>Страница не найдена</StyledSubtitle>
             <StyledText>Извините, запрашиваемая страница не существует.</StyledText>
-            <StyledLink to={'/catalog/category/10001'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
+            <StyledLink to={'/catalog/category/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
         </NotFoundGame>
     );
 };

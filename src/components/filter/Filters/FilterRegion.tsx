@@ -42,11 +42,11 @@ export const FilterRegion = () => {
                                 <StyledInput
                                     type="radio"
                                     name="region"
-                                    value="RUS"
-                                    checked={selectedOption === 'RUS'}
+                                    value="%D0%92%D0%B5%D1%81%D1%8C%20%D0%BC%D0%B8%D1%80"
+                                    checked={selectedOption === '%D0%92%D0%B5%D1%81%D1%8C%20%D0%BC%D0%B8%D1%80'}
                                     onChange={RegionChange}
                                 />
-                                <StyledPrice>Россия</StyledPrice>
+                                <StyledPrice>Весь мир</StyledPrice>
                             </label>
                         </Option>
                         <Option>
@@ -54,11 +54,11 @@ export const FilterRegion = () => {
                                 <StyledInput
                                     type="radio"
                                     name="region"
-                                    value="SNG"
-                                    checked={selectedOption === 'SNG'}
+                                    value="%D0%A0%D0%A4%20%D0%B8%20%D0%A1%D0%9D%D0%93"
+                                    checked={selectedOption === '%D0%A0%D0%A4%20%D0%B8%20%D0%A1%D0%9D%D0%93'}
                                     onChange={RegionChange}
                                 />
-                                <StyledPrice>Россия + СНГ</StyledPrice>
+                                <StyledPrice>РФ и СНГ</StyledPrice>
                             </label>
                         </Option>
                         <Option>
@@ -66,11 +66,11 @@ export const FilterRegion = () => {
                                 <StyledInput
                                     type="radio"
                                     name="region"
-                                    value="USA"
-                                    checked={selectedOption === 'USA'}
+                                    value="%D0%A0%D0%A4"
+                                    checked={selectedOption === '%D0%A0%D0%A4'}
                                     onChange={RegionChange}
                                 />
-                                <StyledPrice>США</StyledPrice>
+                                <StyledPrice>РФ</StyledPrice>
                             </label>
                         </Option>
                         <Option>
@@ -78,11 +78,11 @@ export const FilterRegion = () => {
                                 <StyledInput
                                     type="radio"
                                     name="region"
-                                    value="SNGNORF"
-                                    checked={selectedOption === 'SNGNORF'}
+                                    value="%D0%92%D0%B5%D1%81%D1%8C%20%D0%BC%D0%B8%D1%80%20%D0%BA%D1%80%D0%BE%D0%BC%D0%B5%20%D0%A0%D0%A4"
+                                    checked={selectedOption === '%D0%92%D0%B5%D1%81%D1%8C%20%D0%BC%D0%B8%D1%80%20%D0%BA%D1%80%D0%BE%D0%BC%D0%B5%20%D0%A0%D0%A4'}
                                     onChange={RegionChange}
                                 />
-                                <StyledPrice>СНГ (Без РФ и РБ)</StyledPrice>
+                                <StyledPrice>Весь мир кроме РФ</StyledPrice>
                             </label>
                         </Option>
                         <Option>
@@ -90,23 +90,11 @@ export const FilterRegion = () => {
                                 <StyledInput
                                     type="radio"
                                     name="region"
-                                    value="any"
-                                    checked={selectedOption === 'any'}
+                                    value=""
+                                    checked={selectedOption === ''}
                                     onChange={RegionChange}
                                 />
-                                <StyledPrice>Любой</StyledPrice>
-                            </label>
-                        </Option>
-                        <Option>
-                            <label>
-                                <StyledInput
-                                    type="radio"
-                                    name="region"
-                                    value="evro"
-                                    checked={selectedOption === "evro"}
-                                    onChange={handleOptionChange}
-                                />
-                                <StyledPrice>Евросоюз</StyledPrice>
+                                <StyledPrice>Другое</StyledPrice>
                             </label>
                         </Option>
                     </OptionsContainer>

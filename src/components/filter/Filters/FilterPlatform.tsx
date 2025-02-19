@@ -51,30 +51,6 @@ export const FilterPlatform = () => {
                             <StyledInput
                                 type="radio"
                                 name="platform"
-                                value="Ubisoft"
-                                checked={selectedOption === 'Ubisoft'}
-                                onChange={PlatformChange}
-                            />
-                            <StyledPrice>Ubisoft Connect (Uplay)</StyledPrice>
-                        </label>
-                    </Option>
-                    <Option>
-                        <label>
-                            <StyledInput
-                                type="radio"
-                                name="platform"
-                                value="Battle.net"
-                                checked={selectedOption === 'Battle.net'}
-                                onChange={PlatformChange}
-                            />
-                            <StyledPrice>Battle.net</StyledPrice>
-                        </label>
-                    </Option>
-                    <Option>
-                        <label>
-                            <StyledInput
-                                type="radio"
-                                name="platform"
                                 value="Rockstar"
                                 checked={selectedOption === 'Rockstar'}
                                 onChange={PlatformChange}
@@ -87,25 +63,61 @@ export const FilterPlatform = () => {
                             <StyledInput
                                 type="radio"
                                 name="platform"
-                                value="Epic Games Store"
-                                checked={selectedOption === 'Epic Games Store'}
+                                value="EA Play"
+                                checked={selectedOption === 'EA Play'}
                                 onChange={PlatformChange}
                             />
-                            <StyledPrice>Epic Games Store</StyledPrice>
+                            <StyledPrice>EA Play (Origin)</StyledPrice>
                         </label>
                     </Option>
-                        <Option>
-                            <label>
-                                <StyledInput
-                                    type="radio"
-                                    name="platform"
-                                    value=""
-                                    checked={selectedOption === ""}
-                                    onChange={PlatformChange}
-                                />
-                                <StyledPrice>Другое</StyledPrice>
-                            </label>
-                        </Option>
+                    <Option>
+                        <label>
+                            <StyledInput
+                                type="radio"
+                                name="platform"
+                                value="Minecraft.net"
+                                checked={selectedOption === 'Minecraft.net'}
+                                onChange={PlatformChange}
+                            />
+                            <StyledPrice>Minecraft</StyledPrice>
+                        </label>
+                    </Option>
+                    <Option>
+                        <label>
+                            <StyledInput
+                                type="radio"
+                                name="platform"
+                                value="GOG"
+                                checked={selectedOption === 'GOG'}
+                                onChange={PlatformChange}
+                            />
+                            <StyledPrice>GOG</StyledPrice>
+                        </label>
+                    </Option>
+                    <Option>
+                        <label>
+                            <StyledInput
+                                type="radio"
+                                name="platform"
+                                value="Microsoft Store"
+                                checked={selectedOption === 'Microsoft Store'}
+                                onChange={PlatformChange}
+                            />
+                            <StyledPrice>Microsoft Store</StyledPrice>
+                        </label>
+                    </Option>
+                    <Option>
+                        <label>
+                            <StyledInput
+                                type="radio"
+                                name="platform"
+                                value=""
+                                checked={selectedOption === ""}
+                                onChange={PlatformChange}
+                            />
+                            <StyledPrice>Другое</StyledPrice>
+                        </label>
+                    </Option>
                 </OptionsContainer>
                 )}
             </FilterDiv>

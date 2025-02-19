@@ -8,7 +8,7 @@ export const PaymentError = () => {
             <StyledH1>Ошибка</StyledH1>
             <StyledSubtitle>Извините, произошла ошибка при оплате</StyledSubtitle>
             <StyledText>Повторите, пожалуйста, попытку.</StyledText>
-            <StyledLink to={'/catalog/category/10001'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
+            <StyledLink to={'/catalog/category/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
             <StyledLink to={'https://t.me/GungaD'}><StyledButton>
                 {/*<Icon iconId='Support' width='32px' height='32px'  />*/}
                 Остались вопросы?

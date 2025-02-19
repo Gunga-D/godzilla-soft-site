@@ -15,8 +15,8 @@ type CatalogProps = {
 export const CatalogItems = (props: CatalogProps) => {
     const [items, setItems] = useState<Item[]>([]);
     const navigate = useNavigate();
-    const { id } = useParams();
-    const [activeItem, setActiveItem] = useState<any>(id || props.active || '10001');
+    const { value } = useParams();
+    const [catalogName, setCatalogName] = useState<any>(value || props.active || 'games');
 
     const { min_price, max_price, region, platform } = useStore(FilterStore);
 
@@ -33,7 +33,19 @@ export const CatalogItems = (props: CatalogProps) => {
         };
 
         try {
-            const data = await catalogApi.getItems(activeItem, filters); // Используем activeItem
+            let catalogID = ""
+            switch (catalogName) {
+                case "games":
+                    catalogID = "10001"
+                    break
+                case "subscriptions":
+                    catalogID = "10002"
+                    break
+                case "deposits":
+                    catalogID = "10004"
+                    break
+            }
+            const data = await catalogApi.getItems(catalogID, filters); // Используем activeItem
             setItems(data);
         } catch (err) {
             console.error("Ошибка при загрузке данных:", err);
@@ -41,49 +53,49 @@ export const CatalogItems = (props: CatalogProps) => {
     };
 
     useEffect(() => {
-        if (id) {
-            setActiveItem(id);
+        if (value) {
+            setCatalogName(value);
         }
-    }, [id]);
+    }, [value]);
 
     useEffect(() => {
         loadItems();
-    }, [activeItem, region, platform, max_price, min_price]);
+    }, [catalogName, region, platform, max_price, min_price]);
 
     return (
         <StyledDiv>
             <StyledButtons>
-                <StyledLink to={'/catalog/category/10001'}>
+                <StyledLink to={'/catalog/category/games'}>
                     <StyledButton
                         onClick={() => {
-                            setActiveItem('10001');
+                            setCatalogName('games');
                             setItems([]);
 
                         }
                     }
-                        isActive={activeItem === '10001'}
+                        isActive={catalogName === 'games'}
                     >
                         Игры
                     </StyledButton>
                 </StyledLink>
-                <StyledLink to={'/catalog/category/10004'}>
+                <StyledLink to={'/catalog/category/deposits'}>
                     <StyledButton
                         onClick={() => {
-                            setActiveItem('10004');
+                            setCatalogName('deposits');
                             setItems([]);
                         }
                     }
-                        isActive={activeItem === '10004'}
+                        isActive={catalogName === 'deposits'}
                     >
                         Пополнение
                     </StyledButton>
                 </StyledLink>
-                <StyledLink to={'/catalog/category/10002'}>
+                <StyledLink to={'/catalog/category/subscriptions'}>
                     <StyledButton
-                        onClick={() => {setActiveItem('10002');
+                        onClick={() => {setCatalogName('subscriptions');
                             setItems([]);
                         }}
-                        isActive={activeItem === '10002'}
+                        isActive={catalogName === 'subscriptions'}
                     >
                         Подписки
                     </StyledButton>

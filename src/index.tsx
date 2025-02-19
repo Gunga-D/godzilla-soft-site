@@ -5,7 +5,7 @@ import App from './App';
 import {GlobalStyles} from "./styles/GlobalStyles";
 import {ThemeProvider} from "styled-components";
 import {theme} from "./styles/ThemeStyles";
-import { HashRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import {ScrollToTop} from "./components/scrollToTop/ScrollToTop";
 
 const root = ReactDOM.createRoot(
@@ -13,10 +13,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
       <ThemeProvider theme={theme}>
-          <HashRouter>
+          <BrowserRouter>
               <ScrollToTop />
               <App />
               <GlobalStyles />
-          </HashRouter>
+          </BrowserRouter>
       </ThemeProvider>
 );

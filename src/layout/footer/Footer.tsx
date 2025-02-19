@@ -13,12 +13,12 @@ export const Footer = () => {
         <Container>
             <StyledFooter>
                 <NavUl>
-                    <StyledLink to={'/catalog/category/10001'}><StyledLi>Каталог</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/10001'}><StyledLi>Игры</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/10004'}><StyledLi>Пополнение</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/10002'}><StyledLi>Подписки</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/games'}><StyledLi>Каталог</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/games'}><StyledLi>Игры</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/deposits'}><StyledLi>Пополнение</StyledLi></StyledLink>
+                    <StyledLink to={'/catalog/category/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
                     <StyledLink to={'/contacts'}><StyledLi>Контакты</StyledLi></StyledLink>
-                    <StyledLink to="https://t.me/GungaD"><StyledLi>Поддержка</StyledLi></StyledLink>
+                    <StyledLink to="https://t.me/godzilla_soft"><StyledLi>Поддержка</StyledLi></StyledLink>
                 </NavUl>
                 <PaymentUl>
                     <Icon iconId="VISA" width="74" height="23" viewBox="0 0 74 23"/>

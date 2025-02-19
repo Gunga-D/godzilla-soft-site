@@ -22,10 +22,10 @@ export const MainSection = () => {
             />
             <StyledWrapper>
 
-                <Link to={'/catalog/category/10004'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
+                <Link to={'/catalog/category/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
                 <Link to={'*'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
-                <Link to={'/catalog/category/10001'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
-                <Link to={'/catalog/category/10004'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
+                <Link to={'/catalog/category/games'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
+                <Link to={'/catalog/category/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
             </StyledWrapper>
         </div>
     );
