@@ -20,10 +20,17 @@ function App() {
                 <Layout pageId="">
                     <Routes>
                         <Route path='/' element={<Main />} />
-                        <Route path='/catalog'>
-                            <Route index element={<Catalog />} />
-                            <Route path='category/:value' element={<Catalog />} />
-                            <Route path=':id' element={<GamePage />} />
+                        <Route path='/games'>
+                            <Route index element={<Catalog active='games'/>} />
+                            <Route path=':value' element={<GamePage />}></Route>
+                        </Route>
+                        <Route path='/deposits'>
+                            <Route index element={<Catalog active='deposits'/>} />
+                            <Route path=':value' element={<GamePage />}></Route>
+                        </Route>
+                        <Route path='/subscriptions'>
+                            <Route index element={<Catalog active='subscriptions'/>} />
+                            <Route path=':value' element={<GamePage />}></Route>
                         </Route>
                         <Route path='/contacts' element={<Contacts/>} />
                         <Route path='/login' element={<LogIn/>}/>

@@ -25,10 +25,10 @@ export const Menu = () => {
     return (
         <StyledMenu>
             <StyledUl>
-                <StyledLink to={'/catalog/category/games'}><StyledLi>Каталог</StyledLi></StyledLink>
-                <StyledLink to={`/catalog/category/games`}><StyledLi>Игры</StyledLi></StyledLink>
-                <StyledLink to={`/catalog/category/deposits`}><StyledLi>Пополнения</StyledLi></StyledLink>
-                <StyledLink to={`/catalog/category/subscriptions`}><StyledLi>Подписки</StyledLi></StyledLink>
+                <StyledLink to={'/games'}><StyledLi>Каталог</StyledLi></StyledLink>
+                <StyledLink to={`/games`}><StyledLi>Игры</StyledLi></StyledLink>
+                <StyledLink to={`/deposits`}><StyledLi>Пополнения</StyledLi></StyledLink>
+                <StyledLink to={`/subscriptions`}><StyledLi>Подписки</StyledLi></StyledLink>
                 {/*{!isLoading && categories?.map((category, index) => (*/}
                 {/*    <StyledLink to={`/catalog/category/${category.id}`} key={index}><StyledLi>{category.name}</StyledLi></StyledLink>*/}
                 {/*))}*/}

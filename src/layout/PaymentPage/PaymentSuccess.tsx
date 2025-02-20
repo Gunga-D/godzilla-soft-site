@@ -9,7 +9,7 @@ export const PaymentSuccess = () => {
             <StyledH1>Успешно!</StyledH1>
             <StyledSubtitle>Ваш код уже на Вашей почте</StyledSubtitle>
             <StyledText>Ждем вас снова!</StyledText>
-            <StyledLink to={'/catalog/category/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
+            <StyledLink to={'/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
             <StyledLink to={'https://t.me/GungaD'}><StyledButton>
                 {/*<Icon iconId='Support' width='32px' height='32px'  />*/}
                 Остались вопросы?

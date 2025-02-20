@@ -9,6 +9,7 @@ import { CreateOrder } from '../../common/api/item/item';
 import { Item } from "../../common/api/item/item";
 import { CatalogCard } from "../cardForGames/CatalogCard";
 import { useNavigate, useParams } from "react-router-dom";
+import { transliterate } from '../../hooks/transliterate';
 
 export const BuyPage = () => {
     const [item, setItem] = useState<Item[] | null>(null);
@@ -17,10 +18,22 @@ export const BuyPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const handleCardClick = (id: number | undefined) => {
-        navigate(`/catalog/${id}`);
-
-    };
+    const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
+      let catalogPath = ""
+      switch (categoryID) {
+          case 10001:
+              catalogPath = "games"
+              break
+          case 10002:
+              catalogPath = "subscriptions"
+              break
+          case 10004:
+              catalogPath = "deposits"
+              break
+      }
+      itemName = transliterate(itemName!)
+      navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
+  };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -119,7 +132,7 @@ export const BuyPage = () => {
                             width="250px"
                             cardType="catalogCard"
                             nameGame={item.title}
-                            onClick={() => handleCardClick(item.id)}
+                            onClick={() => handleCardClick(item.category_id, item.title, item.id)}
                             platform={item.platform}
                             region={item.region}
                         />

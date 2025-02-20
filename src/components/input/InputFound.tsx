@@ -4,6 +4,7 @@ import { Icon } from '../icon/Icon';
 import { SearchItem } from '../../common/api/searchItem/searchItem';
 import {searchApi} from "../../common/api/searchItem/search-api";
 import {useNavigate} from "react-router-dom";
+import { transliterate } from '../../hooks/transliterate';
 
 export const InputFound = () => {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -30,9 +31,22 @@ export const InputFound = () => {
     }
     const navigate = useNavigate();
 
-    const handleCardClick = (id: number | undefined) => {
-        navigate(`/catalog/${id}`);
-    };
+    const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
+      let catalogPath = ""
+      switch (categoryID) {
+          case 10001:
+              catalogPath = "games"
+              break
+          case 10002:
+              catalogPath = "subscriptions"
+              break
+          case 10004:
+              catalogPath = "deposits"
+              break
+      }
+      itemName = transliterate(itemName!)
+      navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
+  };
     return (
         <InputContainer>
             <CustomPlaceholder onBlur={onBlurHandler}>
@@ -53,7 +67,7 @@ export const InputFound = () => {
                         ) : searchResults?.length > 0 ? (
                             <GameList>
                                 {searchResults.map((game, index) => (
-                                    <GameItem onMouseDown={()=>handleCardClick(game.item_id)} key={index}>
+                                    <GameItem onMouseDown={()=>handleCardClick(game.item_category_id, game.item_title, game.item_id)} key={index}>
                                         <div >
                                           <img src={game.item_thumbnail_url} width={100} height={100} style={{borderRadius: '10px'}}></img>
                                         </div>

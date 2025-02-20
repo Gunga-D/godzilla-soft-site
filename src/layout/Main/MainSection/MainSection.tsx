@@ -8,6 +8,7 @@ import secondPic from "../../../assets/images/picturesForCatalog/randomGame.png"
 import thirdPic from "../../../assets/images/picturesForCatalog/games.png"
 import fourthPic from "../../../assets/images/picturesForCatalog/allPopolnenie.png"
 import {Link} from "react-router-dom";
+
 export const MainSection = () => {
     const MainText = 'Купи стим';
     const SecondaryText = 'бля буду';
@@ -22,10 +23,10 @@ export const MainSection = () => {
             />
             <StyledWrapper>
 
-                <Link to={'/catalog/category/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
+                <Link to={'/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
                 <Link to={'*'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
-                <Link to={'/catalog/category/games'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
-                <Link to={'/catalog/category/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
+                <Link to={'/games'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
+                <Link to={'/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
             </StyledWrapper>
         </div>
     );

@@ -13,10 +13,10 @@ export const Footer = () => {
         <Container>
             <StyledFooter>
                 <NavUl>
-                    <StyledLink to={'/catalog/category/games'}><StyledLi>Каталог</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/games'}><StyledLi>Игры</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/deposits'}><StyledLi>Пополнение</StyledLi></StyledLink>
-                    <StyledLink to={'/catalog/category/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
+                    <StyledLink to={'/games'}><StyledLi>Каталог</StyledLi></StyledLink>
+                    <StyledLink to={'/games'}><StyledLi>Игры</StyledLi></StyledLink>
+                    <StyledLink to={'/deposits'}><StyledLi>Пополнение</StyledLi></StyledLink>
+                    <StyledLink to={'/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
                     <StyledLink to={'/contacts'}><StyledLi>Контакты</StyledLi></StyledLink>
                     <StyledLink to="https://t.me/godzilla_soft"><StyledLi>Поддержка</StyledLi></StyledLink>
                 </NavUl>

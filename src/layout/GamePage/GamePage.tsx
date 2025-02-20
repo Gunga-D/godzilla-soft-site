@@ -12,7 +12,10 @@ import {Skeleton} from "../../components/skeleton/Skeleton";
 export const GamePage = () => {
     const [item, setItem] = useState<ItemDetail | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const { id } = useParams();
+    const { value } = useParams();
+    const values = value?.split("_") 
+    const itemID = values![values!.length-1]
+
     const [activeButton, setActiveButton] = useState<string>('Характеристики');
     const location = useLocation();
 
@@ -27,7 +30,7 @@ export const GamePage = () => {
         const fetchItem = async () => {
             setIsLoading(true);
             try {
-                const data = await itemDetailsApi.getItem(`${id}`);
+                const data = await itemDetailsApi.getItem(`${itemID}`);
                 setItem(data);
             } catch (err) {
                 console.error('Ошибка при загрузке данных:', err);
@@ -53,7 +56,7 @@ export const GamePage = () => {
             <NotFoundGame>
                 <StyledSubtitle>К сожалению, данный товар закончился</StyledSubtitle>
                 <StyledText>Но он скоро появится! </StyledText>
-                <StyledLink to={'/catalog/category/games'}>
+                <StyledLink to={'/games'}>
                     <StyledReturn>Вернуться на главную</StyledReturn>
                 </StyledLink>
             </NotFoundGame>

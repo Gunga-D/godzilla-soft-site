@@ -7,6 +7,7 @@ import { Item } from "../../common/api/item/item";
 import { Link } from "react-router-dom";
 import { useStore } from "zustand/react";
 import { FilterStore } from "../../common/store/FilterStatus/FilterStatus";
+import { transliterate } from '../../hooks/transliterate';
 
 type CatalogProps = {
     active?: string,
@@ -15,13 +16,26 @@ type CatalogProps = {
 export const CatalogItems = (props: CatalogProps) => {
     const [items, setItems] = useState<Item[]>([]);
     const navigate = useNavigate();
-    const { value } = useParams();
-    const [catalogName, setCatalogName] = useState<any>(value || props.active || 'games');
+    const [catalogName, setCatalogName] = useState<any>(props.active || 'games');
 
     const { min_price, max_price, region, platform } = useStore(FilterStore);
 
-    const handleCardClick = (id: number | undefined) => {
-        navigate(`/catalog/${id}`);
+    const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
+        let catalogPath = ""
+        switch (categoryID) {
+            case 10001:
+                catalogPath = "games"
+                break
+            case 10002:
+                catalogPath = "subscriptions"
+                break
+            case 10004:
+                catalogPath = "deposits"
+                break
+        }
+        itemName = transliterate(itemName!)
+
+        navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
     };
 
     const loadItems = async () => {
@@ -53,10 +67,10 @@ export const CatalogItems = (props: CatalogProps) => {
     };
 
     useEffect(() => {
-        if (value) {
-            setCatalogName(value);
+        if (props.active) {
+            setCatalogName(props.active);
         }
-    }, [value]);
+    }, [props.active]);
 
     useEffect(() => {
         loadItems();
@@ -65,7 +79,7 @@ export const CatalogItems = (props: CatalogProps) => {
     return (
         <StyledDiv>
             <StyledButtons>
-                <StyledLink to={'/catalog/category/games'}>
+                <StyledLink to={'/games'}>
                     <StyledButton
                         onClick={() => {
                             setCatalogName('games');
@@ -78,7 +92,7 @@ export const CatalogItems = (props: CatalogProps) => {
                         Игры
                     </StyledButton>
                 </StyledLink>
-                <StyledLink to={'/catalog/category/deposits'}>
+                <StyledLink to={'/deposits'}>
                     <StyledButton
                         onClick={() => {
                             setCatalogName('deposits');
@@ -90,7 +104,7 @@ export const CatalogItems = (props: CatalogProps) => {
                         Пополнение
                     </StyledButton>
                 </StyledLink>
-                <StyledLink to={'/catalog/category/subscriptions'}>
+                <StyledLink to={'/subscriptions'}>
                     <StyledButton
                         onClick={() => {setCatalogName('subscriptions');
                             setItems([]);
@@ -111,7 +125,7 @@ export const CatalogItems = (props: CatalogProps) => {
                         cardType="catalogCard"
                         nameGame={game.title}
                         imageUrl={game.thumbnail_url}
-                        onClick={() => handleCardClick(game.id)}
+                        onClick={() => handleCardClick(game.category_id, game.title, game.id)}
                         transform={true}
                         oldPrice={game.old_price}
                         newPrice={game.current_price}

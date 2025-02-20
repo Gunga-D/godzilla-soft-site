@@ -4,8 +4,7 @@ import {Filter} from "../../components/filter/Filter";
 import {CatalogItems} from "../../components/catalogItems/CatalogItems";
 
 type CatalogProps = {
-    path?: string,
-    id?: string,
+    active?: string,
 }
 export const Catalog = (props: CatalogProps) => {
     return (
@@ -13,7 +12,7 @@ export const Catalog = (props: CatalogProps) => {
             <StyledH2>Каталог</StyledH2>
             <StyledWrapper>
                     <Filter/>
-                    <CatalogItems active={props.id}/>
+                    <CatalogItems active={props.active}/>
             </StyledWrapper>
         </StyledDiv>
     );

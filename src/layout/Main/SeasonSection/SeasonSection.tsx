@@ -6,6 +6,8 @@ import SeasonBackground from "../../../assets/images/SeasonSection/23feb.png"
 import {BigCardForGame} from "../../../components/cardForGames/BigCardForGame";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import { transliterate } from '../../../hooks/transliterate';
+
 type SeasonSectionProps = {
     mainTitle?: string,
     url?: string,
@@ -13,9 +15,22 @@ type SeasonSectionProps = {
 export const SeasonSection = (props: SeasonSectionProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
     const navigate = useNavigate();
-    const handleCardClick = (id: number | undefined) => {
-        navigate(`/catalog/${id}`);
-    };
+    const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
+      let catalogPath = ""
+      switch (categoryID) {
+          case 10001:
+              catalogPath = "games"
+              break
+          case 10002:
+              catalogPath = "subscriptions"
+              break
+          case 10004:
+              catalogPath = "deposits"
+              break
+      }
+      itemName = transliterate(itemName!)
+      navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
+  };
     useEffect(() => {
         const fetchItem = async () => {
             try {
@@ -41,7 +56,7 @@ export const SeasonSection = (props: SeasonSectionProps) => {
                                         is_for_sale={item.is_for_sale}
                                         newPrice={item.current_price}
                                         cardType='bigCard'
-                                        onClick = {() => handleCardClick(item.id)}
+                                        onClick = {() => handleCardClick(item.category_id, item.title, item.id)}
                                         region={item.region}
                                         platform={item.platform}
 
@@ -49,7 +64,7 @@ export const SeasonSection = (props: SeasonSectionProps) => {
                     ))}
                 </StyledWrapper>
                 <ButtonWrap>
-                    <StyledLink to={'/catalog/category/games'}>
+                    <StyledLink to={'/games'}>
                     <ButtonStyled>
 
                             Смотреть все

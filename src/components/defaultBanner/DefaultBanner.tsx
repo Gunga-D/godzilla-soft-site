@@ -20,7 +20,7 @@ export const DefaultBanner = (props: DefaultBannerType) => {
     const navigate = useNavigate();
     const location = useLocation();
     const clickOnLogo = () => {
-        navigate('/catalog/category/games');
+        navigate('/games');
 
     };
     return (
