@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { catalogApi } from "../../common/api/catalogItem/catalog-api";
 import { CatalogCard } from "../cardForGames/CatalogCard";
-import {  useNavigate, useParams } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { Item } from "../../common/api/item/item";
 import { Link } from "react-router-dom";
 import { useStore } from "zustand/react";
@@ -82,11 +82,13 @@ export const CatalogItems = (props: CatalogProps) => {
                 <StyledLink to={'/games'}>
                     <StyledButton
                         onClick={() => {
+                            if (catalogName === 'games') {
+                                return;
+                            }
                             setCatalogName('games');
                             setItems([]);
-
                         }
-                    }
+                        }
                         isActive={catalogName === 'games'}
                     >
                         Игры
@@ -95,10 +97,13 @@ export const CatalogItems = (props: CatalogProps) => {
                 <StyledLink to={'/deposits'}>
                     <StyledButton
                         onClick={() => {
+                            if (catalogName == 'deposits') {
+                                return
+                            }
                             setCatalogName('deposits');
                             setItems([]);
                         }
-                    }
+                        }
                         isActive={catalogName === 'deposits'}
                     >
                         Пополнение
@@ -106,7 +111,11 @@ export const CatalogItems = (props: CatalogProps) => {
                 </StyledLink>
                 <StyledLink to={'/subscriptions'}>
                     <StyledButton
-                        onClick={() => {setCatalogName('subscriptions');
+                        onClick={() => {
+                            if (catalogName == 'subscriptions') {
+                                return;
+                            }
+                            setCatalogName('subscriptions');
                             setItems([]);
                         }}
                         isActive={catalogName === 'subscriptions'}
