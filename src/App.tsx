@@ -12,6 +12,7 @@ import {GamePage} from "./layout/GamePage/GamePage";
 import {Contacts} from "./layout/Contacts/Contacts";
 import {PaymentError} from "./layout/PaymentPage/PaymentError";
 import {PaymentSuccess} from "./layout/PaymentPage/PaymentSuccess";
+import { RandomGamePage } from './layout/RandomGamePage/RandomGamePage';
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                             <Route index element={<Catalog active='subscriptions'/>} />
                             <Route path=':value' element={<GamePage />}></Route>
                         </Route>
+                        <Route path='/random' element={<RandomGamePage/>}/>
                         <Route path='/contacts' element={<Contacts/>} />
                         <Route path='/login' element={<LogIn/>}/>
                         <Route path='*' element={<NotFoundPage/>}/>

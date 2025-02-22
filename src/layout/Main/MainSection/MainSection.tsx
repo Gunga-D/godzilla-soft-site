@@ -24,7 +24,7 @@ export const MainSection = () => {
             <StyledWrapper>
 
                 <Link to={'/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
-                <Link to={'*'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
+                <Link to={'/random'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
                 <Link to={'/games'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
                 <Link to={'/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
             </StyledWrapper>
