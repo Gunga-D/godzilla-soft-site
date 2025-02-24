@@ -13,6 +13,7 @@ import {Contacts} from "./layout/Contacts/Contacts";
 import {PaymentError} from "./layout/PaymentPage/PaymentError";
 import {PaymentSuccess} from "./layout/PaymentPage/PaymentSuccess";
 import {SteamDepositsPage} from "./layout/SteamDepositsPage/SteamDepositsPage";
+import { RandomGamePage } from './layout/RandomGamePage/RandomGamePage';
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                         <Route path='/payment_success' element={<PaymentSuccess/>}/>
                         <Route path='/payment_error' element={<PaymentError/>}/>
                         <Route path='/steam_deposit' element={<SteamDepositsPage/>}/>
+                        <Route path='/random' element={<RandomGamePage/>}/>
                     </Routes>
                 </Layout>
             </FlexWrapper>
