@@ -11,11 +11,20 @@ import { CatalogCard } from "../cardForGames/CatalogCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { transliterate } from '../../hooks/transliterate';
 
-export const BuyPage = () => {
+type BuyPageProps = {
+  itemID?: string,
+  title?: string,
+  description?: string,
+}
+
+export const BuyPage = (props: BuyPageProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
     const [email, setEmail] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
-    const { id } = useParams();
+    const { value } = useParams();
+    const values = value?.split("_") 
+    const itemID = props.itemID || values![values!.length-1]
+
     const navigate = useNavigate();
 
     const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
@@ -53,7 +62,7 @@ export const BuyPage = () => {
         const createOrder = async () => {
             let data: CreateOrder;
             try {
-                data = await itemApi.createOrder(Number(id), email);
+                data = await itemApi.createOrder(Number(itemID), email);
             } catch (err) {
                 const errorMessage = getErrorMessage(err);
                 setError(errorMessage);
@@ -64,7 +73,7 @@ export const BuyPage = () => {
 
         const buyItem = async () => {
             try {
-                await itemApi.cartItem(Number(id));
+                await itemApi.cartItem(Number(itemID));
             } catch (err) {
                 const errorMessage = getErrorMessage(err);
                 setError(errorMessage);
@@ -94,12 +103,12 @@ export const BuyPage = () => {
             }
         };
         fetchItem();
-    }, [id]);
+    }, [itemID]);
 
     return (
         <StyledDiv>
-            <StyledH2 id='dostavka'>Доставка цифрового товара</StyledH2>
-            <StyledH4>Цифровой товар будет доставлен на указанный е-mail:</StyledH4>
+            <StyledH2 id='dostavka'>{props.title || "Оформление заказа"}</StyledH2>
+            <StyledH4>{props.description || "Цифровой товар будет доставлен на указанный е-mail:"}</StyledH4>
             <StyledInput
                 placeholder='Введите email'
                 value={email}
@@ -145,7 +154,7 @@ export const BuyPage = () => {
 
 const StyledDiv = styled.div`
   height: 100%;
-  margin-top: 260px;
+  margin-top: 100px;
   display: flex;
   align-items: center;
   flex-direction: column;
