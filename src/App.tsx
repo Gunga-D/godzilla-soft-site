@@ -12,6 +12,7 @@ import {GamePage} from "./layout/GamePage/GamePage";
 import {Contacts} from "./layout/Contacts/Contacts";
 import {PaymentError} from "./layout/PaymentPage/PaymentError";
 import {PaymentSuccess} from "./layout/PaymentPage/PaymentSuccess";
+import {SteamDepositsPage} from "./layout/SteamDepositsPage/SteamDepositsPage";
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
                         <Route path='*' element={<NotFoundPage/>}/>
                         <Route path='/payment_success' element={<PaymentSuccess/>}/>
                         <Route path='/payment_error' element={<PaymentError/>}/>
+                        <Route path='/steam_deposit' element={<SteamDepositsPage/>}/>
                     </Routes>
                 </Layout>
             </FlexWrapper>
