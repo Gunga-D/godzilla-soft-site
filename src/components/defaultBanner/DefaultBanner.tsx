@@ -18,10 +18,8 @@ type DefaultBannerType = {
 }
 export const DefaultBanner = (props: DefaultBannerType) => {
     const navigate = useNavigate();
-    const location = useLocation();
     const clickOnLogo = () => {
         navigate('/games');
-
     };
     return (
         <StyledWrapper onClick={clickOnLogo}>
@@ -29,6 +27,7 @@ export const DefaultBanner = (props: DefaultBannerType) => {
         </StyledWrapper>
     );
 };
+
 const StyledWrapper = styled.div `
     display: flex;
     margin-top: 90px;

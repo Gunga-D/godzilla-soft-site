@@ -23,7 +23,10 @@ export const BuyPage = (props: BuyPageProps) => {
     const [error, setError] = useState<string | null>(null);
     const { value } = useParams();
     const values = value?.split("_") 
-    const itemID = props.itemID || values![values!.length-1]
+    let itemID = props.itemID
+    if (!itemID && values !== undefined) {
+      itemID = values[values.length-1]
+    }
 
     const navigate = useNavigate();
 
@@ -50,6 +53,10 @@ export const BuyPage = (props: BuyPageProps) => {
     };
 
     const handlePayment = () => {
+        if (!itemID) {
+          setError('Товар не выбран');
+          return;
+        }
         if (!email.trim()) {
             setError('Пожалуйста, введите email');
             return;

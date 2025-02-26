@@ -1,29 +1,54 @@
 import { BuyPage } from "../../components/buyPage/BuyPage"
 import { Container } from "../../styles/Container"
 import styled from "styled-components"
+import React, { useState } from 'react';
+import image from "../../assets/images/Banners/RandomBanner.png"
 
 export const RandomGamePage = () => {
+    const [itemID, setItemID] = useState<string | undefined>(undefined);
     const scroll = () => {
         const element = document.getElementById('dostavka');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
-    const onClick = (e: any) => {
+    const onClick = (e: React.MouseEvent<HTMLElement>) => {
         scroll()
-        console.log(e.target)
+        let btns = document.getElementsByClassName("random-btn") as HTMLCollectionOf<HTMLElement>;
+        for (let i=0;i<btns.length;i++){
+            btns[i].textContent = "Купить"
+            btns[i].style.color = "white"
+            btns[i].style.backgroundColor = "red"   
+        }
+
+        e.currentTarget.style.color = "red"
+        e.currentTarget.style.backgroundColor = "black" 
+        e.currentTarget.textContent = "Выбрано"
+
+        if (e.currentTarget.classList.contains("random-for-adults")) {
+            setItemID("44")
+            console.log("for adults")
+        }
+        if (e.currentTarget.classList.contains("random-premium")) {
+            setItemID("43")
+            console.log("premium")
+        }
+        if (e.currentTarget.classList.contains("random-default")) {
+            setItemID("42")
+            console.log("default")
+        }
     }
 
     return (
         <StyledRandomGamePage>
             <Container>
                 <StyledMainRandom>
-                    <StyledH1>Случайная Steam игра</StyledH1>
+                    <StyledBanner src={image}></StyledBanner>
                     <StyledCardsContainer>
                         <StyledCard>
                             <StyledCardName>Инди</StyledCardName>
                             <StyledCardDescription>
-                                Обычная версия. Шанс выпадения приза - 1%. Игры в данной версии до 2 000₽.
+                                Обычная версия.<br/>Шанс выпадения приза - 1%.<br/>Игры до 2&nbsp;000₽.
                                 {/* <li><a href="https://godzillasoft.ru/games/HellDivers_2_1">HellDivers 2</a></li>
                                 <li><a href="https://godzillasoft.ru/games/Metro_Exodus_31">Metro Exodus</a></li>
                                 <li><a href="https://godzillasoft.ru/games/Mortal_Kombat_11_3">Mortal Kombat 11</a></li>
@@ -35,19 +60,19 @@ export const RandomGamePage = () => {
                                 <li><a href="https://godzillasoft.ru/games/Dragon's_Dogma_2_37">Dragon's Dogma 2</a></li> */}
                             </StyledCardDescription>
                             <StyledPrice>208₽</StyledPrice>
-                            <StyledBuyButton onClick={onClick}>Купить</StyledBuyButton>
+                            <StyledBuyButton onClick={onClick} className="random-btn random-default">Купить</StyledBuyButton>
                         </StyledCard>
                         <StyledCard>
                             <StyledCardName>Премиум</StyledCardName>
-                            <StyledCardDescription>Улучшенный пакет, шанс выпадения приза - 4%. Игра в данной версии до 5 000₽.</StyledCardDescription>
+                            <StyledCardDescription>Улучшенный пакет.<br/>Шанс выпадения приза - 4%.<br/>Игра до 5&nbsp;000₽.</StyledCardDescription>
                             <StyledPrice>1557₽</StyledPrice>
-                            <StyledBuyButton onClick={onClick}>Купить</StyledBuyButton>
+                            <StyledBuyButton onClick={onClick} className="random-btn random-premium">Купить</StyledBuyButton>
                         </StyledCard>
                         <StyledCard>
                             <StyledCardName>18+ <span style={{backgroundColor: "#ffa31a", padding: "3px", color: "black"}}>Версия</span></StyledCardName>
                             <StyledCardDescription>Название данной версии говорит само за себя.</StyledCardDescription>
                             <StyledPrice>63₽</StyledPrice>
-                            <StyledBuyButton onClick={onClick}>Купить</StyledBuyButton>
+                            <StyledBuyButton onClick={onClick} className="random-btn random-for-adults">Купить</StyledBuyButton>
                         </StyledCard>
                     </StyledCardsContainer>
                     <StyledInfo>
@@ -58,7 +83,7 @@ export const RandomGamePage = () => {
                         <StyledInfoTitle>Как происходит сортировка игр?</StyledInfoTitle>
                         <StyledInfoDescription>Сортировкой данного товара полностью занимается робот, в его характеристиках задан шаг и суммарная стоимость игр. Параметр шага влияет на то, через какое количество игр встретится дубликат, суммарная стоимость это общий бюджет на закупку игр. Балансируя данные параметры робот пытается сделать равноценное распределение по товару, так, чтобы вам не выпал дубликат и попалась действительно шедевральная игра, которая достойна вашего внимания.</StyledInfoDescription>
                     </StyledInfo>
-                    <BuyPage itemID="42" title="Оформление заказа" description="Случайная игра Steam придет на следующий email:"></BuyPage>
+                    <BuyPage itemID={itemID} title="Оформление заказа" description="Случайная игра Steam придет на следующий email:"></BuyPage>
                 </StyledMainRandom>
             </Container>
         </StyledRandomGamePage>
@@ -75,6 +100,12 @@ const StyledMainRandom = styled.div`
     width: 100%;
     margin-top: 100px;
     z-index: 1;
+`
+
+const StyledBanner = styled.img`
+    margin-bottom: 50px;
+    width: 100%;
+    border-radius: 15px;
 `
 
 const StyledH1 = styled.h1`
