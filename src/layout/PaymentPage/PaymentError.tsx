@@ -6,12 +6,11 @@ export const PaymentError = () => {
     return (
         <PaymentStyled>
             <StyledH1>Ошибка</StyledH1>
-            <StyledSubtitle>Извините, произошла ошибка при оплате</StyledSubtitle>
-            <StyledText>Повторите, пожалуйста, попытку.</StyledText>
+            <StyledSubtitle>Извините, что-то пошло не так при оплате</StyledSubtitle>
+            <StyledText>Повторите, пожалуйста, попытку позже.</StyledText>
             <StyledLink to={'/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
-            <StyledLink to={'https://t.me/GungaD'}><StyledButton>
-                {/*<Icon iconId='Support' width='32px' height='32px'  />*/}
-                Остались вопросы?
+            <StyledLink to={'https://t.me/GODZILLASOFT_bot?start=godzillasoft.ru'}><StyledButton>
+                Обратиться в поддержку
             </StyledButton></StyledLink>
         </PaymentStyled>
     );
@@ -45,7 +44,8 @@ const StyledText = styled.text `
 `
 const StyledReturn = styled.div `
   margin-top: 20px;
-  padding: 10px 20px;
+  width: 250px;
+  padding: 12px 0;
   background-color: #FF333B;
   color: #ffffff;
   text-decoration: none;
@@ -65,7 +65,8 @@ const  StyledLink = styled(Link)`
 
 const StyledButton = styled.div `
   margin-top: 20px;
-  padding: 10px 20px;
+  width: 250px;
+  padding: 12px 0;
   background-color: white;
   color: #FF333B;
   text-decoration: none;

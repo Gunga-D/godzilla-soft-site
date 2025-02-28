@@ -19,7 +19,7 @@ type DefaultBannerType = {
 export const DefaultBanner = (props: DefaultBannerType) => {
     const navigate = useNavigate();
     const clickOnLogo = () => {
-        navigate('/games');
+        navigate('/steam_deposit');
     };
     return (
         <StyledWrapper onClick={clickOnLogo}>

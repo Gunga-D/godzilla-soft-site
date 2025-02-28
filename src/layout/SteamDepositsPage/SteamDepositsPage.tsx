@@ -1,8 +1,45 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Container } from "../../styles/Container";
+import { steamApi } from "../../common/api/steam/api";
+import { useEffect, useState } from "react";
 
 export const SteamDepositsPage = () => {
+    const [steamLogin, setSteamLogin] = useState<string>("");
+    const [steamAmount, setSteamAmount] = useState<number>(500);
+    const [price, setPrice] = useState<number>(0);
+    const [err, setErr] = useState<string|null>(null);
+
+    const calc = async () => {
+      try {
+          const resp = await steamApi.calc({
+            amount: steamAmount,
+          });
+          setPrice(resp.data.price)
+          setErr(null)
+      } catch (err: any) {
+          setErr(err.response.data.message)
+          return;
+      }
+    };
+    useEffect(() => {
+      calc()
+    }, [steamAmount])
+
+    const createInvoice = async () => {
+      try {
+        const resp = await steamApi.createInvoice({
+          steam_login: steamLogin,
+          amount: steamAmount,
+        });
+        window.open(resp.data.payment_link, "_self");
+        setErr(null)
+      } catch (err: any) {
+        setErr(err.response.data.message)
+        return;
+      }
+    };
+
     return (
         <Container>
             <StyledH1>Пополнение баланса Steam</StyledH1>
@@ -14,26 +51,36 @@ export const SteamDepositsPage = () => {
                     <StyledText>Аккаунты РФ и стран СНГ. Деньги поступят на аккаунт в течение 15 минут. В редких случаях — до 2 часов.</StyledText>
 
                     <StyledSection>
-                        <StyledInput type="text" placeholder="Введите логин Steam" />
+                        <StyledInputContainer>
+                          <StyledInput type="text" placeholder="Введите логин Steam" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{
+                            setSteamLogin(e.currentTarget.value)
+                          }} style={{borderColor: err !== null?"red":"#a6a6a6"}}/>
+                          <StyledQuestion href="https://store.steampowered.com/account/">?</StyledQuestion>
+                        </StyledInputContainer>
                     </StyledSection>
                     <StyledSection>
                         <StyledLabel>Сумма пополнения, в рублях</StyledLabel>
-                        <StyledInput type="number" placeholder="350 ₽" />
-                        <StyledSmallText>Максимальная сумма 30000 ₽</StyledSmallText>
+                        <StyledInputContainer>
+                          <StyledInput type="number" placeholder="500 ₽" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{
+                            setSteamAmount(Number(e.currentTarget.value))
+                          }} style={{borderColor: err !== null?"red":"#a6a6a6"}}/>
+                          <StyledSmallText>От 30 ₽ до 30 000 ₽</StyledSmallText>
+                        </StyledInputContainer>
+                    </StyledSection>
+                    <StyledSection>
+                      <StyledErr>{err}</StyledErr>
                     </StyledSection>
                 </LeftColumn>
                 <RightColumn>
                     <StyledSection>
                         <StyledLabel>К оплате</StyledLabel>
                         <StyledPaymentDetails>
-                            <div>Сумма пополнения: 350 ₽</div>
-                            <div>Комиссия сервиса: 50 ₽</div>
-                            <div>Итого: 400 ₽</div>
+                            <div>Сумма пополнения: {steamAmount} ₽</div>
+                            <div>Комиссия сервиса: {price-steamAmount} ₽</div>
+                            <div>Итого: {price} ₽</div>
                         </StyledPaymentDetails>
                     </StyledSection>
-                    <StyledLink to={'/payment'}>
-                        <StyledSubmitButton>Оплатить 400 ₽</StyledSubmitButton>
-                    </StyledLink>
+                    <StyledSubmitButton onClick={createInvoice}>Оплатить {price} ₽</StyledSubmitButton>
                     <StyledFooter>
                         Нажимая "Оплатить", вы принимаете <StyledLink to={'/rules'}>Правила пользования сайтом</StyledLink> и <StyledLink to={'/privacy'}>Политику конфиденциальности</StyledLink>.
                     </StyledFooter>
@@ -100,12 +147,41 @@ const StyledLabel = styled.label`
   
 `;
 
+const StyledInputContainer = styled.div`
+  position: relative;
+  width: 80%;
+`
+
+const StyledQuestion = styled.a`
+  position: absolute;
+  right: 15px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #FFFFFF;
+  opacity: 0.5;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+  border-radius: 50%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+`
+
 const StyledInput = styled.input`
+  &&::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; 
+  }
+  width: 100%;
   &::placeholder {
     color: #FFFFFF;
     opacity: 0.5;
   }
-  width: 450px;
   height: 56px;
   background: rgba(44, 43, 43, 0.9);
   backdrop-filter: blur(3px);
@@ -164,7 +240,7 @@ const StyledPaymentDetails = styled.div`
 `;
 
 const StyledSubmitButton = styled.button`
-  padding: 10px 20px;
+  padding: 20px;
   background-color: #FF333B;
   color: #ffffff;
   border: none;
@@ -172,14 +248,15 @@ const StyledSubmitButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 20px;
-
+  font-weight: 900;
+  font-size: 21px;
   &:hover {
     background-color: #ff4757;
   }
 `;
 
 const StyledFooter = styled.div`
-  font-size: 0.9rem;
+  font-size: 12px;
   margin-top: 20px;
 `;
 
@@ -193,4 +270,9 @@ const StyledLink = styled(Link)`
 `;
 const StyledSmallText = styled.p `
   font-size: 13px;
+`
+
+const StyledErr = styled.p`
+  font-size: 13px;
+  color: red;
 `

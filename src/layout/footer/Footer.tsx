@@ -18,7 +18,7 @@ export const Footer = () => {
                     <StyledLink to={'/deposits'}><StyledLi>Пополнение</StyledLi></StyledLink>
                     <StyledLink to={'/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
                     <StyledLink to={'/contacts'}><StyledLi>Контакты</StyledLi></StyledLink>
-                    <StyledLink to="https://t.me/godzilla_soft"><StyledLi>Поддержка</StyledLi></StyledLink>
+                    <StyledLink to="https://t.me/GODZILLASOFT_bot?start=godzillasoft.ru"><StyledLi>Поддержка</StyledLi></StyledLink>
                 </NavUl>
                 <PaymentUl>
                     <Icon iconId="VISA" width="74" height="23" viewBox="0 0 74 23"/>

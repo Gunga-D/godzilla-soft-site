@@ -36,11 +36,14 @@ function App() {
                         </Route>
                         <Route path='/contacts' element={<Contacts/>} />
                         <Route path='/login' element={<LogIn/>}/>
-                        <Route path='*' element={<NotFoundPage/>}/>
-                        <Route path='/payment_success' element={<PaymentSuccess/>}/>
-                        <Route path='/payment_error' element={<PaymentError/>}/>
-                        <Route path='/steam_deposit' element={<SteamDepositsPage/>}/>
+                        <Route path='steam_deposit' element={<SteamDepositsPage/>}/>
                         <Route path='/random' element={<RandomGamePage/>}/>
+
+
+                        <Route path='/redirect/payment_success' element={<PaymentSuccess/>}/>
+                        <Route path='/redirect/steam_payment_success' element={<PaymentSuccess description='Деньги зачислятся на баланс Steam в течение 5-10 минут'/>}/>
+                        <Route path='/redirect/payment_error' element={<PaymentError/>}/>
+                        <Route path='/redirect/not_found' element={<NotFoundPage/>}/>
                     </Routes>
                 </Layout>
             </FlexWrapper>

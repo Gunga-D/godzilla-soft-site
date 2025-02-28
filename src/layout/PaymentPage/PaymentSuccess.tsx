@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import {Icon} from "../../components/icon/Icon";
 
-export const PaymentSuccess = () => {
+type PaymentSuccessProps = {
+  description?: string,
+}
+
+export const PaymentSuccess = (props: PaymentSuccessProps) => {
     return (
         <PaymentStyled>
             <StyledH1>Успешно!</StyledH1>
-            <StyledSubtitle>Ваш код уже на Вашей почте</StyledSubtitle>
-            <StyledText>Ждем вас снова!</StyledText>
-            <StyledLink to={'/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
-            <StyledLink to={'https://t.me/GungaD'}><StyledButton>
-                {/*<Icon iconId='Support' width='32px' height='32px'  />*/}
+            <StyledSubtitle>{props.description||"Код активации придет вам на почту в течение 5-10 минут"}</StyledSubtitle>
+            <StyledText>Спасибо большое за покупку, ждем вас снова!</StyledText>
+            <StyledLink to={'/'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
+            <StyledLink to={'https://t.me/GODZILLASOFT_bot?start=godzillasoft.ru'}><StyledButton>
                 Остались вопросы?
             </StyledButton></StyledLink>
         </PaymentStyled>
@@ -47,7 +49,8 @@ const StyledText = styled.text `
 `
 const StyledReturn = styled.div `
   margin-top: 20px;
-  padding: 10px 20px;
+  width: 250px;
+  padding: 12px 0;
   background-color: #FF333B;
   color: #ffffff;
   text-decoration: none;
@@ -63,7 +66,8 @@ const StyledReturn = styled.div `
 `
 const StyledButton = styled.div `
   margin-top: 20px;
-  padding: 10px 20px;
+  width: 250px;
+  padding: 12px 0;
   background-color: white;
   color: #FF333B;
   text-decoration: none;
