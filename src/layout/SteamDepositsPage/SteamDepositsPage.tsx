@@ -1,5 +1,6 @@
+"use client"
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+
 import { Container } from "../../styles/Container";
 import { steamApi } from "../../common/api/steam/api";
 import { useEffect, useState } from "react";
@@ -82,7 +83,7 @@ export const SteamDepositsPage = () => {
                     </StyledSection>
                     <StyledSubmitButton onClick={createInvoice}>Оплатить {price} ₽</StyledSubmitButton>
                     <StyledFooter>
-                        Нажимая "Оплатить", вы принимаете <StyledLink to={'/rules'}>Правила пользования сайтом</StyledLink> и <StyledLink to={'/privacy'}>Политику конфиденциальности</StyledLink>.
+                        Нажимая "Оплатить", вы принимаете Правила пользования сайтом и Политику конфиденциальности.
                     </StyledFooter>
                 </RightColumn>
             </SteamDepositsPageStyled>
@@ -260,14 +261,7 @@ const StyledFooter = styled.div`
   margin-top: 20px;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #FF333B;
 
-  &:hover {
-    text-decoration: underline;
-  }
-`;
 const StyledSmallText = styled.p `
   font-size: 13px;
 `

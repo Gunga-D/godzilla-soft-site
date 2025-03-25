@@ -1,252 +1,122 @@
+"use client";
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Icon } from '../icon/Icon';
+import './InputFoundStyles.css';
 import { SearchItem } from '../../common/api/searchItem/searchItem';
-import {searchApi} from "../../common/api/searchItem/search-api";
-import {useNavigate} from "react-router-dom";
+import { searchApi } from '../../common/api/searchItem/search-api';
 import { transliterate } from '../../hooks/transliterate';
+import Image from 'next/image';
 
 export const InputFound = () => {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null); // Добавляем для отладки ошибок
+    const [error, setError] = useState<string | null>(null);
 
     const onFocusHandler = () => {
-      setIsPopupOpen(true)
-    }
+        setIsPopupOpen(true);
+    };
+
     const onBlurHandler = () => {
-      setIsPopupOpen(false)
-    }
+        setIsPopupOpen(false);
+    };
+
     const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-      setIsLoading(true)
-      try {
-        const data = await searchApi.suggest(e.target.value);
-        setSearchResults(data)
-      } catch (err) {
-        setError("Произошла предвиденная ошибка")
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    const navigate = useNavigate();
+        setIsLoading(true);
+        try {
+            const data = await searchApi.suggest(e.target.value);
+            setSearchResults(data);
+        } catch (err) {
+            setError('Произошла непредвиденная ошибка');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
-      let catalogPath = ""
-      switch (categoryID) {
-          case 10001:
-              catalogPath = "games"
-              break
-          case 10002:
-              catalogPath = "subscriptions"
-              break
-          case 10004:
-              catalogPath = "deposits"
-              break
-      }
-      itemName = transliterate(itemName!)
-      navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
-  };
+        let catalogPath = '';
+        switch (categoryID) {
+            case 10001:
+                catalogPath = 'games';
+                break;
+            case 10002:
+                catalogPath = 'subscriptions';
+                break;
+            case 10004:
+                catalogPath = 'deposits';
+                break;
+        }
+        itemName = transliterate(itemName!);
+        // navigate(`/${catalogPath}/${itemName?.replaceAll(' ', '_')}_${itemId}`);
+    };
+
     return (
-        <InputContainer>
-            <CustomPlaceholder onBlur={onBlurHandler}>
-                <Icon iconId="loops" width="20" height="20" viewBox="0 0 20 20" />
-                <StyledInput
+        <div className={'inputContainer'}>
+            <div className={'customPlaceholder'} onBlur={onBlurHandler}>
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        opacity="0.5"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M2 9C2 5.13401 5.13401 2 9 2C12.866 2 16 5.13401 16 9C16 10.8863 15.2539 12.5984 14.0406 13.8572C14.0068 13.8833 13.9743 13.9118 13.9433 13.9428C13.9123 13.9738 13.8837 14.0064 13.8576 14.0402C12.5988 15.2537 10.8866 16 9 16C5.13401 16 2 12.866 2 9ZM14.618 16.0317C13.0782 17.2634 11.1251 18 9 18C4.02944 18 0 13.9706 0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9C18 11.1249 17.2636 13.0778 16.0321 14.6174L19.7075 18.2928C20.098 18.6833 20.098 19.3165 19.7075 19.707C19.317 20.0975 18.6838 20.0975 18.2933 19.707L14.618 16.0317Z"
+                        fill="white"
+                    />
+                </svg>
+                <input
                     type="text"
                     placeholder="Найти"
                     onChange={changeHandler}
                     onFocus={onFocusHandler}
+                    className={'styledInput'}
                 />
 
                 {isPopupOpen && (
-                    <StyledPopUp isOpen={isPopupOpen}>
+                    <div className={'styledPopUp'}>
                         {isLoading ? (
-                            <LoadingMessage>Загрузка...</LoadingMessage>
+                            <div className={'loadingMessage'}>Загрузка...</div>
                         ) : error ? (
-                            <ErrorMessage>{error}</ErrorMessage>
+                            <div className={'errorMessage'}>{error}</div>
                         ) : searchResults?.length > 0 ? (
-                            <GameList>
+                            <ul className={'gameList'}>
                                 {searchResults.map((game, index) => (
-                                    <GameItem onMouseDown={()=>handleCardClick(game.item_category_id, game.item_title, game.item_id)} key={index}>
-                                        <div >
-                                          <img src={game.item_thumbnail_url} width={100} height={100} style={{borderRadius: '10px'}}></img>
+                                    <li
+                                        className={'gameItem'}
+                                        onMouseDown={() =>
+                                            handleCardClick(game.item_category_id, game.item_title, game.item_id)
+                                        }
+                                        key={index}
+                                    >
+                                        <div>
+                                            <img
+                                                src={game.item_thumbnail_url}
+                                                width={100}
+                                                height={100}
+                                                style={{ borderRadius: '10px' }}
+                                                alt={game.item_title}
+                                            />
                                         </div>
-                                        <div style={{marginLeft: '25px'}}>
-                                          <StyledGameName>{game.item_title || 'Без названия'}</StyledGameName>
-                                          <br/>
-                                          <StyledPNewPrice>{game.item_current_price}</StyledPNewPrice>
-                                          {game.item_is_for_sale && (
-                                            <StyledPOldPrice>{game.item_old_price}</StyledPOldPrice>
-                                          )}
+                                        <div style={{ marginLeft: '25px' }}>
+                                            <p className={'styledGameName'}>{game.item_title || 'Без названия'}</p>
+                                            <br />
+                                            <p className={'styledPNewPrice'}>{game.item_current_price}</p>
+                                            {game.item_is_for_sale && (
+                                                <p className={'styledPOldPrice'}>{game.item_old_price}</p>
+                                            )}
                                         </div>
-                                    </GameItem>
+                                    </li>
                                 ))}
-                            </GameList>
+                            </ul>
                         ) : (
-                            <NoResultsMessage>Результатов не найдено</NoResultsMessage>
+                            <div className='noResultsMessage'>Результатов не найдено</div>
                         )}
-                    </StyledPopUp>
+                    </div>
                 )}
-            </CustomPlaceholder>
-        </InputContainer>
+            </div>
+        </div>
     );
 };
-
-const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 347px;
-  height: 46px;
-  margin-left: 72px;
-  border: 1px solid #ffffff;
-  backdrop-filter: blur(44.9px);
-  border-radius: 5px;
-`;
-
-const StyledInput = styled.input`
-  width: 300px;
-  background: none;
-  outline: none;
-  border: none;
-  font-weight: 900;
-  font-size: 13px;
-  line-height: 16px;
-  color: #f1f1f0;
-  opacity: 0.5;
-  margin-left: 20px;
-  caret-color: red;
-  text-overflow: ellipsis;
-  &::placeholder {
-    color: #f1f1f0;
-    opacity: 1;
-  }
-`;
-
-const CustomPlaceholder = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  color: #f1f1f0;
-  margin-left: 15px;
-`;
-
-const StyledPopUp = styled.div<{ isOpen: boolean }>`
-  position: absolute;
-  top: 300%;
-  right: 0;
-  z-index: 999;
-  width: 730px;
-  height: auto;
-  max-width: 730px;
-  max-height: 430px;
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  background: #000000b2;
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  @supports ((backdrop-filter: blur(21.35px)) or (-webkit-backdrop-filter: blur(21.35px))) {
-    backdrop-filter: blur(21.35px);
-    -webkit-backdrop-filter: blur(21.35px);
-  }
-`;
-
-const GameList = styled.ul`
-  max-height: 200px;
-  overflow-y: auto;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-`;
-
-const GameItem = styled.li`
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
-  text-align: left;
-  &:last-child {
-    border-bottom: none;
-  }
-  display: flex;
-  flex-wrap: wrap;
-  cursor: pointer;
-  justify-content: start;
-`;
-
-const NoResultsMessage = styled.div`
-  padding: 20px;
-  text-align: center;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-`;
-
-const LoadingMessage = styled.div`
-  padding: 20px;
-  text-align: center;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-`;
-
-const StyledGameName = styled.p`
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 12px;
-  color: #fff;
-  text-align: left;
-  position: relative;
-  display: inline-block;
-  width: auto;
-  margin-bottom: 20px;
-`
-
-const StyledPNewPrice = styled.p`
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 12px;
-  color: #fff;
-  display: inline-block;
-  float: left;
-
-  &:after {
-    content: "₽";
-    font-size: 18px;
-    margin-left: 1px;
-  }
-`
-
-const StyledPOldPrice = styled.p`
-  margin-left: 5px;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 16px;
-  line-height: 12px;
-  color: #848484;
-  position: relative;
-  display: inline-block;
-  width: auto;
-
-  &:after {
-    content: "₽";
-    font-size: 18px;
-    margin-left: 1px;
-  }
-
-  &:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    height: 1px;
-    background-color: #D91E18;
-    transform: rotate(-15deg);
-    transform-origin: center;
-  }
-`;
-
-const ErrorMessage = styled.div`
-  padding: 20px;
-  text-align: center;
-  color: #ff4d4d;
-  font-size: 16px;
-`;

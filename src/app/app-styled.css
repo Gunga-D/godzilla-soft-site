@@ -1,0 +1,9 @@
+
+.main-app {
+    position: absolute;
+    background-image: url('../../public/Leonardo_Kino_XL_faintly_visible_blurry_smoke_fog_everywhere_m01.png');;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    min-height: 100%;
+}

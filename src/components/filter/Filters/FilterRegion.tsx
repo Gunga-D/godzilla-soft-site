@@ -1,6 +1,7 @@
+"use client"
+import Image from "next/image";
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {Icon} from "../../icon/Icon";
 import {useStore} from "zustand/react";
 import {FilterStore} from "../../../common/store/FilterStatus/FilterStatus";
 
@@ -30,11 +31,16 @@ export const FilterRegion = () => {
 
     return (
         <div>
-            <FilterDiv isOpen={isOpen}>
+            <FilterDiv data-is-open={isOpen}>
                 <StyledDiv onClick={toggleFilter}>
                     <StyledP>Регион</StyledP>
-                    <Icon iconId="arrow" width="15" height="15" viewBox="0 0 15 15" aria-hidden="true" />
-                </StyledDiv>
+                    <Image
+                        src={`/arrow.svg`}
+                        alt={'arrow'}
+                        width={15}
+                        height={15}
+                        priority
+                    />                    </StyledDiv>
                 {isOpen && (
                     <OptionsContainer>
                         <Option>
@@ -104,9 +110,9 @@ export const FilterRegion = () => {
     );
 };
 
-const FilterDiv = styled.div<{ isOpen: boolean }>`
+const FilterDiv = styled.div<{ 'data-is-open': boolean }>`
   width: 287px;
-  height: ${({ isOpen }) => (isOpen ? '228px' : '59px')};
+  height: ${({ 'data-is-open': isOpen }) => (isOpen ? '210px' : '59px')};
   background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   transition: height 0.4s ease-out;

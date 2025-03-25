@@ -1,6 +1,7 @@
+" "
 import React from 'react';
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+
 
 type PaymentSuccessProps = {
   description?: string,
@@ -12,10 +13,10 @@ export const PaymentSuccess = (props: PaymentSuccessProps) => {
             <StyledH1>Успешно!</StyledH1>
             <StyledSubtitle>{props.description||"Код активации придет вам на почту в течение 5-10 минут"}</StyledSubtitle>
             <StyledText>Спасибо большое за покупку, ждем вас снова!</StyledText>
-            <StyledLink to={'/'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
-            <StyledLink to={'https://t.me/GODZILLASOFT_bot?start=godzillasoft.ru'}><StyledButton>
+            <StyledReturn>Вернуться на главную</StyledReturn>
+            <StyledButton>
                 Остались вопросы?
-            </StyledButton></StyledLink>
+            </StyledButton>
         </PaymentStyled>
     );
 };
@@ -81,7 +82,4 @@ const StyledButton = styled.div `
   }
 
 `
-const  StyledLink = styled(Link)`
-  text-decoration: none;
-`;
 

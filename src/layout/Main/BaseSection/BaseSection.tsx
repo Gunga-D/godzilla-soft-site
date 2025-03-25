@@ -3,8 +3,9 @@ import styled from "styled-components";
 import {Item} from "../../../common/api/item/item";
 import {itemApi} from "../../../common/api/item/item-api";
 import {MediumCardForGames} from "../../../components/cardForGames/MediumCardForGames";
-import {Link, useNavigate} from "react-router-dom";
+
 import { transliterate } from '../../../hooks/transliterate';
+import {useRouter} from "next/navigation";
 
 type BaseSectionProps = {
     mainTitle?: string,
@@ -12,8 +13,7 @@ type BaseSectionProps = {
 }
 export const BaseSection = (props: BaseSectionProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
-    const navigate = useNavigate();
-
+    const router = useRouter();
     const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
       let catalogPath = ""
       switch (categoryID) {
@@ -29,7 +29,7 @@ export const BaseSection = (props: BaseSectionProps) => {
       }
       itemName = transliterate(itemName!)
 
-      navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
+        router.push(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
   };
     useEffect(() => {
         const fetchItem = async () => {
@@ -45,13 +45,12 @@ export const BaseSection = (props: BaseSectionProps) => {
         <StyledSeasonDiv>
             <div>
                 <StyledH2>{props.mainTitle}</StyledH2>
-                <StyledLink to={'/games'}><StyledP>Показать все</StyledP> </StyledLink>
+                <StyledP>Показать все</StyledP>
             </div>
 
             <StyledWrapper>
                 {item?.slice(0, 5).map((item, index) => (
                     <MediumCardForGames
-                        // bigCard = {true}
                         is_for_sale={item.is_for_sale}
                         nameGame={item.title}
                         oldPrice={item.old_price}
@@ -64,8 +63,6 @@ export const BaseSection = (props: BaseSectionProps) => {
                         onClick = {() => handleCardClick(item.category_id, item.title, item.id)}
                         platform={item.platform}
                         region={item.region}
-
-
                     />
                 ))}
             </StyledWrapper>
@@ -109,7 +106,4 @@ const StyledP = styled.p `
   }
 `
 
-const StyledLink = styled(Link)`
-  text-decoration: none;  
-  //color: white;
-`;
+

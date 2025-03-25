@@ -1,38 +1,35 @@
 import React from 'react';
+import Image from "next/image";
 import styled from "styled-components";
 type ImageProps = {
-    src?: string,
-    width?: string,
-    radius?: string,
-    height?: string,
+    src: string,
+    width?: number,
+    radius: string,
+    height: number,
     onClick?: () => void,
-    hoverEffect?: boolean,
-    cursor?: boolean,
     transform?: boolean,
 }
-export const Image = (props: ImageProps) => {
+export const ImageComponent = (props: ImageProps) => {
     return (
-        <StyledImg loading="lazy"
+        <StyledImg
                    onClick={props.onClick}
-                   hoverEffect={props.hoverEffect}
                    src = {props.src}
                    radius={props.radius}
                    width={props.width}
                    height={props.height}
-                   cursor = {props.cursor}
                    transform={props.transform}
-        />
+        >
+            <Image src={props.src} alt={props.src} width={props.width} height={props.height}/>
+        </StyledImg>
     );
 };
 
-const StyledImg = styled.img <ImageProps>`
+const StyledImg = styled.div <ImageProps>`
   width: ${props => props.width};
   height: ${props => props.height};
   border-radius: ${props => props.radius};
   transition: transform 0.3s ease;
-  cursor: ${props => props.cursor ? 'pointer' : 'default'};
   &:hover {
-    cursor: ${props => props.cursor ? 'pointer' : 'default'};
     transform: ${props => props.transform ? 'scale(1.1)' : 'none'};
   }
 `

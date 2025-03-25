@@ -10,7 +10,7 @@ export type ItemDetail = {
     current_price?: number,
     is_for_sale?: boolean,
     old_price?: number
-    thumbnail_url?: string,
+    thumbnail_url: string,
     slip?: string,
     "publisher"?: string,
     "creator"?: string,

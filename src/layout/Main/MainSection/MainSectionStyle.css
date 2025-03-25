@@ -1,0 +1,20 @@
+.StyledWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    margin-top: 40px;
+}
+.StyledSection{
+  margin-top: 100px;
+}
+.styled-image {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.styled-image:hover {
+    transform: scale(1.05);
+
+}

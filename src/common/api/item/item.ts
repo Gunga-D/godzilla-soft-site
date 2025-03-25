@@ -7,7 +7,7 @@ export type Item = {
     current_price?: number,
     is_for_sale?: boolean,
     old_price?: number,
-    thumbnail_url?: string,
+    thumbnail_url: string,
     background_url?: string,
 }
 

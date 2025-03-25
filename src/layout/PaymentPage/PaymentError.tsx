@@ -1,6 +1,7 @@
+" "
 import React from 'react';
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+
 
 export const PaymentError = () => {
     return (
@@ -8,10 +9,10 @@ export const PaymentError = () => {
             <StyledH1>Ошибка</StyledH1>
             <StyledSubtitle>Извините, что-то пошло не так при оплате</StyledSubtitle>
             <StyledText>Повторите, пожалуйста, попытку позже.</StyledText>
-            <StyledLink to={'/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
-            <StyledLink to={'https://t.me/GODZILLASOFT_bot?start=godzillasoft.ru'}><StyledButton>
+             <StyledReturn>Вернуться на главную</StyledReturn>
+            <StyledButton>
                 Обратиться в поддержку
-            </StyledButton></StyledLink>
+            </StyledButton>
         </PaymentStyled>
     );
 };
@@ -59,9 +60,7 @@ const StyledReturn = styled.div `
   }
 
 `
-const  StyledLink = styled(Link)`
-  text-decoration: none;
-`;
+
 
 const StyledButton = styled.div `
   margin-top: 20px;

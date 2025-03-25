@@ -1,116 +1,47 @@
 import React from 'react';
-import styled from "styled-components";
-import {Container} from "../../styles/Container";
-import {Icon} from "../../components/icon/Icon";
-import { Link } from 'react-router-dom';
+import '../footer/FooterStyled.css';
+import "../../styles/Container.css";
+
 // @ts-ignore
-import privacy_security from '../../pdf/privacy_security.pdf'
+import privacy_security from '../../../public/privacy_security.pdf'
 // @ts-ignore
-import service_agreement from '../../pdf/service_agreement.pdf'
+
+import service_agreement from './../../service_agreement.pdf'
+import Image from "next/image";
+import Link from "next/link";
 
 export const Footer = () => {
     return (
-        <Container>
-            <StyledFooter>
-                <NavUl>
-                    <StyledLink to={'/games'}><StyledLi>Каталог</StyledLi></StyledLink>
-                    <StyledLink to={'/games'}><StyledLi>Игры</StyledLi></StyledLink>
-                    <StyledLink to={'/deposits'}><StyledLi>Пополнение</StyledLi></StyledLink>
-                    <StyledLink to={'/subscriptions'}><StyledLi>Подписки</StyledLi></StyledLink>
-                    <StyledLink to={'/contacts'}><StyledLi>Контакты</StyledLi></StyledLink>
-                    <StyledLink to="https://t.me/GODZILLASOFT_bot?start=godzillasoft.ru"><StyledLi>Поддержка</StyledLi></StyledLink>
-                </NavUl>
-                <PaymentUl>
-                    <Icon iconId="VISA" width="74" height="23" viewBox="0 0 74 23"/>
-                    <Icon iconId="MIR" width="84" height="26" viewBox="0 0 84 26"/>
-                    <Icon iconId="MasterCard" width="133" height="26" viewBox="0 0 133 26"/>
-                </PaymentUl>
-                <StyledDocuments>
-                    <StyledLiDocs><StyledA href={privacy_security}>Политика конфиденциальности</StyledA></StyledLiDocs>
-                    <StyledLiDocs><StyledA href={service_agreement}>Лицензионный договор-оферта</StyledA></StyledLiDocs>
-                </StyledDocuments>
-
-            </StyledFooter>
-        </Container>
-
+        <div className='container'>
+            <footer className="footer">
+                <ul className="nav-ul">
+                    <Link href={"/catalog"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Каталог</li></Link>
+                    <Link href={"/games"} style={{     cursor: 'pointer', textDecoration: 'none'}}> <li className='li-styles'>Игры</li></Link>
+                    <Link href={"/deposits"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Пополнение</li></Link>
+                    <Link href={"/subscriptions"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Подписки</li></Link>
+                    <Link href={"/contacts"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Контакты</li></Link>
+                    <Link
+                        href="https://t.me/azat_safarg"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            cursor: 'pointer',
+                            textDecoration: 'none'
+                        }}
+                    >
+                        <li className='li-styles'>Поддержка</li>
+                    </Link>
+                </ul>
+                <div className="payment-ul">
+                    <Image src='/VISA.svg' alt='VISA' width={74} height={23}/>
+                    <Image src='/MIR.svg' alt='MIR' width={84} height={26}/>
+                    <Image src='/MasterCard.svg' alt='MIR' width={133} height={26}/>
+                </div>
+                <div className="documents">
+                    <li><a href="/privacy_security.pdf">Политика конфиденциальности</a></li>
+                    <li><a href="/service_agreement.pdf">Лицензионный договор-оферта</a></li>
+                </div>
+            </footer>
+        </div>
     );
 };
-
-const PaymentUl = styled.div `
-  margin-top: 91px;
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-
-`
-
-const NavUl = styled.ul `
-  display: flex;
-  font-weight: 900;
-  font-size: 14px;
-  line-height: 17px;
-  flex-direction: row;
-
-  text-decoration: none;
-  list-style-type: none;
-  gap: 27px;
-`
-const StyledLi = styled.li`
-  transition: background 0.3s ease-out, padding 0.3s ease-out, border-radius 0.3s ease-out;
-  padding: 5px 11px;
-  cursor: pointer;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-
-  &:hover {
-    cursor: pointer;
-    text-decoration: none;
-    color: #FF333B;
-    transition: 0.2s ease-out;
-  }
-`;
-const StyledLiDocs = styled.li `
-  text-decoration: none;
-  list-style-type: none;
-  font-style: normal;
-  font-weight: 400;
-  cursor: pointer;
-  white-space: nowrap;
-  font-size: 12px;
-  line-height: 15px;
-  color: #FFFFFF;
-  opacity: 0.5;
-`;
-const StyledFooter = styled.footer `
-  padding-top: 240px;
-  width: 100%;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-const StyledDocuments = styled.div `
-  margin-top: 31px;
-  display: flex;
-  margin-bottom: 70px;
-  gap: 124px;
-`;
-const PrivacyPolitics = styled.div `
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  margin-top: 40px;
-  margin-bottom: 90px;
-  line-height: 15px;
-  text-align: center;
-  color: #FFFFFF;
-`;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
-const StyledA = styled.a `
-  text-decoration: none;
-  color: white;
-`

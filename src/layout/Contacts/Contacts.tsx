@@ -1,7 +1,8 @@
+"use client"
 import React from 'react';
 import styled from "styled-components";
 
-export const Contacts = () => {
+export const ContactsPage = () => {
     return (
         <StyledContacts>
             <StyledWrap>

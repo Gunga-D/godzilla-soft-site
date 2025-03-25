@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {Icon} from "../../icon/Icon";
-import {useStore} from "zustand/react";
-import {FilterStore} from "../../../common/store/FilterStatus/FilterStatus";
+import { useStore } from "zustand/react";
+import { FilterStore } from "../../../common/store/FilterStatus/FilterStatus";
+import Image from "next/image";
 
 export const FilterPrice = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const {changeMinPrice, changeMaxPrice } = useStore(FilterStore);
+    const { changeMinPrice, changeMaxPrice } = useStore(FilterStore);
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
@@ -17,11 +18,13 @@ export const FilterPrice = () => {
         changeMinPrice('');
         changeMaxPrice('');
     };
+
     useEffect(() => {
         setSelectedOption(null);
         changeMaxPrice('');
         changeMinPrice('');
     }, []);
+
     const handlePriceRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         const [min, max] = value.split('-').map((v) => v.trim());
@@ -30,7 +33,6 @@ export const FilterPrice = () => {
         changeMaxPrice(max);
         setMinPrice(min);
         setMaxPrice(max);
-
     };
 
     const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,10 +49,16 @@ export const FilterPrice = () => {
 
     return (
         <div>
-            <FilterDiv isOpen={isOpen}>
+            <FilterDiv data-is-open={isOpen}>
                 <StyledDiv onClick={toggleFilter}>
                     <StyledP>Цена</StyledP>
-                    <Icon iconId="arrow" width="15" height="15" viewBox="0 0 15 15" aria-hidden="true" />
+                    <Image
+                        src={`/arrow.svg`}
+                        alt={'arrow'}
+                        width={15}
+                        height={15}
+                        priority
+                    />
                 </StyledDiv>
                 {isOpen && (
                     <OptionsContainer>
@@ -121,9 +129,9 @@ export const FilterPrice = () => {
     );
 };
 
-const FilterDiv = styled.div<{ isOpen: boolean }>`
+const FilterDiv = styled.div<{ 'data-is-open': boolean }>`
   width: 287px;
-  height: ${({ isOpen }) => (isOpen ? '260px' : '59px')};
+  height: ${({ 'data-is-open': isOpen }) => (isOpen ? '260px' : '59px')};
   background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   transition: height 0.4s ease-out;

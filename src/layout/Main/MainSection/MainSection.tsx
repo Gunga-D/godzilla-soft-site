@@ -1,33 +1,32 @@
+"use client"
+
+import Image from "next/image";
 import React from 'react';
 import {DefaultBanner} from "../../../components/defaultBanner/DefaultBanner";
-import image from "../../../assets/images/Banners/ActualBanner.jpg"
 import styled from "styled-components";
-import {Image} from "../../../components/image/Image";
-import firstPic from "../../../assets/images/picturesForCatalog/popolnenieSteam.png"
-import secondPic from "../../../assets/images/picturesForCatalog/randomGame.png"
-import thirdPic from "../../../assets/images/picturesForCatalog/games.png"
-import fourthPic from "../../../assets/images/picturesForCatalog/allPopolnenie.png"
-import {Link} from "react-router-dom";
+import './MainSectionStyle.css'
+import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 export const MainSection = () => {
-    const MainText = 'Купи стим';
-    const SecondaryText = 'бля буду';
-    const Description = 'описание чегото, какойто классный текст, хз что писать, в целом для вида и пишу, да! но это не все, ибо мне для дизайна нужно больше текста';
+    const router = useRouter();
     return (
-        <div>
-            <DefaultBanner
-                            height='' width=""
-                           src={image} viewBox='0 0 379 110' iconId='godzillaSoft'
-                           heightImg='350px' widthImg='1120px' mainText={MainText} secondaryText={SecondaryText}
-                           description={Description}
-            />
-            <StyledWrapper>
-
-                <Link to={'/steam_deposit'}><Image transform={true} hoverEffect={true} cursor={true} src={firstPic} height='220px' width='260px'/></Link>
-                <Link to={'/random'}> <Image transform={true} hoverEffect={true} cursor={true} src={secondPic} height='220px' width='260px'/></Link>
-                <Link to={'/games'}><Image transform={true} hoverEffect={true} cursor={true} src={thirdPic} height='220px' width='260px'/></Link>
-                <Link to={'/deposits'}><Image transform={true} hoverEffect={true} cursor={true} src={fourthPic} height='220px' width='260px'/></Link>
-            </StyledWrapper>
+        <div className='StyledSection'>
+            <DefaultBanner/>
+            <div className='StyledWrapper'>
+                <Link href="/steam_deposit">
+                    <Image  alt='Godzilla Soft Steam Popolnenie'  src='/popolnenieSteam.png' height={220} width={260} className="styled-image"/>
+                </Link>
+                <Link href="/random">
+                    <Image alt='Godzilla Soft Random Game' src='/randomGame.png' height={220} width={260} className="styled-image"/>
+                </Link>
+                <Link href="/games">
+                    <Image  alt='Godzilla Soft  Game'  src='/games.png' height={220} width={260} className="styled-image"/>
+                </Link>
+                <Link href="/deposits">
+                    <Image  alt='Godzilla Soft All Popolnenie' src='/allPopolnenie.png' height={220} width={260} className="styled-image"/>
+                </Link>
+            </div>
         </div>
     );
 };

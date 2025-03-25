@@ -1,12 +1,13 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { Image } from "../image/Image";
-import { Icon } from "../icon/Icon";
-
+import Image from "next/image";
+import '../../../public/rus.svg'
 type CatalogCardForGameProps = {
     imageUrl?: string,
-    width?: string,
-    height?: string,
+    width?: number,
+    height?: number,
     nameGame?: string,
     newPrice?: number,
     oldPrice?: number,
@@ -64,22 +65,28 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
 
     return (
         <StyledCard
-            divWidth={props.divWidth}
-            divHeight={props.divHeight}
-            cursor={props.cursor}
-            transform={props.transform}
-            cardType={props.cardType}
             onClick={props.onClick}
         >
             { region &&
             <IconWrap>
-
-                <Icon iconId={region} height={'20'} width={'18'} viewBox={'0 0 20 18'} />
+                <Image
+                    src={`/${region}.svg`}
+                    alt={region}
+                    width={20}
+                    height={20}
+                    priority
+                />
             </IconWrap>
             }
             { platform &&
             <PlatformWrap>
-                <Icon iconId={platform} height={'22px'} width={'22px'} viewBox={'0 0 22 22'} />
+                <Image
+                    src={`/${platform}.svg`}
+                    alt={platform}
+                    width={22}
+                    height={22}
+                    priority
+                />
                 <PlatfromName>{platform}</PlatfromName>
             </PlatformWrap>
             }
@@ -98,7 +105,7 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
                     {props.oldPrice && <StyledPOldPrice>{props.oldPrice}</StyledPOldPrice>}
                 </StyledPrice>
             </StyledWrapForPrice>
-            <Image
+            <img
                 src={props.imageUrl}
                 width={props.width}
                 height={props.height}
@@ -110,16 +117,16 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
 
 const StyledCard = styled.div<CatalogCardForGameProps>`
   position: relative;
+  width: 248px;
+  height: 248px;
   z-index: 0;
-  height: ${props => props.cardType === 'bigCard' ? '350px' : props.cardType === 'mediumCard' ? '300px' : '250px'};
-  width: ${props => props.cardType === 'bigCard' ? '350px' : props.cardType === 'mediumCard' ? '300px' : '250px'};
   border: 1px solid #FFFFFF;
   border-radius: 5px;
   transition: transform 0.3s ease;
-  cursor: ${props => props.cursor ? 'pointer' : 'default'};
+  cursor: pointer;
   &:hover {
-    cursor: ${props => props.cursor ? 'pointer' : 'default'};
-    transform: ${props => props.transform ? 'scale(1.03)' : 'none'};
+    cursor: pointer;
+    transform: scale(1.03);
   }
   img {
     width: 100%;
@@ -149,11 +156,16 @@ const IconWrap = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  
   background: rgba(140, 139, 139, 0.58);
   height: 35px;
   width: 35px;
   border-radius: 50%;
-
+  img {
+    width: 20px; 
+    height: 18px; 
+    object-fit: contain; 
+  }
 `;
 
 const StyledButton = styled.button`
@@ -237,6 +249,7 @@ const StyledPrice = styled.div`
   max-width: 100%;
   gap: 11px;
   height: 20px;
+  font-weight: 900;
   align-items: center;
 `;
 
@@ -272,6 +285,11 @@ const  PlatformWrap = styled.div `
   padding: 8px;
   border-radius: 50px;
   gap: 5px;
+  img {
+    width: 20px;
+    height: 18px;
+    object-fit: contain;
+  }
 `
 const PlatfromName = styled.p `
   color: rgba(255, 255, 255, 0.85);

@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
-import { Header } from "../header/Header";
 import { Footer } from "../footer/Footer";
-import styled from "styled-components";
-
+import {Header} from "../../components/header/Header";
+import '../../styles/Container.css'
 type LayoutProps = {
     children: ReactNode,
     pageId?: string,
@@ -11,20 +10,14 @@ type LayoutProps = {
 export const Layout = (props: LayoutProps) => {
     return (
         <>
-        <StyledLayout>
-            <Header activePage={props.pageId} />
-            <StyledContent>
+        <div className='container'>
+            <Header />
+            <div>
                 {props.children}
-            </StyledContent>
-        </StyledLayout>
-    <Footer />
+            </div>
+            <Footer />
+        </div>
 </>
 );
 };
 
-const StyledLayout = styled.div`
-  
-`;
-
-const StyledContent = styled.div`
-`;

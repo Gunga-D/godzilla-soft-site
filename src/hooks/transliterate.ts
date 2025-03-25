@@ -10,3 +10,32 @@ const a: { [key: string]: string } = {
 export function transliterate(word: string): string {
   return word.split('').map((char: string) => a[char] || char).join("");
 }
+
+export function getIdFromPath(value: string) {
+  const params = value?.split("_")
+  if (params !== undefined) {
+    return (params[params.length-1])
+  }
+  return null
+}
+
+export function generatePathValue(title: string, itemID: number): string {
+  const itemName = transliterate(title)
+  return `${itemName?.replaceAll(" ", "_")}_${itemID}`
+}
+
+export function generateItemPath(categoryID: number, title: string, itemID: number): string {
+  let catalogPath = ""
+  switch (categoryID) {
+    case 10001:
+      catalogPath = "games"
+      break
+    case 10002:
+      catalogPath = "subscriptions"
+      break
+    case 10004:
+      catalogPath = "deposits"
+      break
+  }
+  return `/${catalogPath}/${generatePathValue(title, itemID)}`
+}

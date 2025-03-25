@@ -1,171 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { itemDetailsApi } from '../../common/api/item-details/item-details-api';
-import { useLocation, useParams } from 'react-router-dom';
-import { ItemDetail } from '../../common/api/item-details/item-detail';
-import { Container } from '../../styles/Container';
-import { Image } from '../../components/image/Image';
+"use client";
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { BuyPage } from '../../components/buyPage/BuyPage';
-import { Link } from 'react-router-dom';
-import {Skeleton} from "../../components/skeleton/Skeleton";
+import '../../styles/Container.css'
+import { ItemDetail } from "../../common/api/item-details/item-detail";
+import { BuyPage } from "../../components/buyPage/BuyPage";
 
-export const GamePage = () => {
-    const [item, setItem] = useState<ItemDetail | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const { value } = useParams();
-    const values = value?.split("_") 
-    const itemID = values![values!.length-1]
-
-    const [activeButton, setActiveButton] = useState<string>('Характеристики');
-    const location = useLocation();
-
-    const scroll = () => {
-        const element = document.getElementById('dostavka');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    };
-
-    useEffect(() => {
-        const fetchItem = async () => {
-            setIsLoading(true);
-            try {
-                const data = await itemDetailsApi.getItem(`${itemID}`);
-                setItem(data);
-            } catch (err) {
-                console.error('Ошибка при загрузке данных:', err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchItem();
-    }, [location.key]);
-
-    if (isLoading) {
-        return (
-            <StyledGamePage>
-                <Container>
-                    <Skeleton />
-                </Container>
-            </StyledGamePage>
-        );
-    }
-
-    if (!item) {
-        return (
-            <NotFoundGame>
-                <StyledSubtitle>К сожалению, данный товар закончился</StyledSubtitle>
-                <StyledText>Но он скоро появится! </StyledText>
-                <StyledLink to={'/games'}>
-                    <StyledReturn>Вернуться на главную</StyledReturn>
-                </StyledLink>
-            </NotFoundGame>
-        );
-    }
-
-    const handleButtonClick = (buttonName: string) => {
-        setActiveButton(buttonName);
-    };
-
-    const renderContent = () => {
-        switch (activeButton) {
-            case 'Характеристики':
-                return (
-                    <StyledContent>
-
-                            <StyledDiv>Регион: <StyledItem>{item.region}</StyledItem></StyledDiv>
-                            <StyledDiv>Платформа: <StyledItem>{item.platform}</StyledItem></StyledDiv>
-                            {item.creator && <StyledDiv>Разработчик: <StyledItem>{item.creator}</StyledItem></StyledDiv>}
-                            {item.publisher && <StyledDiv>Издатель: <StyledItem>{item.publisher}</StyledItem></StyledDiv>}
-
-                    </StyledContent>
-                );
-            case 'Активация и доставка':
-                return (
-                    <StyledContentDescription
-                        dangerouslySetInnerHTML={{
-                            __html: item.slip ? item.slip.replace(/\n/g, '<br />') : 'Информация отсутствует',
-                        }}
-                    />
-                );
-            default:
-                return null;
-        }
-    };
-
-    return (
-        <StyledGamePage backgroundUrl={item.background_url}>
-            {item.background_url && <Background backgroundUrl={item.background_url} hasBackground={!!item.background_url} />}
-            <Container>
-                <StyledMainPage>
-                    <Image src={item.thumbnail_url} height="500px" width="500px" />
-                    <StyledTextWrapper>
-                        <StyledH2>{item.title}</StyledH2>
-                        <StyledDescription>{item.description}</StyledDescription>
-                        <StyledButtonWrapper>
-                            <StyledMiniButton
-                                isActive={activeButton === 'Характеристики'}
-                                onClick={() => handleButtonClick('Характеристики')}
-                            >
-                                Характеристики
-                            </StyledMiniButton>
-                            <StyledMiniButton
-                                isActive={activeButton === 'Активация и доставка'}
-                                onClick={() => handleButtonClick('Активация и доставка')}
-                            >
-                                Активация и доставка
-                            </StyledMiniButton>
-                        </StyledButtonWrapper>
-                        <StyledContentWrapper>{renderContent()}</StyledContentWrapper>
-                        <StyledPrice>
-                            {item.current_price && <StyledPNewPrice>{item.current_price}₽</StyledPNewPrice>}
-                            {item.old_price&&item.current_price && (
-                                <>
-                                    <StyledPOldPrice>{item.old_price}</StyledPOldPrice>
-                                    <StyledDiscount>
-                                        {Math.round(((item.old_price - item.current_price) / item.old_price) * 100)}%
-                                    </StyledDiscount>
-                                </>
-                            )}
-                        </StyledPrice>
-                        <StyledBuyButton onClick={scroll}>купить</StyledBuyButton>
-                    </StyledTextWrapper>
-                </StyledMainPage>
-                <BuyPage />
-            </Container>
-        </StyledGamePage>
-    );
+type GamePageProps = {
+    item: ItemDetail;
 };
 
-const StyledGamePage = styled.div<{ backgroundUrl?: string }>`
-  width: 100vw;
+const StyledGamePage = styled.div<{ $backgroundUrl?: string }>`
+  //width: 100vw;
+  background-image: ${({ $backgroundUrl }) => ($backgroundUrl ? `url(${$backgroundUrl})` : 'none')};
+  background-size: cover;
+  background-position: center;
   img {
     object-fit: contain;
   }
-  
 `;
-const StyledMainPage = styled.div<{ backgroundUrl?: string }>`
+
+const StyledMainPage = styled.div`
   display: flex;
   gap: 50px;
   padding: 20px;
-  position: relative; 
-  //height: 860px; 
+  position: relative;
   width: 100%;
   margin-top: 150px;
   z-index: 1;
-
 `;
 
-const Background = styled.div<{ backgroundUrl?: string; hasBackground: boolean }>`
+const Background = styled.div<{ $backgroundUrl?: string; $hasBackground: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: ${({ backgroundUrl }) =>
-          backgroundUrl
-                  ? `url(${backgroundUrl}) no-repeat center center/cover`
-                  : `transparent`};
+  background-image: ${({ $backgroundUrl }) => ($backgroundUrl ? `url(${$backgroundUrl})` : 'none')};
+  background-size: cover;
+  background-position: center;
   z-index: 0;
 
   &::before {
@@ -177,7 +51,7 @@ const Background = styled.div<{ backgroundUrl?: string; hasBackground: boolean }
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 2;
-    display: ${({ hasBackground }) => (hasBackground ? 'block' : 'none')}; // Условное отображение
+    display: ${({ $hasBackground }) => ($hasBackground ? 'block' : 'none')};
   }
 
   &::after {
@@ -191,6 +65,7 @@ const Background = styled.div<{ backgroundUrl?: string; hasBackground: boolean }
     z-index: 3;
   }
 `;
+
 const StyledH2 = styled.h2`
   font-size: 33px;
   overflow-x: hidden;
@@ -198,9 +73,8 @@ const StyledH2 = styled.h2`
   height: 30px;
   max-height: 210px;
   padding-top: 0;
-  
   text-align: left;
-  word-wrap: break-word; 
+  word-wrap: break-word;
   flex-grow: 1;
 `;
 
@@ -212,7 +86,6 @@ const StyledDescription = styled.p`
   line-height: 18px;
   text-align: left;
   color: #ffffff;
-  
   margin-bottom: 20px;
   overflow-x: auto;
 `;
@@ -231,7 +104,7 @@ const StyledButtonWrapper = styled.div`
   gap: 40px;
 `;
 
-const StyledMiniButton = styled.div<{ isActive: boolean }>`
+const StyledMiniButton = styled.div<{ $isActive: boolean }>`
   font-style: normal;
   font-weight: 900;
   font-size: 20px;
@@ -248,7 +121,7 @@ const StyledMiniButton = styled.div<{ isActive: boolean }>`
     bottom: -5px;
     width: 100%;
     height: 2px;
-    background-color: ${({ isActive }) => (isActive ? '#ffffff' : 'transparent')};
+    background-color: ${({ $isActive }) => ($isActive ? '#ffffff' : 'transparent')};
     transition: background-color 0.3s ease;
   }
 
@@ -355,11 +228,11 @@ const StyledDiscount = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start; 
+  align-self: flex-start;
   margin-left: -10px;
   margin-top: 7px;
- 
 `;
+
 const StyledBuyButton = styled.button`
   width: 178px;
   height: 51px;
@@ -417,15 +290,105 @@ const StyledReturn = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
-const StyledItem = styled.p `
+const StyledItem = styled.p`
   color: #a8a8a8;
-`
-const StyledDiv = styled.div `
+`;
+
+const StyledDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
   justify-content: start;
-`
+`;
+
+const GamePage = ({ item }: GamePageProps) => {
+    const router = useRouter();
+    const [activeButton, setActiveButton] = useState<string>('Характеристики');
+
+    const handleButtonClick = (buttonName: string) => {
+        setActiveButton(buttonName);
+    };
+
+    const scroll = () => {
+        const element = document.getElementById('dostavka');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    const renderContent = () => {
+        switch (activeButton) {
+            case 'Характеристики':
+                return (
+                    <StyledContent>
+                        <StyledDiv>Регион: <StyledItem>{item.region}</StyledItem></StyledDiv>
+                        <StyledDiv>Платформа: <StyledItem>{item.platform}</StyledItem></StyledDiv>
+                        {item.creator && <StyledDiv>Разработчик: <StyledItem>{item.creator}</StyledItem></StyledDiv>}
+                        {item.publisher && <StyledDiv>Издатель: <StyledItem>{item.publisher}</StyledItem></StyledDiv>}
+                    </StyledContent>
+                );
+            case 'Активация и доставка':
+                return (
+                    <StyledContentDescription
+                        dangerouslySetInnerHTML={{
+                            __html: item.slip ? item.slip.replace(/\n/g, '<br />') : 'Информация отсутствует',
+                        }}
+                    />
+                );
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <StyledGamePage $backgroundUrl={item.background_url}>
+            {item.background_url && (
+                <Background $backgroundUrl={item.background_url} $hasBackground={!!item.background_url} />
+            )}
+            <div className="container">
+                <StyledMainPage>
+                    <img
+                        src={item.thumbnail_url}
+                        alt=''
+                        width={500}
+                        height={500}
+                    />
+                    <StyledTextWrapper>
+                        <StyledH2>{item.title}</StyledH2>
+                        <StyledDescription>{item.description}</StyledDescription>
+                        <StyledButtonWrapper>
+                            <StyledMiniButton
+                                $isActive={activeButton === 'Характеристики'}
+                                onClick={() => handleButtonClick('Характеристики')}
+                            >
+                                Характеристики
+                            </StyledMiniButton>
+                            <StyledMiniButton
+                                $isActive={activeButton === 'Активация и доставка'}
+                                onClick={() => handleButtonClick('Активация и доставка')}
+                            >
+                                Активация и доставка
+                            </StyledMiniButton>
+                        </StyledButtonWrapper>
+                        <StyledContentWrapper>{renderContent()}</StyledContentWrapper>
+                        <StyledPrice>
+                            {item.current_price && <StyledPNewPrice>{item.current_price}₽</StyledPNewPrice>}
+                            {item.old_price && item.current_price && (
+                                <>
+                                    <StyledPOldPrice>{item.old_price}</StyledPOldPrice>
+                                    <StyledDiscount>
+                                        {Math.round(((item.old_price - item.current_price) / item.old_price) * 100)}%
+                                    </StyledDiscount>
+                                </>
+                            )}
+                        </StyledPrice>
+                        <StyledBuyButton onClick={scroll}>купить</StyledBuyButton>
+                    </StyledTextWrapper>
+                </StyledMainPage>
+                <BuyPage itemID={item.id} />
+            </div>
+        </StyledGamePage>
+    );
+};
+
+export default GamePage;

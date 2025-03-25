@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import styled from "styled-components";
 import {Filter} from "../../components/filter/Filter";
@@ -6,21 +7,22 @@ import {CatalogItems} from "../../components/catalogItems/CatalogItems";
 type CatalogProps = {
     active?: string,
 }
-export const Catalog = (props: CatalogProps) => {
+export const CatalogComponent = (props: CatalogProps) => {
     return (
         <StyledDiv>
             <StyledH2>Каталог</StyledH2>
-            <StyledWrapper>
+            <div style={{ display: 'flex', marginTop: '55px', gap: '15px' }}>
                     <Filter/>
                     <CatalogItems active={props.active}/>
-            </StyledWrapper>
+            </div>
         </StyledDiv>
     );
 };
 
 const StyledDiv = styled.div `
   color: white;
-  margin-top: 100px;
+  font-family: Helvetica;
+  margin-top: 130px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

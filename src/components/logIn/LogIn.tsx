@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
 import { Icon } from "../icon/Icon";
-import { Link } from "react-router-dom";
+
 
 export const LogIn = () => {
     return (
         <StyledLogin>
-            <StyledLink to='/login'>
+
                 <Icon iconId={'logIn'} height={'13'} width={'13'} viewBox={'0 0 13 13'} />
-            </StyledLink>
-            <StyledLink to='/login'>
                 <StyledText> Войти </StyledText>
-            </StyledLink>
         </StyledLogin>
     );
 };
@@ -31,7 +28,4 @@ const StyledText = styled.div`
   color: white;
 `;
 
-const StyledLink = styled(Link)`
-    text-decoration: none; 
-    color: inherit; 
-`;
+

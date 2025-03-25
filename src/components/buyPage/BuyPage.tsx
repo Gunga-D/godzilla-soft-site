@@ -3,16 +3,16 @@ import styled from "styled-components";
 import SBP from '../../assets/images/Payment/sbp.png';
 import MIR from '../../assets/images/Payment/mir.png';
 import TBANK from '../../assets/images/Payment/tbank.png';
-import { Image } from "../image/Image";
+import { ImageComponent } from "../image/Image";
 import { itemApi } from "../../common/api/item/item-api";
 import { CreateOrder } from '../../common/api/item/item';
 import { Item } from "../../common/api/item/item";
 import { CatalogCard } from "../cardForGames/CatalogCard";
-import { useNavigate, useParams } from "react-router-dom";
 import { transliterate } from '../../hooks/transliterate';
+import Image from "next/image";
 
 type BuyPageProps = {
-  itemID?: string,
+  itemID?: any,
   title?: string,
   description?: string,
 }
@@ -21,14 +21,12 @@ export const BuyPage = (props: BuyPageProps) => {
     const [item, setItem] = useState<Item[] | null>(null);
     const [email, setEmail] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
-    const { value } = useParams();
-    const values = value?.split("_") 
+    // const values = value?.split("_")
     let itemID = props.itemID
-    if (!itemID && values !== undefined) {
-      itemID = values[values.length-1]
-    }
+    // if (!itemID && values !== undefined) {
+    //   itemID = values[values.length-1]
+    // }
 
-    const navigate = useNavigate();
 
     const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
       let catalogPath = ""
@@ -44,7 +42,7 @@ export const BuyPage = (props: BuyPageProps) => {
               break
       }
       itemName = transliterate(itemName!)
-      navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
+      // navigate(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
   };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,9 +122,9 @@ export const BuyPage = (props: BuyPageProps) => {
             {error && <StyledError>{error}</StyledError>}
             <StyledP>доступные способы оплаты</StyledP>
             <PaymentWrapper>
-                <StyledDivImg><Image cursor={true} src={SBP} height='41px' width='52px' /></StyledDivImg>
-                <StyledDivImg><Image cursor={true} src={TBANK} height='23px' width='56px' /></StyledDivImg>
-                <StyledDivImg><Image cursor={true} src={MIR} width='52px' height='16px' /></StyledDivImg>
+                <StyledDivImg><Image alt='СБП' src={SBP} height={41} width={52} /></StyledDivImg>
+                <StyledDivImg><Image alt='Тинькофф' src={TBANK} height={23} width={56} /></StyledDivImg>
+                <StyledDivImg><Image alt='МИР'  src={MIR} width={52} height={16} /></StyledDivImg>
             </PaymentWrapper>
             <StyledButton onClick={handlePayment}>Оплатить</StyledButton>
             <StyledSmallText>Нажимая кнопку "Оплатить", вы принимаете Договор-оферту оказания услуг и Политику конфиденциальности</StyledSmallText>
@@ -135,17 +133,11 @@ export const BuyPage = (props: BuyPageProps) => {
                 <StyledWrapper>
                     {item?.slice(0, 4).map((item, index) => (
                         <CatalogCard
-                            transform = {true}
-                            divHeight = '250px'
-                            divWidth='250px'
                             key={item.id}
                             newPrice={item.current_price}
                             oldPrice={item.old_price}
                             imageUrl={item.thumbnail_url}
-                            cursor={true}
                             is_for_sale={item.is_for_sale}
-                            height="250px"
-                            width="250px"
                             cardType="catalogCard"
                             nameGame={item.title}
                             onClick={() => handleCardClick(item.category_id, item.title, item.id)}

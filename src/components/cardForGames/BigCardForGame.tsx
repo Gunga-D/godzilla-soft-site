@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import {Image} from "../image/Image";
+import {ImageComponent} from "../image/Image";
 import {Icon} from "../icon/Icon";
+import Image from "next/image";
 
 type BigCardForGameProps = {
     imageUrl?: string,
-    width?: string,
-    height?: string,
+    width?: number,
+    height?: number,
     nameGame?: string,
     newPrice?: number,
-    // shadowEffect?: string,
     oldPrice?: number,
     cursor?: boolean,
     transform?: boolean,
@@ -60,19 +60,26 @@ export const BigCardForGame = (props: BigCardForGameProps) => {
     return (
         <StyledCard
             onClick={props.onClick}
-            cursor={props.cursor}
-            transform={props.transform}
-            cardType = {props.cardType}
         >
             { region &&
                 <IconWrap>
-
-                    <Icon iconId={region} height={'20'} width={'18'} viewBox={'0 0 20 18'} />
-                </IconWrap>
+                    <Image
+                        src={`/${region}.svg`}
+                        alt={region}
+                        width={20}
+                        height={20}
+                        priority
+                    />                </IconWrap>
             }
             { platform &&
                 <PlatformWrap>
-                    <Icon iconId={platform} height={'22px'} width={'22px'} viewBox={'0 0 22 22'} />
+                    <Image
+                        src={`/${platform}.svg`}
+                        alt={platform}
+                        width={22}
+                        height={22}
+                        priority
+                    />
                     <PlatfromName>{platform}</PlatfromName>
                 </PlatformWrap>
             }
@@ -86,10 +93,10 @@ export const BigCardForGame = (props: BigCardForGameProps) => {
                 </StyledPrice>
 
             </StyledWrapForPrice>
-            <Image
+            <img
                 src={props.imageUrl}
-                width={props.width}
-                height={props.height}
+                width={239}
+                height={239}
             />
             <GradientOverlay/>
         </StyledCard>
@@ -100,10 +107,10 @@ const StyledCard = styled.div <BigCardForGameProps> `
   position: relative;
   z-index: 0;
   transition: transform 0.3s ease;
-  cursor: ${props => props.cursor ? 'pointer' : 'default'};
+  cursor: pointer;
   &:hover {
-    cursor: ${props => props.cursor ? 'pointer' : 'default'};
-    transform: ${props => props.transform ? 'scale(1.03)' : 'none'};
+    cursor: pointer;
+    transform: scale(1.03);
   }
 `
 const GradientOverlay = styled.div`

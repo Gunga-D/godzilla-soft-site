@@ -1,0 +1,154 @@
+
+.inputContainer {
+
+    display: flex;
+    align-items: center;
+    width: 347px;
+    height: 46px;
+    margin-left: 72px;
+    border: 1px solid #ffffff;
+    backdrop-filter: blur(44.9px);
+    border-radius: 5px;
+    font-family: Arial;
+    font-weight: 900;
+}
+
+.styledInput {
+    width: 300px;
+    background: none;
+    outline: none;
+    border: none;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 16px;
+    color: #f1f1f0;
+    opacity: 0.5;
+    margin-left: 20px;
+    caret-color: red;
+    text-overflow: ellipsis;
+}
+
+.styledInput::placeholder {
+    color: #f1f1f0;
+    opacity: 1;
+}
+
+.customPlaceholder {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #f1f1f0;
+    margin-left: 15px;
+}
+
+.styledPopUp {
+    position: absolute;
+    top: 300%;
+    right: 0;
+    z-index: 999;
+    width: 730px;
+    height: auto;
+    max-width: 730px;
+    max-height: 430px;
+    background: #000000b2;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+.gameList {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.gameItem {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+    justify-content: start;
+}
+
+.gameItem:last-child {
+    border-bottom: none;
+}
+
+.noResultsMessage,
+.loadingMessage {
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.styledGameName {
+    font-size: 24px;
+    line-height: 12px;
+    color: #fff;
+    font-family: Arial;
+    text-align: left;
+    position: relative;
+    display: inline-block;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.styledPNewPrice {
+    font-family: Arial;
+
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 12px;
+    color: #fff;
+    display: inline-block;
+    float: left;
+}
+
+.styledPNewPrice::after {
+    content: "₽";
+    font-size: 18px;
+    margin-left: 1px;
+}
+
+.styledPOldPrice {
+    margin-left: 5px;
+    font-style: normal;
+    font-weight: 900;
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 12px;
+    color: #848484;
+    position: relative;
+    display: inline-block;
+    width: auto;
+}
+
+.styledPOldPrice::after {
+    content: "₽";
+    font-size: 18px;
+    margin-left: 1px;
+}
+
+.styledPOldPrice::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background-color: #d91e18;
+    transform: rotate(-15deg);
+    transform-origin: center;
+}
+
+.errorMessage {
+    padding: 20px;
+    text-align: center;
+    color: #ff4d4d;
+    font-size: 16px;
+}

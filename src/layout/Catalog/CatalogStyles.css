@@ -1,0 +1,4 @@
+.StyledWrap {
+    display: flex;
+    flex-direction: row;
+}

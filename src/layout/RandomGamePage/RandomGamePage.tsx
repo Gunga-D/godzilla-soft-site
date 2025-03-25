@@ -1,3 +1,4 @@
+"use client"
 import { BuyPage } from "../../components/buyPage/BuyPage"
 import { Container } from "../../styles/Container"
 import styled from "styled-components"
@@ -18,11 +19,11 @@ export const RandomGamePage = () => {
         for (let i=0;i<btns.length;i++){
             btns[i].textContent = "Купить"
             btns[i].style.color = "white"
-            btns[i].style.backgroundColor = "red"   
+            btns[i].style.backgroundColor = "red"
         }
 
         e.currentTarget.style.color = "red"
-        e.currentTarget.style.backgroundColor = "black" 
+        e.currentTarget.style.backgroundColor = "black"
         e.currentTarget.textContent = "Выбрано"
 
         if (e.currentTarget.classList.contains("random-for-adults")) {
@@ -43,7 +44,7 @@ export const RandomGamePage = () => {
         <StyledRandomGamePage>
             <Container>
                 <StyledMainRandom>
-                    <StyledBanner src={image}></StyledBanner>
+                    <StyledBanner src='./RandomBanner.png'></StyledBanner>
                     <StyledCardsContainer>
                         <StyledCard>
                             <StyledCardName>Инди</StyledCardName>

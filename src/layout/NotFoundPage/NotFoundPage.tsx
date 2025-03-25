@@ -1,6 +1,7 @@
+" "
 import React from 'react';
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+
 
 export const NotFoundPage = () => {
     return (
@@ -8,7 +9,7 @@ export const NotFoundPage = () => {
             <StyledH1>404</StyledH1>
             <StyledSubtitle>Страница не найдена</StyledSubtitle>
             <StyledText>Извините, запрашиваемая страница не существует.</StyledText>
-            <StyledLink to={'/games'}><StyledReturn>Вернуться на главную</StyledReturn></StyledLink>
+            <StyledReturn>Вернуться на главную</StyledReturn>
         </NotFoundGame>
     );
 };
@@ -56,6 +57,4 @@ const StyledReturn = styled.div `
   }
 
 `
-const  StyledLink = styled(Link)`
-  text-decoration: none;
-`;
+
