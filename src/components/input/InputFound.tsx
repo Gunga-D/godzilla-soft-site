@@ -5,8 +5,11 @@ import { SearchItem } from '../../common/api/searchItem/searchItem';
 import { searchApi } from '../../common/api/searchItem/search-api';
 import { transliterate } from '../../hooks/transliterate';
 import Image from 'next/image';
+import {router} from "next/client";
+import {useRouter} from "next/navigation";
 
 export const InputFound = () => {
+    const router = useRouter();
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,8 +49,8 @@ export const InputFound = () => {
                 break;
         }
         itemName = transliterate(itemName!);
-        // navigate(`/${catalogPath}/${itemName?.replaceAll(' ', '_')}_${itemId}`);
-    };
+        const path = `/${catalogPath}/${itemName?.replaceAll(' ', '_')}_${itemId}`;
+        router.push(path);    };
 
     return (
         <div className={'inputContainer'}>
