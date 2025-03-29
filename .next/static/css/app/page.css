@@ -1,35 +1,12 @@
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/components/cardForGames/MediumCardForGames/MediumCardForGamesStyle.css ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
-.MediumCardForGamesStyledButton {
-    width: 92px;
-    height: 34px;
-    background: #FF333B;
-    border-radius: 5px;
-    color: white;
-    font-size: 15px;
-    font-weight: 900;
-    border: none;
-    position: absolute;
-    top: 105px;
-    opacity: 0;
-    left: 15px;
-    z-index: 100;
-    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
-    cursor: pointer;
-  
-    &:hover {
-      cursor: pointer;
-      color: #FF333B;
-      background: white;
-    }
-}
-
 .MediumCardForGamesStyledCard {
     position: relative;
     z-index: 0;
     transition: transform 0.3s ease;
     cursor: pointer;
+    border-radius: 15px;
     &:hover {
       cursor: pointer;
       transform: scale(1.03);
@@ -72,6 +49,7 @@
 }
 
 .MediumCardForGamesGradientOverlay {
+    border-radius: 15px;
     position: absolute;
     top: 0;
     left: 0;
@@ -161,6 +139,54 @@
     font-weight: 900;
     font-size: 11px;
 }
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/components/defaultBanner/DefaultBannerStyle.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+.DefaultBannerBannersContainer {
+    position: relative;
+    width: 1120px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.DefaultBannerStyledBanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 500ms ease-in-out;
+}
+
+.DefaultBannerStyledBannerImage {
+    border-radius: 25px;
+}
+
+.DefaultBannerStyledBannerActive {
+    opacity: 1;
+}
+
+.DefaultBannerStyledBannerInactive {
+    opacity: 0;
+}
+
+.DefaultBannerButtonDeterm {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #e8e8e878;
+    color: #222222;
+    outline: none;
+    border: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.DefaultBannerButtonDeterm:hover {
+    cursor: pointer;
+}
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/layout/Main/MainSection/MainSectionStyle.css ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************/
@@ -223,47 +249,6 @@
     transform: scale(1.05);
 } */
 
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/layout/Main/BaseSection/BaseSectionStyle.css ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
-.StyledBaseSectionSeasonDiv {
-    width: 100%;
-    min-height: 383px;
-    margin-top: 72px;
-    display: flex;
-    flex-direction: column;
-}
-
-.StyledBaseSectionH2 {
-    font-style: normal;
-    font-weight: 1000;
-    font-size: 48px;
-    line-height: 56px;
-    text-align: left;
-    color: #FFFFFF;
-    padding-top: 37px;
-}
-
-.StyledBaseSectionP {
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 19px;
-    cursor: pointer;
-    color: #D91E18;
-    text-align: right;
-    margin-top: 9px;
-    &:hover{
-      color: white;
-      transition: 0.3s ;
-    }
-}
-
-.StyledBaseSectionWrapper {
-    margin-top: 20px;
-    gap: 25px;
-    display: flex;
-}
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/layout/Main/IntroductionBanners/IntroductionBannersStyle.css ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -309,4 +294,95 @@
 
 .IntroductionBannersItemImage {
     float: right;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/layout/Main/BaseSection/BaseSectionStyle.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+.StyledBaseSectionSeasonDiv {
+    margin-top: 18px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.StyledBaseSectionH2 {
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 32px;
+    line-height: 56px;
+    padding-bottom: 5px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.StyledBaseSectionWrapper {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.StyledBaseSectionMoreItemsContainer {
+    position: relative;
+    width: 204px;
+    height: 204px;
+    border-radius: 15px;
+    border: 1px solid #3b3b3b;
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: .5rem;
+}
+
+.StyledBaseSectionMoreItems {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #ff333ab6;
+    padding: 12px;
+    border: 1px solid #3b3b3b;
+    font-size: 16px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+}
+
+.StyledBaseSectionMoreItemsShadow {
+    border-radius: 8px;
+    background-color: #3b3b3b;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/layout/Main/GamesSection/GamesSection.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+.GamesSection {
+    margin-top: 50px;
+    background-color: #1d1d1d;
+    border-radius: 32px;
+    padding: 3rem;
+}
+
+.GamesSectionHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.GamesSectionTitle {
+    color: white;
+    font-weight: 900;
+    font-size: 38px;
+}
+
+.GamesSectionGameType {
+    display: inline;
+    padding: 12px 50px;
+    font-weight: 900;
+    background-color: #434343;
+    margin-right: 8px;
+    border-radius: 5px;
 }
