@@ -1,0 +1,7 @@
+{
+  "/random/page": "app/random/page.js",
+  "/games/[value]/page": "app/games/[value]/page.js",
+  "/page": "app/page.js",
+  "/steam_deposit/page": "app/steam_deposit/page.js",
+  "/deposits/[value]/page": "app/deposits/[value]/page.js"
+}

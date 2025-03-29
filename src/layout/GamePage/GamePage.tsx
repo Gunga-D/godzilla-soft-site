@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import '../../styles/Container.css'
 import { ItemDetail } from "../../common/api/item-details/item-detail";
@@ -10,6 +9,97 @@ import { BuyPage } from "../../components/buyPage/BuyPage";
 type GamePageProps = {
     item: ItemDetail;
 };
+
+const GamePage = ({ item }: GamePageProps) => {
+    const [activeButton, setActiveButton] = useState<string>('Характеристики');
+
+    const handleButtonClick = (buttonName: string) => {
+        setActiveButton(buttonName);
+    };
+
+    const scroll = () => {
+        const element = document.getElementById('dostavka');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    const renderContent = () => {
+        switch (activeButton) {
+            case 'Характеристики':
+                return (
+                    <StyledContent>
+                        <StyledDiv>Регион: <StyledItem>{item.region}</StyledItem></StyledDiv>
+                        <StyledDiv>Платформа: <StyledItem>{item.platform}</StyledItem></StyledDiv>
+                        {item.creator && <StyledDiv>Разработчик: <StyledItem>{item.creator}</StyledItem></StyledDiv>}
+                        {item.publisher && <StyledDiv>Издатель: <StyledItem>{item.publisher}</StyledItem></StyledDiv>}
+                    </StyledContent>
+                );
+            case 'Активация и доставка':
+                return (
+                    <StyledContentDescription
+                        dangerouslySetInnerHTML={{
+                            __html: item.slip ? item.slip.replace(/\n/g, '<br />') : 'Информация отсутствует',
+                        }}
+                    />
+                );
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <StyledGamePage $backgroundUrl={item.background_url}>
+            {item.background_url && (
+                <Background $backgroundUrl={item.background_url} $hasBackground={!!item.background_url} />
+            )}
+            <div className="container">
+                <StyledMainPage>
+                    <img
+                        src={item.thumbnail_url}
+                        alt=''
+                        width={500}
+                        height={500}
+                    />
+                    <StyledTextWrapper>
+                        <StyledH2>{item.title}</StyledH2>
+                        <StyledDescription>{item.description}</StyledDescription>
+                        <StyledButtonWrapper>
+                            <StyledMiniButton
+                                $isActive={activeButton === 'Характеристики'}
+                                onClick={() => handleButtonClick('Характеристики')}
+                            >
+                                Характеристики
+                            </StyledMiniButton>
+                            <StyledMiniButton
+                                $isActive={activeButton === 'Активация и доставка'}
+                                onClick={() => handleButtonClick('Активация и доставка')}
+                            >
+                                Активация и доставка
+                            </StyledMiniButton>
+                        </StyledButtonWrapper>
+                        <StyledContentWrapper>{renderContent()}</StyledContentWrapper>
+                        <StyledPrice>
+                            {item.current_price && <StyledPNewPrice>{item.current_price}₽</StyledPNewPrice>}
+                            {item.old_price && item.current_price && (
+                                <>
+                                    <StyledPOldPrice>{item.old_price}</StyledPOldPrice>
+                                    <StyledDiscount>
+                                        {Math.round(((item.old_price - item.current_price) / item.old_price) * 100)}%
+                                    </StyledDiscount>
+                                </>
+                            )}
+                        </StyledPrice>
+                        <StyledBuyButton onClick={scroll}>купить</StyledBuyButton>
+                    </StyledTextWrapper>
+                </StyledMainPage>
+                <BuyPage itemID={item.id} />
+            </div>
+        </StyledGamePage>
+    );
+};
+
+export default GamePage;
 
 const StyledGamePage = styled.div<{ $backgroundUrl?: string }>`
   //width: 100vw;
@@ -300,95 +390,3 @@ const StyledDiv = styled.div`
   gap: 5px;
   justify-content: start;
 `;
-
-const GamePage = ({ item }: GamePageProps) => {
-    const router = useRouter();
-    const [activeButton, setActiveButton] = useState<string>('Характеристики');
-
-    const handleButtonClick = (buttonName: string) => {
-        setActiveButton(buttonName);
-    };
-
-    const scroll = () => {
-        const element = document.getElementById('dostavka');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    };
-
-    const renderContent = () => {
-        switch (activeButton) {
-            case 'Характеристики':
-                return (
-                    <StyledContent>
-                        <StyledDiv>Регион: <StyledItem>{item.region}</StyledItem></StyledDiv>
-                        <StyledDiv>Платформа: <StyledItem>{item.platform}</StyledItem></StyledDiv>
-                        {item.creator && <StyledDiv>Разработчик: <StyledItem>{item.creator}</StyledItem></StyledDiv>}
-                        {item.publisher && <StyledDiv>Издатель: <StyledItem>{item.publisher}</StyledItem></StyledDiv>}
-                    </StyledContent>
-                );
-            case 'Активация и доставка':
-                return (
-                    <StyledContentDescription
-                        dangerouslySetInnerHTML={{
-                            __html: item.slip ? item.slip.replace(/\n/g, '<br />') : 'Информация отсутствует',
-                        }}
-                    />
-                );
-            default:
-                return null;
-        }
-    };
-
-    return (
-        <StyledGamePage $backgroundUrl={item.background_url}>
-            {item.background_url && (
-                <Background $backgroundUrl={item.background_url} $hasBackground={!!item.background_url} />
-            )}
-            <div className="container">
-                <StyledMainPage>
-                    <img
-                        src={item.thumbnail_url}
-                        alt=''
-                        width={500}
-                        height={500}
-                    />
-                    <StyledTextWrapper>
-                        <StyledH2>{item.title}</StyledH2>
-                        <StyledDescription>{item.description}</StyledDescription>
-                        <StyledButtonWrapper>
-                            <StyledMiniButton
-                                $isActive={activeButton === 'Характеристики'}
-                                onClick={() => handleButtonClick('Характеристики')}
-                            >
-                                Характеристики
-                            </StyledMiniButton>
-                            <StyledMiniButton
-                                $isActive={activeButton === 'Активация и доставка'}
-                                onClick={() => handleButtonClick('Активация и доставка')}
-                            >
-                                Активация и доставка
-                            </StyledMiniButton>
-                        </StyledButtonWrapper>
-                        <StyledContentWrapper>{renderContent()}</StyledContentWrapper>
-                        <StyledPrice>
-                            {item.current_price && <StyledPNewPrice>{item.current_price}₽</StyledPNewPrice>}
-                            {item.old_price && item.current_price && (
-                                <>
-                                    <StyledPOldPrice>{item.old_price}</StyledPOldPrice>
-                                    <StyledDiscount>
-                                        {Math.round(((item.old_price - item.current_price) / item.old_price) * 100)}%
-                                    </StyledDiscount>
-                                </>
-                            )}
-                        </StyledPrice>
-                        <StyledBuyButton onClick={scroll}>купить</StyledBuyButton>
-                    </StyledTextWrapper>
-                </StyledMainPage>
-                <BuyPage itemID={item.id} />
-            </div>
-        </StyledGamePage>
-    );
-};
-
-export default GamePage;

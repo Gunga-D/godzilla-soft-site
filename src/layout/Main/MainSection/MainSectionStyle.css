@@ -1,13 +1,52 @@
-.StyledWrapper {
+.MainSectionStyledWrapper {
     display: flex;
     flex-direction: row;
     gap: 25px;
     margin-top: 40px;
 }
-.StyledSection{
-  margin-top: 100px;
+.MainSectionStyledSection{
+    margin-top: 100px;
 }
-.styled-image {
+
+.MainSectionStyledRubricatorItemLink {
+    text-decoration: none;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.MainSectionStyledRubricatorItem {
+    background: #1d1d1d;
+    padding: 15px;
+    height: 100%;
+    border-radius: 18px;
+}
+
+.MainSectionStyledRubricatorItem:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.MainSectionStyledRubricatorItemEmoji {
+    width: 100%;
+    text-align: center;
+    font-size: 50px;
+}
+
+.MainSectionStyledRubricatorItemTitle {
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    font-size: 28px;
+    padding-bottom: 10px;
+}
+
+.MainSectionStyledRubricatorItemDescription {
+    text-align: center;
+    color: #ffffffb3;
+    font-size: 18px;
+}
+
+/* .styled-image {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
@@ -16,5 +55,4 @@
 
 .styled-image:hover {
     transform: scale(1.05);
-
-}
+} */
