@@ -114,8 +114,6 @@ export const MediumCardForGames = (props: CardForGamesProps) => {
                 </div>
             )}
 
-            <button className='MediumCardForGamesStyledButton'>Купить</button>
-
             <div className='MediumCardForGamesStyledInfoWrap'>
                 <div className='MediumCardForGamesStyledName'>{props.name}</div>
                 <div className='MediumCardForGamesPriceWrap'>
@@ -129,6 +127,7 @@ export const MediumCardForGames = (props: CardForGamesProps) => {
                 src={props.imageUrl}
                 width={props.imageWidth}
                 height={props.imageHeight}
+                style={{borderRadius: "15px"}}
             />
 
             <div className='MediumCardForGamesGradientOverlay'/>

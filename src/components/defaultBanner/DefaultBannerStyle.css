@@ -1,0 +1,45 @@
+.DefaultBannerBannersContainer {
+    position: relative;
+    width: 1120px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.DefaultBannerStyledBanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 500ms ease-in-out;
+}
+
+.DefaultBannerStyledBannerImage {
+    border-radius: 25px;
+}
+
+.DefaultBannerStyledBannerActive {
+    opacity: 1;
+}
+
+.DefaultBannerStyledBannerInactive {
+    opacity: 0;
+}
+
+.DefaultBannerButtonDeterm {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #e8e8e878;
+    color: #222222;
+    outline: none;
+    border: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.DefaultBannerButtonDeterm:hover {
+    cursor: pointer;
+}

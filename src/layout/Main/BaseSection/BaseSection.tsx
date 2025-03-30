@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {itemApi} from "../../../common/api/item/item-api";
 import {MediumCardForGames} from "../../../components/cardForGames/MediumCardForGames/MediumCardForGames";
 import './BaseSectionStyle.css'
@@ -13,7 +14,6 @@ export const BaseSection = async (props: BaseSectionProps) => {
         <div className='StyledBaseSectionSeasonDiv'>
             <div>
                 <h2 className='StyledBaseSectionH2'>{props.mainTitle}</h2>
-                <p className='StyledBaseSectionP'>Показать все</p>
             </div>
 
             <div className='StyledBaseSectionWrapper'>
@@ -33,6 +33,17 @@ export const BaseSection = async (props: BaseSectionProps) => {
                         region={item.region}
                     />
                 ))}
+                <div className="StyledBaseSectionMoreItemsContainer">
+                    <div className="StyledBaseSectionMoreItemsShadow"></div>
+                    <div className="StyledBaseSectionMoreItemsShadow"></div>
+                    <div className="StyledBaseSectionMoreItemsShadow"></div>
+                    <div className="StyledBaseSectionMoreItemsShadow"></div>
+                    <div className="StyledBaseSectionMoreItemsShadow"></div>
+                    <div className="StyledBaseSectionMoreItemsShadow"></div>
+                    <div className="StyledBaseSectionMoreItems">
+                        <Link href={"/games"} style={{textDecoration: "none", color: "white"}}>Больше→</Link>
+                    </div>
+                </div>
             </div>
         </div>
     );

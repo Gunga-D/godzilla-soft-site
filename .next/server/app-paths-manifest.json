@@ -1,6 +1,0 @@
-{
-  "/steam_deposit/page": "app/steam_deposit/page.js",
-  "/games/[value]/page": "app/games/[value]/page.js",
-  "/page": "app/page.js",
-  "/games/page": "app/games/page.js"
-}

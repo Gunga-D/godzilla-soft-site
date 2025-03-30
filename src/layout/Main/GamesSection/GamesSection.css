@@ -1,0 +1,26 @@
+.GamesSection {
+    margin-top: 50px;
+    background-color: #1d1d1d;
+    border-radius: 32px;
+    padding: 3rem;
+}
+
+.GamesSectionHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.GamesSectionTitle {
+    color: white;
+    font-weight: 900;
+    font-size: 38px;
+}
+
+.GamesSectionGameType {
+    display: inline;
+    padding: 12px 50px;
+    font-weight: 900;
+    background-color: #434343;
+    margin-right: 8px;
+    border-radius: 5px;
+}

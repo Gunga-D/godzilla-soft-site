@@ -1,7 +1,6 @@
 .StyledBaseSectionSeasonDiv {
+    margin-top: 18px;
     width: 100%;
-    min-height: 383px;
-    margin-top: 72px;
     display: flex;
     flex-direction: column;
 }
@@ -9,30 +8,52 @@
 .StyledBaseSectionH2 {
     font-style: normal;
     font-weight: 1000;
-    font-size: 48px;
+    font-size: 32px;
     line-height: 56px;
+    padding-bottom: 5px;
     text-align: left;
     color: #FFFFFF;
-    padding-top: 37px;
-}
-
-.StyledBaseSectionP {
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 19px;
-    cursor: pointer;
-    color: #D91E18;
-    text-align: right;
-    margin-top: 9px;
-    &:hover{
-      color: white;
-      transition: 0.3s ;
-    }
 }
 
 .StyledBaseSectionWrapper {
-    margin-top: 20px;
-    gap: 25px;
-    display: flex;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.StyledBaseSectionMoreItemsContainer {
+    position: relative;
+    width: 204px;
+    height: 204px;
+    border-radius: 15px;
+    border: 1px solid #3b3b3b;
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: .5rem;
+}
+
+.StyledBaseSectionMoreItems {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #ff333ab6;
+    padding: 12px;
+    border: 1px solid #3b3b3b;
+    font-size: 16px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+}
+
+.StyledBaseSectionMoreItemsShadow {
+    border-radius: 8px;
+    background-color: #3b3b3b;
 }
