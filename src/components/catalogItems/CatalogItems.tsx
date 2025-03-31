@@ -145,7 +145,7 @@ export const CatalogItems = (props: CatalogProps) => {
                             className={`subcatalog-button ${subCatalogName === 'key' ? 'active' : ''}`}
                             onClick={() => changeSubcatalog('key')}
                         >
-                            Коды
+                            Ключи
                         </button>
                     </div>
                 )}
