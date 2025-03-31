@@ -10,7 +10,6 @@ export const CatalogComponent = (props: CatalogProps) => {
         <div className='StyleDiv'>
             <h2 className='h2Style'>Каталог</h2>
             <div style={{ display: 'flex', marginTop: '55px', gap: '15px' }}>
-                    <Filter/>
                     <CatalogItems active={props.active}/>
             </div>
         </div>

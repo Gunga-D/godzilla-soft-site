@@ -101,11 +101,12 @@ export const CatalogCard = (props: CatalogCardForGameProps) => {
             <StyledWrapForPrice>
                 <StyledName>{props.nameGame}</StyledName>
                 <StyledPrice>
-                    {props.newPrice && <StyledPNewPrice>{props.newPrice}₽</StyledPNewPrice>}
+                    {props.newPrice && <StyledPNewPrice>{props.newPrice} ₽</StyledPNewPrice>}
                     {props.oldPrice && <StyledPOldPrice>{props.oldPrice}</StyledPOldPrice>}
                 </StyledPrice>
             </StyledWrapForPrice>
             <img
+                style={{borderRadius: "15px"}}
                 src={props.imageUrl}
                 width={props.width}
                 height={props.height}
@@ -120,8 +121,6 @@ const StyledCard = styled.div<CatalogCardForGameProps>`
   width: 248px;
   height: 248px;
   z-index: 0;
-  border: 1px solid #FFFFFF;
-  border-radius: 5px;
   transition: transform 0.3s ease;
   cursor: pointer;
   &:hover {

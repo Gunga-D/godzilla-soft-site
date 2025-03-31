@@ -9,7 +9,7 @@ export const catalogApi = {
         platform?: string;
         region?: string;
         isSteamGift?: boolean
-    }, limit?: number): Promise<CatalogItem[]> {
+    }, limit?: number, offset?: number): Promise<CatalogItem[]> {
         const queryParams = new URLSearchParams();
         let requestUrl
         if (filters.min_price) {
@@ -35,6 +35,9 @@ export const catalogApi = {
              requestUrl = `${BaseUrl}/items?limit=${itemsLimit}&category_id=${categoryId}&${queryParams.toString()}`;
         } else {
              requestUrl = `${BaseUrl}/items?limit=${itemsLimit}&category_id=${categoryId}`;
+        }
+        if (offset) {
+            requestUrl += `&offset=${offset}`
         }
         const response = await axios.get(requestUrl);
         return response.data.data;

@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { catalogApi } from "../../common/api/catalogItem/catalog-api";
 import { CatalogCard } from "../cardForGames/CatalogCard";
 import { Item } from "../../common/api/item/item";
 import { useStore } from "zustand/react";
 import { FilterStore } from "../../common/store/FilterStatus/FilterStatus";
 import { generateItemPath } from '../../hooks/links';
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import './CatalogItemsStyle.css';
 
 type CatalogProps = {
@@ -14,29 +14,52 @@ type CatalogProps = {
 }
 
 export const CatalogItems = (props: CatalogProps) => {
+    const searchParams = useSearchParams()
+
     const [items, setItems] = useState<Item[]>([]);
     const [catalogName, setCatalogName] = useState<string>(props.active || 'games');
+    const [subCatalogName, setSubCatalogName] = useState<string>(searchParams.get("subcatalog") || "gift")
     const router = useRouter();
     const { min_price, max_price, region, platform } = useStore(FilterStore);
+    const [page, setPage] = useState<number>(0);
+    const [hasMore, setHasMore] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const handleCardClick = (categoryID: number, itemName: string, itemId: number) => {
         router.push(generateItemPath(categoryID, itemName, itemId));
     };
 
+    const changeCatalog = (catalog: string) => {
+        setPage(0)
+        setCatalogName(catalog)
+        setHasMore(true)
+        setItems([])
+    }
+    const changeSubcatalog = (subcatalog: string) => {
+        setPage(0)
+        setSubCatalogName(subcatalog)
+        setHasMore(true)
+        setItems([])
+    }
+
     const loadItems = async () => {
+        let isSteamGift = false
+        if (subCatalogName == "gift" && catalogName == "games") {
+            isSteamGift = true
+        }
         const filters = {
             min_price: min_price,
             max_price: max_price,
             platform: platform,
-            region: region
+            region: region,
+            isSteamGift: isSteamGift
         };
 
+        setLoading(true);
         try {
             let catalogID = 0;
             switch (catalogName) {
                 case "games":
-                case "gifts":
-                case "codes":
                     catalogID = 10001;
                     break;
                 case "subscriptions":
@@ -46,10 +69,17 @@ export const CatalogItems = (props: CatalogProps) => {
                     catalogID = 10004;
                     break;
             }
-            const data = await catalogApi.getItems(catalogID, filters);
-            setItems(data);
+            const data = await catalogApi.getItems(catalogID, filters, 20, page * 20);
+            if (data.length === 0) {
+                setHasMore(false);
+              } else {
+                setItems([...items, ...data]);
+                setPage(page+1);
+            }
         } catch (err) {
             console.error("Ошибка при загрузке данных:", err);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -61,7 +91,24 @@ export const CatalogItems = (props: CatalogProps) => {
 
     useEffect(() => {
         loadItems();
-    }, [catalogName, region, platform, max_price, min_price]);
+    }, [catalogName, region, platform, max_price, min_price, subCatalogName]);
+
+    const observer = useRef<IntersectionObserver | null>(null);
+    const lastItemRef = useCallback(
+        (node: HTMLElement | null) => {
+          if (loading) return;
+          if (observer.current) observer.current.disconnect();
+    
+          observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+              loadItems();
+            }
+          });
+    
+          if (node) observer.current.observe(node);
+        },
+        [loading, hasMore, loadItems]
+      );
 
     return (
         <div className="catalog-container">
@@ -69,19 +116,19 @@ export const CatalogItems = (props: CatalogProps) => {
                 <div className="main-buttons">
                     <button
                         className={`catalog-button ${catalogName === 'games' ? 'active' : ''}`}
-                        onClick={() => setCatalogName('games')}
+                        onClick={() => changeCatalog('games')}
                     >
                         Игры
                     </button>
                     <button
                         className={`catalog-button ${catalogName === 'deposits' ? 'active' : ''}`}
-                        onClick={() => setCatalogName('deposits')}
+                        onClick={() => changeCatalog('deposits')}
                     >
                         Пополнение
                     </button>
                     <button
                         className={`catalog-button ${catalogName === 'subscriptions' ? 'active' : ''}`}
-                        onClick={() => setCatalogName('subscriptions')}
+                        onClick={() => changeCatalog('subscriptions')}
                     >
                         Подписки
                     </button>
@@ -89,14 +136,14 @@ export const CatalogItems = (props: CatalogProps) => {
                 {catalogName === 'games' && (
                     <div className="game-sub-buttons">
                         <button
-                            className={`catalog-button ${catalogName === 'gifts' ? 'active' : ''}`}
-                            onClick={() => setCatalogName('gifts')}
+                            className={`subcatalog-button ${subCatalogName === 'gift' ? 'active' : ''}`}
+                            onClick={() => changeSubcatalog("gift")}
                         >
                             Гифты
                         </button>
                         <button
-                            className={`catalog-button ${catalogName === 'codes' ? 'active' : ''}`}
-                            onClick={() => setCatalogName('codes')}
+                            className={`subcatalog-button ${subCatalogName === 'key' ? 'active' : ''}`}
+                            onClick={() => changeSubcatalog('key')}
                         >
                             Коды
                         </button>
@@ -122,6 +169,10 @@ export const CatalogItems = (props: CatalogProps) => {
                         platform={game.platform}
                     />
                 ))}
+                <div 
+                    ref={lastItemRef}
+                    style={{ width: "100%", height: "100px"}}
+                ></div>
             </div>
         </div>
     );
