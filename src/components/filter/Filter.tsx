@@ -1,21 +1,16 @@
-" "
 import React from 'react';
-import styled from 'styled-components';
+import './FilterStyle.css'
 import {FilterPrice} from "./Filters/FilterPrice";
 import {FilterPlatform} from "./Filters/FilterPlatform";
 import {FilterRegion} from "./Filters/FilterRegion";
 export const Filter = () => {
     return (
-        <StyledDiv>
+        <div className='styled-div'>
             <FilterPrice/>
             <FilterPlatform/>
             <FilterRegion/>
-        </StyledDiv>
+        </div>
     );
 };
 
-const StyledDiv = styled.div `
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`
+

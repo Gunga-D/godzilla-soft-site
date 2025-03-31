@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import styled from "styled-components";
 import { catalogApi } from "../../common/api/catalogItem/catalog-api";
 import { CatalogCard } from "../cardForGames/CatalogCard";
 import { Item } from "../../common/api/item/item";
@@ -8,6 +7,7 @@ import { useStore } from "zustand/react";
 import { FilterStore } from "../../common/store/FilterStatus/FilterStatus";
 import { generateItemPath } from '../../hooks/links';
 import { useRouter } from "next/navigation";
+import './CatalogItemsStyle.css';
 
 type CatalogProps = {
     active?: string,
@@ -35,6 +35,8 @@ export const CatalogItems = (props: CatalogProps) => {
             let catalogID = 0;
             switch (catalogName) {
                 case "games":
+                case "gifts":
+                case "codes":
                     catalogID = 10001;
                     break;
                 case "subscriptions":
@@ -62,40 +64,46 @@ export const CatalogItems = (props: CatalogProps) => {
     }, [catalogName, region, platform, max_price, min_price]);
 
     return (
-        <StyledDiv>
-            <StyledButtons>
-                <StyledButton
-                    onClick={() => {
-                        if (catalogName === 'games') return;
-                        setCatalogName('games');
-                        setItems([]);
-                    }}
-                    data-is-active={catalogName === 'games'}
-                >
-                    Игры
-                </StyledButton>
-                <StyledButton
-                    onClick={() => {
-                        if (catalogName === 'deposits') return;
-                        setCatalogName('deposits');
-                        setItems([]);
-                    }}
-                    data-is-active={catalogName === 'deposits'}
-                >
-                    Пополнение
-                </StyledButton>
-                <StyledButton
-                    onClick={() => {
-                        if (catalogName === 'subscriptions') return;
-                        setCatalogName('subscriptions');
-                        setItems([]);
-                    }}
-                    data-is-active={catalogName === 'subscriptions'}
-                >
-                    Подписки
-                </StyledButton>
-            </StyledButtons>
-            <StyledCatalog>
+        <div className="catalog-container">
+            <div className="catalog-buttons">
+                <div className="main-buttons">
+                    <button
+                        className={`catalog-button ${catalogName === 'games' ? 'active' : ''}`}
+                        onClick={() => setCatalogName('games')}
+                    >
+                        Игры
+                    </button>
+                    <button
+                        className={`catalog-button ${catalogName === 'deposits' ? 'active' : ''}`}
+                        onClick={() => setCatalogName('deposits')}
+                    >
+                        Пополнение
+                    </button>
+                    <button
+                        className={`catalog-button ${catalogName === 'subscriptions' ? 'active' : ''}`}
+                        onClick={() => setCatalogName('subscriptions')}
+                    >
+                        Подписки
+                    </button>
+                </div>
+                {catalogName === 'games' && (
+                    <div className="game-sub-buttons">
+                        <button
+                            className={`catalog-button ${catalogName === 'gifts' ? 'active' : ''}`}
+                            onClick={() => setCatalogName('gifts')}
+                        >
+                            Гифты
+                        </button>
+                        <button
+                            className={`catalog-button ${catalogName === 'codes' ? 'active' : ''}`}
+                            onClick={() => setCatalogName('codes')}
+                        >
+                            Коды
+                        </button>
+                    </div>
+                )}
+            </div>
+            <div className="catalog-grid">
                 {items.map((game, index) => (
                     <CatalogCard
                         key={index}
@@ -114,50 +122,7 @@ export const CatalogItems = (props: CatalogProps) => {
                         platform={game.platform}
                     />
                 ))}
-            </StyledCatalog>
-        </StyledDiv>
+            </div>
+        </div>
     );
 };
-
-const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  font-family: Helvetica;
-`;
-
-const StyledButtons = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
-const StyledCatalog = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(239px, 1fr));
-  gap: 20px;
-  width: 100%;
-  justify-content: center;
-`;
-
-const StyledButton = styled.div<{ 'data-is-active': boolean }>`
-  width: 253px;
-  height: 45px;
-  border: 2px solid #FF333B;
-  border-radius: 5px;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 24px;
-  color: #FFFFFF;
-  background-color: ${({ 'data-is-active': isActive }) => (isActive ? '#FF333B' : 'transparent')};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    cursor: pointer;
-    background-color: #FF333B;
-    color: #FFFFFF;
-  }
-`;

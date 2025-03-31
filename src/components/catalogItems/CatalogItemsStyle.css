@@ -1,0 +1,47 @@
+.catalog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: Helvetica;
+}
+
+.catalog-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-buttons,
+.game-sub-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(239px, 1fr));
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.catalog-button {
+    width: 253px;
+    height: 45px;
+    border: 2px solid #FF333B;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 20px;
+    color: #FFFFFF;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.catalog-button:hover,
+.catalog-button.active {
+    background-color: #FF333B;
+}
