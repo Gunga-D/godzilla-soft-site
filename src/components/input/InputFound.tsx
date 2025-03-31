@@ -1,11 +1,10 @@
 "use client";
+
 import React, { useState } from 'react';
 import './InputFoundStyles.css';
 import { SearchItem } from '../../common/api/searchItem/searchItem';
 import { searchApi } from '../../common/api/searchItem/search-api';
 import { generateItemPath } from '../../hooks/links';
-import Image from 'next/image';
-import {router} from "next/client";
 import {useRouter} from "next/navigation";
 
 export const InputFound = () => {
@@ -97,6 +96,9 @@ export const InputFound = () => {
                                             {game.item_is_for_sale && (
                                                 <p className={'styledPOldPrice'}>{game.item_old_price}</p>
                                             )}
+                                        </div>
+                                        <div className='SearchItemType'>
+                                            <p>{game.item_type=="gift"?"Гифтом":"Ключом"}</p>
                                         </div>
                                     </li>
                                 ))}

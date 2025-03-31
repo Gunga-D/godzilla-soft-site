@@ -1,6 +1,5 @@
 
 .inputContainer {
-
     display: flex;
     align-items: center;
     width: 347px;
@@ -9,7 +8,6 @@
     border: 1px solid #ffffff;
     backdrop-filter: blur(44.9px);
     border-radius: 5px;
-    font-family: Arial;
     font-weight: 900;
 }
 
@@ -89,7 +87,6 @@
     font-size: 24px;
     line-height: 12px;
     color: #fff;
-    font-family: Arial;
     text-align: left;
     position: relative;
     display: inline-block;
@@ -98,15 +95,12 @@
 }
 
 .styledPNewPrice {
-    font-family: Arial;
-
     font-style: normal;
     font-weight: 900;
     font-size: 22px;
     line-height: 12px;
     color: #fff;
     display: inline-block;
-    float: left;
 }
 
 .styledPNewPrice::after {
@@ -119,7 +113,6 @@
     margin-left: 5px;
     font-style: normal;
     font-weight: 900;
-    font-family: Arial;
     font-size: 16px;
     line-height: 12px;
     color: #848484;
@@ -151,4 +144,8 @@
     text-align: center;
     color: #ff4d4d;
     font-size: 16px;
+}
+
+.SearchItemType {
+    margin-left: auto;
 }

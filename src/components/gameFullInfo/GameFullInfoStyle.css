@@ -1,6 +1,6 @@
 .GameFullInfoActionsContainer {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 20px;
 }
 
@@ -55,4 +55,30 @@
 .GameFullInfoCharacteristic {
     font-size: 14px;
     font-weight: 400;
+}
+
+.GameFullInfoMovies {
+    padding-top: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.GameFullInfoMovie {
+    width: 293px;
+    height: 165px;
+    border-radius: 12px;
+}
+
+.GameFullInfoTypeTitle {
+    font-size: 21px;
+    font-weight: 900;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }

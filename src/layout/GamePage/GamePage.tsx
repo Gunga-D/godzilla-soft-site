@@ -5,6 +5,7 @@ import './GamePageStyle.css'
 import { BuyButton } from '../../components/buyButton/BuyButton';
 import { GameFullInfo } from '../../components/gameFullInfo/GameFullInfo';
 import Image from 'next/image';
+import { GalleryItem } from '../../components/galleryItem/GalleryItem';
 
 type GamePageProps = {
     item: ItemDetail;
@@ -39,7 +40,7 @@ const GamePage = ({ item }: GamePageProps) => {
                           <div className='StyledGamePageGalleryContainer'>
                             {item.bx_gallery_urls.map((gallery_item, idx) => (
                               <div key={idx} className='StyledGamePageGalleryItem'>
-                                <img className='StyledGamePageGalleryImage' src={gallery_item} width={150} height={84.5}></img>
+                                <GalleryItem link={gallery_item}></GalleryItem>
                               </div>
                             ))}
                           </div>

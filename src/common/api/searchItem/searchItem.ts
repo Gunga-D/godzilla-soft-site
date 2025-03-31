@@ -7,5 +7,6 @@ export type SearchItem = {
     item_is_for_sale?: boolean,
     item_old_price?: number,
     item_thumbnail_url?: string,
+    item_type: string,
     probability?: string,
 }

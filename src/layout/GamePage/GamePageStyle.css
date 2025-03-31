@@ -51,6 +51,7 @@
     padding: 8px;
     border: 1px solid hsla(0, 0%, 100%, .102);
     border-radius: 12px;
+    white-space: nowrap;
 }
 
 .StyledGamePageGalleryContainer {
@@ -69,10 +70,6 @@
     flex-direction: column;
     width: 600px;
     max-height: 800px;
-}
-
-.StyledGamePageGalleryImage {
-    border-radius: 15px;
 }
 
 .StyledGamePageGamePrice {
