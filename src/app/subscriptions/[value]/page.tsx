@@ -1,11 +1,11 @@
-import { getIdFromPath } from "../../../hooks/transliterate";
+import { getIdFromPath } from "../../../hooks/links";
 import { itemDetailsApi } from "../../../common/api/item-details/item-details-api";
 import GamePage from "../../../layout/GamePage/GamePage";
 
-type PageParams = { value: string };
+type PageParams = Promise<{ value: string }>;
 
 export default async function Page({ params }: { params: PageParams }) {
-    const { value } = params;
+    const { value } = await params;
     const itemID = getIdFromPath(value);
 
     if (!itemID) {

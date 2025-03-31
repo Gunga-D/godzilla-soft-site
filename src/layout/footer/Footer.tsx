@@ -2,11 +2,6 @@ import React from 'react';
 import '../footer/FooterStyled.css';
 import "../../styles/Container.css";
 
-// @ts-ignore
-import privacy_security from '../../../public/privacy_security.pdf'
-// @ts-ignore
-
-import service_agreement from './../../service_agreement.pdf'
 import Image from "next/image";
 import Link from "next/link";
 

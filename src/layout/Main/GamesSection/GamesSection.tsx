@@ -16,9 +16,13 @@ export const GamesSection = () => {
                     </div>
                 </div>
             </div>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Популярные  ❯"} url={"/popular_items"}/>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Новинки  ❯"} url={"/new_items"}/>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Со скидками  ❯"} url={"/sales_items"}/>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Выбор редакции  ❯"} url={"/recomendation_items"}/>
         </div>
     );

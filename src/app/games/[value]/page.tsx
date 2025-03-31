@@ -3,7 +3,7 @@ import { itemDetailsApi } from "../../../common/api/item-details/item-details-ap
 import GamePage from "../../../layout/GamePage/GamePage";
 import React from "react";
 
-type PageParams = { value: string };
+type PageParams = Promise<{ value: string }>;
 
 export default async function Page({ params }: { params: PageParams }) {
     const { value } = await params;
