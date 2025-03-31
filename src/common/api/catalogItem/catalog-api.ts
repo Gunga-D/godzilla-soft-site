@@ -1,20 +1,15 @@
 import axios from "axios";
 import { BaseUrl } from "../client";
-import { Category } from "./catalogItem";
-import { Item } from "../item/item";
+import { CatalogItem } from "./catalogItem";
 
 export const catalogApi = {
-    async getCategoriesTree(): Promise<Category[]> {
-        const requestUrl = BaseUrl + '/categories_tree';
-        const response = await axios.get(requestUrl);
-        return response.data.data;
-    },
-    async getItems(categoryId: string, filters: {
+    async getItems(categoryId: number, filters: {
         min_price?: string;
         max_price?: string;
         platform?: string;
         region?: string;
-    }): Promise<Item[]> {
+        isSteamGift?: boolean
+    }, limit?: number): Promise<CatalogItem[]> {
         const queryParams = new URLSearchParams();
         let requestUrl
         if (filters.min_price) {
@@ -29,10 +24,17 @@ export const catalogApi = {
         if (filters.region) {
             queryParams.append('region', filters.region);
         }
-        if (filters.region || filters.max_price || filters.min_price || filters.platform){
-             requestUrl = `${BaseUrl}/items?limit=100&category_id=${categoryId}&${queryParams.toString()}`;
+        if (filters.isSteamGift) {
+            queryParams.append('steam_gift', "true");
+        }
+        let itemsLimit = 100
+        if (limit) {
+            itemsLimit = limit
+        }
+        if (filters.region || filters.max_price || filters.min_price || filters.platform || filters.isSteamGift){
+             requestUrl = `${BaseUrl}/items?limit=${itemsLimit}&category_id=${categoryId}&${queryParams.toString()}`;
         } else {
-             requestUrl = `${BaseUrl}/items?limit=100&category_id=${categoryId}`;
+             requestUrl = `${BaseUrl}/items?limit=${itemsLimit}&category_id=${categoryId}`;
         }
         const response = await axios.get(requestUrl);
         return response.data.data;

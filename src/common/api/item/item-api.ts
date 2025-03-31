@@ -44,28 +44,18 @@ export const itemApi = {
         }
     },
 
-    async createOrder(itemId: number, email: string): Promise<CreateOrder> {
-        try {
-            const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
-                BaseUrl + "/create_order",
-                { item_id: itemId, email: email }
-            );
-
-            if (response.data.status === 'error') {
-                throw new Error(response.data.message);
-            }
-
-            return response.data.data;
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                if (error.response?.status === 404) {
-                    throw new Error('Такого товара нет в наличии');
-                }
-                else if(error.response?.status === 409) {
-                    throw new Error('Данный товар уже закончился');
-                }
-            }
-            throw new Error('Произошла неизвестная ошибка');
-        }
+    async createKeyOrder(itemId: number, email: string): Promise<CreateOrder> {
+        const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
+            BaseUrl + "/create_order",
+            { item_id: itemId, email: email }
+        );
+        return response.data.data;
+    },
+    async createGiftOrder(itemId: number, steam_profile: string): Promise<CreateOrder> {
+        const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
+            BaseUrl + "/create_order",
+            { item_id: itemId, steam_profile: steam_profile }
+        );
+        return response.data.data;
     },
 };

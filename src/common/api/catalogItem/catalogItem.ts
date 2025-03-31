@@ -1,10 +1,9 @@
-export type Category = {
-    id?: string,
-    name?: string,
-    children?: any,
-}
 export type CatalogItem = {
-    id?: string,
-    name?: string,
-    children?: any,
+    id: number,
+    title: string,
+    category_id: number,
+    platform: string,
+    region?: string,
+    current_price: number,
+    thumbnail_url: string
 }

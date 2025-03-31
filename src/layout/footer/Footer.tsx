@@ -21,7 +21,7 @@ export const Footer = () => {
                     <Link href={"/subscriptions"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Подписки</li></Link>
                     <Link href={"/contacts"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Контакты</li></Link>
                     <Link
-                        href="https://t.me/azat_safarg"
+                        href="https://t.me/GODZILLASOFT_bot"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{

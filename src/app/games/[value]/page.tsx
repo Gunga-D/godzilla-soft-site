@@ -1,15 +1,12 @@
-import { getIdFromPath } from "../../../hooks/transliterate";
+import { getIdFromPath } from "../../../hooks/links";
 import { itemDetailsApi } from "../../../common/api/item-details/item-details-api";
 import GamePage from "../../../layout/GamePage/GamePage";
 import React from "react";
-import styled from "styled-components";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
 type PageParams = { value: string };
 
 export default async function Page({ params }: { params: PageParams }) {
-    const { value } = params;
+    const { value } = await params;
     const itemID = getIdFromPath(value);
 
     if (!itemID) {
@@ -21,7 +18,6 @@ export default async function Page({ params }: { params: PageParams }) {
     }
 
     const item = await itemDetailsApi.getItem(Number(itemID));
-
     if (!item) {
         return (
             <div>
@@ -29,7 +25,6 @@ export default async function Page({ params }: { params: PageParams }) {
             </div>
         );
     }
-
     return (
         <GamePage
             item={item}

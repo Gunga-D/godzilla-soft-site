@@ -1,4 +1,4 @@
-import { getIdFromPath } from "../../../hooks/transliterate";
+import { getIdFromPath } from "../../../hooks/links";
 import { itemDetailsApi } from "../../../common/api/item-details/item-details-api";
 import GamePage from "../../../layout/GamePage/GamePage";
 

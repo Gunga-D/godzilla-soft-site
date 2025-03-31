@@ -6,7 +6,7 @@ import { CatalogCard } from "../cardForGames/CatalogCard";
 import { Item } from "../../common/api/item/item";
 import { useStore } from "zustand/react";
 import { FilterStore } from "../../common/store/FilterStatus/FilterStatus";
-import { transliterate } from '../../hooks/transliterate';
+import { generateItemPath } from '../../hooks/links';
 import { useRouter } from "next/navigation";
 
 type CatalogProps = {
@@ -19,21 +19,8 @@ export const CatalogItems = (props: CatalogProps) => {
     const router = useRouter();
     const { min_price, max_price, region, platform } = useStore(FilterStore);
 
-    const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
-        let catalogPath = "";
-        switch (categoryID) {
-            case 10001:
-                catalogPath = "games";
-                break;
-            case 10002:
-                catalogPath = "subscriptions";
-                break;
-            case 10004:
-                catalogPath = "deposits";
-                break;
-        }
-        itemName = transliterate(itemName!);
-        router.push(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${itemId}`);
+    const handleCardClick = (categoryID: number, itemName: string, itemId: number) => {
+        router.push(generateItemPath(categoryID, itemName, itemId));
     };
 
     const loadItems = async () => {
@@ -45,16 +32,16 @@ export const CatalogItems = (props: CatalogProps) => {
         };
 
         try {
-            let catalogID = "";
+            let catalogID = 0;
             switch (catalogName) {
                 case "games":
-                    catalogID = "10001";
+                    catalogID = 10001;
                     break;
                 case "subscriptions":
-                    catalogID = "10002";
+                    catalogID = 10002;
                     break;
                 case "deposits":
-                    catalogID = "10004";
+                    catalogID = 10004;
                     break;
             }
             const data = await catalogApi.getItems(catalogID, filters);

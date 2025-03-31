@@ -3,10 +3,9 @@ import { BuyPage } from "../../components/buyPage/BuyPage"
 import { Container } from "../../styles/Container"
 import styled from "styled-components"
 import React, { useState } from 'react';
-import image from "../../assets/images/Banners/RandomBanner.png"
 
 export const RandomGamePage = () => {
-    const [itemID, setItemID] = useState<string | undefined>(undefined);
+    const [itemID, setItemID] = useState<number | null>(null);
     const scroll = () => {
         const element = document.getElementById('dostavka');
         if (element) {
@@ -27,16 +26,13 @@ export const RandomGamePage = () => {
         e.currentTarget.textContent = "Выбрано"
 
         if (e.currentTarget.classList.contains("random-for-adults")) {
-            setItemID("44")
-            console.log("for adults")
+            setItemID(44)
         }
         if (e.currentTarget.classList.contains("random-premium")) {
-            setItemID("43")
-            console.log("premium")
+            setItemID(43)
         }
         if (e.currentTarget.classList.contains("random-default")) {
-            setItemID("42")
-            console.log("default")
+            setItemID(42)
         }
     }
 
@@ -84,7 +80,7 @@ export const RandomGamePage = () => {
                         <StyledInfoTitle>Как происходит сортировка игр?</StyledInfoTitle>
                         <StyledInfoDescription>Сортировкой данного товара полностью занимается робот, в его характеристиках задан шаг и суммарная стоимость игр. Параметр шага влияет на то, через какое количество игр встретится дубликат, суммарная стоимость это общий бюджет на закупку игр. Балансируя данные параметры робот пытается сделать равноценное распределение по товару, так, чтобы вам не выпал дубликат и попалась действительно шедевральная игра, которая достойна вашего внимания.</StyledInfoDescription>
                     </StyledInfo>
-                    <BuyPage itemID={itemID} title="Оформление заказа" description="Случайная игра Steam придет на следующий email:"></BuyPage>
+                    <BuyPage itemID={itemID||0} isSteamGift={false} title="Оформление заказа" description="Случайная игра Steam придет на следующий email:"></BuyPage>
                 </StyledMainRandom>
             </Container>
         </StyledRandomGamePage>

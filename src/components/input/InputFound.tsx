@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './InputFoundStyles.css';
 import { SearchItem } from '../../common/api/searchItem/searchItem';
 import { searchApi } from '../../common/api/searchItem/search-api';
-import { transliterate } from '../../hooks/transliterate';
+import { generateItemPath } from '../../hooks/links';
 import Image from 'next/image';
 import {router} from "next/client";
 import {useRouter} from "next/navigation";
@@ -35,22 +35,9 @@ export const InputFound = () => {
         }
     };
 
-    const handleCardClick = (categoryID: number | undefined, itemName: string | undefined, itemId: number | undefined) => {
-        let catalogPath = '';
-        switch (categoryID) {
-            case 10001:
-                catalogPath = 'games';
-                break;
-            case 10002:
-                catalogPath = 'subscriptions';
-                break;
-            case 10004:
-                catalogPath = 'deposits';
-                break;
-        }
-        itemName = transliterate(itemName!);
-        const path = `/${catalogPath}/${itemName?.replaceAll(' ', '_')}_${itemId}`;
-        router.push(path);    };
+    const handleCardClick = (categoryID: number, itemName: string, itemId: number) => {
+        router.push(generateItemPath(categoryID, itemName, itemId));    
+    };
 
     return (
         <div className={'inputContainer'}>

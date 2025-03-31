@@ -1,10 +1,9 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import styled from "styled-components";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import { transliterate } from '../../../hooks/transliterate';
+import { generateItemPath } from '../../../hooks/links';
 import './MediumCardForGamesStyle.css'
 
 type CardForGamesProps = {
@@ -24,21 +23,7 @@ type CardForGamesProps = {
 export const MediumCardForGames = (props: CardForGamesProps) => {
     const router = useRouter();
     const handleCardClick = () => {
-        let catalogPath = ""
-        switch (props.categoryId) {
-            case 10001:
-                catalogPath = "games"
-                break
-            case 10002:
-                catalogPath = "subscriptions"
-                break
-            case 10004:
-                catalogPath = "deposits"
-                break
-        }
-        let itemName = transliterate(props.name)
-
-        router.push(`/${catalogPath}/${itemName?.replaceAll(" ", "_")}_${props.id}`);
+        router.push(generateItemPath(props.categoryId, props.name, props.id));
     };
 
     const [regionIcon, setRegionIcon] = useState('');

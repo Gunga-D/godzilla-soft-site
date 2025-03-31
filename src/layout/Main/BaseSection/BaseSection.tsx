@@ -17,7 +17,7 @@ export const BaseSection = async (props: BaseSectionProps) => {
             </div>
 
             <div className='StyledBaseSectionWrapper'>
-                {data?.slice(0, 5).map((item, index) => (
+                {data.map((item, index) => (
                     <MediumCardForGames
                         key={index}
                         id={item.id}

@@ -1,0 +1,185 @@
+.StyledGamePage {
+    background-size: cover;
+    background-position: center;
+    img {
+      object-fit: contain;
+    }
+}
+
+.StyledGamePageMainSection {
+    display: flex;
+    gap: 50px;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    margin-top: 150px;
+    z-index: 1;
+}
+
+.StyledGamePageBxImage {
+    border-radius: 15px;
+}
+
+.StyledGamePageGameTitle {
+    padding-top: 18px;
+    font-size: 33px;
+    font-weight: 900;
+    color: white;
+    text-align: left;
+}
+
+.StyledGamePageGameDescription {
+    font-weight: 400;
+    font-size: 15px;
+    min-height: 90px;
+    line-height: 18px;
+    text-align: left;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 8px;
+}
+
+.StyledGamePageGenresContainer {
+    display: flex;
+    justify-content: start;
+    gap: 15px;
+    align-items: center;
+}
+
+.StyledGamePageGenre {
+    color: white;
+    padding: 8px;
+    border: 1px solid hsla(0, 0%, 100%, .102);
+    border-radius: 12px;
+}
+
+.StyledGamePageGalleryContainer {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.StyledGamePageInfoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    max-height: 800px;
+}
+
+.StyledGamePageGalleryImage {
+    border-radius: 15px;
+}
+
+.StyledGamePageGamePrice {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 51px;
+    line-height: 150%;
+    color: #ffffff;
+    text-align: left;
+}
+
+.StyledGamePageGameCurrentPrice {
+    color: white;
+    font-size: 51px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.StyledGamePageGameOldPrice {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 12px;
+    color: #848484;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    text-decoration: line-through;
+  
+    &:after {
+      content: "₽";
+      font-size: 24px;
+      margin-left: 2px;
+    }
+}
+
+.StyledGamePageGameDiscount {
+    font-size: 11px;
+    font-weight: 900;
+    color: white;
+    background-color: #D91E18;
+    border-radius: 25px;
+    width: 62px;
+    height: 19.89px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    margin-left: -10px;
+    margin-top: 7px;
+}
+
+.StyledGamePageYandexMarketBanner {
+    margin-top: 50px;
+    width: 100%;
+    padding: 18px;
+    background-color: #ffd41d;
+    border-radius: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.StyledGamePageYandexMarketBannerTitle {
+    font-weight: 900;
+    font-size: 26px;
+}
+
+.StyledGamePageYandexMarketBannerDescription {
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+
+.StyledGamePageYandexMarketBannerInfo {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.StyledGamePageYandexMarketBannerLink {
+    text-decoration: none;
+    color: #006933;
+}
+
+.StyledGamePageYandexMarketBannerPrice {
+    color: #006933;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.StyledGamePageYandexMarketBannerRating {
+    color: #b0824a;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.StyledGamePageMainBackground {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+}
