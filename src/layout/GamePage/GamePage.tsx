@@ -17,13 +17,24 @@ const GamePage = ({ item }: GamePageProps) => {
             <div className='StyledGamePageMainBackground' style={{backgroundImage: item.background_url ? `linear-gradient(to top, rgb(21, 23, 30) 5%, transparent 100%), url(${item.background_url})` : 'none'}}></div>
             <div className="container">
                 <div className='StyledGamePageMainSection'>
-                    <img
+                    {item.bx_image_url && (
+                      <img
                         src={item.bx_image_url}
                         alt=''
                         width={300}
                         height={450}
                         className='StyledGamePageBxImage'
-                    />
+                      />
+                    )}
+                    {!item.bx_image_url && (
+                      <img
+                        src={item.thumbnail_url}
+                        alt=''
+                        width={350}
+                        height={350}
+                        className='StyledGamePageBxImage'
+                      />
+                    )}
                     <div className='StyledGamePageInfoContainer'>
                         {item.genres && (
                           <div className='StyledGamePageGenresContainer'>

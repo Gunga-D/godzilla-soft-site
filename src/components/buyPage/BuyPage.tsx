@@ -103,7 +103,7 @@ export const BuyPage = (props: BuyPageProps) => {
     return (
         <div className='BuyPageMainContainer'>
             <h2 id='dostavka' className='BuyPageTitle'>{props.title || "Оформление заказа"}</h2>
-            <h4 className='BuyPageDescription'>{props.description || props.isSteamGift?"Цифровой товар будет доставлен на данный Steam профиль":"Цифровой товар будет доставлен на указанный е-mail:"}</h4>
+            <h4 className='BuyPageDescription'>{props.description || (props.isSteamGift?"Цифровой товар будет доставлен на данный Steam профиль":"Цифровой товар будет доставлен на указанный е-mail:")}</h4>
             {(!profileAvatar && !profileName) && (
               <input
                 className='BuyPageInputValue'
