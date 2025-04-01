@@ -18,7 +18,7 @@ export const IntroductionBanners = () => {
                 <h2 className='IntroductionBannersItemTitle'>Мы есть на <span style={{color: "#fc5424"}}>Яндекс</span> <span style={{color: "#ffdd04"}}>Маркете</span></h2>
                 <p className='IntroductionBannersItemDescription'>Более <span style={{color: "#ff333b"}}><b>1 827</b></span> отзывов от наших клиентов со средней оценкой&nbsp;<span style={{color: "#ff333b"}}><b>4.8</b></span>&nbsp;⭐</p>
                 <Link href={"https://market.yandex.ru/store--godzilla-soft?businessId=139719541"}>
-                    <button className='IntroductionBannersItemButton'>Перейти</button>
+                    <button className='IntroductionBannersItemButton' style={{marginTop: "15px"}}>Перейти</button>
                 </Link>
             </div>
         </div>

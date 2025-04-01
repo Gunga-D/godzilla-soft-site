@@ -2,8 +2,10 @@ import Link from "next/link";
 import {itemApi} from "../../../common/api/item/item-api";
 import {MediumCardForGames} from "../../../components/cardForGames/MediumCardForGames/MediumCardForGames";
 import './BaseSectionStyle.css'
+import { CarouselController } from "../../../components/carouselController/CarouselController";
 
 type BaseSectionProps = {
+    id: string,
     mainTitle?: string,
     url?: string,
 }
@@ -12,11 +14,12 @@ export const BaseSection = async (props: BaseSectionProps) => {
     const data = await itemApi.getItem(`${props.url}`)
     return (
         <div className='StyledBaseSectionSeasonDiv'>
-            <div>
+            <div className="StyledBaseSectionHeader">
                 <h2 className='StyledBaseSectionH2'>{props.mainTitle}</h2>
+                <CarouselController id={props.id}></CarouselController>
             </div>
 
-            <div className='StyledBaseSectionWrapper'>
+            <div className='StyledBaseSectionWrapper' id={props.id}>
                 {data.map((item, index) => (
                     <MediumCardForGames
                         key={index}

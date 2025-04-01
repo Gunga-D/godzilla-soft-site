@@ -1,15 +1,33 @@
+"use client"
+
 import Link from 'next/link';
 import { catalogApi } from '../../common/api/catalogItem/catalog-api';
 import './MoreGamesStyle.css'
 import { generateItemPath } from '../../hooks/links';
+import { useEffect, useState } from 'react';
+import { CatalogItem } from '../../common/api/catalogItem/catalogItem';
 
-export const MoreGames = async () => {
-    const data = await catalogApi.getItems(10001, {isSteamGift: true}, 20)
+export const MoreGames = () => {
+    const [data, setData] = useState<CatalogItem[]>([])
+    const [loading, setLoading] = useState<boolean>(false)
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true)
+            const resp = await catalogApi.getItems(10001, {isSteamGift: true}, 20, 0, true)
+            setData([...resp])
+            setLoading(false)
+        }
+        fetchData()
+    }, [])
 
     return (
         <div className='MoreGames'>
             <h2 className='MoreGamesTitle'>Еще больше игр ❯</h2>
             <div className='MoreGamesContainer'>
+                {loading && (
+                    <p style={{fontSize: "32px", fontWeight: "900", color: "white"}}>Загрузка...</p>
+                )}
+
                 {data.map((item, index) => (
                     <Link href={generateItemPath(item.category_id, item.title, item.id)} key={index} style={{textDecoration: "none"}}>
                         <div className='MoreGamesItemContainer'>

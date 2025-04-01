@@ -10,7 +10,6 @@ export const MainPage = () => {
             <MainSection/>
             <IntroductionBanners></IntroductionBanners>
             <GamesSection></GamesSection>
-            {/* @ts-expect-error Server Component */}
             <MoreGames></MoreGames>
         </div>
     );

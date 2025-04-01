@@ -9,7 +9,7 @@ export const catalogApi = {
         platform?: string;
         region?: string;
         isSteamGift?: boolean
-    }, limit?: number, offset?: number): Promise<CatalogItem[]> {
+    }, limit?: number, offset?: number, randomOrder?: boolean): Promise<CatalogItem[]> {
         const queryParams = new URLSearchParams();
         let requestUrl
         if (filters.min_price) {
@@ -27,6 +27,10 @@ export const catalogApi = {
         if (filters.isSteamGift) {
             queryParams.append('steam_gift', "true");
         }
+        if (randomOrder) {
+            queryParams.append('random', '1')
+        }
+        
         let itemsLimit = 100
         if (limit) {
             itemsLimit = limit
