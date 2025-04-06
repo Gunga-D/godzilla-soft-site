@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import "./BuyPageStyle.css"
 import SBP from '../../assets/images/Payment/sbp.png';
 import MIR from '../../assets/images/Payment/mir.png';
@@ -100,16 +100,60 @@ export const BuyPage = (props: BuyPageProps) => {
         }
         return 'Произошла неизвестная ошибка';
     };
+
+
+    const [isHinted, setIsHinted] = useState(false);
+
+    const escFunction = useCallback((event: any) => {
+        if (event.key === "Escape") {
+          setIsHinted(false)
+        }
+    }, []);
+    useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+    
+        return () => {
+          document.removeEventListener("keydown", escFunction, false);
+        };
+    }, [escFunction]);
+
     return (
         <div className='BuyPageMainContainer'>
+            {isHinted && (
+                <div className="BuyPageHintedOverlay" onClick={()=>{setIsHinted(false)}}>
+                    <div className="BuyPageHintedContent">
+                        <h2 style={{fontWeight: 900, marginBottom: "5px"}}>Как получить ссылку на свой аккаунт?</h2>
+                        <h3>Если зашли в Steam через приложение:</h3>
+                        <ul>
+                          <li>Нажми на имя своего аккаунта в правом верхнем углу, затем нажми «Мой профиль».</li>
+                          <li>После открытия твоего профиля сделай правый клик мыши по любому свободному месту на странице для вызова контекстного меню.</li>
+                          <li>Выбери "скопировать адрес страницы" - это и есть ссылка на твой профиль Steam. (Ссылка должна быть вида: https://steamcommunity.com/id/твой_никнейм)</li>
+                        </ul>
+                        <h3 style={{marginTop: "5px"}}>Если зашли в Steam через браузер:</h3>
+                        <ul>
+                          <li>В правом верхнем углу, после нажатия на имя своего аккаунта, выбери "мой профиль".</li>
+                          <li>После перехода скопируй ссылку из адресной строки Твоего браузера. (Ссылка должна быть вида: https://steamcommunity.com/id/твой_никнейм)</li>
+                        </ul>
+                        <Image src={"/steam-gift-hint-browser.png"} alt='Hint' width={637} height={201}></Image>
+                    </div>
+                </div>
+            )}
+
             <h2 id='dostavka' className='BuyPageTitle'>{props.title || "Оформление заказа"}</h2>
-            <h4 className='BuyPageDescription'>{props.description || (props.isSteamGift?"Цифровой товар будет доставлен на данный Steam профиль":"Цифровой товар будет доставлен на указанный е-mail:")}</h4>
+            <h4 className='BuyPageDescription'>{props.description || (props.isSteamGift?"Цифровой товар будет отправлен гифтом на Steam профиль":"Цифровой товар будет доставлен на указанный е-mail:")}</h4>
             {(!profileAvatar && !profileName) && (
-              <input
-                className='BuyPageInputValue'
-                placeholder={props.isSteamGift?"Введите ссылку на ваш Steam профиль":"Введите email"}
-                onChange={handleInputChange}
-              />
+              <div style={{position: "relative", marginBottom: "50px"}}>
+                <input
+                  className='BuyPageInputValue'
+                  placeholder={props.isSteamGift?"Введите ссылку на ваш Steam профиль":"Введите email"}
+                  onChange={handleInputChange}
+                />
+                {props.isSteamGift && (
+                  <button className='BuyPageProfileHint' onClick={() => setIsHinted(true)}>
+                    Где найти?
+                  </button>
+                )}
+              </div>
             )}
             {(profileAvatar || profileName) && (
               <div className='BuyPageProfileInfo'>

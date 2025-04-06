@@ -39,7 +39,6 @@
   outline: none;
   color: #FFFFFF;
   padding: 10px;
-  margin-bottom: 50px;
   font-weight: 900;
   font-size: 16px;
   line-height: 150%;
@@ -152,4 +151,40 @@
     width: 579px;
     text-align: left;
     margin-bottom: 100px;
+}
+
+.BuyPageProfileHint {
+    position: absolute;
+    right: 5px;
+    font-size: 14px;
+    padding: 8px;
+    background: transparent;
+    color: white;
+    border: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.BuyPageProfileHint:hover {
+    cursor: pointer;
+}
+
+.BuyPageHintedOverlay {
+    z-index: 5000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+.BuyPageHintedContent {
+    border-radius: 15px;
+    background-color: #242328;
+    padding: 32px;
+    color: white;
 }
