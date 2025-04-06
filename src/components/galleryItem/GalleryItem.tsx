@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./GalleryItemStyle.css"
 
 type GalleryItemProps = {
@@ -13,9 +13,22 @@ export const GalleryItem = (props: GalleryItemProps) => {
     const openImage = () => {
         setIsZoomed(true)
     }
+
+    const escFunction = useCallback((event: any) => {
+        if (event.key === "Escape") {
+            setIsZoomed(false)
+        }
+    }, []);
+    useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+    
+        return () => {
+          document.removeEventListener("keydown", escFunction, false);
+        };
+    }, [escFunction]);
     return (
         <div className="GalleryItem">
-            <img className='GalleryItemImage' src={props.link} width={150} height={84.5} onClick={openImage}></img>
+            <img className='GalleryItemImage' src={props.link} width={195} height={110} onClick={openImage}></img>
             {isZoomed && (
                 <div className="GalleryItemZoomedOverlay" onClick={()=>{setIsZoomed(false)}}>
                     <div className="GalleryItemZoomedImageContainer">

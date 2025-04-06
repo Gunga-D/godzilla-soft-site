@@ -1,0 +1,31 @@
+.OnSideCarousellControllerButton {
+    z-index: 4;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(21, 23, 30, 0.833);
+    border-radius: 50%;
+    outline: none;
+    border: 1px solid rgb(76, 76, 76);
+    font-size: 14px;
+    color: white;
+    font-weight: 900;
+}
+
+.OnSideCarousellControllerButton:hover {
+    cursor: pointer;
+    background-color: rgb(21, 23, 30);
+}
+
+.OnSideCarousellControllerButtonLeft {
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.OnSideCarousellControllerButtonRight {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+}

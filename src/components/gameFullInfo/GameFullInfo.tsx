@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import './GameFullInfoStyle.css'
 import { ItemDetail } from '../../common/api/item-details/item-detail';
+import ExpandableText from '../expandableText/ExpandableText';
 
 type GameFullInfoProps = {
     item: ItemDetail;
@@ -27,16 +28,16 @@ export const GameFullInfo = ({item}: GameFullInfoProps) => {
                         {item.release_date && <div className='GameFullInfoCharacteristic'><span className='GameFullInfoPoint'>Дата релиза:</span> <span>{item.release_date}</span></div>}
                         <p className='GameFullInfoTypeTitle'>Купить {item.title} {item.type=='gift'?"ПОДАРКОМ":"КЛЮЧОМ"}</p>
                         <p>{item.type=='gift'?`Вы приобретаете игру в ${item.platform}, которую получите ПОДАРКОМ на Ваш аккаунт.`:`Вы приобретаете товар в ${item.platform}, который получите КЛЮЧОМ для активации на платформе.`}</p>
-                        {item.movies && (
+                        {/* {item.movies && (
                             <div className='GameFullInfoMovies'>
                                 {item.movies.map((movie, idx) => (
                                     <video src={movie.video} poster={movie.poster} key={idx} autoPlay={true} className='GameFullInfoMovie' loop={true} muted={true}></video>
                                 ))}
                             </div>
-                        )}
-                        <p className='GameFullInfoFullDescription'>
-                            {item.description}
-                        </p>
+                        )} */}
+                        <div className='GameFullInfoFullDescription'>
+                            <ExpandableText text={item.detailed_description} btnColor='#ff333b' maxLength={300}></ExpandableText>
+                        </div>
                     </div>
                 );
             case 'Активация и доставка':

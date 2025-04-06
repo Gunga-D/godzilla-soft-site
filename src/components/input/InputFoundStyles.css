@@ -71,6 +71,30 @@
     justify-content: start;
 }
 
+.searchBannerItem {
+    padding: 15px;
+    border-bottom: 1px solid #cccccc6b;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+    justify-content: start;
+    align-items: center;
+}
+
+.searchBannerTitle {
+    margin-left: 25px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.searchBannerButton {
+    margin-left: auto;
+    background-color: #ff4d4d;
+    padding: 18px;
+    border-radius: 5px;
+}
+
 .gameItem:last-child {
     border-bottom: none;
 }

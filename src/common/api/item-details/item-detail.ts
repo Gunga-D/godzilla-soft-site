@@ -4,6 +4,7 @@ export type ItemDetail = {
     title: string,
     type: string,
     description: string,
+    detailed_description: string,
     category_id: number,
     platform: string,
     region: string,
@@ -31,5 +32,15 @@ export type ItemDetail = {
         rating: number,
         price: number,
         reviews_count: number
-    }
+    },
+    similar_games?: SimilarGameDTO[]
+}
+
+export type SimilarGameDTO = {
+    id: number,
+    type: string,
+    title: string,
+    category_id: number,
+    thumbnail_url: string,
+    current_price: number
 }

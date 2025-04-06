@@ -39,8 +39,8 @@ export const InputFound = () => {
     };
 
     return (
-        <div className={'inputContainer'}>
-            <div className={'customPlaceholder'} onBlur={onBlurHandler}>
+        <div className={'inputContainer'} onBlur={onBlurHandler}>
+            <div className={'customPlaceholder'}>
                 <svg
                     width="20"
                     height="20"
@@ -73,34 +73,51 @@ export const InputFound = () => {
                         ) : searchResults?.length > 0 ? (
                             <ul className={'gameList'}>
                                 {searchResults.map((game, index) => (
-                                    <li
-                                        className={'gameItem'}
-                                        onMouseDown={() =>
-                                            handleCardClick(game.item_category_id, game.item_title, game.item_id)
-                                        }
-                                        key={index}
-                                    >
-                                        <div>
-                                            <img
-                                                src={game.item_thumbnail_url}
-                                                width={100}
-                                                height={100}
-                                                style={{ borderRadius: '10px' }}
-                                                alt={game.item_title}
-                                            />
-                                        </div>
-                                        <div style={{ marginLeft: '25px' }}>
-                                            <p className={'styledGameName'}>{game.item_title || 'Без названия'}</p>
-                                            <br />
-                                            <p className={'styledPNewPrice'}>{game.item_current_price}</p>
-                                            {game.item_is_for_sale && (
-                                                <p className={'styledPOldPrice'}>{game.item_old_price}</p>
-                                            )}
-                                        </div>
-                                        <div className='SearchItemType'>
-                                            <p>{game.item_type=="gift"?"Гифтом":"Ключом"}</p>
-                                        </div>
-                                    </li>
+                                    <div key={index}>
+                                        {game.suggest_type == "banner" && (
+                                            <li className='searchBannerItem'
+                                                onMouseDown={ () =>
+                                                    router.push(game.banner_url!)
+                                                }
+                                            >
+                                                <div>
+                                                    <img src={game.banner_image} width={100} height={100}
+                                                        style={{ borderRadius: '10px' }}></img>
+                                                </div>
+                                                <p className='searchBannerTitle'>{game.banner_title}</p>
+                                                <div className='searchBannerButton'>Участвовать</div>
+                                            </li>
+                                        )}
+                                        {game.suggest_type == "item" && (
+                                            <li
+                                                className={'gameItem'}
+                                                onMouseDown={() =>
+                                                    handleCardClick(game.item_category_id!, game.item_title!, game.item_id!)
+                                                }
+                                            >
+                                                <div>
+                                                    <img
+                                                        src={game.item_thumbnail_url}
+                                                        width={100}
+                                                        height={100}
+                                                        style={{ borderRadius: '10px' }}
+                                                        alt={game.item_title}
+                                                    />
+                                                </div>
+                                                <div style={{ marginLeft: '25px' }}>
+                                                    <p className={'styledGameName'}>{game.item_title || 'Без названия'}</p>
+                                                    <br />
+                                                    <p className={'styledPNewPrice'}>{game.item_current_price}</p>
+                                                    {game.item_is_for_sale && (
+                                                        <p className={'styledPOldPrice'}>{game.item_old_price}</p>
+                                                    )}
+                                                </div>
+                                                <div className='SearchItemType'>
+                                                    <p>{game.item_type=="gift"?"Гифтом":"Ключом"}</p>
+                                                </div>
+                                            </li>
+                                        )}
+                                    </div>
                                 ))}
                             </ul>
                         ) : (

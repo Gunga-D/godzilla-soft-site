@@ -6,6 +6,10 @@ import { BuyButton } from '../../components/buyButton/BuyButton';
 import { GameFullInfo } from '../../components/gameFullInfo/GameFullInfo';
 import Image from 'next/image';
 import { GalleryItem } from '../../components/galleryItem/GalleryItem';
+import Link from 'next/link';
+import { generateItemPath } from '../../hooks/links';
+import { OnSideCarouselController } from '../../components/onSideCarouselController/OnSideCarouselController';
+import { GalleryMovieItem } from '../../components/galleryMovieItem/GalleryMovieItem';
 
 type GamePageProps = {
     item: ItemDetail;
@@ -18,22 +22,26 @@ const GamePage = ({ item }: GamePageProps) => {
             <div className="container">
                 <div className='StyledGamePageMainSection'>
                     {item.bx_image_url && (
-                      <img
-                        src={item.bx_image_url}
-                        alt=''
-                        width={300}
-                        height={450}
-                        className='StyledGamePageBxImage'
-                      />
+                      <div style={{position: "relative"}}>
+                        <img
+                          src={item.bx_image_url}
+                          alt=''
+                          width={300}
+                          height={450}
+                          className='StyledGamePageBxImage'
+                        />
+                      </div>
                     )}
                     {!item.bx_image_url && (
-                      <img
-                        src={item.thumbnail_url}
-                        alt=''
-                        width={350}
-                        height={350}
-                        className='StyledGamePageBxImage'
-                      />
+                      <div style={{position: "relative"}}>
+                        <img
+                          src={item.thumbnail_url}
+                          alt=''
+                          width={350}
+                          height={350}
+                          className='StyledGamePageBxImage'
+                        />
+                      </div>
                     )}
                     <div className='StyledGamePageInfoContainer'>
                         {item.genres && (
@@ -48,12 +56,20 @@ const GamePage = ({ item }: GamePageProps) => {
                         <h1 className='StyledGamePageGameTitle'>{item.title}</h1>
                         <p className='StyledGamePageGameDescription'>{item.description}</p>
                         {item.bx_gallery_urls && (
-                          <div className='StyledGamePageGalleryContainer'>
-                            {item.bx_gallery_urls.map((gallery_item, idx) => (
-                              <div key={idx} className='StyledGamePageGalleryItem'>
-                                <GalleryItem link={gallery_item}></GalleryItem>
-                              </div>
-                            ))}
+                          <div style={{position: "relative"}}>
+                            <OnSideCarouselController id='game-page-gallery-items'></OnSideCarouselController>
+                            <div className='StyledGamePageGalleryContainer' id='game-page-gallery-items'>
+                              {item.movies?.map((movie, idx) => (
+                                <div key={idx} className='StyledGamePageGalleryItem'>
+                                  <GalleryMovieItem videoLink={movie.video} posterLink={movie.poster}></GalleryMovieItem>
+                                </div>
+                              ))}
+                              {item.bx_gallery_urls.map((gallery_item, idx) => (
+                                <div key={idx} className='StyledGamePageGalleryItem'>
+                                  <GalleryItem link={gallery_item}></GalleryItem>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         )}
                         <div className='StyledGamePageGamePrice'>
@@ -79,6 +95,21 @@ const GamePage = ({ item }: GamePageProps) => {
                     <div className='StyledGamePageYandexMarketBannerInfo'>
                       <p className='StyledGamePageYandexMarketBannerPrice'>{item.yandex_market.price} ₽</p>
                       <p className='StyledGamePageYandexMarketBannerRating'>{item.yandex_market.rating}/5.0 ({item.yandex_market.reviews_count})</p>
+                    </div>
+                  </div>
+                )}
+                {(item.similar_games && item.similar_games.length > 0) && (
+                  <div style={{position: 'relative', marginTop: "50px", paddingLeft: "15px"}}>
+                    <h3 className='StyledGamePageSimilarGamesTitle'>Еще может заинтересовать</h3>
+                    <OnSideCarouselController id={'game-page-similar-games'}></OnSideCarouselController>
+                    <div className='StyledGamePageSimilarGamesContainer' id='game-page-similar-games'>
+                      {item.similar_games.map((similarItem, idx) => (
+                          <Link href={generateItemPath(similarItem.category_id, similarItem.title, similarItem.id)} className='StyledGamePageSimilarGame' key={idx}>
+                            <img className='StyledGamePageSimilarGameThumbnail' src={similarItem.thumbnail_url} width={200} height={200}></img>
+                            <p className='StyledGamePageSimilarGamePrice'>{similarItem.current_price} ₽</p>
+                            <p className='StyledGamePageSimilarGameTitle'>{similarItem.title}</p>
+                          </Link>
+                      ))}
                     </div>
                   </div>
                 )}

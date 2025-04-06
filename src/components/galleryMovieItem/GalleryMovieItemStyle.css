@@ -1,0 +1,26 @@
+.GalleryMovieItemVideo {
+    width: 195px;
+    height: 110px;
+    border-radius: 15px;
+}
+
+.GalleryMovieItemVideo:hover {
+    cursor: pointer;
+}
+
+.GalleryMovieItemZoomedOverlay {
+    z-index: 5000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+.GalleryMovieItemZoomedVideo {
+    border-radius: 15px;
+}

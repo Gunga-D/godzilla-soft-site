@@ -1,0 +1,141 @@
+.steam-roulette-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .roulette-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 40px 0;
+    border: 2px solid #1a1a1a;
+    border-radius: 8px;
+    background-color: #171a21;
+    height: 250px;
+  }
+  
+  .pointer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: #ff4500;
+    z-index: 10;
+  }
+  
+  .pointer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #ff4500;
+  }
+  
+  .roulette {
+    display: flex;
+    padding: 10px 0;
+    will-change: transform;
+    height: 100%;
+  }
+  
+  .game-card {
+    flex: 0 0 auto;
+    width: 200px;
+    margin: 0 10px;
+    background: #2a3f5a;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.3s;
+    height: 250px;
+  }
+  
+  .game-card.winner {
+    box-shadow: 0 0 15px #ff4500;
+    transform: scale(1.05);
+    position: relative;
+  }
+  
+  .game-card.winner::after {
+    content: '★';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: gold;
+    font-size: 20px;
+    text-shadow: 0 0 3px black;
+  }
+  
+  .RouletteGameThumbnail {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .game-name {
+    padding: 8px;
+    font-size: 14px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .RouletteSpinButton {
+    background: #FF333B;
+    color: white;
+    border: none;
+    font-weight: 900;
+    font-size: 36px;
+    width: 579px;
+    height: 65px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+  }
+  
+  .spin-button:hover {
+    background: linear-gradient(to bottom, #5fc7ff 0%, #2a55d8 60%);
+  }
+  
+  .spin-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .result {
+    margin-top: 30px;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 8px;
+  }
+  
+  .selected-game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .selected-game-image {
+    width: 120px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 4px;
+  }
+  
+  .selected-game-name {
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+  }

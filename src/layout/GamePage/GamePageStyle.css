@@ -29,14 +29,19 @@
 }
 
 .StyledGamePageGameDescription {
+    height: 70px; 
+    width: 100%;  
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical; 
     font-weight: 400;
     font-size: 15px;
-    min-height: 90px;
-    line-height: 18px;
     text-align: left;
     color: white;
-    margin-bottom: 20px;
     margin-top: 8px;
+    margin-bottom: 18px;
 }
 
 .StyledGamePageGenresContainer {
@@ -55,6 +60,7 @@
 }
 
 .StyledGamePageGalleryContainer {
+    position: relative;
     width: 100%;
     display: grid;
     grid-auto-flow: column;
@@ -179,4 +185,52 @@
     left: 0;
     background-size: cover;
     background-position: center;
+}
+
+.StyledGamePageSimilarGamesTitle {
+    font-size: 33px;
+    font-weight: 900;
+    color: white;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.StyledGamePageSimilarGamesContainer {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.StyledGamePageSimilarGame {
+    text-decoration: none;
+}
+
+.StyledGamePageSimilarGameThumbnail {
+    border-radius: 15px;
+}
+
+.StyledGamePageSimilarGamePrice {
+    padding-top: 9px;
+    font-size: 21px;
+    font-weight: 900;
+    color: white;
+}
+
+.StyledGamePageSimilarGameTitle {
+    padding-top: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+}
+
+
+.StyledGamePageBxImageRegion {
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
