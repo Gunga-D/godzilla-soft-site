@@ -1,7 +1,7 @@
 .DefaultBannerBannersContainer {
     position: relative;
     width: 1120px;
-    height: 350px;
+    height: 379px;
     overflow: hidden;
 }
 
@@ -15,7 +15,19 @@
 }
 
 .DefaultBannerStyledBannerImage {
+    z-index: 0;
     border-radius: 25px;
+    width: 100%;
+    height: 100%;
+}
+
+.DefaultBannerStyledBackground {
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.58));
 }
 
 .DefaultBannerStyledBannerActive {
@@ -28,8 +40,8 @@
 
 .DefaultBannerButtonDeterm {
     position: absolute;
-    width: 52px;
-    height: 52px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background-color: #e8e8e878;
     color: #222222;
@@ -42,4 +54,35 @@
 
 .DefaultBannerButtonDeterm:hover {
     cursor: pointer;
+}
+
+.DefaultBannerStyledButton {
+    color: white;
+    background-color: #ff333b;
+    padding: 15px 40px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.DefaultBannerStyledDescription {
+    font-size: 16px;
+    color: white;
+    width: 45%;
+    margin-bottom: 40px;
+}
+
+.DefaultBannerStyledContentContainer {
+    z-index: 3;
+    position: absolute;
+    left: 90px;
+    bottom: 45px;
+}
+
+.DefaultBannerStyledBannerLogo {
+    z-index: 3;
+    position: absolute;
+    left: 90px;
+    top: 80px;
 }
