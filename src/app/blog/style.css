@@ -1,0 +1,43 @@
+.BlogMainContainer {
+    width: 100%;
+    padding: 32px;
+    margin-top: 100px;
+}
+
+.BlogMainTitle {
+    font-size: 48px;
+    color: white;
+}
+
+.BlogMainListOfBlogsContainer {
+    padding-top: 30px;
+}
+
+.BlogMainListItem {
+    background-color: rgba(34, 34, 34, 0.509);
+    border-radius: 15px;
+    border: 1px solid rgb(61, 61, 61);
+    width: 30%;
+}
+
+.BlogMainListItemDate {
+    color: white;
+    padding-top: 8px;
+    padding-left: 20px;
+}
+
+.BlogMainListItemTitle {
+    font-size: 21px;
+    font-weight: 900;
+    padding: 15px 20px;
+    padding-top: 8px;
+    text-align: left;
+    color: white;
+}
+
+.BlogMainListItemImage {
+    border-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    max-width: 100%;
+}

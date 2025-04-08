@@ -10,6 +10,7 @@ export const Footer = () => {
         <div className='container'>
             <footer className="footer">
                 <ul className="nav-ul">
+                    <Link href={"/blog"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Блог</li></Link>
                     <Link href={"/catalog"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Каталог</li></Link>
                     <Link href={"/games"} style={{     cursor: 'pointer', textDecoration: 'none'}}> <li className='li-styles'>Игры</li></Link>
                     <Link href={"/deposits"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Пополнение</li></Link>
