@@ -36,4 +36,10 @@
             <changefreq>daily</changefreq>
             <priority>0.8</priority>
         </url>
+        <url>
+            <loc>https://godzillasoft.ru/blog/zelenie-magazin-ili-stoit-li-pokupat-lizenzirovanie-igri</loc>
+            <lastmod>2025-02-18</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>0.8</priority>
+        </url>
     </urlset>
