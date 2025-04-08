@@ -1,0 +1,116 @@
+.BlogPage {
+    width: 100%;
+    padding: 32px;
+    margin-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.616);
+    border-radius: 32px;
+}
+
+.BlogHeaderTitle {
+    color: white;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.BlogPublicationDate {
+    color: rgb(128, 128, 128)
+}
+
+.BlogAccentText {
+    font-size: 21px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+
+.BlogPrimaryText {
+    font-size: 17px;
+    margin-bottom: 25px;
+}
+
+.BlogList {
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+.BlogListItem {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.BlogInteractiveLink {
+    color: rgb(129, 129, 255);
+    text-decoration: underline dashed rgba(129, 129, 255, 0.587);
+}
+
+.BlogInteractiveLink:hover {
+    cursor: pointer;
+    text-decoration: underline dashed rgb(129, 129, 255);
+}
+
+.BlogEmbeddedContent {
+    background-color: rgba(53, 53, 53, 0.284);
+    border: 1px solid rgb(57, 57, 57);
+    border-radius: 15px;
+    margin: 50px 0;
+    padding: 25px 30px;
+}
+
+.BlogEmbeddedContentTitle {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.BlogEmbeddedContentDescription {
+    font-size: 17px;
+}
+
+.BlogContent {
+    margin-bottom: 50px;
+}
+
+.BlogContentPositive {
+    border-radius: 15px;
+    padding: 15px;
+    color: black;
+    background-color: rgb(239, 249, 242);
+}
+
+.BlogContentNegative {
+    border-radius: 15px;
+    padding: 15px;
+    color: black;
+    background-color: rgb(254, 243, 242);
+}
+
+.BlogContentTitle {
+    font-size: 27px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.BlogContentParagraph {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.BlogContentImage {
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 50px;
+}
+
+.BlogItemBuyButton {
+    display: inline-block;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    background-color: red;
+    padding: 8px 32px;
+    font-size: 21px;
+    font-weight: 900;
+}

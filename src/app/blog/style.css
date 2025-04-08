@@ -10,6 +10,10 @@
 }
 
 .BlogMainListOfBlogsContainer {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    align-items: center;
     padding-top: 30px;
 }
 
