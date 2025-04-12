@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { generateItemPath } from '../../hooks/links';
 import { OnSideCarouselController } from '../../components/onSideCarouselController/OnSideCarouselController';
 import { GalleryMovieItem } from '../../components/galleryMovieItem/GalleryMovieItem';
+import { ResolvingMetadata } from 'next';
 
 type GamePageProps = {
     item: ItemDetail;

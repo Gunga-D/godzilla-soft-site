@@ -33,7 +33,8 @@ export type ItemDetail = {
         price: number,
         reviews_count: number
     },
-    similar_games?: SimilarGameDTO[]
+    similar_games?: SimilarGameDTO[],
+    horizontal_image_url?: string
 }
 
 export type SimilarGameDTO = {
