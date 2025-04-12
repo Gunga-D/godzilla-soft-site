@@ -44,9 +44,10 @@ export async function generateMetadata(
     let images = []
     if (item.horizontal_image_url) {
         images.push(item.horizontal_image_url)
+    } else {
+        const previousImages = (await parent).openGraph?.images || []
+        images.push(...previousImages)
     }
-    const previousImages = (await parent).openGraph?.images || []
-    images.push(...previousImages)
 
     return {
       title: `Купить игру ${item.title} в ${item.platform} | GODZILLASOFT`,
