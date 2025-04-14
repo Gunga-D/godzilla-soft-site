@@ -2,13 +2,6 @@
     display: flex;
     flex-direction: row;
 }
-.h2Style {
-    font-style: normal;
-    font-weight: 800;
-    font-size: 40px;
-    line-height: 47px;
-    color: #FFFFFF;
-}
 
 .StyleDiv {
     color: white;
@@ -20,8 +13,41 @@
 }
 
 .CatalogMain {
-    margin-top: 130px;
+    margin-top: 115px;
     width: 100vw;
+}
+
+.CatalogMainBreadcrumbsContainer {
+    padding-bottom: 10px;
+}
+
+.CatalogMainBreadcrumb {
+    color: rgb(147, 147, 147);
+    text-decoration: none;
+}
+
+.CatalogMainBreadcrumb:hover {
+    color: #FF333B;
+}
+
+.CatalogMainBreadcrumbDelimeter {
+    color: rgb(147, 147, 147);
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.CatalogTitle {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 47px;
+    color: #FFFFFF;
+}
+
+.CatalogInnerCatalogWrapper {
+    display: grid;
+    grid-template-columns: 280px 644px;
+    grid-template-rows: auto 1fr auto;
 }
 
 .CatalogItemsCount {
@@ -55,6 +81,7 @@
 }
 
 .CatalogCollectionText {
+    color: white;
     width: 80%;
     position: absolute;
     top: 50%;

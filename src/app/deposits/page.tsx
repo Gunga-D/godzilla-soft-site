@@ -1,9 +1,14 @@
-import {CatalogComponent} from "../../layout/Catalog/Catalog";
+import {Catalog} from "../../layout/Catalog/Catalog";
 
-export default function Deposits() {
+export default async function Deposits({
+    searchParams,
+  }: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  }) {
+    const filters = (await searchParams)
     return (
         <div>
-            <CatalogComponent categoryID={10004} active='deposits'/>
+            <Catalog categoryID={10004} active='deposits' filters={filters}/>
         </div>
     );
 }

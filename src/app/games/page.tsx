@@ -1,11 +1,14 @@
-import {CatalogComponent} from "../../layout/Catalog/Catalog";
+import {Catalog} from "../../layout/Catalog/Catalog";
 
-export default function Games() {
-    const categoryID = 10001
-
+export default async function Page({
+    searchParams,
+  }: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  }) {
+    const filters = (await searchParams)
     return (
         <div>
-            <CatalogComponent categoryID={categoryID} active='games'/>
+            <Catalog categoryID={10001} active='games' filters={filters}/>
         </div>
     );
 }

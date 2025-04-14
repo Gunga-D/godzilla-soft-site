@@ -1,9 +1,14 @@
-import {CatalogComponent} from "../../layout/Catalog/Catalog";
+import {Catalog} from "../../layout/Catalog/Catalog";
 
-export default function Subscription() {
+export default async function Page({
+    searchParams,
+  }: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  }) {
+    const filters = (await searchParams)
     return (
         <div>
-            <CatalogComponent categoryID={10002} active='subscriptions'/>
+            <Catalog categoryID={10002} active='subscriptions' filters={filters}/>
         </div>
     );
 }
