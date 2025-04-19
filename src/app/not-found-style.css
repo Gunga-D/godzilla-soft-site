@@ -1,0 +1,33 @@
+.NotFoundPage {
+    margin-top: 115px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 50px 25px;
+    border-radius: 8px;
+}
+
+.NotFoundPageTitle {
+    text-align: center;
+    color: black;
+}
+
+.NotFoundPageDesc {
+    text-align: center;
+    color: rgb(90, 90, 90);
+}
+
+.NotFoundPageArt {
+    text-align: center;
+}
+
+.NotFoundReturn {
+    text-align: center;
+}
+
+.NotFoundReturnBtn {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ff333b;
+    color: white;
+    border-radius: 4px;
+}

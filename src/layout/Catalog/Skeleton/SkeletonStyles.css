@@ -1,0 +1,60 @@
+.SkeletonCatalog {
+    margin-top: 115px;
+    width: 100%;
+    height: 80vh;
+    position: relative;
+}
+
+.SkeletonCatalogBody {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.SkeletonCatalogLoaderContainer {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.SkeletonCatalogLoader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+    border: 3px solid;
+    border-color:#ff333b #0000 #fff #0000;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: 1s rotate linear infinite;
+}
+
+.SkeletonCatalogLoader:before , .SkeletonCatalogLoader:after{
+    content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+    border: 10px solid transparent;
+    border-bottom-color:#fff;
+    transform: translate(-10px, 19px) rotate(-35deg);
+}
+
+.SkeletonCatalogLoader:after {
+    border-color: #ff333b #0000 #0000 #0000 ;
+    transform: translate(32px, 3px) rotate(-35deg);
+}
+@keyframes rotate {
+    100%{    transform: rotate(360deg)}
+}
+
+.SkeletonCatalogTitle {
+    text-align: center;
+    color: white;
+}
+
+.SkeletonCatalogDescription {
+    text-align: center;
+    font-size: 14px;
+    color: rgb(196, 196, 196);
+}

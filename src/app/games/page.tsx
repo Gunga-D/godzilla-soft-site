@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import {Catalog} from "../../layout/Catalog/Catalog";
+import { SkeletonCatalog } from "../../layout/Catalog/Skeleton/Skeleton";
 
 export default async function Page({
     searchParams,
@@ -8,11 +10,15 @@ export default async function Page({
     const filters = (await searchParams)
     return (
         <div>
-            {/* @ts-expect-error Server Component */}
-            <Catalog categoryID={10001} categoryNameSEO="Купить игру на ПК"
-                categoryItemsNumber={305}
-                categoryBreadcrumbName="Игры" categoryBreadcrumbLink="/games?type=gift&category=popular"  
-                filters={filters}/>
+            <Suspense fallback={
+                <SkeletonCatalog></SkeletonCatalog>
+            }>
+                {/* @ts-expect-error Server Component */}
+                <Catalog categoryID={10001} categoryNameSEO="Купить игру на ПК"
+                    categoryItemsNumber={305}
+                    categoryBreadcrumbName="Игры" categoryBreadcrumbLink="/games?type=gift&category=popular"  
+                    filters={filters}/>
+            </Suspense>
         </div>
     );
 }
