@@ -4,6 +4,7 @@ import "./OnSideCarouselControllerStyle.css"
 
 type OnSideCarouselControllerProps = {
     id: string,
+    offset?: number
 }
 
 export const OnSideCarouselController = (props: OnSideCarouselControllerProps) => {
@@ -23,10 +24,18 @@ export const OnSideCarouselController = (props: OnSideCarouselControllerProps) =
             behavior: "smooth",
         });
     }
+    let offset = '-20px' 
+    if (props.offset !== undefined) {
+        offset = `${props.offset}px`
+    }
     return (
         <div>
-            <button onClick={leftSide} className="OnSideCarousellControllerButton OnSideCarousellControllerButtonLeft">❮</button>
-            <button onClick={rightSide} className="OnSideCarousellControllerButton OnSideCarousellControllerButtonRight">❯</button>
+            <button onClick={leftSide} className="OnSideCarousellControllerButton OnSideCarousellControllerButtonLeft" style={{
+                left: offset
+            }}>❮</button>
+            <button onClick={rightSide} className="OnSideCarousellControllerButton OnSideCarousellControllerButtonRight" style={{
+                right: offset
+            }}>❯</button>
         </div>
     )
 }

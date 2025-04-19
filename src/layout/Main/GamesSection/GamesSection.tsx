@@ -9,10 +9,10 @@ export const GamesSection = () => {
                 <h2 className="GamesSectionTitle">🎮 Игры <span style={{color: "#ffffffb2"}}>2 000+</span></h2>
                 <div className="GamesSectionGameTypeContainer">
                     <div className="GamesSectionGameType">
-                        <Link href={{pathname: "/games", query: {"subcatalog": "key"}}} style={{color: "white", textDecoration: "none"}}>Ключи</Link>
+                        <Link href={{pathname: "/games", query: {"type": "key", "category": "popular"}}} style={{color: "white", textDecoration: "none"}}>Ключи</Link>
                     </div>
                     <div className="GamesSectionGameType">
-                        <Link href={{pathname: "/games", query: {"subcatalog": "gift"}}} style={{color: "white", textDecoration: "none"}}>Гифты</Link>
+                        <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} style={{color: "white", textDecoration: "none"}}>Гифты</Link>
                     </div>
                 </div>
             </div>

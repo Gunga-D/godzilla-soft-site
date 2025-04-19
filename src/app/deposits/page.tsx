@@ -8,7 +8,11 @@ export default async function Deposits({
     const filters = (await searchParams)
     return (
         <div>
-            <Catalog categoryID={10004} active='deposits' filters={filters}/>
+            {/* @ts-expect-error Server Component */}
+            <Catalog categoryID={10004} categoryNameSEO="Пополнение App Store | Steam" 
+                categoryItemsNumber={6}
+                categoryBreadcrumbName="Пополнения" categoryBreadcrumbLink="/deposits"  
+                filters={filters}/>
         </div>
     );
 }

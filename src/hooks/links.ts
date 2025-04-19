@@ -19,9 +19,9 @@ const a: { [key: string]: string } = {
     return null
   }
   
-  export function generatePathValue(title: string, itemID: number): string {
+  export function generatePathValue(title: string, id: number): string {
     const itemName = transliterate(title)
-    return `${itemName?.replaceAll(" ", "_")}_${itemID}`
+    return `${itemName?.replaceAll(" ", "_")}_${id}`
   }
   
   export function generateItemPath(categoryID: number, title: string, itemID: number): string {
@@ -38,5 +38,21 @@ const a: { [key: string]: string } = {
         break
     }
     return `/${catalogPath}/${generatePathValue(title, itemID)}`
+  }
+
+  export function generateCollectionPath(categoryID: number, title: string, collectionID: number): string {
+    let catalogPath = ""
+    switch (categoryID) {
+      case 10001:
+        catalogPath = "games"
+        break
+      case 10002:
+        catalogPath = "subscriptions"
+        break
+      case 10004:
+        catalogPath = "deposits"
+        break
+    }
+    return `/${catalogPath}/collection/${generatePathValue(title, collectionID)}`
   }
   

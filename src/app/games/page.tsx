@@ -8,7 +8,11 @@ export default async function Page({
     const filters = (await searchParams)
     return (
         <div>
-            <Catalog categoryID={10001} active='games' filters={filters}/>
+            {/* @ts-expect-error Server Component */}
+            <Catalog categoryID={10001} categoryNameSEO="Купить игру на ПК"
+                categoryItemsNumber={305}
+                categoryBreadcrumbName="Игры" categoryBreadcrumbLink="/games?type=gift&category=popular"  
+                filters={filters}/>
         </div>
     );
 }
