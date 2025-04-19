@@ -1,0 +1,19 @@
+.CatalogPaginationContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.CatalogPaginationButton {
+    cursor: pointer;
+    padding: 8px 14px;
+    background-color: #FF333B;
+    border: 0;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.CatalogPaginationButtonRight {
+    margin-left: auto;
+}

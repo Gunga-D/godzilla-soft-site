@@ -44,7 +44,7 @@ export const BaseSection = async (props: BaseSectionProps) => {
                     <div className="StyledBaseSectionMoreItemsShadow"></div>
                     <div className="StyledBaseSectionMoreItemsShadow"></div>
                     <div className="StyledBaseSectionMoreItems">
-                        <Link href={"/games"} style={{textDecoration: "none", color: "white"}}>Больше→</Link>
+                        <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} style={{textDecoration: "none", color: "white"}}>Больше→</Link>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,115 @@
+.CatalogInnerFiltersFilter {
+    margin-bottom: 16px;
+}
+
+.CatalogInnerFiltersFilterLabel {
+    margin-bottom: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.CatalogInnerFiltersFilterVariantsContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.CatalogInnerFiltersFilterVariantsContainer input[type="radio"] {
+    display: none;
+}
+
+.CatalogInnerFiltersFilterVariantInput, .CatalogInnerFiltersFilterVariantLabel {
+    display: inline-block;
+    background-color: #252525;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.CatalogInnerFiltersFilterVariantInputActive, .CatalogInnerFiltersFilterVariantLabelActive {
+    display: inline-block;
+    background-color: #FF333B;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.CatalogInnerFiltersFilterVariantsContainer input[type="radio"]:checked+label {
+    background-color: #FF333B;
+}
+
+.CatalogInnerFiltersFilterNumericRoot {
+    display: flex;
+    gap: 6px;
+}
+
+.CatalogInnerFiltersFilterNumericInputContainer {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.CatalogInnerFiltersFilterNumericInput {
+    padding: 10px 9px 12px 15px;
+    font-size: 16px;
+    width: 100%;
+    height: 44px;
+    border-radius: 8px;
+    border: 0;
+}
+
+.CatalogInnerFiltersFilterNumericInput:focus {
+    box-sizing: border-box;
+    outline: 0;
+    border: 1px solid #FF333B;
+}
+
+.CatalogInnerFiltersFilterToggleContainer {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start;
+    margin-top: 12px;
+}
+
+.CatalogInnerFiltersFilterToggleInput {
+    width: 21px;
+    height: 21px;
+    accent-color: #FF333B;
+}
+
+.CatalogInnerFiltersFilterToggleText {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    margin-left: 12px;
+}
+
+.CatalogInnerFiltersSubmitBtnContainer {
+    width: 260px;
+    position: sticky;
+    bottom: 0;
+    padding: 18px 0;
+    box-sizing: content-box;
+}
+
+.CatalogInnerFiltersSubmitBtn {
+    width: 100%;
+    padding: 12px 5px;
+    background-color: #FF333B;
+    border: 0;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    outline: 0;
+    cursor: pointer;
+}

@@ -32,27 +32,32 @@ export const MoreGames = () => {
                     <Link href={generateItemPath(item.category_id, item.title, item.id)} key={index} style={{textDecoration: "none"}}>
                         <div className='MoreGamesItemContainer'>
                             <div className='MoreGamesItemThumbnailContainer'>
-                                <img src={item.thumbnail_url} alt='ItemThumbnail' width={180} height={180} className='MoreGamesItemThumbnail'></img>
+                                <img src={item.thumbnail_url} alt='ItemThumbnail' width={150} height={150} className='MoreGamesItemThumbnail'></img>
                             </div>
                             <div className='MoreGamesItemInfo'>
                                 <h2 className='MoreGamesItemTitle'>{item.title}</h2>
-                                <p className='MoreGamesItemRegion'>Регион акт: {item.region}</p>
-                                <p className='MoreGamesItemPlatform'>Платформа: {item.platform}</p>
+                                <div className="MoreGamesItemBadgeBar">
+                                    {item.genres?.map((badge, badgeIdx) => (
+                                        <div className="MoreGamesItemBadge" key={badgeIdx}>
+                                            {badge}
+                                        </div>
+                                    ))}
+                                </div>
+                                {item.release_date && (
+                                    <p className="MoreGamesItemReleaseDate">
+                                        Дата выхода: {item.release_date}
+                                    </p>
+                                )}
                             </div>
                             <div className='MoreGamesItemActions'>
                                 <div className='MoreGamesItemPrice'>
                                     {item.current_price} ₽
                                 </div>
-                                <div className='MoreGamesItemBuy'>
-                                    Купить
-                                </div>
                             </div>
                         </div>
                     </Link>
                 ))}
-                <div className='MoreGamesLinkToCategory'>
-                    <Link href={"/games"} style={{textDecoration: "none", color: "white"}}>Показать еще</Link>
-                </div>
+                <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} style={{textDecoration: "none", color: "white"}} className='MoreGamesLinkToCategory'>Показать еще</Link>
             </div>
         </div>
     );

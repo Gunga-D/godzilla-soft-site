@@ -47,7 +47,7 @@ const GamePage = ({ item }: GamePageProps) => {
                     <div className='StyledGamePageInfoContainer'>
                         {item.genres && (
                           <div className='StyledGamePageGenresContainer'>
-                            {item.genres.map((genre, idx) => (
+                            {item.genres.filter((_, index) => index < 4).map((genre, idx) => (
                               <div key={idx} className='StyledGamePageGenre'>
                                 {genre}
                               </div>
@@ -55,7 +55,7 @@ const GamePage = ({ item }: GamePageProps) => {
                           </div>
                         )}
                         <h1 className='StyledGamePageGameTitle'>{item.title}</h1>
-                        <p className='StyledGamePageGameDescription'>{item.description}</p>
+                        <p className={'StyledGamePageGameDescription'}>{item.description}</p>
                         {item.bx_gallery_urls && (
                           <div style={{position: "relative"}}>
                             <OnSideCarouselController id='game-page-gallery-items'></OnSideCarouselController>
@@ -102,7 +102,9 @@ const GamePage = ({ item }: GamePageProps) => {
                 {(item.similar_games && item.similar_games.length > 0) && (
                   <div style={{position: 'relative', marginTop: "50px", paddingLeft: "15px"}}>
                     <h3 className='StyledGamePageSimilarGamesTitle'>Еще может заинтересовать</h3>
-                    <OnSideCarouselController id={'game-page-similar-games'}></OnSideCarouselController>
+                    {item.similar_games.length > 5 && (
+                      <OnSideCarouselController id={'game-page-similar-games'}></OnSideCarouselController>
+                    )}
                     <div className='StyledGamePageSimilarGamesContainer' id='game-page-similar-games'>
                       {item.similar_games.map((similarItem, idx) => (
                           <Link href={generateItemPath(similarItem.category_id, similarItem.title, similarItem.id)} className='StyledGamePageSimilarGame' key={idx}>
@@ -121,38 +123,3 @@ const GamePage = ({ item }: GamePageProps) => {
 };
 
 export default GamePage;
-
-// const Background = styled.div<{ $backgroundUrl?: string; $hasBackground: boolean }>`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   background-image: ${({ $backgroundUrl }) => ($backgroundUrl ? `url(${$backgroundUrl})` : 'none')};
-//   background-size: cover;
-//   background-position: center;
-//   z-index: 0;
-
-//   &::before {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background: rgba(0, 0, 0, 0.5);
-//     z-index: 2;
-//     display: ${({ $hasBackground }) => ($hasBackground ? 'block' : 'none')};
-//   }
-
-//   &::after {
-//     content: '';
-//     position: absolute;
-//     bottom: -10px;
-//     left: 0;
-//     width: 100%;
-//     height: 80px;
-//     backdrop-filter: blur(2px);
-//     z-index: 3;
-//   }
-// `;

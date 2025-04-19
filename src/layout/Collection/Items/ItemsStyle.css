@@ -1,0 +1,57 @@
+.CollectionItemsContainer {
+    padding: 24px;
+    background: rgba(63, 66, 74, 1);
+}
+
+.CollectionItemsTitle {
+    color: white;
+    margin: 0 0 10px;
+}
+
+.CollectionItemsDesc {
+    display: inline-block;
+    font-weight: 300;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 16px;
+    color: #c6d4df;
+    border-radius: 4px;
+}
+
+.CollectionListItemsContainer {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.CollectionItem {
+    display: block;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px;
+    text-decoration: none;
+}
+
+.CollectionItemThumbnail {
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+}
+
+.CollectionItemTitle {
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    width: 150px;
+    max-height: 16.5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.CollectionItemPrice {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}

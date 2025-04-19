@@ -6,9 +6,10 @@ export const catalogApi = {
     async getItems(categoryId: number, filters: {
         min_price?: string;
         max_price?: string;
-        platform?: string;
-        region?: string;
-        isSteamGift?: boolean
+        platform?: string | string[];
+        region?: string | string[];
+        isSteamGift?: boolean,
+        popular?: boolean,
     }, limit?: number, offset?: number, randomOrder?: boolean): Promise<CatalogItem[]> {
         const queryParams = new URLSearchParams();
         let requestUrl
@@ -19,13 +20,22 @@ export const catalogApi = {
             queryParams.append('max_price', filters.max_price);
         }
         if (filters.platform) {
-            queryParams.append('platform', filters.platform);
+            queryParams.append('platform', String(filters.platform));
         }
         if (filters.region) {
-            queryParams.append('region', filters.region);
+            const regionParam = String(filters.region)
+            let regions = regionParam.split(";")
+            regions.forEach((v, idx, arr) => {
+                arr[idx] = encodeURIComponent(v);
+            })
+            
+            queryParams.append('region', regions.join(";"));
         }
         if (filters.isSteamGift) {
             queryParams.append('steam_gift', "true");
+        }
+        if (filters.popular) {
+            queryParams.append('popular', "1");
         }
         if (randomOrder) {
             queryParams.append('random', '1')

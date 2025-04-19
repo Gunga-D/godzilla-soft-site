@@ -23,7 +23,7 @@ export const MainSection = () => {
                         <p className="MainSectionStyledRubricatorItemDescription">Не знаешь, во что сыграть?</p>
                     </div>
                 </Link>
-                <Link href="/games" className="MainSectionStyledRubricatorItemLink">
+                <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} className="MainSectionStyledRubricatorItemLink">
                     <div className="MainSectionStyledRubricatorItem">
                         <h2 className="MainSectionStyledRubricatorItemEmoji">🎮</h2>
                         <h2 className="MainSectionStyledRubricatorItemTitle">Игры</h2>
