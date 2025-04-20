@@ -44,9 +44,9 @@ export const GameFullInfo = ({item}: GameFullInfoProps) => {
                 return (
                     <div>
                         <h3>Инструкция по использованию товара:</h3>
-                        <p
+                        <div
                             dangerouslySetInnerHTML={{
-                                __html: item.slip ? item.slip.replace(/\n/g, '<br />') : 'Информация отсутствует',
+                                __html: item.slip ? item.slip : 'Информация отсутствует',
                             }}
                         />
                     </div>

@@ -80,3 +80,37 @@
     font-weight: 900;
     padding-top: 12px;
 }
+
+.BxItemInstruction {
+    counter-reset: counter;
+    padding: 15px;
+}
+
+.BxItemInstruction li {
+    list-style: none;
+    line-height: 1.5;
+    padding-left: 40px;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.BxItemInstruction li:before {
+    content: counter(counter);
+    counter-increment: counter;
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ff333b;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 13px;
+}
