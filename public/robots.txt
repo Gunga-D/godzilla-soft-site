@@ -1,3 +1,3 @@
 User-agent: *
 Disallow: /redirect
-Sitemap: https://godzillasoft.ru/sitemap.xml
+Sitemap: https://api.godzillasoft.ru/v1/sitemap.xml
