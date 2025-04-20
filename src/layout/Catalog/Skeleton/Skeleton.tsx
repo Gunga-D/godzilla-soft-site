@@ -1,6 +1,6 @@
 import "./SkeletonStyles.css"
 
-export const SkeletonCatalog = async () => {
+export const SkeletonCatalog = () => {
     return (
         <div className='SkeletonCatalog'>
             <div className="SkeletonCatalogBody">

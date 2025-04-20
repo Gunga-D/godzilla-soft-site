@@ -11,8 +11,7 @@ export default async function Page({
     return (
         <div>
             <Suspense fallback={
-                {/* @ts-expect-error Server Component */}
-                <SkeletonCatalog></SkeletonCatalog>
+               <SkeletonCatalog></SkeletonCatalog>
             }>
                 {/* @ts-expect-error Server Component */}
                 <Catalog categoryID={10002} categoryNameSEO="Подписки на сервисы" 

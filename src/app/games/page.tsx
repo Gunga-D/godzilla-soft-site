@@ -11,7 +11,6 @@ export default async function Page({
     return (
         <div>
             <Suspense fallback={
-                {/* @ts-expect-error Server Component */}
                 <SkeletonCatalog></SkeletonCatalog>
             }>
                 {/* @ts-expect-error Server Component */}
