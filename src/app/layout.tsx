@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `/`,
     },
+    verification: {
+        google: "yBdanPfHhKzurKwvOXJNkJ_QQkxMY39qqx5xT3XowqA",
+        yandex: "123e61a415af07fb"
+    }
 }
 
 interface RootLayoutProps {
