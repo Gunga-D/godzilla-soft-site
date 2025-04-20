@@ -11,6 +11,7 @@ export default async function Deposits({
     return (
         <div>
             <Suspense fallback={
+                {/* @ts-expect-error Server Component */}
                 <SkeletonCatalog></SkeletonCatalog>
             }>
                 {/* @ts-expect-error Server Component */}
