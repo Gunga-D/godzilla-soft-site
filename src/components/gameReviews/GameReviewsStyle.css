@@ -1,0 +1,113 @@
+.GameReviewsTitle {
+    color: white;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.GameReviewsSubtitle {
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.GameReviewsMark {
+    font-weight: 900;
+    font-size: 21px;
+}
+
+.GameReviewPostReviewContainer {
+    padding-top: 5px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.GameReviewPostReviewTitle {
+    margin-bottom: 8px;
+}
+
+.GameReviewPostReviewSendBtn {
+    border: none;
+    border-radius: 5px;
+    background-color: #ff333b;
+    padding: 5px 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.GameReviewPostReviewFooter {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.GameReviewPostReviewStar {
+    cursor: pointer;
+    color: #ccc;
+    margin-right: 5px;
+    transition: color 0.2s;
+}
+  
+.GameReviewPostReviewStar.filled {
+    color: #ff333b;
+}
+
+.GameReviewPostReviewTextArea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 40px;
+    transition: border-color 0.3s;
+}
+
+.GameReviewPostReviewTextArea:focus {
+    outline: none !important;
+}
+
+.GameReviewsContainer {
+    color: white;
+}
+
+.GameReview {
+    display: grid;
+    grid-template-columns: 46px 1fr 1fr;
+    grid-template-rows: auto;
+    row-gap: 0;
+    column-gap: 12px;
+    margin-bottom: 15px;
+}
+
+.GameReviewAvatar {
+    font-size: 40px;
+}
+
+.GameReviewHeaderDateCommented {
+    padding-top: 4px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: #fff;
+    opacity: .5;
+    line-height: 1;
+}
+
+.GameReviewHeaderUsernameCommented {
+    letter-spacing: .04em;
+    font-size: 18px;
+    color: #ff333b;
+    line-height: 1.2;
+}
+
+.GameReviewAsideHeader {
+    text-align: right;
+}
+
+.GameReviewBody {
+    grid-column: 2 / 4;
+    word-wrap: break-word;
+}

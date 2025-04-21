@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from 'react';
 import {DefaultBanner} from "../../../components/defaultBanner/DefaultBanner";
 import './MainSectionStyle.css'

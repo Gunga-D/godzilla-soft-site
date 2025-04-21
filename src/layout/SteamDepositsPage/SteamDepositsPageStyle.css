@@ -1,0 +1,179 @@
+.SteamDepositsH1 {
+    font-size: 55px;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 200px;
+
+
+    color: #FF333B;
+}
+
+.SteamDepositsPageStyled {
+    display: flex;
+    justify-content: space-between;
+    
+    color: #ffffff;
+    padding: 20px;
+}
+
+.SteamDepositsContainer {
+    max-width: 1150px;
+    width: 100%;
+    min-height: 100%;
+    padding: 0 15px;
+    position: relative;
+    bottom: 0;
+}
+
+.SteamDepositsPageStyledLeftColumn {
+    width: 55%;
+    text-align: left;
+}
+
+.SteamDepositsPageStyledRightColumn {
+    width: 45%;
+    margin-top: 0;
+    padding-left: 60px;
+    text-align: left;
+}
+
+.SteamDepositsPageStyledDescription {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.SteamDepositsPageStyledText {
+    font-size: 17px;
+    padding-bottom: 10px;
+}
+
+.SteamDepositsPageStyledSection {
+    margin: 20px 0;
+}
+
+.SteamDepositsPageStyledLabel {
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.SteamDepositsPageStyledInputContainer {
+    position: relative;
+    width: 80%;
+}
+
+.SteamDepositsPageStyledInput {
+    &&::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0; 
+    }
+    width: 100%;
+    &::placeholder {
+      color: #FFFFFF;
+      opacity: 0.5;
+    }
+    height: 56px;
+    background: rgba(44, 43, 43, 0.9);
+    backdrop-filter: blur(3px);
+    border: 2px solid #a6a6a6;
+    border-radius: 5px;
+    outline: none;
+    color: #FFFFFF;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 150%;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  
+    &:focus {
+      border-color: #FFFFFF;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.SteamDepositsPageStyledQuestion {
+    position: absolute;
+    right: 15px;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #FFFFFF;
+    opacity: 0.5;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+    border-radius: 50%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+.SteamDepositsPageStyledPaymentDetails {
+    width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+
+  div {
+    &::placeholder {
+      color: #FFFFFF;
+      opacity: 0.5;
+    }
+
+    width: 450px;
+    height: 56px;
+    background: rgba(44, 43, 43, 0.9);
+    backdrop-filter: blur(3px);
+    border: 2px solid #a6a6a6;
+    border-radius: 5px;
+    outline: none;
+    color: rgba(255, 255, 255, 0.84);
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: 900;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    line-height: 150%;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:focus {
+      border-color: #FFFFFF;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.SteamDepositsPageStyledSmallText {
+    font-size: 13px;
+}
+
+.SteamDepositsPageStyledFooter {
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.SteamDepositsPageStyledSubmitBtn {
+    padding: 20px;
+    background-color: #FF333B;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    font-weight: 900;
+    font-size: 21px;
+    &:hover {
+      background-color: #ff4757;
+    }
+}
+
+.SteamDepositsPageStyledErr {
+    font-size: 13px;
+    color: red;
+}

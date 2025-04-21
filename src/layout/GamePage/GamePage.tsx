@@ -11,6 +11,7 @@ import { generateItemPath } from '../../hooks/links';
 import { OnSideCarouselController } from '../../components/onSideCarouselController/OnSideCarouselController';
 import { GalleryMovieItem } from '../../components/galleryMovieItem/GalleryMovieItem';
 import { ResolvingMetadata } from 'next';
+import { GameReviews } from '../../components/gameReviews/GameReviews';
 
 type GamePageProps = {
     item: ItemDetail;
@@ -99,6 +100,8 @@ const GamePage = ({ item }: GamePageProps) => {
                     </div>
                   </div>
                 )}
+                <GameReviews itemID={item.id}></GameReviews>
+                <BuyPage itemID={item.id} isSteamGift={item.type=="gift"}/>
                 {(item.similar_games && item.similar_games.length > 0) && (
                   <div style={{position: 'relative', marginTop: "50px", paddingLeft: "15px"}}>
                     <h3 className='StyledGamePageSimilarGamesTitle'>Еще может заинтересовать</h3>
@@ -116,7 +119,6 @@ const GamePage = ({ item }: GamePageProps) => {
                     </div>
                   </div>
                 )}
-                <BuyPage itemID={item.id} isSteamGift={item.type=="gift"}/>
             </div>
         </div>
     );
