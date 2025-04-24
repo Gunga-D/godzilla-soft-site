@@ -1,0 +1,293 @@
+.SuggestIntro {
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    margin: auto;
+    padding: 0px 64px;
+    color: white;
+}
+
+.SuggestHeader {
+    display: flex;
+    align-items: center;
+}
+
+.SuggestLogoContainer {
+    margin-right: 5px;
+}
+
+.SuggestTitle {
+    font-weight: 600;
+}
+
+.SuggestDesc {
+    font-weight: 300;
+    font-size: 16px;
+    text-align: center;
+}
+
+.SuggestSearchContainer {
+    margin-top: 20px;
+    border-color: rgb(83, 110, 140);
+    width: 100%;
+    cursor: text;
+    box-sizing: border-box;
+    background-color: #292a2d;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.289);
+    padding: 20px;
+}
+
+.SuggestSearchInnerWrapper {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+.SuggestSearchInput {
+    resize: none;
+    color: rgb(245, 245, 245);
+    caret-color: rgb(245, 245, 245);
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    position: absolute;
+    font-size: inherit;
+    line-height: inherit;
+    word-break: break-word;
+    width: 100%;
+    font-family: inherit;
+    display: block;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.SuggestSearchFooterInnerWrapper {
+    width: 100%;
+    margin-top: 4px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.SuggestSearchToMainLink {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #626262;
+    background: none;
+    border-radius: 12px;
+}
+
+.SuggestSearchSendButtonContainer {
+    margin-left: auto;
+}
+
+.SuggestSearchSendButton {
+    outline: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgb(113 113 122);
+    border: 0;
+    color: rgb(75, 75, 91);
+    cursor: pointer;
+}
+
+.SuggestLoaderContainer {
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    margin: auto;
+    padding: 0px 64px;
+    color: white;
+}
+
+.SuggestLoaderText {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    display:inline-block;
+    font-family: monospace;
+    font-size: 30px;
+    clip-path: inset(0 3ch 0 0);
+    animation: l 1s steps(4) infinite;
+    animation: l-pointer 1s steps(4) infinite;
+}
+
+@keyframes l-pointer {
+    to {
+      clip-path: inset(0 -1ch 0 0)
+    }
+}
+
+.SuggestLoader {
+    font-size:48px;
+    color: #FFF;
+    width: 1em;
+    height: 1em;
+    box-sizing: border-box;
+    background-color: currentcolor;
+    position: relative;
+    border-radius: 50%;
+    transform: rotateX(-60deg) perspective(1000px);
+  }
+  .SuggestLoader:before,
+  .SuggestLoader:after {
+    content: '';
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    animation: flowerFlow 1s ease-out infinite;
+  }
+  .SuggestLoader:after {
+    animation-delay: .4s;
+  }
+
+  @keyframes flowerFlow {
+    0% {
+      opacity: 1;
+      transform: rotate(0deg);
+      box-shadow: 0 0 0 -.5em currentcolor,
+      0 0 0 -.5em currentcolor,
+      0 0 0 -.5em currentcolor,
+      0 0 0 -.5em currentcolor,
+      0 0 0 -.5em currentcolor,
+      0 0 0 -.5em currentcolor,
+      0 0 0 -.5em currentcolor,
+      0 0 0 -.5em currentcolor;
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(180deg);
+      box-shadow: -1em -1em 0 -.35em currentcolor,
+      0 -1.5em 0 -.35em currentcolor,
+      1em -1em 0 -.35em currentcolor,
+      -1.5em 0 0 -.35em currentcolor,
+      1.5em -0 0 -.35em currentcolor,
+      -1em 1em 0 -.35em currentcolor,
+      0 1.5em 0 -.35em currentcolor,
+      1em 1em 0 -.35em currentcolor;
+    }
+  }
+
+  .SuggestResultContainer {
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+    margin: auto;
+    padding: 0px 64px;
+    color: white;
+  }
+  
+  .SuggestResultMessageContainer {
+    margin-top: 100px;
+    display: flex;
+  }
+
+  .SuggestResultMessage {
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: rgb(65, 65, 88);
+  }
+
+  .SuggestResultMsgAvatar {
+    margin-right: 8px;
+  }
+
+  .SuggestItemsContainer {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .SuggestItem {
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid #cccccc6b;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+    justify-content: start;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .SuggestItemTitle {
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    text-align: left;
+    width: auto;
+    padding-bottom: 5px;
+  }
+
+  .SuggestItemPrice {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    padding-bottom: 5px;
+    color: #fff;
+  }
+
+  .SuggestItemGenres {
+    margin-left: 25px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .SuggestItemGenre {
+    color: white;
+    padding: 3px 8px;
+    font-size: 12px;
+    background-color: #444444;
+  }
+
+  .SuggestItemType {
+    color: rgba(255, 255, 255, 0.477);
+    padding-top: 8px;
+    font-size: 12px;
+    margin-left: 25px;
+  }
+
+  .SuggestRepeatBtnContainer {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .SuggestRepeatBtn {
+    width: 100%;
+    padding: 15px 30px;
+    background-color: #ff4d4d;
+    font-weight: 900;
+    font-size: 18px;
+    cursor: pointer;
+    border: 0;
+    color: white;
+  }

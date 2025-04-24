@@ -10,7 +10,6 @@ import Link from 'next/link';
 import { generateItemPath } from '../../hooks/links';
 import { OnSideCarouselController } from '../../components/onSideCarouselController/OnSideCarouselController';
 import { GalleryMovieItem } from '../../components/galleryMovieItem/GalleryMovieItem';
-import { ResolvingMetadata } from 'next';
 import { GameReviews } from '../../components/gameReviews/GameReviews';
 
 type GamePageProps = {
@@ -18,11 +17,35 @@ type GamePageProps = {
 };
 
 const GamePage = ({ item }: GamePageProps) => {
+    let categoryBreadcrumbName = "Неизвестно"
+    let categoryBreadcrumbLink = "/"
+    switch (item.category_id) {
+      case 10001:
+        categoryBreadcrumbName = "Игры"
+        categoryBreadcrumbLink = "/games?type=gift&category=popular"
+        break
+      case 10002:
+        categoryBreadcrumbName = "Подписки"
+        categoryBreadcrumbLink = "/subscriptions"
+        break
+      case 10004:
+        categoryBreadcrumbName = "Пополнения"
+        categoryBreadcrumbLink = "/deposits"
+        break
+    }
+
     return (
         <div>
             <div className='StyledGamePageMainBackground' style={{backgroundImage: item.background_url ? `linear-gradient(to top, rgb(21, 23, 30) 5%, transparent 100%), url(${item.background_url})` : 'none'}}></div>
             <div className="container">
                 <div className='StyledGamePageMainSection'>
+                    <div className='StyledGamePageBreadcrumbs' itemType="http://schema.org/BreadcrumbList">
+                      <Link href={"/"} className='StyledGamePageBreadcrumb' itemType="http://schema.org/ListItem">Главная</Link>
+                      <span className='StyledGamePageBreadcrumbDelimeter'>›</span>
+                      <Link href={categoryBreadcrumbLink} className='StyledGamePageBreadcrumb' itemType="http://schema.org/ListItem">{categoryBreadcrumbName}</Link>
+                      <span className='StyledGamePageBreadcrumbDelimeter'>›</span>
+                      <Link href={generateItemPath(item.category_id, item.title, item.id)} className='StyledGamePageBreadcrumb' itemType="http://schema.org/ListItem">{item.title}</Link>
+                    </div>
                     {item.bx_image_url && (
                       <div style={{position: "relative"}}>
                         <img

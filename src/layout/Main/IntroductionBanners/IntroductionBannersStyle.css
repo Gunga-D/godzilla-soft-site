@@ -5,6 +5,8 @@
 }
 
 .IntroductionBannersItem {
+    height: 190px;
+    position: relative;
     width: 48%;
     border: solid 1px rgba(255, 255, 255, 0.1);
     background-color: #ff333a56;
@@ -21,11 +23,13 @@
 
 .IntroductionBannersItemDescription {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     padding-bottom: 12px;
 }
 
 .IntroductionBannersItemButton {
+    position: absolute;
+    bottom: 20px;
     color: white;
     font-size: 16px;
     background-color: #ff333b;

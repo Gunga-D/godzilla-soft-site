@@ -8,12 +8,33 @@
 
 .StyledGamePageMainSection {
     display: flex;
+    flex-wrap: wrap;
     gap: 50px;
-    padding: 20px;
+    row-gap: 21px;
+    padding-bottom: 20px;
     position: relative;
     width: 100%;
-    margin-top: 150px;
+    margin-top: 100px;
     z-index: 1;
+}
+
+.StyledGamePageBreadcrumbs {
+    width: 100%;
+}
+
+.StyledGamePageBreadcrumb {
+    color: #ffffff81;
+    text-decoration: none;
+}
+
+.StyledGamePageBreadcrumb:hover {
+    color: #FF333B;
+}
+
+.StyledGamePageBreadcrumbDelimeter {
+    color: #ffffff81;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .StyledGamePageBxImage {
@@ -232,7 +253,7 @@
 
 .StyledGamePageSimilarGameTitle {
     padding-top: 5px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     color: white;
 }

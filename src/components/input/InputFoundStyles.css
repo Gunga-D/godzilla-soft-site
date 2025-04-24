@@ -5,10 +5,9 @@
     width: 347px;
     height: 46px;
     margin-left: 72px;
-    border: 1px solid #ffffff;
+    border: 1px solid #ffffff61;
     backdrop-filter: blur(44.9px);
     border-radius: 5px;
-    font-weight: 900;
 }
 
 .styledInput {
@@ -19,15 +18,15 @@
     font-weight: 900;
     font-size: 13px;
     line-height: 16px;
-    color: #f1f1f0;
-    opacity: 0.5;
+    color: white;
+    /* opacity: 0.5; */
     margin-left: 20px;
     caret-color: red;
     text-overflow: ellipsis;
 }
 
 .styledInput::placeholder {
-    color: #f1f1f0;
+    color: #ffffff8a;
     opacity: 1;
 }
 
@@ -40,17 +39,18 @@
 }
 
 .styledPopUp {
+    z-index: 1005;
     position: absolute;
-    top: 300%;
+    top: 150%;
     right: 0;
     z-index: 999;
     width: 730px;
     height: auto;
     max-width: 730px;
     max-height: 430px;
-    background: #000000b2;
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.919);
+    scrollbar-width: none;
+    scrollbar-color: rgb(34, 34, 34) rgb(57, 57, 57);
 }
 
 .gameList {
@@ -108,59 +108,26 @@
 }
 
 .styledGameName {
-    font-size: 24px;
-    line-height: 12px;
+    font-size: 16px;
+    font-weight: 300;
     color: #fff;
     text-align: left;
-    position: relative;
-    display: inline-block;
     width: auto;
-    margin-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 .styledPNewPrice {
     font-style: normal;
     font-weight: 900;
-    font-size: 22px;
-    line-height: 12px;
+    font-size: 18px;
+    padding-bottom: 5px;
     color: #fff;
-    display: inline-block;
 }
 
 .styledPNewPrice::after {
     content: "₽";
     font-size: 18px;
     margin-left: 1px;
-}
-
-.styledPOldPrice {
-    margin-left: 5px;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 12px;
-    color: #848484;
-    position: relative;
-    display: inline-block;
-    width: auto;
-}
-
-.styledPOldPrice::after {
-    content: "₽";
-    font-size: 18px;
-    margin-left: 1px;
-}
-
-.styledPOldPrice::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    height: 1px;
-    background-color: #d91e18;
-    transform: rotate(-15deg);
-    transform-origin: center;
 }
 
 .errorMessage {
@@ -170,6 +137,41 @@
     font-size: 16px;
 }
 
-.SearchItemType {
+.SearchItemPriceContainer {
     margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.SearchItemGenres {
+    display: flex;
+    gap: 8px;
+}
+
+.SearchItemGenre {
+    padding: 3px 8px;
+    font-size: 12px;
+    background-color: #444444;
+}
+
+.SearchItemType {
+    color: rgba(255, 255, 255, 0.477);
+    padding-top: 8px;
+    font-size: 12px;
+}
+
+.SearchDeepthinkBtn {
+    white-space: nowrap;
+    margin-left: 5px;
+    background: none;
+    /* border: 1px solid #ffffff61;
+    border-radius: 8px; */
+    width: 45px;
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }

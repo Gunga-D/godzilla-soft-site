@@ -63,7 +63,7 @@ export const GameFullInfo = ({item}: GameFullInfoProps) => {
         }
     };
     return (
-        <div style={{paddingLeft: "15px", paddingRight: "15px"}}>
+        <div style={{paddingLeft: "0", paddingRight: "0"}}>
             <div className='GameFullInfoActionsContainer'>
                 <div onClick={() => handleButtonClick('Характеристики')} className={activeButton == 'Характеристики'?'GameFullInfoActionActive':'GameFullInfoAction'}>Характеристики</div>
                 {item.pc_requirements && (

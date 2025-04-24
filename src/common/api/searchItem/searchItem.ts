@@ -12,5 +12,8 @@ export type SearchItem = {
     item_old_price?: number,
     item_thumbnail_url?: string,
     item_type?: string,
+    item_horizontal_image?: string,
+    item_genres?: string[],
+    item_release_date?: string,
     probability: number,
 }

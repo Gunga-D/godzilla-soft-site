@@ -1,36 +1,73 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './InputFoundStyles.css';
 import { SearchItem } from '../../common/api/searchItem/searchItem';
 import { searchApi } from '../../common/api/searchItem/search-api';
 import { generateItemPath } from '../../hooks/links';
 import {useRouter} from "next/navigation";
+import { catalogApi } from '../../common/api/catalogItem/catalog-api';
+import Link from 'next/link';
 
 export const InputFound = () => {
     const router = useRouter();
-    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
-    const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
 
+    const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
+    const [defaultItems, setDefaultItems] = useState<SearchItem[]>([]);
+    useEffect(() => {
+        const fetchDefaultItems = async () => {
+            const data = await catalogApi.getItems(10001, {
+                popular: true,
+                isSteamGift: true,
+            }, 5)
+            let parsed = Array()
+            data.forEach((v) => {
+                parsed.push({
+                    suggest_type: "item",
+                    item_id: v.id,
+                    item_category_id: v.category_id,
+                    item_title: v.title,
+                    item_current_price: v.current_price,
+                    item_thumbnail_url: v.thumbnail_url,
+                    item_type: "gift",
+                    item_horizontal_image: v.horizontal_image_url,
+                    item_genres: v.genres,
+                    item_release_date: v.release_date,
+                    probability: 1,
+                })
+            })
+            setDefaultItems(parsed);
+            setSearchResults(parsed)
+        }
+        fetchDefaultItems()
+    }, []);
+
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+
+    const [error, setError] = useState<string | null>(null);
+    const [placeholder, setPlaceholder] = useState<string>("Поиск по цифровым товарам")
     const onFocusHandler = () => {
         setIsPopupOpen(true);
+        setPlaceholder("Товары")
     };
 
     const onBlurHandler = () => {
         setIsPopupOpen(false);
+        setPlaceholder("Поиск по цифровым товарам")
     };
 
+    const [currentQuery, setCurrentQuery] = useState<string>("");
     const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIsLoading(true);
-        try {
-            const data = await searchApi.suggest(e.target.value);
-            setSearchResults(data);
-        } catch (err) {
-            setError('Произошла непредвиденная ошибка');
-        } finally {
-            setIsLoading(false);
+        setCurrentQuery(e.target.value)
+        if (e.target.value == "") {
+            setSearchResults(defaultItems)
+        } else {
+            try {
+                const data = await searchApi.suggest(e.target.value);
+                setSearchResults(data);
+            } catch (err) {
+                setError('Произошла непредвиденная ошибка');
+            }
         }
     };
 
@@ -39,7 +76,7 @@ export const InputFound = () => {
     };
 
     return (
-        <div className={'inputContainer'} onBlur={onBlurHandler}>
+        <div className={'inputContainer'} onBlur={onBlurHandler} style={{borderColor: isPopupOpen?"rgb(128, 128, 128)":"#ffffff61"}}>
             <div className={'customPlaceholder'}>
                 <svg
                     width="20"
@@ -58,19 +95,16 @@ export const InputFound = () => {
                 </svg>
                 <input
                     type="text"
-                    placeholder="Найти"
+                    placeholder={placeholder}
                     onChange={changeHandler}
                     onFocus={onFocusHandler}
-                    className={'styledInput'}
+                    className='styledInput'
                 />
+                <Link href={"/suggest"} className='SearchDeepthinkBtn'>🤔</Link>
 
                 {isPopupOpen && (
                     <div className={'styledPopUp'}>
-                        {isLoading ? (
-                            <div className={'loadingMessage'}>Загрузка...</div>
-                        ) : error ? (
-                            <div className={'errorMessage'}>{error}</div>
-                        ) : searchResults?.length > 0 ? (
+                        {searchResults?.length > 0 ? (
                             <ul className={'gameList'}>
                                 {searchResults.map((game, index) => (
                                     <div key={index}>
@@ -97,23 +131,24 @@ export const InputFound = () => {
                                             >
                                                 <div>
                                                     <img
-                                                        src={game.item_thumbnail_url}
-                                                        width={100}
-                                                        height={100}
+                                                        src={game.item_horizontal_image}
+                                                        width={209}
+                                                        height={98}
                                                         style={{ borderRadius: '10px' }}
                                                         alt={game.item_title}
                                                     />
                                                 </div>
                                                 <div style={{ marginLeft: '25px' }}>
                                                     <p className={'styledGameName'}>{game.item_title || 'Без названия'}</p>
-                                                    <br />
                                                     <p className={'styledPNewPrice'}>{game.item_current_price}</p>
-                                                    {game.item_is_for_sale && (
-                                                        <p className={'styledPOldPrice'}>{game.item_old_price}</p>
-                                                    )}
-                                                </div>
-                                                <div className='SearchItemType'>
-                                                    <p>{game.item_type=="gift"?"Гифтом":"Ключом"}</p>
+                                                    <div className='SearchItemGenres'>
+                                                        {game.item_genres?.slice(0, 2).map((v, idx) => (
+                                                            <div key={idx} className='SearchItemGenre'>
+                                                                {v}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                    <p className='SearchItemType'>Отправим {game.item_type=="gift"?"подарком":"ключом"}</p>
                                                 </div>
                                             </li>
                                         )}
@@ -121,7 +156,7 @@ export const InputFound = () => {
                                 ))}
                             </ul>
                         ) : (
-                            <div className='noResultsMessage'>Результатов не найдено</div>
+                            <div className='noResultsMessage'>{currentQuery}</div>
                         )}
                     </div>
                 )}
