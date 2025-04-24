@@ -10,6 +10,8 @@ export const catalogApi = {
         region?: string | string[];
         isSteamGift?: boolean,
         popular?: boolean,
+        new?: boolean,
+        unavailable?: boolean
     }, limit?: number, offset?: number, randomOrder?: boolean): Promise<CatalogItem[]> {
         const queryParams = new URLSearchParams();
         let requestUrl
@@ -36,6 +38,12 @@ export const catalogApi = {
         }
         if (filters.popular) {
             queryParams.append('popular', "1");
+        }
+        if (filters.new) {
+            queryParams.append('new', "1");
+        }
+        if (filters.unavailable) {
+            queryParams.append('unavailable', "1")
         }
         if (randomOrder) {
             queryParams.append('random', '1')

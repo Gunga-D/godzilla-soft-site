@@ -19,6 +19,14 @@ export const DefaultBanner = () => {
 
     const banners: Banner[] = [
         {
+            imageURL: "/the-elder-scrolls-4-oblivion-remastered-banner_2.png",
+            logoURL: "/oblivion-logo.png",
+            logoWidth: 278,
+            logoHeight: 86,
+            description: "Остановите вторжение демонических сил из мира Обливиона, нырните с головой в обновленную версию The Elder Scrolls IV: Oblivion.",
+            link: "/games/The_Elder_Scrolls_IV:_Oblivion_Remastered_339"
+        },
+        {
             imageURL: "/assasinsCreedBannerMain.png",
             logoURL: "/b67ffdc80b7ae73eb565aa4d67546dee.png",
             logoWidth: 256,

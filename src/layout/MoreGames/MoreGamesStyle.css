@@ -34,8 +34,8 @@
 
 .MoreGamesItemTitle {
     color: white;
-    font-size: 24px;
-    font-weight: 900;
+    font-size: 21px;
+    font-weight: 600;
 }
 
 .MoreGamesItemBadgeBar {
@@ -52,7 +52,7 @@
     background-color: #46464693;
     color: rgb(188, 188, 188);
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
     padding: 2px 10px;
 }
@@ -60,7 +60,7 @@
 .MoreGamesItemReleaseDate {
     color: rgb(116, 116, 116);
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .MoreGamesItemActions {
@@ -71,11 +71,12 @@
 .MoreGamesItemPrice {
     display: inline;
     border-radius: 15px;
-    font-size: 18px;
+    font-size: 21px;
+    font-weight: 900;
     padding: 9px 15px;
     text-align: center;
     color: white;
-    background-color: #ff333b;
+    background-color: none;
 }
 
 .MoreGamesItemBuy:hover {

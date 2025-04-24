@@ -24,7 +24,9 @@ export const Catalog = async (props: CatalogProps) => {
         min_price: String(props.filters.priceFrom),
         max_price: String(props.filters.priceTo),
         isSteamGift: props.filters.type == 'gift',
-        popular: props.filters.category == 'popular',
+        popular: props.filters.category == 'popular' || props.filters.category == 'unavailable',
+        new: props.filters.category == 'news',
+        unavailable: props.filters.category == 'unavailable',
         platform: props.filters.platform,
         region: props.filters.region,
     }, 15, page * 15)

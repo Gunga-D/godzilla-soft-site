@@ -43,7 +43,7 @@
     position: absolute;
     top: 150%;
     right: 0;
-    z-index: 999;
+    border-radius: 12px;
     width: 730px;
     height: auto;
     max-width: 730px;
@@ -99,12 +99,12 @@
     border-bottom: none;
 }
 
-.noResultsMessage,
-.loadingMessage {
-    padding: 20px;
+.noResultsMessage {
+    padding: 30px 20px;
     text-align: center;
     color: #fff;
     font-size: 18px;
+    font-weight: 900;
 }
 
 .styledGameName {
@@ -161,17 +161,23 @@
 }
 
 .SearchDeepthinkBtn {
+    height: 46px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
     white-space: nowrap;
     margin-left: 5px;
     background: none;
-    /* border: 1px solid #ffffff61;
-    border-radius: 8px; */
-    width: 45px;
+    border: 1px solid #ffffff61;
+    border-radius: 8px;
+    line-height: 20px;
     text-align: center;
-    height: 45px;
-    line-height: 45px;
-    font-size: 25px;
     color: white;
     text-decoration: none;
     cursor: pointer;
+}
+
+.SearchDeepthinkBtn:hover {
+    border: 1px solid rgba(255, 255, 255, 0.694);
 }

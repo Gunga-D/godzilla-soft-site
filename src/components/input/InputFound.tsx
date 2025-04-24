@@ -8,6 +8,7 @@ import { generateItemPath } from '../../hooks/links';
 import {useRouter} from "next/navigation";
 import { catalogApi } from '../../common/api/catalogItem/catalog-api';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const InputFound = () => {
     const router = useRouter();
@@ -100,7 +101,7 @@ export const InputFound = () => {
                     onFocus={onFocusHandler}
                     className='styledInput'
                 />
-                <Link href={"/suggest"} className='SearchDeepthinkBtn'>🤔</Link>
+                <Link href={"/suggest"} className='SearchDeepthinkBtn'><Image src={"/atom-icon-100.png"} alt='NeuroIcon' width={20} height={20}/> Нейро</Link>
 
                 {isPopupOpen && (
                     <div className={'styledPopUp'}>

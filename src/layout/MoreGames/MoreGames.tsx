@@ -32,12 +32,12 @@ export const MoreGames = () => {
                     <Link href={generateItemPath(item.category_id, item.title, item.id)} key={index} style={{textDecoration: "none"}}>
                         <div className='MoreGamesItemContainer'>
                             <div className='MoreGamesItemThumbnailContainer'>
-                                <img src={item.thumbnail_url} alt='ItemThumbnail' width={150} height={150} className='MoreGamesItemThumbnail'></img>
+                                <img src={item.horizontal_image_url} alt='ItemThumbnail' width={306} height={143} className='MoreGamesItemThumbnail'></img>
                             </div>
                             <div className='MoreGamesItemInfo'>
                                 <h2 className='MoreGamesItemTitle'>{item.title}</h2>
                                 <div className="MoreGamesItemBadgeBar">
-                                    {item.genres?.map((badge, badgeIdx) => (
+                                    {item.genres?.slice(0, 4).map((badge, badgeIdx) => (
                                         <div className="MoreGamesItemBadge" key={badgeIdx}>
                                             {badge}
                                         </div>
