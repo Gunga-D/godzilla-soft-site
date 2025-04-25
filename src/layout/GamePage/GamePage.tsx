@@ -39,12 +39,12 @@ const GamePage = ({ item }: GamePageProps) => {
             <div className='StyledGamePageMainBackground' style={{backgroundImage: item.background_url ? `linear-gradient(to top, rgb(21, 23, 30) 5%, transparent 100%), url(${item.background_url})` : 'none'}}></div>
             <div className="container">
                 <div className='StyledGamePageMainSection'>
-                    <div className='StyledGamePageBreadcrumbs' itemType="http://schema.org/BreadcrumbList">
-                      <Link href={"/"} className='StyledGamePageBreadcrumb' itemType="http://schema.org/ListItem">Главная</Link>
+                    <div className='StyledGamePageBreadcrumbs' itemScope itemType="http://schema.org/BreadcrumbList">
+                      <Link href={"/"} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">Главная</Link>
                       <span className='StyledGamePageBreadcrumbDelimeter'>›</span>
-                      <Link href={categoryBreadcrumbLink} className='StyledGamePageBreadcrumb' itemType="http://schema.org/ListItem">{categoryBreadcrumbName}</Link>
+                      <Link href={categoryBreadcrumbLink} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">{categoryBreadcrumbName}</Link>
                       <span className='StyledGamePageBreadcrumbDelimeter'>›</span>
-                      <Link href={generateItemPath(item.category_id, item.title, item.id)} className='StyledGamePageBreadcrumb' itemType="http://schema.org/ListItem">{item.title}</Link>
+                      <Link href={generateItemPath(item.category_id, item.title, item.id)} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">{item.title}</Link>
                     </div>
                     {item.bx_image_url && (
                       <div style={{position: "relative"}}>

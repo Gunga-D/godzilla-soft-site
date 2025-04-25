@@ -1,8 +1,9 @@
-import { getIdFromPath } from "../../../hooks/links";
+import { generateItemPath, getIdFromPath } from "../../../hooks/links";
 import { itemDetailsApi } from "../../../common/api/item-details/item-details-api";
 import GamePage from "../../../layout/GamePage/GamePage";
 import React from "react";
 import { Metadata, ResolvingMetadata } from "next";
+import Head from "next/head";
 
 type PageParams = Promise<{ value: string }>;
 
@@ -26,10 +27,31 @@ export default async function Page({ params }: { params: PageParams }) {
             </div>
         );
     }
+
+    const productData = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "image": item.thumbnail_url,
+        "name": `Купить ${item.title} ${item.type=='gift'?'гифтом':'ключом'}`,
+        "description": item.description,
+        "offers": {
+          "@type": "Offer",
+          "url": `https://godzillasoft.ru${generateItemPath(item.category_id, item.title, item.id)}`,
+          "price": item.current_price,
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+        }
+    };
     return (
-        <GamePage
+        <>
+            <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(productData) }}
+            />
+           <GamePage
             item={item}
-        />
+            />
+        </>
     );
 }
 
@@ -50,10 +72,13 @@ export async function generateMetadata(
     }
 
     return {
+      metadataBase: new URL('https://godzillasoft.ru'),
       title: `Купить игру ${item.title} в ${item.platform} | GODZILLASOFT`,
       description: `Купить игру ${item.title} в ${item.platform}: Товар на сайте цифровых товаров GODZILLA SOFT. Мам, купи игру`,
       openGraph: {
+        type: "website",
         images: images,
+        url: `${generateItemPath(item.category_id, item.title, item.id)}`,
       },
     }
   }
