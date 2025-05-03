@@ -33,7 +33,7 @@
     top: 0;
     height: 100%;
     width: 100%;
-    background: radial-gradient(250% 100% at 0% 0%, transparent, #FF333B);
+    background: radial-gradient(250% 100% at 0% 0%, transparent, rgb(15, 25, 36));
     transition: opacity 0.2s ease-in-out;
 }
 
@@ -64,7 +64,7 @@
     line-height: 19px;
     font-weight: bold;
     letter-spacing: 0.1ch;
-    color: #FF333B;
+    color: rgb(92, 92, 92);
     text-transform: uppercase;
     background: #ffffff;
     padding: 6px 12px;
