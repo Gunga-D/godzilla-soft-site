@@ -5,7 +5,6 @@
     width: 100%;
     display: grid;
     grid-auto-flow: column;
-    gap: 15px;
     overflow-x: auto;
     overflow-y: hidden;
     -ms-overflow-style: none;
@@ -14,34 +13,60 @@
 
 .CatalogCollectionItem {
     position: relative;
-    width: 150px;
-    height: 150px;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.CatalogCollectionItem:hover {
-    opacity: 0.9;
+    width: 170px;
+    height: 170px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .CatalogCollectionImage {
+    border: none;
     width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    opacity: 0.6;
+    display: block;
+    filter: saturate(0.7);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
-.CatalogCollectionText {
-    color: white;
-    width: 80%;
+.CatalogCollectionGradient {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(250% 100% at 0% 0%, transparent, #FF333B);
+    transition: opacity 0.2s ease-in-out;
+}
+
+.CatalogCollectionLabel {
+    position: absolute;
+    bottom: 30px;
     text-align: center;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.CatalogCollectionItem:hover .CatalogCollectionGradient {
+    opacity: 0.5;
+}
+
+.CatalogCollectionItem:hover .CatalogCollectionLabel {
+    transform: translate(-50%, 18px);
 }
 
 .CatalogCollectionName {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
     font-size: 14px;
-    font-weight: 900;
+    line-height: 19px;
+    font-weight: bold;
+    letter-spacing: 0.1ch;
+    color: #FF333B;
+    text-transform: uppercase;
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
 }

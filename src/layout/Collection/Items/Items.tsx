@@ -12,14 +12,21 @@ export const CollectionItems = async (props: CollectionItemsProps) => {
     const items = await collectionsApi.fetchCollectionItems(props.collectionID, 15, page * 15)
     return (
         <div className="CollectionItemsContainer">
-            <h3 className="CollectionItemsTitle">В нас список попали следующие {items.length} игр</h3>
-            <span className="CollectionItemsDesc">🔍 Мы проанализировали более 1000 игр, чтобы собрать для вас самую лучшую подборку.</span>
+            <h3 className="CollectionItemsTitle">В НАС СПИСОК ПОПАЛИ СЛЕДУЮЩИЕ {items.length} ИГР ПО ТЕМАТИКЕ</h3>
             <div className='CollectionListItemsContainer'>
                 {items.map((item, idx) => (
                     <Link key={idx} className='CollectionItem' href={generateItemPath(item.category_id, item.title, item.id)}>
-                        <img src={item.thumbnail_url} className="CollectionItemThumbnail"></img>
-                        <h3 className="CollectionItemTitle">{item.title}</h3>
-                        <p className="CollectionItemPrice">{item.current_price} ₽</p>
+                        <img src={item.horizontal_image_url} className="CollectionItemThumbnail"></img>
+                        <div className="CollectionItemFooter">
+                            <div className="CollectionItemGenres">
+                                {item.genres?.slice(0, 2).map((genre, genreIdx) => (
+                                    <div key={genreIdx} className="CollectionItemGenre">
+                                        {genre.split(" ").map((v) => v.length > 7?v.substring(0, 7)+'.':v).join(" ")}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="CollectionItemPrice">{item.current_price} ₽</div>
+                        </div>
                     </Link>
                 ))}
             </div>

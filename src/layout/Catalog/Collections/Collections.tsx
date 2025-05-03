@@ -20,8 +20,9 @@ export const CatalogCollections = async (props: CatalogCollectionsProps) => {
                 {collections.map((collection, idx) => (
                     <Link key={idx} className='CatalogCollectionItem' href={generateCollectionPath(props.categoryID, collection.name, collection.id)}>
                         <img src={collection.background_image} className='CatalogCollectionImage'></img>
-                        <div className='CatalogCollectionText'>
-                            <h2 className='CatalogCollectionName'>{collection.name}</h2>
+                        <div className='CatalogCollectionGradient'></div>
+                        <div className='CatalogCollectionLabel'>
+                            <span className='CatalogCollectionName'>{collection.name}</span>
                         </div>
                     </Link>
                 ))}

@@ -1,6 +1,9 @@
 .CollectionPageContainer {
-    margin-top: 115px;
+    padding: 20px 0px;
+    margin-top: 85px;
     width: 100%;
+    border-radius: 15px;
+    background-color: rgb(15, 25, 36);
 }
 
 .CollectionHeader {
@@ -11,15 +14,19 @@
     margin-bottom: 15px;
 }
 
-.CollectionAvatarImageContainer {
-    padding-right: 14px;
-}
-
-.CollectionAvatarImage {
-    width: 184px;
-    height: 184px;
-    border-radius: 2px;
-    box-shadow: 0 0 3px #000000;
+.CollectionHeaderImage {
+    z-index: -1;
+    position: absolute;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    mask: linear-gradient(180deg, black 58%, rgba(0, 0, 0, 0) 95%), radial-gradient(15.77% 44.22% at 50% 104.95%, rgba(66, 66, 66, 0) 0%, #333333 100%), radial-gradient(30.95% 86.8% at 30.69% 13.2%, rgba(66, 66, 66, 0.33) 0%, #333333 100%), radial-gradient(51.31% 143.89% at 49.99% 24.75%, #000000 0%, #000000 52.6%, rgba(0, 0, 0, 0.18) 83.33%, rgba(0, 0, 0, 0) 95.31%), radial-gradient(51.31% 143.89% at 49.99% 24.75%, #000000 0%, #000000 52.6%, rgba(0, 0, 0, 0.18) 83.33%, rgba(0, 0, 0, 0) 95.31%), linear-gradient(180deg, #000000 90%, rgba(0, 0, 0, 0) 100%);
+    opacity: .5;
 }
 
 .CollectionHeaderDetails {
@@ -27,18 +34,113 @@
 }
 
 .CollectionHeaderName {
-    font-size: 36px;
+    font-size: 42px;
     padding-top: 0px;
     margin: 5px 0 13px 0;
     line-height: 32px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .CollectionHeaderDescription {
-    width: 80%;
+    width: 100%;
     font-weight: 300;
-    font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.2);
+    font-size: 17px;
+    line-height: 1.2;
+    color: #fff;
+    background-color: #1B2838;
     padding: 16px;
     border-radius: 4px;
+}
+
+.CollectionNeuroBanner {
+    height: 200px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0px 3px 6px 0px #0000003D;
+    background: #386483;
+    transition: transform .2s ease-in-out;
+}
+
+.CollectionNeuroBanner:hover {
+    box-shadow: 0px 6px 12px 0px #0000003D;
+    transform: scale(1.05);
+}
+
+.CollectionNeuroBannerInnerContent {
+        background: linear-gradient(77deg, #58306c 0%, #386483 50%, rgba(64, 121, 153, 0) 70%);
+        position: absolute;
+        height: 200px;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 3vw;
+        line-height: 30px;
+        row-gap: 4px;
+        transition: filter .2s ease-in-out;    
+}
+
+.CollectionNeuroBannerGif {
+    width: 50%;
+    margin-left: auto;
+    position: relative;
+    background-color: #386483;
+    transform: rotateZ(-11deg) translateX(14px);
+}
+
+.CollectionNeuroBannerGifAnimation {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: banner-animation 30s linear infinite;
+    gap: 8px;
+}
+
+@keyframes banner-animation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-320px * 7));
+    }
+} 
+
+.CollectionNeuroBannerGifAnimationElement {
+    width: 320px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-shrink: 0;
+    gap: 8px;
+    align-items: flex-end;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 80%;
+    box-shadow: 0 0 10px #000;
+}
+
+.CollectionNeuroBannerGifAnimationElementImage {
+    width: 50px;
+}
+
+.CollectionNeuroBannerGifAnimationElementContentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.CollectionNeuroBannerGifAnimationElementContentName {
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 2px;
 }

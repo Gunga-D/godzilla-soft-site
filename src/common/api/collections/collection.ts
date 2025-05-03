@@ -13,7 +13,8 @@ export type CollectionDTO = {
     category_id: number,
     name: string,
     description: string,
-    background_image: string
+    background_image: string,
+    header_image?: string,
 }
 
 export type FetchCollectionItemsResponse = {
@@ -29,5 +30,8 @@ export type CollectionItemDTO = {
     region: string,
     current_price: number,
     thumbnail_url: string,
-    type: string
+    type: string,
+    horizontal_image_url?: string,
+    release_date?: string,
+    genres?: string[]
 }
