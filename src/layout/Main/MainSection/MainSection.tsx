@@ -2,11 +2,13 @@ import React from 'react';
 import {DefaultBanner} from "../../../components/defaultBanner/DefaultBanner";
 import './MainSectionStyle.css'
 import Link from "next/link";
+import { NeuroHeader } from '../NeuroHeader/NeuroHeader';
 
 export const MainSection = () => {
     return (
         <div className='MainSectionStyledSection'>
-            <DefaultBanner/>
+            <NeuroHeader></NeuroHeader>
+            {/* <DefaultBanner/> */}
             <div className='MainSectionStyledWrapper'>
                 <Link href="/steam_deposit" className="MainSectionStyledRubricatorItemLink">
                     <div className="MainSectionStyledRubricatorItem">

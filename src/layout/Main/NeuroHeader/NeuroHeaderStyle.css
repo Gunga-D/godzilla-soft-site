@@ -1,0 +1,97 @@
+.NeuroHeader {
+    color: white;
+    position: relative;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.NeuroHeaderFeatures {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 32px;
+    row-gap: 8px;
+    width: -moz-max-content;
+    width: max-content;
+}
+
+.NeuroHeaderFeature {
+    align-items: center;
+    color: #dfe1f6;
+    display: flex;
+    font-size: 16px;
+    gap: 8px;
+    width: max-content;
+}
+
+.NeuroHeaderImageContainer {
+    z-index: -1;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 50%;
+    transform: rotateZ(-23deg) translateX(14px);
+}
+
+.NeuroHeaderImageGifAnimation {
+    display: flex;
+    animation: neuro-header-image-animation 30s linear infinite;
+    gap: 8px;
+}
+
+@keyframes neuro-header-image-animation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-320px * 7));
+    }
+} 
+
+.NeuroHeaderImageGifAnimationElement {
+    width: 320px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-shrink: 0;
+    gap: 8px;
+    align-items: flex-end;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 80%;
+    box-shadow: 0 0 10px #000;
+}
+
+.NeuroHeaderImageGifAnimationElementImage {
+    width: 50px;
+}
+
+.NeuroHeaderImageGifAnimationElementContentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.NeuroHeaderImageGifAnimationElementContentName {
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.NeuroHeaderControls {
+    margin-top: 34px;
+}
+
+.NeuroHeaderControlsBtn {
+    color: white;
+    font-size: 16px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    background-color: #ff333b;
+    border: 0;
+    padding: 20px 15px;
+    border-radius: 8px;
+}
