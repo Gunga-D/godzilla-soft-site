@@ -1,0 +1,57 @@
+.ProfileHeader {
+    background-color: rgb(27 28 34 / 1);
+    border: 1px solid hsla(0, 0%, 100%, .051);
+    padding: 12px 0;
+    border-radius: 8px;
+}
+
+.ProfileAvatar {
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px;
+    background: linear-gradient(to right, red, pink);
+}
+
+.ProfileDataContainer {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.ProfileDataPlate {
+    width: 100%;
+    border-radius: 8px;
+    background-color: rgb(48, 49, 57);
+    background-color: rgb(27 28 34 / 1);
+    border: 1px solid hsla(0, 0%, 100%, .051);
+    padding: 8px 12px;
+    font-weight: 500;
+}
+
+.ProfileDataPlateKey {
+    color: white;
+    opacity: 0.5;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.ProfileDataPlateValue {
+    color: white;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.ProfileExitButton {
+    width: 100%;
+    background-color: #FF333B;
+    color: white;
+    margin-top: 32px;
+    padding: 18px;
+    text-align: center;
+    border-radius: 21px;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+}

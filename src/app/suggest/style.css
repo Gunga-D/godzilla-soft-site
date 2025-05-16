@@ -5,10 +5,10 @@
     align-items: center;
     width: 100%;
     max-width: 800px;
-    height: 100vh;
+    margin-top: 200px;
+    margin-bottom: 80px;
     display: flex;
     position: relative;
-    margin: auto;
     padding: 0px 64px;
     color: white;
 }
@@ -110,7 +110,6 @@
     align-items: center;
     width: 100%;
     max-width: 800px;
-    height: 100vh;
     display: flex;
     position: relative;
     margin: auto;
@@ -119,6 +118,7 @@
 }
 
 .SuggestLoaderText {
+  margin-bottom: 120px;
     text-align: center;
     margin-top: 15px;
     font-weight: bold;
@@ -137,15 +137,16 @@
 }
 
 .SuggestLoader {
-    font-size:48px;
-    color: #FFF;
-    width: 1em;
-    height: 1em;
-    box-sizing: border-box;
-    background-color: currentcolor;
-    position: relative;
-    border-radius: 50%;
-    transform: rotateX(-60deg) perspective(1000px);
+  margin-top: 300px;
+  font-size:48px;
+  color: #FFF;
+  width: 1em;
+  height: 1em;
+  box-sizing: border-box;
+  background-color: currentcolor;
+  position: relative;
+  border-radius: 50%;
+  transform: rotateX(-60deg) perspective(1000px);
   }
   .SuggestLoader:before,
   .SuggestLoader:after {
@@ -198,7 +199,7 @@
     align-items: center;
     width: 100%;
     max-width: 800px;
-    min-height: 100vh;
+    margin-top: 40px;
     display: flex;
     position: relative;
     margin-left: auto;
@@ -302,4 +303,9 @@
     cursor: pointer;
     border: 0;
     color: white;
+  }
+
+  .SuggestSearchHint {
+    color:rgb(194, 194, 194);
+    margin-bottom: 12px;
   }

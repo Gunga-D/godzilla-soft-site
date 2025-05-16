@@ -1,0 +1,48 @@
+.AuthButtonStyledContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 35px;
+}
+
+.ProfileButtonContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 35px;
+}
+
+.AuthButtonStyledContainer:hover .AuthButtonStyledText {
+    color: #FF333B;
+}
+
+.AuthButtonStyledIcon {
+    display: inline-block;
+    color: white;
+}
+
+.AuthButtonStyledContainer:hover .AuthButtonStyledIcon {
+    fill: #FF333B;
+}
+
+.AuthButtonStyledText {
+    font-weight: 900;
+    font-size: 14px;
+    font-family: 'Eastman Roman Trial', sans-serif;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+.ProfileButtonStyledText {
+    font-weight: 900;
+    font-size: 15px;
+    margin-left: 8px;
+    font-family: 'Eastman Roman Trial', sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+.ProfileButtonContainerAvatar {
+    border-radius: 50%;
+}

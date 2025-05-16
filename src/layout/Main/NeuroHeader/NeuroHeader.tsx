@@ -11,12 +11,12 @@ export const NeuroHeader = () => {
             </div>
             <div className='NeuroHeaderFeatures'>
                 <div className='NeuroHeaderFeature'>
-                    <div><img src='./icons8-adaptation-64.png' width={32} height={32}></img></div>
+                    <div><Image src='/icons8-adaptation-64.png' width={32} height={32} alt='Icon of Adaptaion'></Image></div>
                     <div>Адаптируемость под каждого клиента</div>
                 </div>
-                <div className='NeuroHeaderFeature'><img src='./icons8-price-50.png' width={32} height={32}></img><div>Возможность приобрести игру прямо внутри сервиса</div></div>
-                <div className='NeuroHeaderFeature'><img src='./icons8-elements-100.png' width={32} height={32}></img><div>Обновляемый список игр, который используется в подборе</div></div>
-                <div className='NeuroHeaderFeature'><img src='./icons8-spring-in-motion-90.png' width={32} height={32}></img><div>Гибкий поиск по вашему индивидуальному запросу</div></div>
+                <div className='NeuroHeaderFeature'><Image src='/icons8-price-50.png' width={32} height={32} alt='Icon of Price'></Image><div>Возможность приобрести игру прямо внутри сервиса</div></div>
+                <div className='NeuroHeaderFeature'><Image src='/icons8-elements-100.png' width={32} height={32} alt='Icon of Catalog'></Image><div>Обновляемый список игр, который используется в подборе</div></div>
+                <div className='NeuroHeaderFeature'><Image src='/icons8-spring-in-motion-90.png' width={32} height={32} alt='Icon of spring'></Image><div>Гибкий поиск по вашему индивидуальному запросу</div></div>
             </div>
             <div className='NeuroHeaderControls'>
                 <Link href={"/suggest"} className='NeuroHeaderControlsBtn'>Открыть нейропоиск</Link>

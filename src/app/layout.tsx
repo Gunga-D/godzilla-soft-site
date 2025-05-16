@@ -3,6 +3,8 @@ import { Layout } from "../layout/Layout/Layout";
 import '../index.css'
 import './layoutStyled.css'
 import {Metadata} from "next";
+import { CookiesProvider } from 'next-client-cookies/server';
+import { UserProvider } from '../common/context/user-context';
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://godzillasoft.ru'),
@@ -40,9 +42,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <body>
             <div className='flex-wrapper'>
                 <div className={'main-app'}>
-                <Layout pageId="">
-                    {children}
-                </Layout>
+                <CookiesProvider>
+                    <UserProvider>
+                        <Layout pageId="">
+                            {children}
+                        </Layout>
+                    </UserProvider>
+                </CookiesProvider>
             </div>
         </div>
         </body>

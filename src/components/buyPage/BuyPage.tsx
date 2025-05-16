@@ -9,6 +9,7 @@ import { itemApi } from "../../common/api/item/item-api";
 import { CreateOrder } from '../../common/api/item/item';
 import Image from "next/image";
 import { steamGiftApi } from '../../common/api/steam_gift/api';
+import { useUser } from '../../common/context/user-context';
 
 type BuyPageProps = {
   itemID: number,
@@ -18,7 +19,34 @@ type BuyPageProps = {
 }
 
 export const BuyPage = (props: BuyPageProps) => {
+    const {user, accessToken} = useUser()
+
     const [inputValue, setInputValue] = useState<string>('');
+    useEffect(() => {
+      if (user) {
+        if (props.isSteamGift) {
+          if (user.steam_link) {
+            const resolveProfile = async () => {
+              try {
+                  const data = await steamGiftApi.resolveProfile(user.steam_link!);
+                  setProfileAvatar(data.data.avatar_url)
+                  setProfileName(data.data.profile_name)
+                  setInputValue(user.steam_link!)
+              } catch (err: any) {
+                  setError(err.response.data.message)
+                  return;
+              }
+            };
+            resolveProfile()
+          }
+        } else {
+          if (user.email) {
+            setInputValue(user.email)
+          }
+        }
+      }
+    }, [])
+
     const [profileAvatar, setProfileAvatar] = useState<string | null>(null);
     const [profileName, setProfileName] = useState<string | null>(null)
     const [error, setError] = useState<string | null>(null);
@@ -65,9 +93,9 @@ export const BuyPage = (props: BuyPageProps) => {
             let data: CreateOrder;
             try {
                 if (props.isSteamGift) {
-                  data = await itemApi.createGiftOrder(props.itemID, inputValue);
+                  data = await itemApi.createGiftOrder(props.itemID, inputValue, accessToken);
                 } else {
-                  data = await itemApi.createKeyOrder(props.itemID, inputValue);
+                  data = await itemApi.createKeyOrder(props.itemID, inputValue, accessToken);
                 }
             } catch (err) {
                 const errorMessage = getErrorMessage(err);
@@ -146,6 +174,7 @@ export const BuyPage = (props: BuyPageProps) => {
                 <input
                   className='BuyPageInputValue'
                   placeholder={props.isSteamGift?"Введите ссылку на ваш Steam профиль":"Введите email"}
+                  defaultValue={inputValue}
                   onChange={handleInputChange}
                 />
                 {props.isSteamGift && (

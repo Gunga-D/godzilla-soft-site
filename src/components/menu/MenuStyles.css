@@ -1,14 +1,9 @@
-.menu-styled {
-    padding-left: 48px;
-    font-size: 14px;
-}
 .ul-styles {
     display: flex;
     gap: 15px;
     font-weight: 900;
     text-decoration: none;
     list-style-type: none;
-    margin-left: 59px;
 }
 
 .li-styles {

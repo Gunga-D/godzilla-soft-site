@@ -9,7 +9,7 @@
 }
 
 .GalleryMovieItemZoomedOverlay {
-    z-index: 5000;
+    z-index: 1000;
     position: fixed;
     width: 100vw;
     height: 100vh;

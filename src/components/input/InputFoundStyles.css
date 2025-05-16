@@ -2,7 +2,7 @@
 .inputContainer {
     display: flex;
     align-items: center;
-    width: 347px;
+    width: 730px;
     height: 46px;
     margin-left: 72px;
     border: 1px solid #ffffff61;
@@ -11,7 +11,7 @@
 }
 
 .styledInput {
-    width: 300px;
+    width: 650px;
     background: none;
     outline: none;
     border: none;
@@ -33,7 +33,6 @@
 .customPlaceholder {
     display: flex;
     align-items: center;
-    position: relative;
     color: #f1f1f0;
     margin-left: 15px;
 }
@@ -42,7 +41,7 @@
     z-index: 1005;
     position: absolute;
     top: 150%;
-    right: 0;
+    left: 0;
     border-radius: 12px;
     width: 730px;
     height: auto;
@@ -167,7 +166,7 @@
     align-items: center;
     gap: 5px;
     white-space: nowrap;
-    margin-left: 5px;
+    margin-left: 40px;
     background: none;
     border: 1px solid #ffffff61;
     border-radius: 8px;

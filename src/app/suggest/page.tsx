@@ -7,8 +7,12 @@ import { useState } from "react";
 import { deepthinkApi } from "../../common/api/deepthink/api";
 import { ThinkResultDTO } from "../../common/api/deepthink/types";
 import { generateItemPath } from "../../hooks/links";
+import { useUser } from "../../common/context/user-context";
+import RequiredAuthButton from "../../components/requiredAuthButton/RequiredAuthButton";
 
 export default function Page() {
+    const {user} = useUser()
+
     const [query, setQuery] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -21,9 +25,7 @@ export default function Page() {
                 const data = await deepthinkApi.think(query);
                 var timer = setInterval(async function() {
                         try {
-                            console.log("send request")
                             const thinkResultData = await deepthinkApi.getThinkResult(data.data.id)
-                            console.log(thinkResultData.data)
                             setThinkResult(thinkResultData.data)
                             setLoading(false)
                             clearInterval(timer);
@@ -37,6 +39,7 @@ export default function Page() {
         };
         think()
     }
+    
     return (
         <div className="Suggest">
             {thinkResult && (
@@ -98,25 +101,35 @@ export default function Page() {
                     </div>
                     <h2 className="SuggestDesc">Я нейронка, которая поможет тебе с выбором игры.</h2>
                     <h2 className="SuggestDesc">Давай начнем, во что сегодня сыграем?</h2>
-                    <div className="SuggestSearchContainer">
-                        <div className="SuggestSearchInnerWrapper">
-                            <textarea className="SuggestSearchInput" rows={2} placeholder="Напиши свой запрос" onChange={(v) => setQuery(v.target.value)} onKeyDown={(e) => {
-                                if (e.key === 'Enter' && !e.shiftKey) {
-                                    e.preventDefault();
-                                    if (query !== "") {
-                                        createThinkTask();
-                                    }
-                                }
-                            }}></textarea>
-                        </div>
-                        <div className="SuggestSearchFooterInnerWrapper">
-                            <Link href={"/"} className="SuggestSearchToMainLink">Главная</Link>
-                            <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} className="SuggestSearchToMainLink">Каталог</Link>
-                            <div className="SuggestSearchSendButtonContainer">
-                                <button className="SuggestSearchSendButton" onClick={createThinkTask} style={{backgroundColor: query != ""?"white":"rgb(113 113 122)"}}><svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M7 16c-.595 0-1.077-.462-1.077-1.032V1.032C5.923.462 6.405 0 7 0s1.077.462 1.077 1.032v13.936C8.077 15.538 7.595 16 7 16z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M.315 7.44a1.002 1.002 0 0 1 0-1.46L6.238.302a1.11 1.11 0 0 1 1.523 0c.421.403.421 1.057 0 1.46L1.838 7.44a1.11 1.11 0 0 1-1.523 0z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M13.685 7.44a1.11 1.11 0 0 1-1.523 0L6.238 1.762a1.002 1.002 0 0 1 0-1.46 1.11 1.11 0 0 1 1.523 0l5.924 5.678c.42.403.42 1.056 0 1.46z" fill="currentColor"></path></svg></button>
+                    {!user && (
+                        <div className="SuggestSearchContainer">
+                            <div>
+                                <p className="SuggestSearchHint">Войдите или зарегистрируйтесь, чтобы пользоваться данной функцией</p>
+                                <RequiredAuthButton></RequiredAuthButton>
                             </div>
                         </div>
-                    </div>
+                    )}
+                    {user && (
+                        <div className="SuggestSearchContainer">
+                            <div className="SuggestSearchInnerWrapper">
+                                <textarea className="SuggestSearchInput" rows={2} placeholder="Напиши свой запрос" onChange={(v) => setQuery(v.target.value)} onKeyDown={(e) => {
+                                    if (e.key === 'Enter' && !e.shiftKey) {
+                                        e.preventDefault();
+                                        if (query !== "") {
+                                            createThinkTask();
+                                        }
+                                    }
+                                }}></textarea>
+                            </div>
+                            <div className="SuggestSearchFooterInnerWrapper">
+                                <Link href={"/"} className="SuggestSearchToMainLink">Главная</Link>
+                                <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} className="SuggestSearchToMainLink">Каталог</Link>
+                                <div className="SuggestSearchSendButtonContainer">
+                                    <button className="SuggestSearchSendButton" onClick={createThinkTask} style={{backgroundColor: query != ""?"white":"rgb(113 113 122)"}}><svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M7 16c-.595 0-1.077-.462-1.077-1.032V1.032C5.923.462 6.405 0 7 0s1.077.462 1.077 1.032v13.936C8.077 15.538 7.595 16 7 16z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M.315 7.44a1.002 1.002 0 0 1 0-1.46L6.238.302a1.11 1.11 0 0 1 1.523 0c.421.403.421 1.057 0 1.46L1.838 7.44a1.11 1.11 0 0 1-1.523 0z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M13.685 7.44a1.11 1.11 0 0 1-1.523 0L6.238 1.762a1.002 1.002 0 0 1 0-1.46 1.11 1.11 0 0 1 1.523 0l5.924 5.678c.42.403.42 1.056 0 1.46z" fill="currentColor"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>  
             )}
         </div>

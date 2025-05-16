@@ -1,0 +1,15 @@
+.RequiredAuthButton {
+    width: 100%;
+    border-radius: 12px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    background-color: #ff333b;
+    color: white;
+}
+
+.RequiredAuthButton:hover {
+    cursor: pointer;
+}

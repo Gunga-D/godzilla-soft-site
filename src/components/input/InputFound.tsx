@@ -49,7 +49,7 @@ export const InputFound = () => {
     const [placeholder, setPlaceholder] = useState<string>("Поиск по цифровым товарам")
     const onFocusHandler = () => {
         setIsPopupOpen(true);
-        setPlaceholder("Товары")
+        setPlaceholder("Цифровые товары")
     };
 
     const onBlurHandler = () => {
@@ -101,7 +101,7 @@ export const InputFound = () => {
                     onFocus={onFocusHandler}
                     className='styledInput'
                 />
-                <Link href={"/suggest"} className='SearchDeepthinkBtn'><Image src={"/atom-icon-100.png"} alt='NeuroIcon' width={20} height={20}/> Нейро</Link>
+                <Link href={"/suggest"} className='SearchDeepthinkBtn'><Image src={"/atom-icon-100.png"} alt='NeuroIcon' width={20} height={20}/>Нейропоиск</Link>
 
                 {isPopupOpen && (
                     <div className={'styledPopUp'}>

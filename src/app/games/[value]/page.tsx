@@ -3,7 +3,6 @@ import { itemDetailsApi } from "../../../common/api/item-details/item-details-ap
 import GamePage from "../../../layout/GamePage/GamePage";
 import React from "react";
 import { Metadata, ResolvingMetadata } from "next";
-import Head from "next/head";
 
 type PageParams = Promise<{ value: string }>;
 

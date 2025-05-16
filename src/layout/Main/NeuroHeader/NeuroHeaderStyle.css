@@ -1,7 +1,8 @@
 .NeuroHeader {
     color: white;
     position: relative;
-    padding: 20px;
+    padding: 10px;
+    margin-bottom: 60px;
     overflow: hidden;
 }
 
@@ -27,7 +28,7 @@
 .NeuroHeaderImageContainer {
     z-index: -1;
     position: absolute;
-    bottom: 80px;
+    bottom: 30px;
     right: 0;
     width: 50%;
     transform: rotateZ(-23deg) translateX(14px);

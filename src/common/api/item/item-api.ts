@@ -1,5 +1,5 @@
 import { Item, CartItem, CreateOrder } from "./item";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { BaseUrl } from "../client";
 
 export const itemApi = {
@@ -44,17 +44,35 @@ export const itemApi = {
         }
     },
 
-    async createKeyOrder(itemId: number, email: string): Promise<CreateOrder> {
+    async createKeyOrder(itemId: number, email: string, accessToken: string | null): Promise<CreateOrder> {
+        let req: AxiosRequestConfig = {}
+        if (accessToken) {
+            req.headers = {
+                'Authorization': `Bearer ${accessToken}`
+            } 
+        }
+
         const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
             BaseUrl + "/create_order",
-            { item_id: itemId, email: email }
+            { item_id: itemId, email: email },
+            req
         );
         return response.data.data;
     },
-    async createGiftOrder(itemId: number, steam_profile: string): Promise<CreateOrder> {
+    async createGiftOrder(itemId: number, steam_profile: string, accessToken: string | null): Promise<CreateOrder> {
+        let req: AxiosRequestConfig = {}
+        if (accessToken) {
+            req.headers = {
+                'Authorization': `Bearer ${accessToken}`
+            } 
+        }
         const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
             BaseUrl + "/create_order",
-            { item_id: itemId, steam_profile: steam_profile }
+            {
+                item_id: itemId,
+                steam_profile: steam_profile,
+            },
+            req
         );
         return response.data.data;
     },
