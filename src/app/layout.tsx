@@ -42,6 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <body>
             <div className='flex-wrapper'>
                 <div className={'main-app'}>
+                {/* @ts-expect-error Server Component */}
                 <CookiesProvider>
                     <UserProvider>
                         <Layout pageId="">
