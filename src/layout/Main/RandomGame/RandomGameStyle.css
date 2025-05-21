@@ -1,0 +1,153 @@
+.RandomGameWidget {
+    background-color: #1d1d1d;
+    border-radius: 18px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+}
+
+.RandomGameWidgetTitle {
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.RandomGameWidgetDescription {
+    color: gray;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.RandomGameWidgetBuyForm {
+    width: 515px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+}
+
+.RandomGameWidgetBuyFormHeader {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.RandomGameWidgetBuyFormInfo {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.RandomGameWidgetBuyFormButton {
+    background-color: #ff333b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.RandomGameWidgetBuyFormInput {
+    &::placeholder {
+        color: #FFFFFF;
+        opacity: 0.5;
+      }
+      width: 240px;
+      background: rgba(44, 43, 43, 0.9);
+      backdrop-filter: blur(3px);
+      border: 1px solid #a6a6a6;
+      border-radius: 5px;
+      outline: none;
+      color: #FFFFFF;
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 40px;
+      font-weight: 900;
+      font-size: 16px;
+      line-height: 150%;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    
+      &:focus {
+        border-color: #FFFFFF;
+        background-color: rgba(255, 255, 255, 0.2); 
+      }
+}
+
+.RandomGameWidgetBuyFormRules {
+    text-align: center;
+    margin-top: 4px;
+    font-size: 12px;
+    color: gray;
+}
+
+.RandomGameWidgetBuyFormRulesLink {
+    color: #ff333b;
+    text-decoration: none;
+}
+
+.roulette-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.roulette-arrow {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #ff333b;
+    border-radius: 12px;
+    z-index: 1;
+}
+
+.roulette-container {
+    width: 100%;
+    overflow: hidden;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    background-color: #111;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    position: relative;
+  }
+  
+  .roulette-track {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  
+  .roulette-item {
+    flex: 0 0 auto;
+    width: 120px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: #ffffffb3;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .roulette-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+  
