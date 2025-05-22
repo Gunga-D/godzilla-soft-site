@@ -1,4 +1,5 @@
 .RandomGameWidget {
+    position: relative;
     background-color: #1d1d1d;
     border-radius: 18px;
     padding-top: 16px;
@@ -52,6 +53,20 @@
     border-radius: 8px;
     font-size: 18px;
     font-weight: 600;
+}
+
+.RandomGameWidgetBuyFormErr {
+    position: absolute;
+    height: 35px;
+    bottom: -30px;
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 8px;
+    color: white;
+    background-color: red;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .RandomGameWidgetBuyFormInput {
