@@ -1,5 +1,15 @@
+import { Metadata } from "next";
 import WheelSpinner from "../../components/wheelSpinner/WheelSpinner";
 import "./style.css"
+
+export const metadata: Metadata = {
+    title: 'Случайная Steam игра | GODZILLASOFT',
+    description: 'Испытай свою удачу на сайте цифровых товаров GODZILLA SOFT и выиграй одну игру Steam из более 400 других',
+    openGraph: {
+        url: "/random",
+        images: "/og_favicon_random.png" ,
+    },
+}
 
 interface Game {
     name: string;
