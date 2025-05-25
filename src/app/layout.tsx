@@ -10,7 +10,10 @@ export const metadata: Metadata = {
     metadataBase: new URL('https://godzillasoft.ru'),
     icons: {
         icon: "/favicon.ico",
-        apple: "/favicon.ico"
+        apple: "/favicon.ico",
+        other: [
+            { rel: 'alternate', url: 'https://m.godzillasoft.ru/', media: "only screen and (max-width: 640px)" },
+        ]
     },
     title: 'GODZILLA SOFT — интернет-магазин видеоигр',
     description: 'GODZILLA SOFT — интернет-магазин видеоигр и не только. Низкие цены, широкий ассортимент и моментальная доставка. Мам, купи!',
