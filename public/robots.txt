@@ -1,3 +1,22 @@
+User-agent: Googlebot
+Disallow: /redirect
+Disallow: /*?_openstat
+Disallow: /*nomobile=
+Disallow: /*noimg
+Disallow: /*swf$
+Sitemap: https://api.godzillasoft.ru/v1/sitemap.xml
+
 User-agent: *
 Disallow: /redirect
+Disallow: /*?_openstat
+Disallow: /*nomobile=
+Disallow: /*noimg
+Disallow: /*swf$
+Sitemap: https://api.godzillasoft.ru/v1/sitemap.xml
+
+User-agent: Mediapartners-Google
+Disallow:
+
+User-agent: YandexDirect
+Allow: /
 Sitemap: https://api.godzillasoft.ru/v1/sitemap.xml
