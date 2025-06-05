@@ -39,7 +39,7 @@ export default function Random() {
     return (
         <div className="RandomGamePage">
             <h1 className="RandomGamePageTitle">🎲 СЛУЧАЙНАЯ ИГРА STEAM</h1>
-            <h3 className="RandomGamePageDescription">Крути барабан и забирай одну игру Steam из более 400 других</h3>
+            <h3 className="RandomGamePageDescription">Крути барабан и забирай игру по более выгодной цене</h3>
             <WheelSpinner></WheelSpinner>
             <div className="RandomGamePagePrizes">
                 <h3 className="RandomGamePagePrizesTitle">Крути барабан и выиграй один из призов</h3>
