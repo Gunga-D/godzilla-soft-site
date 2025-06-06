@@ -134,7 +134,23 @@ export const RandomGameWidget = () => {
     return (
         <div className='RandomGameWidget'>
             <h1 className='RandomGameWidgetTitle'>🎲 БАРАБАН УДАЧИ</h1>
-            <p className='RandomGameWidgetDescription'>Крути барабан и забирай игру по более выгодной цене</p>
+            <div className='RandomGameWidgetHeader'>
+                <p className='RandomGameWidgetDescription'>Крути барабан и забирай заветную игру по выгодной цене в следующие 3 этапа</p>
+                <div className='RandomGameWidgetStepsContainer'>
+                    <div className='RandomGameWidgetStep RandomGameWidgetStepCompleted'>
+                        <span>1</span>
+                        <p>Прокрутка</p>
+                    </div>
+                    <div className='RandomGameWidgetStep'>
+                        <span>2</span>
+                        <p>Оплата</p>
+                    </div>
+                        <div className='RandomGameWidgetStep'>
+                        <span>3</span>
+                        <p>Активация</p>
+                    </div>
+                </div>
+            </div>
             <div className="roulette-wrapper">
                 <div className="roulette-arrow"></div>
                 <div className="roulette-container">

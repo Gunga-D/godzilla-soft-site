@@ -16,7 +16,7 @@
 .RandomGameWidgetDescription {
     color: gray;
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .RandomGameWidgetBuyForm {
@@ -53,6 +53,12 @@
     border-radius: 8px;
     font-size: 18px;
     font-weight: 600;
+    transition: transform .2s ease-in-out;
+}
+
+.RandomGameWidgetBuyFormButton:hover {
+    box-shadow: 0px 6px 12px 0px #0000003D;
+    transform: scale(1.05);
 }
 
 .RandomGameWidgetBuyFormErr {
@@ -166,3 +172,59 @@
     margin-bottom: 5px;
   }
   
+  .RandomGameWidgetStepsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 0;
+  }
+
+  .RandomGameWidgetStep {
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: gray;
+  }
+
+
+  .RandomGameWidgetStep span {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.3rem;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .RandomGameWidgetStep:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    right: -4rem;
+    width: 9rem;
+    height: 4px;
+    background-color: gray;
+    z-index: -1;
+  }
+
+  .RandomGameWidgetStepCompleted {
+    color: #ff333b;
+  }
+
+  .RandomGameWidgetStepCompleted span {
+    background-color: #ff333b;
+  }
+
+  .RandomGameWidgetHeader {
+    margin-bottom: 16px;
+  }
