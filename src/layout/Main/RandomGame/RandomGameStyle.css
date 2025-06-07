@@ -115,6 +115,7 @@
 
 .roulette-wrapper {
     position: relative;
+    z-index: 1;
     width: 100%;
 }
 
@@ -181,9 +182,7 @@
   }
 
   .RandomGameWidgetStep {
-    cursor: pointer;
     position: relative;
-    z-index: 0;
     padding: 0 2rem;
     display: flex;
     flex-direction: column;
@@ -193,6 +192,7 @@
 
 
   .RandomGameWidgetStep span {
+    cursor: pointer;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -204,6 +204,7 @@
     color: white;
     font-weight: bold;
     font-size: 16px;
+    z-index: 1;
   }
 
   .RandomGameWidgetStep:not(:last-child)::after {
@@ -214,7 +215,7 @@
     width: 9rem;
     height: 4px;
     background-color: gray;
-    z-index: -1;
+    z-index: 0;
   }
 
   .RandomGameWidgetStepCompleted {
