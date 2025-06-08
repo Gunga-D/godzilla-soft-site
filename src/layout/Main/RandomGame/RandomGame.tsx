@@ -141,7 +141,7 @@ export const RandomGameWidget = () => {
     
     const [prokrutkaHint, setProkrutkaHint] = useState<string | null>(null)
     const onProkrutkaEnter = () => {
-        setProkrutkaHint('Мы подобрали для данного бокса более 400 игр Steam под разный предпочтения игроков, от кровавых слешеров до игр с 18+ цензором, вам должно 100% понравится. Попробуйте и убедитесь сами.')
+        setProkrutkaHint('Мы подобрали для данного бокса более 400 игр Steam под разные предпочтения игроков, от кровавых слешеров до игр с 18+ цензором, вам должно 100% понравится. Попробуйте и убедитесь сами.')
     }
     const onProkrutkaOut = () => {
         setProkrutkaHint(null)
@@ -157,7 +157,7 @@ export const RandomGameWidget = () => {
 
     const [activationHint, setActivationHint] = useState<string | null>(null)
     const onActivationEnter = () => {
-        setActivationHint('В течение 2-5 минут после оплаты на вашу почту придет цифровой ключ игры, который можно активировать на своем Steam аккаунте.')
+        setActivationHint('В течение 2-5 минут после оплаты на вашу почту придет цифровой ключ, который можно активировать на своем Steam аккаунте.')
     }
     const onActivationOut = () => {
         setActivationHint(null)
