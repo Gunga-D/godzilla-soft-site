@@ -82,9 +82,16 @@
 }
 
 .searchBannerTitle {
-    margin-left: 25px;
-    font-size: 25px;
-    font-weight: 800;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    padding-bottom: 5px;
+    color: #fff;
+}
+
+.searchBannerDescription {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.477);
 }
 
 .searchBannerButton {

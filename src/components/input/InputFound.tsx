@@ -116,11 +116,13 @@ export const InputFound = () => {
                                                 }
                                             >
                                                 <div>
-                                                    <img src={game.banner_image} width={100} height={100}
+                                                    <img src={game.banner_image} width={209} height={98}
                                                         style={{ borderRadius: '10px' }}></img>
                                                 </div>
-                                                <p className='searchBannerTitle'>{game.banner_title}</p>
-                                                <div className='searchBannerButton'>Участвовать</div>
+                                                <div style={{ marginLeft: '25px' }}>
+                                                    <p className={'searchBannerTitle'}>{game.banner_title || 'Без названия'}</p>
+                                                    <p className='searchBannerDescription'>{game.banner_description}</p>
+                                                </div>
                                             </li>
                                         )}
                                         {game.suggest_type == "item" && (

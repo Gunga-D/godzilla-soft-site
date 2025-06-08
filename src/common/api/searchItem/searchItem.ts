@@ -1,6 +1,7 @@
 export type SearchItem = {
     suggest_type: string,
     banner_title?: string,
+    banner_description?: string,
     banner_image?: string,
     banner_url?: string,
     currentPrice?: number;
