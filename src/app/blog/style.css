@@ -43,6 +43,7 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     background-color: var(--card-bg);
     border-radius: var(--border-radius);
     transition: var(--transition);
