@@ -23,7 +23,7 @@ type CardForGamesProps = {
 export const MediumCardForGames = (props: CardForGamesProps) => {
     const router = useRouter();
     const handleCardClick = () => {
-        router.push(generateItemPath(props.categoryId, props.name, props.id));
+        window.open(generateItemPath(props.categoryId, props.name, props.id), '_blank');
     };
 
     const [regionIcon, setRegionIcon] = useState('');

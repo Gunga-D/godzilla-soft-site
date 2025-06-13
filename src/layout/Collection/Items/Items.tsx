@@ -15,7 +15,7 @@ export const CollectionItems = async (props: CollectionItemsProps) => {
             <h3 className="CollectionItemsTitle">В НАС СПИСОК ПОПАЛИ СЛЕДУЮЩИЕ {items.length} ИГР ПО ТЕМАТИКЕ</h3>
             <div className='CollectionListItemsContainer'>
                 {items.map((item, idx) => (
-                    <Link key={idx} className='CollectionItem' href={generateItemPath(item.category_id, item.title, item.id)}>
+                    <a target="_blank" rel="noopener noreferrer" key={idx} className='CollectionItem' href={generateItemPath(item.category_id, item.title, item.id)}>
                         <img src={item.horizontal_image_url} className="CollectionItemThumbnail"></img>
                         <div className="CollectionItemFooter">
                             <div className="CollectionItemGenres">
@@ -27,7 +27,7 @@ export const CollectionItems = async (props: CollectionItemsProps) => {
                             </div>
                             <div className="CollectionItemPrice">{item.current_price} ₽</div>
                         </div>
-                    </Link>
+                    </a>
                 ))}
             </div>
         </div>

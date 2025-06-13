@@ -26,7 +26,7 @@ export const CatalogItems = async (props: CatalogItemsProps) => {
                 </div>
             )}
             {props.items.map((item, idx) => (
-                <Link key={idx} className='CatalogItem' href={generateItemPath(item.category_id, item.title, item.id)}>
+                <a target="_blank" rel="noopener noreferrer" key={idx} className='CatalogItem' href={generateItemPath(item.category_id, item.title, item.id)}>
                     <div className="CatalogItemSlider">
                         {item.horizontal_image_url && (
                             <img src={item.horizontal_image_url} className="CatalogItemSliderPhoto"></img>
@@ -57,7 +57,7 @@ export const CatalogItems = async (props: CatalogItemsProps) => {
                     <div className="CatalogItemAside">
                         <span className="CatalogItemBodyPrice">{item.current_price} ₽</span>
                     </div>
-                </Link>
+                </a>
             ))}
             <CatalogPagination page={props.currentPage} itemsCurrentCount={props.items.length} itemsLimitCount={props.itemsLimit}></CatalogPagination>
         </div>

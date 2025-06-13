@@ -29,7 +29,7 @@ export const MoreGames = () => {
                 )}
 
                 {data.map((item, index) => (
-                    <Link href={generateItemPath(item.category_id, item.title, item.id)} key={index} style={{textDecoration: "none"}}>
+                    <a target="_blank" rel="noopener noreferrer" href={generateItemPath(item.category_id, item.title, item.id)} key={index} style={{textDecoration: "none"}}>
                         <div className='MoreGamesItemContainer'>
                             <div className='MoreGamesItemThumbnailContainer'>
                                 <img src={item.horizontal_image_url} alt='ItemThumbnail' width={306} height={143} className='MoreGamesItemThumbnail'></img>
@@ -55,7 +55,7 @@ export const MoreGames = () => {
                                 </div>
                             </div>
                         </div>
-                    </Link>
+                    </a>
                 ))}
                 <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} style={{textDecoration: "none", color: "white"}} className='MoreGamesLinkToCategory'>Показать еще</Link>
             </div>

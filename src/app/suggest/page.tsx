@@ -53,7 +53,7 @@ export default function Page() {
                     </div>
                     <div className="SuggestItemsContainer">
                         {thinkResult.items.map((game, idx) => (
-                            <Link key={idx} className="SuggestItem" href={generateItemPath(game.category_id, game.title, game.id)}>
+                            <a target="_blank" rel="noopener noreferrer" key={idx} className="SuggestItem" href={generateItemPath(game.category_id, game.title, game.id)}>
                                 <div>
                                     <img
                                         src={game.horizontal_image}
@@ -77,7 +77,7 @@ export default function Page() {
                                     </div>
                                     <p className='SuggestItemType'>Отправим {game.type=="gift"?"подарком":"ключом"}</p>
                                 </div>
-                            </Link>
+                            </a>
                         ))}
                     </div>
                     <div className="SuggestRepeatBtnContainer">

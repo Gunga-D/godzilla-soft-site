@@ -73,7 +73,7 @@ export const InputFound = () => {
     };
 
     const handleCardClick = (categoryID: number, itemName: string, itemId: number) => {
-        router.push(generateItemPath(categoryID, itemName, itemId));    
+        window.open(generateItemPath(categoryID, itemName, itemId), '_blank') 
     };
 
     return (
