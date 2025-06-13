@@ -34,7 +34,8 @@ export type ItemDetail = {
         reviews_count: number
     },
     similar_games?: SimilarGameDTO[],
-    horizontal_image_url?: string
+    horizontal_image_url?: string,
+    exists_in_random: boolean
 }
 
 export type SimilarGameDTO = {

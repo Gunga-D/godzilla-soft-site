@@ -175,6 +175,116 @@
     font-size: 26px;
 }
 
+.StyledGamePageRandomGameBanner {
+    position: relative;
+    border-radius: 20px;
+    background-color: #171d25;
+    margin-top: 50px;
+    width: 100%;
+    padding: 18px;
+}
+
+.StyledGamePageRandomGameBannerTitle {
+    color: white;
+    font-weight: 900;
+    font-size: 26px;
+}
+
+.StyledGamePageRandomGameBannerDescription {
+    color: white;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.StyledGamePageRandomGameBannerFooter {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.StyledGamePageRandomGameBannerPriceMainContainer {
+    justify-self: flex-end;
+    margin-left: auto;
+    justify-content: flex-end;
+    padding: 0px;
+    height: 38px;
+    position: relative;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background: rgb(29, 29, 29);
+    justify-self: end;
+}
+
+.StyledGamePageRandomGameBannerDiscount {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 30px;
+    padding: 4px 8px;
+    height: 100%;
+    box-sizing: border-box;
+    color: #ff333b;
+    display: flex;
+    align-items: center;
+    background: #842a2d;
+    word-break: keep-all;
+}
+
+.StyledGamePageRandomGameBannerPricesContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.StyledGamePageRandomGameBannerItemPrice {
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 11px;
+    margin-top: 2px;
+    position: relative;
+}
+
+.StyledGamePageRandomGameBannerItemPrice::before {
+    content: "";
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    top: 40%;
+    border-bottom: 1px solid #ffffff;
+    box-shadow: 0 0 2px #000;
+    transform: skewY(-15deg);
+}
+
+.StyledGamePageRandomGameBannerRandomPrice {
+    color: #ff333b;
+    padding: 0px;
+    line-height: 18px;
+    font-size: 18px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, .7);
+    align-items: center;
+    display: flex;
+    white-space: nowrap;
+}
+
+.StyledGamePageRandomGameBannerLink {
+    border-radius: 6px;
+    background-color: #ff333b;
+    color: white;
+    padding-left: 18px;
+    padding-right: 18px;
+    text-decoration: none;
+    height: 38px;
+    font-size: 18px;
+    line-height: 38px;
+}
+
 .StyledGamePageYandexMarketBannerDescription {
     margin-top: 8px;
     font-size: 18px;

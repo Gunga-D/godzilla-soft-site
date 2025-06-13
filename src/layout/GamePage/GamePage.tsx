@@ -123,6 +123,31 @@ const GamePage = ({ item }: GamePageProps) => {
                     </div>
                   </div>
                 )}
+                {(item.exists_in_random && 208 < item.current_price) && (
+                  <div className='StyledGamePageRandomGameBanner'>
+                      <p className='StyledGamePageRandomGameBannerTitle'>Эта игра в пакете Случайных Игр</p>
+                      <div className='StyledGamePageRandomGameBannerDescription'>
+                        Сэкономь и забери игру всего лишь за 208 рублей!
+                    </div>
+                    <div className='StyledGamePageRandomGameBannerFooter'>
+                          <div className='StyledGamePageRandomGameBannerPriceMainContainer'>
+                            <div className='StyledGamePageRandomGameBannerDiscount'>
+                              -{Math.round(100-100*(208/item.current_price))}%
+                            </div>
+                            <div className='StyledGamePageRandomGameBannerPricesContainer'>
+                              <div className='StyledGamePageRandomGameBannerItemPrice'>
+                                {item.current_price}₽
+                              </div>
+                              <div className='StyledGamePageRandomGameBannerRandomPrice'>
+                                208₽
+                              </div>
+                            </div>
+                            <Link href={"/random"} className='StyledGamePageRandomGameBannerLink'>Испытать удачу</Link>
+                          </div>
+                        </div>
+                        <img src='/StopAnimeGirlForRandom.png' width={245} height={215} style={{position: 'absolute', bottom: '0', right: '100px'}}></img>
+                      </div>
+                )}
                 <GameReviews itemID={item.id}></GameReviews>
                 <BuyPage itemID={item.id} isSteamGift={item.type=="gift"}/>
                 {(item.similar_games && item.similar_games.length > 0) && (
