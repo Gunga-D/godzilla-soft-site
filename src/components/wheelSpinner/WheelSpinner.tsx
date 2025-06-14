@@ -44,6 +44,27 @@ const games: Game[] = [
 const WheelSpinner = () => {
     const wheelRef = useRef<HTMLDivElement>(null);
 
+    const buyButtonRef = useRef(null);
+    const [showSticky, setShowSticky] = useState(false);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            setShowSticky(!entry.isIntersecting);
+          },
+          { threshold: 0 }
+        );
+    
+        if (buyButtonRef.current) {
+          observer.observe(buyButtonRef.current);
+        }
+    
+        return () => {
+          if (buyButtonRef.current) {
+            observer.unobserve(buyButtonRef.current);
+          }
+        };
+      }, []);
+
     useEffect(() => {
         const wheel = wheelRef.current;
         if (wheel) {
@@ -113,6 +134,10 @@ const WheelSpinner = () => {
         buyItem();
     };
 
+    const scroll = () => {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    };
+
     return (
         <div className="wheel-container">
         <div className="wheel-items" ref={wheelRef}>
@@ -133,7 +158,7 @@ const WheelSpinner = () => {
                     <p className='wheel-main-buy-form-title'>Ваш выигрыш придет на почту:</p>
                     <input type='email' className='wheel-main-buy-form-input' placeholder='Введите вашу почту' defaultValue={inputValue} onChange={handleInputChange}></input>
                 </div>
-                <div className='wheel-main-buy-form-button' onClick={handlePayment}>
+                <div className='wheel-main-buy-form-button' onClick={handlePayment} ref={buyButtonRef}>
                     Крутить барабан за 208₽
                 </div>
                 <div className='wheel-main-buy-form-rules'>Нажимая кнопку "Крутить барабан", вы принимаете <a href="/service_agreement.pdf" className='wheel-main-buy-form-rule-link'><br/>Договор-оферту&nbsp;оказания&nbsp;услуг</a> и <a href="/privacy_security.pdf" className='wheel-main-buy-form-rule-link'>Политика&nbsp;конфиденциальности</a></div>
@@ -141,6 +166,22 @@ const WheelSpinner = () => {
         </div>
         {error && (
             <div className='wheel-buy-form-err'>{error}</div>
+        )}
+        {showSticky && (
+            <div className='wheel-main-sticky-header'>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <div>
+                        <img src='https://disk.godzillasoft.ru/random_game_banner.png' className='wheel-main-sticky-header-random-img'></img>
+                    </div>
+                    <div style={{marginLeft: '16px'}}>
+                        <p style={{fontSize: '24px', fontWeight: '600', marginBottom: '12px', lineHeight: '24px'}}>Случайная Steam игра</p>
+                        <p style={{fontSize: '14px', lineHeight: '14px', color: 'rgb(168, 168, 168)', fontWeight: '600'}}>Испытай удачу и выиграй заветную игру всего лишь за 208₽</p>
+                    </div>
+                </div>
+                <div className='wheel-main-sticky-header-buy-button' onClick={scroll} ref={buyButtonRef}>
+                    Купить за 208₽
+                </div>
+            </div>
         )}
         </div>
     );

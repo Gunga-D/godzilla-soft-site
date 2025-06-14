@@ -191,3 +191,35 @@
     color: white;
     font-size: 16px;
 }
+
+.wheel-main-sticky-header {
+    position: fixed;
+    top: 115px;
+    left: 0;
+    right: 0;
+    padding: 8px 165px;
+    background: rgba(0, 0, 0, 0.513);
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.wheel-main-sticky-header-buy-button {
+    margin-left: auto;
+    background-color: #ff333b;
+    height: 45px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    padding-left: 65px;
+    padding-right: 65px;
+}
+
+.wheel-main-sticky-header-random-img {
+    width: 127px;
+    height: 60px;
+}
