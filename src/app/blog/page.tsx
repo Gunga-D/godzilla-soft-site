@@ -1,12 +1,17 @@
 "use client"
 
 import "./style.css"
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Topic, topicsApi} from "./topicsApi";
 import Link from "next/link";
+import SelfWrittenBlogs, {SelfWrittenBlogMetadata, SelfWrittenBlogComponent} from "./self-written-blogs";
+
+type CombinedItem =
+    | { type: 'api'; data: Topic }
+    | { type: 'self'; component: SelfWrittenBlogComponent; metadata: SelfWrittenBlogMetadata };
 
 export default function TopicsPage() {
-    const [topics, setTopics] = useState<Topic[]>([]);
+    const [apiTopics, setApiTopics] = useState<Topic[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +23,7 @@ export default function TopicsPage() {
                     limit: 10,
                     offset: 0
                 });
-                setTopics(data);
+                setApiTopics(data);
             } catch (err) {
                 setError('Failed to load topics');
                 console.error(err);
@@ -29,41 +34,61 @@ export default function TopicsPage() {
         fetchTopics();
     }, []);
 
+    const selfWrittenBlogs = SelfWrittenBlogs();
+
+    const allItems: CombinedItem[] = React.useMemo(() => {
+        const selfWrittenItems = selfWrittenBlogs.map(blog => ({
+            type: 'self' as const,
+            component: blog,
+            metadata: blog.metadata
+        }));
+
+        const apiItems = apiTopics.map(topic => ({
+            type: 'api' as const,
+            data: topic
+        }));
+
+        return [...selfWrittenItems, ...apiItems].sort((a, b) => {
+            const dateA = a.type === 'self' ? a.metadata.created_at : a.data.created_at;
+            const dateB = b.type === 'self' ? b.metadata.created_at : b.data.created_at;
+            return new Date(dateB).getTime() - new Date(dateA).getTime();
+        });
+    }, [apiTopics, selfWrittenBlogs]);
+
     return (
         <div className="BlogMainContainer">
             <h1 className="BlogMainTitle">Наш блог</h1>
 
-            {loading ? (
+            {loading && (
                 <div className="flex flex-col items-center py-20">
                     <div className="loading-spinner"></div>
                     <p className="text-muted mt-4">Загрузка статей...</p>
                 </div>
-            ) : error ? (
+            )}
+
+            <div className="BlogMainListOfBlogsContainer">
+                {allItems.map(item => (
+                    item.type === 'self' ? (
+                        <item.component key={item.metadata.id} />
+                    ) : (
+                        <TopicCard key={item.data.id} topic={item.data} />
+                    )
+                ))}
+            </div>
+
+            {error && (
                 <div className="error-message">
-                    <p>{error}</p>
-                    <button
-                        onClick={() => window.location.reload()}
-                        className="mt-4 px-4 py-2 bg-primary rounded hover:bg-primary-dark transition"
-                    >
+                    <p>{error} (Showing self-written articles only)</p>
+                    <button onClick={() => window.location.reload()}>
                         Попробовать снова
                     </button>
-                </div>
-            ) : topics.length === 0 ? (
-                <div className="text-center py-20">
-                    <p className="text-muted">Пока нет статей в блоге</p>
-                </div>
-            ) : (
-                <div className="BlogMainListOfBlogsContainer">
-                    {topics.map(topic => (
-                        <TopicCard key={topic.id} topic={topic}/>
-                    ))}
                 </div>
             )}
         </div>
     );
 }
 
-function TopicCard({ topic }: { topic: Topic }) {
+function TopicCard({topic}: { topic: Topic }) {
     const pathToTopic = `/blog/${topic.title}?id=${topic.id}`
     return (
         <Link href={pathToTopic} className="BlogMainListItem">
