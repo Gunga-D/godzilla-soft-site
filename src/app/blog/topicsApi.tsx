@@ -8,6 +8,7 @@ export type Topic = {
     title: string;
     created_at: string;
     updated_at: string;
+    topic_content: string,
     key?: unknown;
 };
 
@@ -46,4 +47,15 @@ export const topicsApi = {
             throw error;
         }
     },
+    async getTopic(id: number): Promise<Topic> {
+        let requestUrl = `${BaseUrl}/topic?id=${id}`;
+        try {
+            console.log(requestUrl)
+            const response = await axios.get(requestUrl);
+            return response.data.data;
+        } catch (error) {
+            console.error("Error fetching topics:", error);
+            throw error;
+        }
+    }
 };
