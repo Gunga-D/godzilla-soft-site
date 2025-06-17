@@ -64,8 +64,9 @@ export default function TopicsPage() {
 }
 
 function TopicCard({ topic }: { topic: Topic }) {
+    const pathToTopic = `/blog/${topic.title}?id=${topic.id}`
     return (
-        <Link href={`/blog/titleX${topic.id}`} className="BlogMainListItem">
+        <Link href={pathToTopic} className="BlogMainListItem">
             {topic.preview_url && (
                 <img
                     src={topic.preview_url}
