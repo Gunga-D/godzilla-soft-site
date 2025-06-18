@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "./style.css"
+import "../../layout/Blog/BlogPage/BlogPageStyle.css"
 import React from "react";
 
 export interface SelfWrittenBlogMetadata {
