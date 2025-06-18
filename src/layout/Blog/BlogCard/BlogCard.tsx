@@ -2,9 +2,10 @@ import Link from "next/link";
 import React from "react";
 import './BlogCardStyle.css'
 import {FetchTopicsDTO} from "../../../common/api/topic/topic";
+import {generatePathValue} from "../../../hooks/links";
 
 function BlogCard({dto}: { dto: FetchTopicsDTO }) {
-    const pathToTopic = `/blog/${dto.title}_${dto.id}`
+    const pathToTopic = `/blog/${generatePathValue(dto.title, dto.id)}`
     return (
         <Link href={pathToTopic} className="BlogMainListItem">
             {dto.preview_url && (
