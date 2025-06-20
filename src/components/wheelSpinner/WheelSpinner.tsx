@@ -167,7 +167,7 @@ const WheelSpinner = () => {
         {error && (
             <div className='wheel-buy-form-err'>{error}</div>
         )}
-        {showSticky && (
+        {/* {showSticky && (
             <div className='wheel-main-sticky-header'>
                 <div style={{display: 'flex', alignItems: 'center'}}>
                     <div>
@@ -182,7 +182,7 @@ const WheelSpinner = () => {
                     Купить за 208₽
                 </div>
             </div>
-        )}
+        )} */}
         </div>
     );
 };

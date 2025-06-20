@@ -1,0 +1,10 @@
+.BannerAuthButton {
+    cursor: pointer;
+    font-size: 17px;
+    background-color: #00ff9314;
+    border: 0;
+    outline: none;
+    color: rgb(0 255 147 / 1);
+    border-radius: 12px;
+    padding: 12px 24px;
+}
