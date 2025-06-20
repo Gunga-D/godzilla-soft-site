@@ -13,13 +13,7 @@
     --h1-line-height: 1.5;
 }
 
-/* Content Container */
 .GameTopic {
-    justify-self: center;
-    width: 150%;
-    max-width: 150%;
-    margin: 200px 50px;
-    padding: 30px;
     color: var(--text-color);
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
     line-height: 1.7;
@@ -27,6 +21,11 @@
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    max-width: 1200px; /* Add a max-width */
+    width: 90%; /* Use percentage width */
+    margin: 170px auto; /* Center the container */
+    padding: 30px; /* Consistent padding */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .GameTopicTitle {
@@ -228,21 +227,55 @@
 }
 
 /* Responsive adjustments */
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .GameTopic {
-        margin: 150px auto 40px;
-        padding: 20px;
+        width: 95%; /* Slightly more width on mobile */
+        padding: 20px; /* Slightly less padding on mobile */
+        margin: 20px auto; /* Reduced margins on mobile */
     }
 
     .GameTopicTitle {
         font-size: 32px;
     }
 
+    .GameTopic h1 {
+        padding-left: 15px;
+        margin-left: -15px;
+        font-size: 2rem;
+    }
+
+    .GameTopic h1::before {
+        width: calc(100% + 30px);
+        transform: translateX(-10px);
+    }
+
     .GameTopic h2 {
-        font-size: 26px;
+        font-size: 1.7rem;
     }
 
     .GameTopic h3 {
-        font-size: 22px;
+        font-size: 1.3rem;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .GameTopic {
+        width: 98%; /* Almost full width on very small screens */
+        padding: 15px; /* Minimal padding */
+        margin: 10px auto; /* Minimal margins */
+    }
+
+    .GameTopicTitle {
+        font-size: 28px;
+    }
+
+    .GameTopic h1 {
+        font-size: 1.8rem;
+    }
+
+    .GameTopic h2 {
+        font-size: 1.5rem;
     }
 }
