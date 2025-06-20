@@ -1,0 +1,13 @@
+.RandomGamePageBanner {
+    position: relative;
+    margin-bottom: 32px;
+    border-radius: 12px;
+    background-color: #1d1d1d;
+    padding: 18px 24px;
+}
+
+.RandomGamePageBannerImage {
+    position: absolute;
+    top: -55px;
+    right: 30px;
+}
