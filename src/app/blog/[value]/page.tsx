@@ -1,3 +1,4 @@
+import './game-topic-styles.css';
 import {topicApi} from "../../../common/api/topic/api";
 import {Topic} from "../../../common/api/topic/topic";
 import {getIdFromPath, generatePathValue} from "../../../hooks/links";

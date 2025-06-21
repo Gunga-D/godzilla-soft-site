@@ -1,3 +1,16 @@
+/* Base styles */
+:root {
+    --primary-color: rgb(255, 255, 255);
+    --secondary-color: #0000ff;
+    --dark-bg: #1a1a2e;
+    --card-bg: rgba(34, 34, 34, 0.8);
+    --text-color: #ffffff;
+    --text-muted: #b8b8b8;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    --transition: all 0.3s ease;
+}
+
 /* Main container */
 .BlogMainContainer {
     padding-top: 100px;

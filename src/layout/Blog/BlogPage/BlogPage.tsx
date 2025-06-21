@@ -1,3 +1,4 @@
+import '../../../styles/Container.css'
 import './BlogPageStyle.css'
 import {Topic} from "../../../common/api/topic/topic";
 import ReactMarkdown from "react-markdown";

@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import WheelSpinner from "../../components/wheelSpinner/WheelSpinner";
 import "./style.css"
-import RandomBanner from "../../components/randomBanner/RandomBanner";
 
 export const metadata: Metadata = {
     title: 'Случайная Steam игра | GODZILLASOFT',
@@ -39,7 +38,6 @@ const games: Game[] = [
 export default function Random() {
     return (
         <div className="RandomGamePage">
-            <RandomBanner></RandomBanner>
             <h1 className="RandomGamePageTitle">🎲 СЛУЧАЙНАЯ ИГРА STEAM</h1>
             <h3 className="RandomGamePageDescription">Крути барабан и забирай игру по более выгодной цене</h3>
             <WheelSpinner></WheelSpinner>
