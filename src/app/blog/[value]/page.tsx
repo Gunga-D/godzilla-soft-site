@@ -5,15 +5,6 @@ import {toNumber} from "lodash";
 import BlogPage from "../../../layout/Blog/BlogPage/BlogPage";
 import {Metadata, ResolvingMetadata} from "next";
 
-const emptyTopic: Topic = {
-    id: 0,
-    topic_content: "No content",
-    title: "Empty title",
-    created_at: Date.now().toString(),
-    updated_at: Date.now().toString(),
-    preview_url: ""
-}
-
 type PageParams = Promise<{ value: string }>;
 
 export default async function Page({params}: { params: PageParams }) {
