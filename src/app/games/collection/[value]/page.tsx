@@ -3,10 +3,11 @@ import { collectionsApi } from "../../../../common/api/collections/collections-a
 import { getIdFromPath } from "../../../../hooks/links";
 import { CollectionItems } from "../../../../layout/Collection/Items/Items";
 import "./style.css"
+import { addUTM } from "../../../../hooks/utm";
 
 type PageParams = Promise<{ value: string }>;
 
-export default async function Page({ params }: { params: PageParams }) {
+export default async function Page({ params, searchParams }: { params: PageParams, searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const { value } = await params;
     const collectionID = getIdFromPath(value);
 
@@ -20,6 +21,8 @@ export default async function Page({ params }: { params: PageParams }) {
         );
     }
 
+    const queries = (await searchParams)
+
     return (
         <div className="CollectionPageContainer">
             <div className="CollectionHeader">
@@ -31,7 +34,7 @@ export default async function Page({ params }: { params: PageParams }) {
                     }}></p>
                 </div>
             </div>
-            <Link className="CollectionNeuroBanner" href={"/suggest"}>
+            <Link className="CollectionNeuroBanner" href={addUTM("/suggest", queries.utm_source)}>
                 <div className="CollectionNeuroBannerInnerContent">
                     <div style={{fontWeight: '700', fontSize: '22px', lineHeight: '1.2', color: 'white'}}>Нейронка поможет в поиске игр</div>
                     <div style={{fontWeight: '300', fontSize: '19px', lineHeight: '1.2', color: 'white'}}>Нажмите, чтобы открыть нейропоиск игр по вашим предпочтениям</div>
@@ -154,7 +157,7 @@ export default async function Page({ params }: { params: PageParams }) {
                 </div>
             </Link>
             {/* @ts-expect-error Server Component */}
-            <CollectionItems collectionID={Number(collectionID)} ></CollectionItems>
+            <CollectionItems collectionID={Number(collectionID)} utm_source={queries.utm_source}></CollectionItems>
         </div>
     );
 }

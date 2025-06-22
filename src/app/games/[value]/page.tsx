@@ -6,7 +6,7 @@ import { Metadata, ResolvingMetadata } from "next";
 
 type PageParams = Promise<{ value: string }>;
 
-export default async function Page({ params }: { params: PageParams }) {
+export default async function Page({ params, searchParams }: { params: PageParams, searchParams: Promise<{ [key: string]: string | string[] | undefined  }>}) {
     const { value } = await params;
     const itemID = getIdFromPath(value);
 
@@ -41,6 +41,8 @@ export default async function Page({ params }: { params: PageParams }) {
           "availability": "https://schema.org/InStock",
         }
     };
+
+    const queries = (await searchParams)
     return (
         <>
             <script
@@ -49,6 +51,7 @@ export default async function Page({ params }: { params: PageParams }) {
             />
            <GamePage
             item={item}
+            utm_source={queries["utm_source"]}
             />
         </>
     );

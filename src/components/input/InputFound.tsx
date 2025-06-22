@@ -5,13 +5,17 @@ import './InputFoundStyles.css';
 import { SearchItem } from '../../common/api/searchItem/searchItem';
 import { searchApi } from '../../common/api/searchItem/search-api';
 import { generateItemPath } from '../../hooks/links';
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import { catalogApi } from '../../common/api/catalogItem/catalog-api';
 import Link from 'next/link';
 import Image from 'next/image';
+import { addUTM } from '../../hooks/utm';
 
 export const InputFound = () => {
     const router = useRouter();
+
+    const searchParams = useSearchParams()
+    const utm_source = searchParams.get('utm_source')
 
     const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
     const [defaultItems, setDefaultItems] = useState<SearchItem[]>([]);
@@ -73,7 +77,7 @@ export const InputFound = () => {
     };
 
     const handleCardClick = (categoryID: number, itemName: string, itemId: number) => {
-        window.open(generateItemPath(categoryID, itemName, itemId), '_blank') 
+        window.open(addUTM(generateItemPath(categoryID, itemName, itemId), utm_source), '_blank') 
     };
 
     return (
@@ -101,7 +105,7 @@ export const InputFound = () => {
                     onFocus={onFocusHandler}
                     className='styledInput'
                 />
-                <Link href={"/suggest"} className='SearchDeepthinkBtn'><Image src={"/atom-icon-100.png"} alt='NeuroIcon' width={20} height={20}/>Нейропоиск</Link>
+                <Link href={addUTM("/suggest", utm_source)} className='SearchDeepthinkBtn'><Image src={"/atom-icon-100.png"} alt='NeuroIcon' width={20} height={20}/>Нейропоиск</Link>
 
                 {isPopupOpen && (
                     <div className={'styledPopUp'}>
@@ -112,7 +116,7 @@ export const InputFound = () => {
                                         {game.suggest_type == "banner" && (
                                             <li className='searchBannerItem'
                                                 onMouseDown={ () =>
-                                                    router.push(game.banner_url!)
+                                                    router.push(addUTM(game.banner_url!, utm_source))
                                                 }
                                             >
                                                 <div>

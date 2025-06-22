@@ -3,9 +3,11 @@ import { collectionsApi } from '../../../common/api/collections/collections-api'
 import { OnSideCarouselController } from '../../../components/onSideCarouselController/OnSideCarouselController';
 import "./CollectionsStyle.css"
 import { generateCollectionPath } from '../../../hooks/links';
+import { addUTM } from '../../../hooks/utm';
 
 type CatalogCollectionsProps = {
-    categoryID: number
+    categoryID: number,
+    utm_source: string | undefined
 }
 
 export const CatalogCollections = async (props: CatalogCollectionsProps) => {
@@ -18,7 +20,7 @@ export const CatalogCollections = async (props: CatalogCollectionsProps) => {
             )}
             <div className='CatalogCollectionsContainer' id='catalog-collections'>
                 {collections.map((collection, idx) => (
-                    <Link key={idx} className='CatalogCollectionItem' href={generateCollectionPath(props.categoryID, collection.name, collection.id)}>
+                    <Link key={idx} className='CatalogCollectionItem' href={addUTM(generateCollectionPath(props.categoryID, collection.name, collection.id), props.utm_source)}>
                         <img src={collection.background_image} className='CatalogCollectionImage'></img>
                         <div className='CatalogCollectionGradient'></div>
                         <div className='CatalogCollectionLabel'>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useSearchParams } from 'next/navigation';
 import { CreateOrder } from '../../../common/api/item/item';
 import { itemApi } from '../../../common/api/item/item-api';
 import { useUser } from '../../../common/context/user-context';
@@ -51,6 +52,9 @@ const games: Game[] = [
 ];
   
 export const RandomGameWidget = () => {
+    const searchParams = useSearchParams()
+    const utm_source = searchParams.get('utm_source')
+
     const {user, accessToken} = useUser()
 
     const [inputValue, setInputValue] = useState<string>('');
@@ -92,7 +96,7 @@ export const RandomGameWidget = () => {
         const createOrder = async () => {
             let data: CreateOrder;
             try {
-                data = await itemApi.createKeyOrder(itemID, inputValue, accessToken);
+                data = await itemApi.createKeyOrder(itemID, inputValue, accessToken, utm_source);
             } catch (err: any) {
                 const errorMessage = getErrorMessage(err);
                 setError(errorMessage);

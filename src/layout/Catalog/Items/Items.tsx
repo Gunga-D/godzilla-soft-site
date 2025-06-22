@@ -1,14 +1,14 @@
-import Link from "next/link"
-import { catalogApi } from "../../../common/api/catalogItem/catalog-api"
 import "./ItemsStyle.css"
 import { generateItemPath } from "../../../hooks/links"
 import { CatalogPagination } from "../Pagination/Pagination"
 import { CatalogItem } from "../../../common/api/catalogItem/catalogItem"
+import { addUTM } from "../../../hooks/utm"
 
 type CatalogItemsProps = {
     categoryID: number,
     currentPage: number,
     itemsLimit: number,
+    utm_source: string | undefined,
     items: CatalogItem[]
 }
 
@@ -21,12 +21,12 @@ export const CatalogItems = async (props: CatalogItemsProps) => {
                     <div className="CatalogItemsNotFoundDescription">
                         <p>К сожалению, мы ничего не нашли.</p>
                         <p>Задайте поисковый запрос чуть по другому или установите более мягкие фильтры.</p>
-                        <p>Может вас сможет заинтересовать наша популярная <a href="/games?platform=Steam&category=popular&type=gift" className="CatalogItemsNotFoundPopularLink">подборка</a>?</p>
+                        <p>Может вас сможет заинтересовать наша популярная <a href={addUTM("/games?platform=Steam&category=popular&type=gift", props.utm_source)} className="CatalogItemsNotFoundPopularLink">подборка</a>?</p>
                     </div>
                 </div>
             )}
             {props.items.map((item, idx) => (
-                <a target="_blank" rel="noopener noreferrer" key={idx} className='CatalogItem' href={generateItemPath(item.category_id, item.title, item.id)}>
+                <a target="_blank" rel="noopener noreferrer" key={idx} className='CatalogItem' href={addUTM(generateItemPath(item.category_id, item.title, item.id), props.utm_source)}>
                     <div className="CatalogItemSlider">
                         {item.horizontal_image_url && (
                             <img src={item.horizontal_image_url} className="CatalogItemSliderPhoto"></img>
@@ -59,7 +59,7 @@ export const CatalogItems = async (props: CatalogItemsProps) => {
                     </div>
                 </a>
             ))}
-            <CatalogPagination page={props.currentPage} itemsCurrentCount={props.items.length} itemsLimitCount={props.itemsLimit}></CatalogPagination>
+            <CatalogPagination page={props.currentPage} itemsCurrentCount={props.items.length} itemsLimitCount={props.itemsLimit} utm_source={props.utm_source}></CatalogPagination>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CatalogFilters } from './Filters/Filters';
 import { CatalogCollections } from './Collections/Collections';
 import { catalogApi } from '../../common/api/catalogItem/catalog-api';
+import { addUTM } from '../../hooks/utm';
 
 type CatalogProps = {
     categoryID: number,
@@ -34,9 +35,9 @@ export const Catalog = async (props: CatalogProps) => {
     return (
         <div className='CatalogMain'>
             <div className='CatalogMainBreadcrumbsContainer'>
-                <Link href={"/"} className='CatalogMainBreadcrumb'>Главная</Link>
+                <Link href={addUTM("/", props.filters.utm_source)} className='CatalogMainBreadcrumb'>Главная</Link>
                 <span className='CatalogMainBreadcrumbDelimeter'>›</span>
-                <Link href={props.categoryBreadcrumbLink} className='CatalogMainBreadcrumb'>{props.categoryBreadcrumbName}</Link>
+                <Link href={addUTM(props.categoryBreadcrumbLink, props.filters.utm_source)} className='CatalogMainBreadcrumb'>{props.categoryBreadcrumbName}</Link>
             </div>
             <h1 className='CatalogTitle'>{props.categoryNameSEO} {items.length > 0 && (
                 <span className='CatalogItemsCount'>{items[0].total_count}</span>
@@ -48,9 +49,9 @@ export const Catalog = async (props: CatalogProps) => {
                 </div>
                 <div className='CatalogInnerItems'>
                     {/* @ts-expect-error Server Component */}
-                    <CatalogCollections categoryID={props.categoryID}></CatalogCollections>
+                    <CatalogCollections categoryID={props.categoryID} utm_source={props.filters.utm_source}></CatalogCollections>
                     {/* @ts-expect-error Server Component */}
-                    <CatalogItems categoryID={props.categoryID} items={items} currentPage={page} itemsLimit={15}></CatalogItems>
+                    <CatalogItems categoryID={props.categoryID} items={items} currentPage={page} itemsLimit={15} utm_source={props.filters.utm_source}></CatalogItems>
                 </div>
             </div>
         </div>

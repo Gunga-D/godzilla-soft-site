@@ -41,7 +41,11 @@ const games: Game[] = [
     { id: 24, name: "ScourgeBringer", image: "https://disk.godzillasoft.ru/sciyrgevrubger.png"},
 ];
 
-const WheelSpinner = () => {
+type WheelSpinnerProps = {
+    utm_source: any
+}
+
+const WheelSpinner = (props: WheelSpinnerProps) => {
     const wheelRef = useRef<HTMLDivElement>(null);
 
     const buyButtonRef = useRef(null);
@@ -112,7 +116,7 @@ const WheelSpinner = () => {
         const createOrder = async () => {
             let data: CreateOrder;
             try {
-                data = await itemApi.createKeyOrder(itemID, inputValue, accessToken);
+                data = await itemApi.createKeyOrder(itemID, inputValue, accessToken, props.utm_source);
             } catch (err: any) {
                 const errorMessage = getErrorMessage(err);
                 setError(errorMessage);

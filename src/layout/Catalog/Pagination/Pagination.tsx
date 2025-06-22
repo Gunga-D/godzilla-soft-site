@@ -2,11 +2,13 @@
 
 import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation"
 import "./PaginationStyle.css"
+import { addUTM } from "../../../hooks/utm"
 
 type CatalogPaginationProps = {
     page: number
     itemsCurrentCount: number
-    itemsLimitCount: number
+    itemsLimitCount: number,
+    utm_source: string | undefined
 }
 
 export const CatalogPagination = (props: CatalogPaginationProps) => {
@@ -18,12 +20,12 @@ export const CatalogPagination = (props: CatalogPaginationProps) => {
     const onLeft = () => {
         const params = new URLSearchParams(searchParams.toString())
         params.set("p", String(props.page-1))
-        router.push(pathname + '?' + params.toString())
+        router.push(addUTM(pathname + '?' + params.toString(), props.utm_source))
     }
     const onRight = () => {
         const params = new URLSearchParams(searchParams.toString())
         params.set("p", String(props.page+1))
-        router.push(pathname + '?' + params.toString())
+        router.push(addUTM(pathname + '?' + params.toString(), props.utm_source))
     }
     return (
         <div className="CatalogPaginationContainer">

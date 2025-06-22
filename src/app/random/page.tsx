@@ -36,13 +36,19 @@ const games: Game[] = [
     { name: "No Mans Sky", image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/c56896aed2f8277878b108ecf908067017e7137d/capsule_231x87.jpg?t=1742997746'},
 ];
 
-export default function Random() {
+export default async function Random({
+    searchParams,
+  }: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  }) {
+    const queries = (await searchParams)
+
     return (
         <div className="RandomGamePage">
             <RandomBanner></RandomBanner>
             <h1 className="RandomGamePageTitle">🎲 СЛУЧАЙНАЯ ИГРА STEAM</h1>
             <h3 className="RandomGamePageDescription">Крути барабан и забирай игру по более выгодной цене</h3>
-            <WheelSpinner></WheelSpinner>
+            <WheelSpinner utm_source={queries["utm_source"]}></WheelSpinner>
             <div className="RandomGamePagePrizes">
                 <h3 className="RandomGamePagePrizesTitle">Крути барабан и выиграй один из призов</h3>
                 <div className="RandomGamePagePrizesList">

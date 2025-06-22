@@ -2,18 +2,22 @@
 
 import React from 'react';
 import './Logo.css';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { usePathname } from 'next/navigation';
+import { addUTM } from '../../hooks/utm';
 
 export const Logo = () => {
     const router = useRouter();
     const pathname = usePathname();
 
+    const searchParams = useSearchParams()
+    const utm_source = searchParams.get('utm_source')
+
     const clickOnLogo = () => {
         if (pathname === '/') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-            router.push('/');
+            router.push(addUTM("/", utm_source));
         }
     };
 

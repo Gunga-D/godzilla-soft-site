@@ -44,7 +44,26 @@ export const itemApi = {
         }
     },
 
-    async createKeyOrder(itemId: number, email: string, accessToken: string | null): Promise<CreateOrder> {
+    async createKeyOrder(itemId: number, email: string, accessToken: string | null, utm_source: any): Promise<CreateOrder> {
+        let req: AxiosRequestConfig = {}
+        if (accessToken) {
+            req.headers = {
+                'Authorization': `Bearer ${accessToken}`
+            } 
+        }
+        let body : { [key: string]: any } = { item_id: itemId, email: email } 
+        if (utm_source) {
+            body["utm"] = utm_source
+        }
+
+        const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
+            BaseUrl + "/create_order",
+            body,
+            req
+        );
+        return response.data.data;
+    },
+    async createGiftOrder(itemId: number, steam_profile: string, accessToken: string | null, utm_source: any): Promise<CreateOrder> {
         let req: AxiosRequestConfig = {}
         if (accessToken) {
             req.headers = {
@@ -52,26 +71,16 @@ export const itemApi = {
             } 
         }
 
-        const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
-            BaseUrl + "/create_order",
-            { item_id: itemId, email: email },
-            req
-        );
-        return response.data.data;
-    },
-    async createGiftOrder(itemId: number, steam_profile: string, accessToken: string | null): Promise<CreateOrder> {
-        let req: AxiosRequestConfig = {}
-        if (accessToken) {
-            req.headers = {
-                'Authorization': `Bearer ${accessToken}`
-            } 
+        let body : { [key: string]: any } = {
+            item_id: itemId,
+            steam_profile: steam_profile,
+        }
+        if (utm_source) {
+            body["utm"] = utm_source
         }
         const response = await axios.post<{ data: CreateOrder, status: string, message: string }>(
             BaseUrl + "/create_order",
-            {
-                item_id: itemId,
-                steam_profile: steam_profile,
-            },
+            body,
             req
         );
         return response.data.data;

@@ -11,12 +11,14 @@ import { generateItemPath } from '../../hooks/links';
 import { OnSideCarouselController } from '../../components/onSideCarouselController/OnSideCarouselController';
 import { GalleryMovieItem } from '../../components/galleryMovieItem/GalleryMovieItem';
 import { GameReviews } from '../../components/gameReviews/GameReviews';
+import { addUTM } from '../../hooks/utm';
 
 type GamePageProps = {
     item: ItemDetail;
+    utm_source: any
 };
 
-const GamePage = ({ item }: GamePageProps) => {
+const GamePage = ({ item, utm_source }: GamePageProps) => {
     let categoryBreadcrumbName = "Неизвестно"
     let categoryBreadcrumbLink = "/"
     switch (item.category_id) {
@@ -40,11 +42,11 @@ const GamePage = ({ item }: GamePageProps) => {
             <div className="container">
                 <div className='StyledGamePageMainSection'>
                     <div className='StyledGamePageBreadcrumbs' itemScope itemType="http://schema.org/BreadcrumbList">
-                      <Link href={"/"} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">Главная</Link>
+                      <Link href={addUTM("/", utm_source)} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">Главная</Link>
                       <span className='StyledGamePageBreadcrumbDelimeter'>›</span>
-                      <Link href={categoryBreadcrumbLink} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">{categoryBreadcrumbName}</Link>
+                      <Link href={addUTM(categoryBreadcrumbLink, utm_source)} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">{categoryBreadcrumbName}</Link>
                       <span className='StyledGamePageBreadcrumbDelimeter'>›</span>
-                      <Link href={generateItemPath(item.category_id, item.title, item.id)} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">{item.title}</Link>
+                      <Link href={addUTM(generateItemPath(item.category_id, item.title, item.id), utm_source)} className='StyledGamePageBreadcrumb' itemScope itemType="http://schema.org/ListItem">{item.title}</Link>
                     </div>
                     {item.bx_image_url && (
                       <div style={{position: "relative"}}>
@@ -149,7 +151,7 @@ const GamePage = ({ item }: GamePageProps) => {
                       </div>
                 )}
                 <GameReviews itemID={item.id}></GameReviews>
-                <BuyPage itemID={item.id} isSteamGift={item.type=="gift"}/>
+                <BuyPage itemID={item.id} isSteamGift={item.type=="gift"} utm_source={utm_source}/>
                 {(item.similar_games && item.similar_games.length > 0) && (
                   <div style={{position: 'relative', marginTop: "50px", paddingLeft: "15px"}}>
                     <h3 className='StyledGamePageSimilarGamesTitle'>Еще может заинтересовать</h3>
@@ -158,7 +160,7 @@ const GamePage = ({ item }: GamePageProps) => {
                     )}
                     <div className='StyledGamePageSimilarGamesContainer' id='game-page-similar-games'>
                       {item.similar_games.map((similarItem, idx) => (
-                          <Link href={generateItemPath(similarItem.category_id, similarItem.title, similarItem.id)} className='StyledGamePageSimilarGame' key={idx}>
+                          <Link href={addUTM(generateItemPath(similarItem.category_id, similarItem.title, similarItem.id), utm_source)} className='StyledGamePageSimilarGame' key={idx}>
                             <img className='StyledGamePageSimilarGameThumbnail' src={similarItem.thumbnail_url} width={200} height={200}></img>
                             <p className='StyledGamePageSimilarGamePrice'>{similarItem.current_price} ₽</p>
                             <p className='StyledGamePageSimilarGameTitle'>{similarItem.title}</p>

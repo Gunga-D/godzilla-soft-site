@@ -4,12 +4,16 @@ import { IntroductionBanners } from './IntroductionBanners/IntroductionBanners';
 import { GamesSection } from './GamesSection/GamesSection';
 import { MoreGames } from '../MoreGames/MoreGames';
 
-export const MainPage = () => {
+type MainProps = {
+    utm_source: string | undefined
+};
+
+export const MainPage = (props: MainProps) => {
     return (
         <div>
-            <MainSection/>
+            <MainSection utm_source={props.utm_source}/>
             <IntroductionBanners></IntroductionBanners>
-            <GamesSection></GamesSection>
+            <GamesSection utm_source={props.utm_source}></GamesSection>
             <MoreGames></MoreGames>
         </div>
     );

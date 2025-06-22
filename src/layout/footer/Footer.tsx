@@ -4,18 +4,28 @@ import "../../styles/Container.css";
 
 import Image from "next/image";
 import Link from "next/link";
+import { addUTM } from '../../hooks/utm';
 
-export const Footer = () => {
+type FooterProps = {
+    utm_source: string | undefined
+}
+
+export const Footer = (props: FooterProps) => {
+    let gamesGiftLinkQuery: { [key: string]: string } = { type: "gift", category: "popular" }
+    if (props.utm_source) {
+        gamesGiftLinkQuery["utm_source"] = props.utm_source
+    }
+    
     return (
         <div className='container'>
             <footer className="footer">
                 <ul className="nav-ul">
-                    <Link href={"/blog"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Блог</li></Link>
-                    <Link href={"/games"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Каталог</li></Link>
-                    <Link href={"/games"} style={{     cursor: 'pointer', textDecoration: 'none'}}> <li className='li-styles'>Игры</li></Link>
-                    <Link href={"/deposits"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Пополнение</li></Link>
-                    <Link href={"/subscriptions"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Подписки</li></Link>
-                    <Link href={"/contacts"} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Контакты</li></Link>
+                    <Link href={addUTM("/blog", props.utm_source)} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Блог</li></Link>
+                    <Link href={{pathname: "/games", query: gamesGiftLinkQuery}} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Каталог</li></Link>
+                    <Link href={{pathname: "/games", query: gamesGiftLinkQuery}} style={{     cursor: 'pointer', textDecoration: 'none'}}> <li className='li-styles'>Игры</li></Link>
+                    <Link href={addUTM("/deposits", props.utm_source)} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Пополнение</li></Link>
+                    <Link href={addUTM("/subscriptions", props.utm_source)} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Подписки</li></Link>
+                    <Link href={addUTM("/contacts", props.utm_source)} style={{     cursor: 'pointer', textDecoration: 'none'}}><li className='li-styles'>Контакты</li></Link>
                     <Link
                         href="https://t.me/GODZILLASOFT_bot"
                         target="_blank"

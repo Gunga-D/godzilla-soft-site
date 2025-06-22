@@ -1,10 +1,12 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import "./AuthButtonStyle.css"
 import AuthModal from '../authModal/AuthModal';
 import { useUser } from '../../common/context/user-context';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { addUTM } from '../../hooks/utm';
 
 const AuthButton = () => {
     const {user, isLoading} = useUser()
@@ -21,6 +23,9 @@ const AuthButton = () => {
         document.body.style.overflowY = 'auto'
         setIsOpen(false)
     }
+
+    const searchParams = useSearchParams()
+    const utm_source = searchParams.get('utm_source')
     
     return (
         <div style={{marginLeft: 'auto'}}>
@@ -44,7 +49,7 @@ const AuthButton = () => {
                 </div>
             )}
             {user && (
-                <Link className='ProfileButtonContainer' href={"/profile"} style={{textDecoration: 'none'}}>
+                <Link className='ProfileButtonContainer' href={addUTM("/profile", utm_source)} style={{textDecoration: 'none'}}>
                     {user.photo_url?<img src={user.photo_url} width={30} height={30} className='ProfileButtonContainerAvatar'></img>:<img src='/icons8-avatar-96 (1).png' alt='Profile Avatar' width={30} height={30}></img>}
                     <div className='ProfileButtonStyledText'>{user.first_name || user.username || user.email}</div>
                 </Link>

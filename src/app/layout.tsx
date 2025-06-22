@@ -5,6 +5,7 @@ import './layoutStyled.css'
 import {Metadata} from "next";
 import { CookiesProvider } from 'next-client-cookies/server';
 import { UserProvider } from '../common/context/user-context';
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://godzillasoft.ru'),
@@ -39,7 +40,11 @@ interface RootLayoutProps {
     children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+    const headerStore = await headers();
+    const searchParams = Object.fromEntries(
+        new URLSearchParams(headerStore.get("searchParams") || "")
+    );
     return (
         <html lang="ru">
         <body>
@@ -48,7 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 {/* @ts-expect-error Server Component */}
                 <CookiesProvider>
                     <UserProvider>
-                        <Layout pageId="">
+                        <Layout utm_source={searchParams["utm_source"]}>
                             {children}
                         </Layout>
                     </UserProvider>

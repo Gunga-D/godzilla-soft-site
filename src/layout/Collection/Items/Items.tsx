@@ -1,10 +1,11 @@
-import Link from "next/link"
 import { collectionsApi } from "../../../common/api/collections/collections-api"
 import { generateItemPath } from "../../../hooks/links"
 import "./ItemsStyle.css"
+import { addUTM } from "../../../hooks/utm"
 
 type CollectionItemsProps = {
-    collectionID: number
+    collectionID: number,
+    utm_source: string | undefined
 }
 
 export const CollectionItems = async (props: CollectionItemsProps) => {
@@ -15,7 +16,7 @@ export const CollectionItems = async (props: CollectionItemsProps) => {
             <h3 className="CollectionItemsTitle">В НАС СПИСОК ПОПАЛИ СЛЕДУЮЩИЕ {items.length} ИГР ПО ТЕМАТИКЕ</h3>
             <div className='CollectionListItemsContainer'>
                 {items.map((item, idx) => (
-                    <a target="_blank" rel="noopener noreferrer" key={idx} className='CollectionItem' href={generateItemPath(item.category_id, item.title, item.id)}>
+                    <a target="_blank" rel="noopener noreferrer" key={idx} className='CollectionItem' href={addUTM(generateItemPath(item.category_id, item.title, item.id), props.utm_source)}>
                         <img src={item.horizontal_image_url} className="CollectionItemThumbnail"></img>
                         <div className="CollectionItemFooter">
                             <div className="CollectionItemGenres">

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { generateItemPath } from '../../../hooks/links';
 import './MediumCardForGamesStyle.css'
+import { addUTM } from '../../../hooks/utm';
 
 type CardForGamesProps = {
   id: number,
@@ -18,12 +19,12 @@ type CardForGamesProps = {
   is_for_sale?: boolean,
   platform?: string,
   region?: string,
+  utm_source: string | undefined
 }
 
 export const MediumCardForGames = (props: CardForGamesProps) => {
-    const router = useRouter();
     const handleCardClick = () => {
-        window.open(generateItemPath(props.categoryId, props.name, props.id), '_blank');
+        window.open(addUTM(generateItemPath(props.categoryId, props.name, props.id), props.utm_source), '_blank');
     };
 
     const [regionIcon, setRegionIcon] = useState('');

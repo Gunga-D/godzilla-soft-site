@@ -6,6 +6,8 @@ import './MoreGamesStyle.css'
 import { generateItemPath } from '../../hooks/links';
 import { useEffect, useState } from 'react';
 import { CatalogItem } from '../../common/api/catalogItem/catalogItem';
+import { useSearchParams } from 'next/navigation'
+import { addUTM } from '../../hooks/utm';
 
 export const MoreGames = () => {
     const [data, setData] = useState<CatalogItem[]>([])
@@ -20,6 +22,13 @@ export const MoreGames = () => {
         fetchData()
     }, [])
 
+    let linkQuery: { [key: string]: string } = { type: "gift", category: "popular" }
+    const searchParams = useSearchParams()
+    const utm_source = searchParams.get('utm_source')
+    if (utm_source) {
+        linkQuery["utm_source"] = utm_source
+    }
+
     return (
         <div className='MoreGames'>
             <h2 className='MoreGamesTitle'>Еще больше игр ❯</h2>
@@ -29,7 +38,7 @@ export const MoreGames = () => {
                 )}
 
                 {data.map((item, index) => (
-                    <a target="_blank" rel="noopener noreferrer" href={generateItemPath(item.category_id, item.title, item.id)} key={index} style={{textDecoration: "none"}}>
+                    <a target="_blank" rel="noopener noreferrer" href={addUTM(generateItemPath(item.category_id, item.title, item.id), utm_source)} key={index} style={{textDecoration: "none"}}>
                         <div className='MoreGamesItemContainer'>
                             <div className='MoreGamesItemThumbnailContainer'>
                                 <img src={item.horizontal_image_url} alt='ItemThumbnail' width={306} height={143} className='MoreGamesItemThumbnail'></img>
@@ -57,7 +66,7 @@ export const MoreGames = () => {
                         </div>
                     </a>
                 ))}
-                <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} style={{textDecoration: "none", color: "white"}} className='MoreGamesLinkToCategory'>Показать еще</Link>
+                <Link href={{pathname: "/games", query: linkQuery}} style={{textDecoration: "none", color: "white"}} className='MoreGamesLinkToCategory'>Показать еще</Link>
             </div>
         </div>
     );

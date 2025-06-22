@@ -16,6 +16,7 @@ type BuyPageProps = {
   isSteamGift: boolean,
   title?: string,
   description?: string,
+  utm_source: any
 }
 
 export const BuyPage = (props: BuyPageProps) => {
@@ -93,9 +94,9 @@ export const BuyPage = (props: BuyPageProps) => {
             let data: CreateOrder;
             try {
                 if (props.isSteamGift) {
-                  data = await itemApi.createGiftOrder(props.itemID, inputValue, accessToken);
+                  data = await itemApi.createGiftOrder(props.itemID, inputValue, accessToken, props.utm_source);
                 } else {
-                  data = await itemApi.createKeyOrder(props.itemID, inputValue, accessToken);
+                  data = await itemApi.createKeyOrder(props.itemID, inputValue, accessToken, props.utm_source);
                 }
             } catch (err) {
                 const errorMessage = getErrorMessage(err);

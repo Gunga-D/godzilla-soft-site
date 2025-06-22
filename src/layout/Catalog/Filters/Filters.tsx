@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import "./FiltersStyle.css"
+import { addUTM } from "../../../hooks/utm";
 
 type CatalogFiltersProps = {
     categoryID: number,
@@ -62,7 +63,7 @@ export const CatalogFilters = async (props: CatalogFiltersProps) => {
         }
 
         const searchParams = new URLSearchParams(params)
-        redirect(`/${catalogPath}?${searchParams.toString()}`)
+        redirect(addUTM(`/${catalogPath}?${searchParams.toString()}`, props.filters.utm_source))
     }
 
     return (
@@ -172,7 +173,7 @@ export const CatalogFilters = async (props: CatalogFiltersProps) => {
                 </div>
             )}
             <div className="CatalogInnerFiltersSubmitBtnContainer">
-                <button type="submit" className="CatalogInnerFiltersSubmitBtn">Показать больше товаров</button>
+                <button type="submit" className="CatalogInnerFiltersSubmitBtn">Применить фильтрацию</button>
             </div>
         </form>
     )

@@ -8,7 +8,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect('https://m.godzillasoft.ru', 302);
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  const searchParams = request.nextUrl.searchParams.toString();
+  response.headers.set("searchParams", searchParams);
+  return response;
 }
 
 export const config = {

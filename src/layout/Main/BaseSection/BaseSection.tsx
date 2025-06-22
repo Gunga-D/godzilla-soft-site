@@ -8,10 +8,16 @@ type BaseSectionProps = {
     id: string,
     mainTitle?: string,
     url?: string,
+    utm_source: string | undefined
 }
 
 export const BaseSection = async (props: BaseSectionProps) => {
     const data = await itemApi.getItem(`${props.url}`)
+
+    let gamesGiftLinkQuery: { [key: string]: string } = { type: "gift", category: "popular" }
+    if (props.utm_source) {
+        gamesGiftLinkQuery["utm_source"] = props.utm_source
+    }
     return (
         <div className='StyledBaseSectionSeasonDiv'>
             <div className="StyledBaseSectionHeader">
@@ -34,6 +40,7 @@ export const BaseSection = async (props: BaseSectionProps) => {
                         imageWidth={'204px'}
                         platform={item.platform}
                         region={item.region}
+                        utm_source={props.utm_source}
                     />
                 ))}
                 <div className="StyledBaseSectionMoreItemsContainer">
@@ -44,7 +51,7 @@ export const BaseSection = async (props: BaseSectionProps) => {
                     <div className="StyledBaseSectionMoreItemsShadow"></div>
                     <div className="StyledBaseSectionMoreItemsShadow"></div>
                     <div className="StyledBaseSectionMoreItems">
-                        <Link href={{pathname: "/games", query: {"type": "gift", "category": "popular"}}} style={{textDecoration: "none", color: "white"}}>Больше→</Link>
+                        <Link href={{pathname: "/games", query: gamesGiftLinkQuery}} style={{textDecoration: "none", color: "white"}}>Больше→</Link>
                     </div>
                 </div>
             </div>

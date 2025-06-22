@@ -1,7 +1,12 @@
 import Script from "next/script";
 import {MainPage} from "../layout/Main/Main";
 
-export default function Main() {
+export default async function Main({
+    searchParams,
+  }: {
+    searchParams: Promise<{ [key: string]: string | undefined }>
+  }) {
+    const params = (await searchParams)
     return (
         <div>
             <Script type="text/javascript">
@@ -20,7 +25,7 @@ export default function Main() {
         });`
             }
             </Script>
-            <MainPage/>
+            <MainPage utm_source={params.utm_source}/>
         </div>
     );
 }

@@ -1,8 +1,13 @@
 import Image from 'next/image'
 import './NeuroHeaderStyle.css'
 import Link from 'next/link'
+import { addUTM } from '../../../hooks/utm';
 
-export const NeuroHeader = () => {
+type NeuroHeaderProps = {
+    utm_source: string | undefined
+};
+
+export const NeuroHeader = (props: NeuroHeaderProps) => {
     return (
         <div className='NeuroHeader'>
             <div style={{fontSize: '14px', color: 'gray'}}>Более 1000 довольных клиентов</div>
@@ -19,7 +24,7 @@ export const NeuroHeader = () => {
                 <div className='NeuroHeaderFeature'><Image src='/icons8-spring-in-motion-90.png' width={32} height={32} alt='Icon of spring'></Image><div>Гибкий поиск по вашему индивидуальному запросу</div></div>
             </div>
             <div className='NeuroHeaderControls'>
-                <Link href={"/suggest"} className='NeuroHeaderControlsBtn'>Открыть нейропоиск</Link>
+                <Link href={addUTM("/suggest", props.utm_source)} className='NeuroHeaderControlsBtn'>Открыть нейропоиск</Link>
             </div>
             <div className='NeuroHeaderImageContainer'>
                     <div className="NeuroHeaderImageGifAnimation">
