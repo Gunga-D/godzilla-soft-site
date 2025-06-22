@@ -1,5 +1,5 @@
 import axios from "axios";
-import { User, UserLoginResponse, UserProfileResponse, UserChangePasswordResponse } from "./types";
+import { User, UserLoginResponse, UserProfileResponse, UserChangePasswordResponse, UserKeysHistoryResponse } from "./types";
 import {TelegramUser} from 'telegram-login-button';
 
 export const userApi = {
@@ -29,6 +29,14 @@ export const userApi = {
     },
     async profile(token: string): Promise<UserProfileResponse> {
         const response = await axios.get(`https://api.godzillasoft.ru/v1/user_profile`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return response.data
+    },
+    async keys_history(token: string): Promise<UserKeysHistoryResponse> {
+        const response = await axios.get(`https://api.godzillasoft.ru/v1/user_keys`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

@@ -25,3 +25,15 @@ export type User = {
     steam_link?: string,
     email?: string
 }
+
+export type UserKeysHistoryResponse = {
+    status: string,
+    data: UserKeyDTO[]
+}
+
+export type UserKeyDTO = {
+    id: string,
+    item_name?: string,
+    code: string,
+    status: string
+}

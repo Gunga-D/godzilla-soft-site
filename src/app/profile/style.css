@@ -55,3 +55,50 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+.ProfileHistoryKeys {
+    margin-top: 18px;
+    width: 100%;
+}
+
+.ProfileHistoryKeysContainer {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ProfileHistoryKeyItem {
+    background-color: rgb(27 28 34 / 1);
+    border: 1px solid hsla(0, 0%, 100%, .051);
+    padding: 12px 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.ProfileHistoryKeyItemStatus {
+    margin-left: auto;
+    padding: 8px 12px;
+    color: #00ff93;
+    background-color: #00ff931a;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.ProfileHistoryKeyItemCode {
+    color: white;
+    background-color: #ffffff1a;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 19px;
+    padding: 3px 8px;
+}
+
+.ProfileHistoryKeyItemName {
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
