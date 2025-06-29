@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useEffect, useState} from 'react';
-import './InputFoundStyles.css';
+import '../../components/input/InputFoundStyles.css';
 import {SearchItem} from '../../common/api/searchItem/searchItem';
 import {searchApi} from '../../common/api/searchItem/search-api';
 import {generateItemPath} from '../../hooks/links';
@@ -10,7 +10,12 @@ import {catalogApi} from '../../common/api/catalogItem/catalog-api';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const InputFound = () => {
+type RouletteInputProps = {
+    selectHandlerAction: (game: SearchItem) => void;
+    searchDefaultText?: string
+}
+
+export const RouletteInput = ({ selectHandlerAction, searchDefaultText } : RouletteInputProps) => {
     const router = useRouter();
 
     const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
@@ -46,7 +51,7 @@ export const InputFound = () => {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
 
     const [error, setError] = useState<string | null>(null);
-    const [placeholder, setPlaceholder] = useState<string>("Поиск по цифровым товарам")
+    const [placeholder, setPlaceholder] = useState<string>(searchDefaultText ?? "Поиск по цифровым товарам")
     const onFocusHandler = () => {
         setIsPopupOpen(true);
         setPlaceholder("Цифровые товары")
@@ -54,7 +59,7 @@ export const InputFound = () => {
 
     const onBlurHandler = () => {
         setIsPopupOpen(false);
-        setPlaceholder("Поиск по цифровым товарам")
+        setPlaceholder(searchDefaultText ?? "Поиск по цифровым товарам")
     };
 
     const [currentQuery, setCurrentQuery] = useState<string>("");
@@ -70,10 +75,6 @@ export const InputFound = () => {
                 setError('Произошла непредвиденная ошибка');
             }
         }
-    };
-
-    const handleCardClick = (categoryID: number, itemName: string, itemId: number) => {
-        window.open(generateItemPath(categoryID, itemName, itemId), '_blank')
     };
 
     return (
@@ -102,9 +103,6 @@ export const InputFound = () => {
                     onFocus={onFocusHandler}
                     className='styledInput'
                 />
-                <Link href={"/suggest"} className='SearchDeepthinkBtn'><Image src={"/atom-icon-100.png"} alt='NeuroIcon'
-                                                                              width={20} height={20}/>Нейропоиск</Link>
-
                 {isPopupOpen && (
                     <div className={'styledPopUp'}>
                         {searchResults?.length > 0 ? (
@@ -131,7 +129,7 @@ export const InputFound = () => {
                                             <li
                                                 className={'gameItem'}
                                                 onMouseDown={() =>
-                                                    handleCardClick(game.item_category_id!, game.item_title!, game.item_id!)
+                                                    selectHandlerAction(game)
                                                 }
                                             >
                                                 <div>

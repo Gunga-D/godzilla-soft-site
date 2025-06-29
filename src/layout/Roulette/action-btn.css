@@ -1,0 +1,84 @@
+.action-btn-container {
+    display: flex;
+    position: relative;
+    margin-bottom: 50px;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn {
+    display: flex;
+    flex: 1;
+    background: linear-gradient(to bottom, #ffd700, #ff8c00);
+    color: #8b0000;
+    padding: 15px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.action-btn-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+.help-icon {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    background-color: gold;
+    color: #555;
+    border-radius: 50%;
+    place-content: center;
+    cursor: help;
+    font-weight: bold;
+    position: relative;
+}
+
+.help-tooltip {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100%;
+    margin-bottom: 10px;
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: max-content;
+    max-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    z-index: 10;
+}
+
+.help-icon:hover .help-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.help-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}

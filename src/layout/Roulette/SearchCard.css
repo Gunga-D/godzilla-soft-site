@@ -1,0 +1,14 @@
+.searchCard {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    width: calc(var(--card-width) + 40px);
+}
+
+.searchCard > .inputContainer {
+    width: 100%;
+    margin: 20px 0;
+    flex: 0 0 50px;
+}
