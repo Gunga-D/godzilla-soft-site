@@ -35,7 +35,8 @@ export type ItemDetail = {
     },
     similar_games?: SimilarGameDTO[],
     horizontal_image_url?: string,
-    exists_in_random: boolean
+    exists_in_random: boolean,
+    in_sub: boolean
 }
 
 export type SimilarGameDTO = {

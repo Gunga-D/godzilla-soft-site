@@ -11,7 +11,8 @@ export const catalogApi = {
         isSteamGift?: boolean,
         popular?: boolean,
         new?: boolean,
-        unavailable?: boolean
+        unavailable?: boolean,
+        in_sub?: boolean,
     }, limit?: number, offset?: number, randomOrder?: boolean): Promise<CatalogItem[]> {
         const queryParams = new URLSearchParams();
         let requestUrl
@@ -47,6 +48,9 @@ export const catalogApi = {
         }
         if (randomOrder) {
             queryParams.append('random', '1')
+        }
+        if (filters.in_sub) {
+            queryParams.append('in_sub', "1")
         }
         
         let itemsLimit = 100

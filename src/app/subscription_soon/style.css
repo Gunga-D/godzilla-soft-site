@@ -1,4 +1,4 @@
-.NotFoundContainer {
+.SubscriptionSoonContainer {
     color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -9,37 +9,37 @@
     gap: 3rem;
   }
   
-  .NotFoundImageWrapper {
+  .SubscriptionSoonImageWrapper {
     max-width: 300px;
     flex-shrink: 0;
   }
   
-  .NotFoundTextContent {
+  .SubscriptionSoonTextContent {
     max-width: 600px;
     text-align: left;
   }
   
-  .NotFoundCode {
-    font-size: 96px;
+  .SubscriptionSoonMain {
+    font-size: 65px;
     font-weight: 700;
-    margin: 0;
+    line-height: 80px;
   }
   
-  .NotFoundTitle {
+  .SubscriptionSoonTitle {
     font-size: 32px;
     font-weight: 600;
     margin: 0.5rem 0;
   }
   
-  .NotFoundDescription {
+  .SubscriptionSoonDescription {
     font-size: 18px;
     color: #a0a0a0;
     margin: 1rem 0 2rem;
     line-height: 1.5;
   }
   
-  .NotFoundButton {
-    background-color: #e11d1d;
+  .SubscriptionSoonButton {
+    background: linear-gradient(90deg, #ff00d2, #1400ff);
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -50,7 +50,7 @@
     text-decoration: none;
   }
   
-  .NotFoundButton:hover {
+  .SubscriptionSoonButton:hover {
     background-color: #c71616;
   }
   

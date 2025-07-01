@@ -76,11 +76,21 @@ export async function generateMetadata(
     return {
       metadataBase: new URL('https://godzillasoft.ru'),
       title: `Купить игру ${item.title} в ${item.platform} | GODZILLASOFT`,
-      description: `Купить игру ${item.title} в ${item.platform}: Товар на сайте цифровых товаров GODZILLA SOFT. Мам, купи игру`,
+      description: `Купить игру ${item.title} в ${item.platform}: Товар на сайте цифровых товаров GODZILLA SOFT.`,
+      icons: {
+         other: [
+             { rel: 'alternate', url: `https://m.godzillasoft.ru/${generateItemPath(item.category_id, item.title, item.id)}`, media: "only screen and (max-width: 640px)" },
+         ]
+      },
       openGraph: {
         type: "website",
         images: images,
+        locale: "ru_RU",
+        countryName: "ru",
         url: `${generateItemPath(item.category_id, item.title, item.id)}`,
       },
+      alternates: {
+        canonical: `${generateItemPath(item.category_id, item.title, item.id)}`
+      }
     }
   }

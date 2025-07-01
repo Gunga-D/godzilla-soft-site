@@ -8,7 +8,7 @@ type CatalogItemsProps = {
     categoryID: number,
     currentPage: number,
     itemsLimit: number,
-    utm_source: string | undefined,
+    utm_source: any,
     items: CatalogItem[]
 }
 
@@ -42,6 +42,11 @@ export const CatalogItems = async (props: CatalogItemsProps) => {
                             <h3 className="CatalogItemBodyTitle">{item.title}</h3>
                         </div>
                         <div className="CatalogItemBodyBadgeBar">
+                            {item.in_sub && (
+                                <div className="CatalogItemBodySubscriptionBadge">
+                                    В подписке
+                                </div>
+                            )}
                             {item.genres?.map((badge, badgeIdx) => (
                                 <div className="CatalogItemBodyBadge" key={badgeIdx}>
                                     {badge}

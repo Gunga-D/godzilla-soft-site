@@ -1,4 +1,5 @@
 User-agent: Googlebot
+Disallow: /subscription_soon
 Disallow: /redirect
 Disallow: /*?_openstat
 Disallow: /*nomobile=
@@ -7,6 +8,7 @@ Disallow: /*swf$
 Sitemap: https://api.godzillasoft.ru/v1/sitemap.xml
 
 User-agent: *
+Disallow: /subscription_soon
 Disallow: /redirect
 Disallow: /*?_openstat
 Disallow: /*nomobile=

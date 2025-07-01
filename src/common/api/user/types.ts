@@ -23,6 +23,7 @@ export type User = {
     username?: string,
     first_name?: string,
     steam_link?: string,
+    has_subscription: boolean,
     email?: string
 }
 

@@ -7,7 +7,7 @@ import { addUTM } from '../../../hooks/utm';
 
 type CatalogCollectionsProps = {
     categoryID: number,
-    utm_source: string | undefined
+    utm_source: any
 }
 
 export const CatalogCollections = async (props: CatalogCollectionsProps) => {

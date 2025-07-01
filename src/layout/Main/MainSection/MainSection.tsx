@@ -4,6 +4,7 @@ import Link from "next/link";
 import { NeuroHeader } from '../NeuroHeader/NeuroHeader';
 import { RandomGameWidget } from '../RandomGame/RandomGame';
 import { addUTM } from '../../../hooks/utm';
+import { SubscriptionWidget } from '../SubscriptionWidget/SubscriptionWidget';
 
 type MainSectionProps = {
     utm_source: string | undefined
@@ -17,7 +18,7 @@ export const MainSection = (props: MainSectionProps) => {
 
     return (
         <div className='MainSectionStyledSection'>
-            <NeuroHeader utm_source={props.utm_source}></NeuroHeader>
+            <SubscriptionWidget></SubscriptionWidget>
             <RandomGameWidget></RandomGameWidget>
             <div className='MainSectionStyledWrapper'>
                 <Link href={addUTM("/steam_deposit", props.utm_source)} className="MainSectionStyledRubricatorItemLink">

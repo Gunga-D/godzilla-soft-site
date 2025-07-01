@@ -1,0 +1,215 @@
+.SubscriptionModalOverlay {
+    cursor:auto;
+    z-index: 1000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+.SubscriptionModalContainer {
+    color: white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 3px, rgba(0, 0, 0, 0.12) 0px 4px 24px;
+    position: relative;
+    background: linear-gradient(47.03deg, rgba(255, 0, 209, .13) 25.89%, rgba(20, 0, 255, .13)), linear-gradient(0deg, hsla(0, 0%, 100%, .05), hsla(0, 0%, 100%, .05)), rgba(94, 94, 94, .18);
+    backdrop-filter: blur(45px);
+    width: 470px;
+}
+
+.SubscriptionModalTitle {
+    color: white;
+    font-size: 26px;
+    font-weight: 900;
+}
+
+.SubscriptionhModalCloseContainer {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.SubscriptionModalDescription {
+    text-align: center;
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.SubscriptionModalConnectButton {
+    cursor: pointer;
+    width: 100%;
+    margin-top: 11px;
+    text-align: center;
+    background: linear-gradient(180deg,rgba(168, 126, 249, 1) 0%, rgba(132, 153, 255, 1) 100%) no-repeat;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 12px;
+}
+
+.SubscriptionModalDescriptionPlanSelector {
+    margin-top: 21px;
+    border-radius: 12px;
+    padding: 12px;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(94, 94, 94, .18), rgba(94, 94, 94, .18)), linear-gradient(0deg, hsla(0, 0%, 100%, .05), hsla(0, 0%, 100%, .05));
+}
+  
+.SubscriptionModalDescriptionPlanOption {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+  
+.SubscriptionModalDescriptionPlanOption.selected {
+    background: hsla(0, 0%, 100%, .1);
+}
+  
+.SubscriptionModalDescriptionPlanRadioCirle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #c97efb;
+    border-radius: 50%;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.SubscriptionModalDescriptionPlanRadioDot {
+    width: 10px;
+    height: 10px;
+    background-color: #c97efb;
+    border-radius: 50%;
+}
+  
+.SubscriptionModalDescriptionPlanOptionDetails {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+  
+.SubscriptionModalDescriptionPlanOptionTitle {
+    font-size: 16px;
+    font-weight: 500;
+}
+  
+.SubscriptionModalDescriptionPlanOptionPrice {
+    margin-left: auto;
+    color: rgb(192, 192, 192);
+    font-size: 14px;
+}
+
+.SubscriptionModalDescriptionPlanOptionDiscount {
+    background-color: #c97efb;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    margin-left: 8px;
+}
+  
+.SubscriptionModalFeature {
+    margin-top: 12px;
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 0;
+    background-color: hsla(0, 0%, 100%, .05);
+    border-radius: 12px;
+    padding: 12px;
+    position: relative;
+}
+
+.SubscriptionModalFeatureIcon {
+    font-size: 24px;
+    margin-right: 12px;
+    margin-top: 2px;
+}
+
+.SubscriptionModalFeatureContent {
+    flex: 1;
+}
+
+.SubscriptionModalFeatureTitleLine {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+  
+.SubscriptionModalFeatureTitle {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.SubscriptionModalFeatureBadge {
+    background-color: #0078d7;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+  
+.SubscriptionModalFeatureDescription {
+    font-size: 14px;
+    color: hsla(0, 0%, 100%, .55);
+    margin-top: 4px;
+}
+
+.SubscriptionModalFooter {
+    margin-top: 16px;
+}
+
+.SubscriptionModalConnectRules {
+    font-size: 14px;
+    color: hsla(0, 0%, 100%, .55);
+}
+
+.SubscriptionModalConnectRuleLink {
+    color: #318efc;
+    text-decoration: none;
+}
+
+.SubscriptionModalRegistrationBlock {
+    margin-top: 8px;
+}
+
+.SubscriptionModalRegistrationTitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: rgb(192, 192, 192);
+}
+
+.SubscriptionModalRegistrationInput {
+    border: 1px solid hsla(0, 0%, 100%, .21);
+    outline: none;
+    background: linear-gradient(0deg, rgba(94, 94, 94, .18), rgba(94, 94, 94, .18)), linear-gradient(0deg, hsla(0, 0%, 100%, .05), hsla(0, 0%, 100%, .05));
+    border-radius: 12px;
+    width: 100%;
+    color: white;
+    padding: 12px;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.SubscriptionModalRegistrationInput::placeholder {
+    color: hsla(0, 0%, 100%, .55);
+}
+
+.SubscriptionModalConnectButtonLoader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}

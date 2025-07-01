@@ -12,6 +12,7 @@ import { OnSideCarouselController } from '../../components/onSideCarouselControl
 import { GalleryMovieItem } from '../../components/galleryMovieItem/GalleryMovieItem';
 import { GameReviews } from '../../components/gameReviews/GameReviews';
 import { addUTM } from '../../hooks/utm';
+import { GetSubscriptionProductButton } from '../../components/getSubscriptionProductButton/GetSubscriptionProductButton';
 
 type GamePageProps = {
     item: ItemDetail;
@@ -110,7 +111,12 @@ const GamePage = ({ item, utm_source }: GamePageProps) => {
                                 </>
                             )}
                         </div>
-                        <BuyButton></BuyButton>
+                        <div style={{display: 'flex', gap: '16px'}}>
+                          {item.in_sub && (
+                            <GetSubscriptionProductButton item_id={item.id} item_name={item.title}></GetSubscriptionProductButton>
+                          )}
+                          <BuyButton></BuyButton>
+                        </div>
                     </div>
                 </div>
                 <GameFullInfo item={item}></GameFullInfo>

@@ -122,6 +122,10 @@
     padding-bottom: 5px;
 }
 
+.styledGameName.in_sub {
+    background: linear-gradient(90deg, #ff00d2, #1400ff);
+}
+
 .styledPNewPrice {
     font-style: normal;
     font-weight: 900;
@@ -149,7 +153,7 @@
     margin-bottom: auto;
 }
 
-.SearchItemGenres {
+.SearchItemBadges {
     display: flex;
     gap: 8px;
 }
@@ -158,6 +162,12 @@
     padding: 3px 8px;
     font-size: 12px;
     background-color: #444444;
+}
+
+.SearchItemInSub {
+    padding: 3px 8px;
+    font-size: 12px;
+    background: linear-gradient(90deg, #ff00d2, #1400ff);
 }
 
 .SearchItemType {

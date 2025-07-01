@@ -132,7 +132,6 @@ export const BuyPage = (props: BuyPageProps) => {
 
 
     const [isHinted, setIsHinted] = useState(false);
-
     const escFunction = useCallback((event: any) => {
         if (event.key === "Escape") {
           setIsHinted(false)

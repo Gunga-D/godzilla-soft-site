@@ -80,6 +80,10 @@ export const CatalogFilters = async (props: CatalogFiltersProps) => {
                             <input type="radio" className='CatalogInnerFiltersFilterVariantInput' id="catalog_filter_type_key" name={"type"} value={"key"} defaultChecked={props.filters.type=='key'}></input>
                             <label htmlFor="catalog_filter_type_key" className="CatalogInnerFiltersFilterVariantLabel">Ключом</label>
                         </div>
+                        <div className='CatalogInnerFiltersFilterVariant' style={{gridColumn: 'span 2'}}>
+                            <input type="radio" className='CatalogInnerFiltersFilterVariantInput' id="catalog_filter_type_subscription" name={"type"} value={"subscription"} defaultChecked={props.filters.type=='subscription'}></input>
+                            <label htmlFor="catalog_filter_type_subscription" className="CatalogInnerFiltersFilterVariantLabel CatalogInnerFiltersFilterVariantLabelSubscription">В подписке</label>
+                        </div>
                     </div>
                 </div>
             )}

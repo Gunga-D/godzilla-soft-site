@@ -1,0 +1,98 @@
+.SubscriptionProductModalOverlay {
+    cursor:auto;
+    z-index: 1000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+.SubscriptionProductModalContainer {
+    color: white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    backdrop-filter: blur(90px);
+    background: #2c2c2e;
+    width: 630px;
+}
+
+.SubscriptionProductModalClose {
+    margin-left: auto;
+    fill: white;
+    width: 35px;
+    height: 35px;
+}
+
+.SubscriptionProductModalTitle {
+    color: white;
+    font-size: 21px;
+    font-weight: 300;
+}
+
+.SubscriptionProductModalAccountContainer {
+    background-color: #28282a;
+    border-radius: 12px;
+}
+.SubscriptionProductModalAccountField {
+    border-bottom: 1px solid #363638;
+    color: white;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.SubscriptionProductModalAccountFieldTitle {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.SubscriptionProductModalAccountFieldValue {
+    margin-left: auto;
+    font-size: 18px;
+    color: #318efc;;
+}
+
+.SubscriptionProductModalAccountFieldValueCopyBtn {
+    fill: #318efc;;
+    margin-left: 8px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+.SubscriptionProductModalDescription {
+    color: #9f9fa5;
+    margin-bottom: 16px;
+}
+
+.SubscriptionProductModalSlip {
+    color: #318efc;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.SubscriptionProductInstructionModalOverlay {
+    z-index: 1000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+.SubscriptionProductInstructionModalContent {
+    border-radius: 15px;
+    background-color: #242328;
+    padding: 32px;
+    color: white;
+}

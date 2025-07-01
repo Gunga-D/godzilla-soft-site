@@ -113,3 +113,7 @@
     outline: 0;
     cursor: pointer;
 }
+
+.CatalogInnerFiltersFilterVariantsContainer input[type="radio"]:checked+.CatalogInnerFiltersFilterVariantLabelSubscription {
+    background: linear-gradient(102deg, #0072ff 13%, #00c6ff 55%, #90d 89%);
+}

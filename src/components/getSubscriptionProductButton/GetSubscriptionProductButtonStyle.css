@@ -1,0 +1,31 @@
+.GetSubscriptionProductButton {
+    text-align: center;
+    width: 178px;
+    height: 51px;
+    line-height: 51px;
+    background: linear-gradient(90deg, #ff00d2, #1400ff);
+    box-sizing: border-box;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 900;
+  
+    &:hover {
+      color: #ff00d2;
+      background: white;
+      cursor: pointer;
+      transition: 250ms;
+    }
+}
+
+.GetSubscriptionProductLoader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff00d2;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}

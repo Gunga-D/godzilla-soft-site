@@ -38,6 +38,7 @@ export const InputFound = () => {
                     item_horizontal_image: v.horizontal_image_url,
                     item_genres: v.genres,
                     item_release_date: v.release_date,
+                    item_in_sub: v.in_sub,
                     probability: 1,
                 })
             })
@@ -146,9 +147,14 @@ export const InputFound = () => {
                                                     />
                                                 </div>
                                                 <div style={{ marginLeft: '25px' }}>
-                                                    <p className={'styledGameName'}>{game.item_title || 'Без названия'}</p>
+                                                    <p className={`styledGameName`}>{game.item_title || 'Без названия'}</p>
                                                     <p className={'styledPNewPrice'}>{game.item_current_price}</p>
-                                                    <div className='SearchItemGenres'>
+                                                    <div className='SearchItemBadges'>
+                                                        {game.item_in_sub && (
+                                                            <div className='SearchItemInSub'>
+                                                                В подписке
+                                                            </div>
+                                                        )}
                                                         {game.item_genres?.slice(0, 2).map((v, idx) => (
                                                             <div key={idx} className='SearchItemGenre'>
                                                                 {v}

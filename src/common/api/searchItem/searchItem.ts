@@ -16,5 +16,6 @@ export type SearchItem = {
     item_horizontal_image?: string,
     item_genres?: string[],
     item_release_date?: string,
+    item_in_sub?: boolean,
     probability: number,
 }

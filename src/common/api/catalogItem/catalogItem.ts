@@ -10,5 +10,6 @@ export type CatalogItem = {
     genres?: string[],
     description?: string,
     release_date?: string,
-    total_count?: number
+    total_count?: number,
+    in_sub: boolean
 }
