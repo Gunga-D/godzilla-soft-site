@@ -17,10 +17,15 @@ const SubscriptionModal = (props: SubscriptionModalProps) => {
 
     const cookies = useCookies();
 
+    const [hasRulesApplied, setHasRulesApplied] = useState<boolean>(false)
     const [selected, setSelected] = useState<'month' | 'year'>('month');
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [err, setError] = useState<string | null>(null)
     const onSubscribe = () => {
+        if (!hasRulesApplied) {
+            setError("Вы не согласны с условиями нашей подписки, ознакомьтесь с правилами и нажмите на соответствующее поле.")
+            return
+        }
         if (!user && (!email || email == "")) {
             setError("Почта не должна быть пустой")
             return
@@ -112,7 +117,14 @@ const SubscriptionModal = (props: SubscriptionModalProps) => {
                         </div>
                     </div>
                     <div className="SubscriptionModalFooter">
-                        <div className="SubscriptionModalConnectRules">Оформляя подписку GODZILLA SOFT, Вы подтверждаете, что ознакомились с условиями <a className="SubscriptionModalConnectRuleLink">Пользовательского соглашения</a> и <a className="SubscriptionModalConnectRuleLink">Политики конфиденциальности</a>.</div>
+                        <div className="SubscriptionModalRulesContainer">
+                            <div className="SubscriptionModalRulesRadioBtn" onClick={() => setHasRulesApplied(!hasRulesApplied)}>
+                                {hasRulesApplied && <div className="SubscriptionModalRulesRadioBtnYes">
+                                    <img src="/icons8-galochka.svg" className="SubscriptionModalRulesRadioBtnYesImg"></img>
+                                </div>}
+                            </div>
+                            <div className="SubscriptionModalConnectRules">Оформляя подписку вы соглашаетесь с <a className="SubscriptionModalConnectRuleLink" href="/2025_07_06_subscription_rules.pdf">условиями</a> для последующих регулярных списаний. Вы можете в любой момент отменить подписку, обратившись в <a className="SubscriptionModalConnectRuleLink" href="https://t.me/GODZILLASOFT_bot">поддержку</a> магазина.</div>
+                        </div>
                         <div className="SubscriptionModalConnectButton" onClick={onSubscribe}>
                         {isLoading && (
                             <span className="SubscriptionModalConnectButtonLoader"></span>

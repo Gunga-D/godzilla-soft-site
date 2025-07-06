@@ -225,7 +225,7 @@ export const RandomGameWidget = () => {
                     <input type='email' className='RandomGameWidgetBuyFormInput' placeholder='Введите вашу почту' defaultValue={inputValue} onChange={handleInputChange}></input>
                 </div>
                 <div className='RandomGameWidgetBuyFormButton' onClick={handlePayment}>Крутить барабан за 208₽</div>
-                <div className='RandomGameWidgetBuyFormRules'>Нажимая кнопку "Крутить барабан", вы принимаете <a href="/service_agreement.pdf" className='RandomGameWidgetBuyFormRulesLink'><br/>Договор-оферту&nbsp;оказания&nbsp;услуг</a> и <a href="/privacy_security.pdf" className='RandomGameWidgetBuyFormRulesLink'>Политика&nbsp;конфиденциальности</a></div>
+                <div className='RandomGameWidgetBuyFormRules'>Нажимая кнопку "Крутить барабан", вы принимаете <a href="/2025_07_06_service_agreement.pdf" className='RandomGameWidgetBuyFormRulesLink'><br/>Договор-оферту&nbsp;оказания&nbsp;услуг</a> и <a href="/2025_07_06_privacy_security.pdf" className='RandomGameWidgetBuyFormRulesLink'>Политика&nbsp;конфиденциальности</a></div>
             </div>
             {error && (
                 <div className='RandomGameWidgetBuyFormErr'>{error}</div>

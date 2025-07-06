@@ -44,8 +44,8 @@ export const Footer = (props: FooterProps) => {
                     <Image src='/MasterCard.svg' alt='MIR' width={133} height={26}/>
                 </div>
                 <div className="documents">
-                    <li><a href="/privacy_security.pdf">Политика конфиденциальности</a></li>
-                    <li><a href="/service_agreement.pdf">Лицензионный договор-оферта</a></li>
+                    <li><a href="/2025_07_06_privacy_security.pdf">Политика конфиденциальности</a></li>
+                    <li><a href="/2025_07_06_service_agreement.pdf">Лицензионный договор-оферта</a></li>
                 </div>
             </footer>
         </div>

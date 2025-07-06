@@ -179,7 +179,7 @@ const AuthModal = (props: AuthModalProps) => {
                                     <button className='AuthModalSignUpButton' onClick={onRegister}>Зарегистрироваться</button>
                                 </div>
                                 <div style={{marginTop: '14px', color: '#595959', textAlign: 'left', fontSize: '14px'}}>
-                                    При регистрации и входе вы соглашаетесь с <a href='/service_agreement.pdf' className='AuthModalRule'>правилами пользования сайта</a> и с <a href="/privacy_security.pdf" className='AuthModalRule'>политикой конфиденциальности</a>. 
+                                    При регистрации и входе вы соглашаетесь с <a href='/2025_07_06_service_agreement.pdf' className='AuthModalRule'>правилами пользования сайта</a> и с <a href="/2025_07_06_privacy_security.pdf" className='AuthModalRule'>политикой конфиденциальности</a>. 
                                 </div>
                             </div>
                         </div>
@@ -216,7 +216,7 @@ const AuthModal = (props: AuthModalProps) => {
                                     <div style={{marginLeft: 'auto'}}>Уже есть профиль? <span style={{color: '#ff333b', textDecoration: 'underline', cursor: 'pointer'}} onClick={onExitOfRegistration}>Войти</span></div>
                                 </div>
                                 <div style={{marginTop: '14px', color: '#595959', textAlign: 'left', fontSize: '14px'}}>
-                                    При регистрации и входе вы соглашаетесь с <a href='/service_agreement.pdf' className='AuthModalRule'>правилами пользования сайта</a> и с <a href="/privacy_security.pdf" className='AuthModalRule'>политикой конфиденциальности</a>. 
+                                    При регистрации и входе вы соглашаетесь с <a href='/2025_07_06_service_agreement.pdf' className='AuthModalRule'>правилами пользования сайта</a> и с <a href="/2025_07_06_privacy_security.pdf" className='AuthModalRule'>политикой конфиденциальности</a>. 
                                 </div>
                             </div>
                         </div>

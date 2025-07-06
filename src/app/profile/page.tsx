@@ -53,6 +53,18 @@ export default function Page() {
 
     return (
         <div style={{marginTop: '150px', width: '100%'}}>
+            {!user && (
+            <div className="ProfileNotAuthContainer">
+                <div className="ProfileNotAuthTextContent">
+                <h1 className="ProfileNotAuthCode">401</h1>
+                <h2 className="ProfileNotAuthTitle">Вы не авторизованы</h2>
+                <p className="ProfileNotAuthDescription">
+                    Для получения информации о вашем профиле вам необходимо авторизоваться.
+                </p>
+                <a className="ProfileNotAuthButton" href="/">На главную</a>
+                </div>
+            </div>
+            )}
             {user && (
                 <div className="ProfileContainer">
                     <div className="ProfileHeader">
