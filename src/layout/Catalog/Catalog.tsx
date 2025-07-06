@@ -45,10 +45,13 @@ export const Catalog = async (props: CatalogProps) => {
             )}</h1>
             <div className='CatalogInnerCatalogWrapper'>
                 <div className='CatalogInnerFilters'>
+                    {/* @ts-expect-error Server Component */}
                     <CatalogFilters categoryID={props.categoryID} filters={props.filters}></CatalogFilters>
                 </div>
                 <div className='CatalogInnerItems'>
+                    {/* @ts-expect-error Server Component */}
                     <CatalogCollections categoryID={props.categoryID} utm_source={props.filters.utm_source}></CatalogCollections>
+                    {/* @ts-expect-error Server Component */}
                     <CatalogItems categoryID={props.categoryID} items={items} currentPage={page} itemsLimit={15} utm_source={props.filters.utm_source}></CatalogItems>
                 </div>
             </div>

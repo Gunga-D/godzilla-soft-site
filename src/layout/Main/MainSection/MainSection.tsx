@@ -18,7 +18,7 @@ export const MainSection = (props: MainSectionProps) => {
 
     return (
         <div className='MainSectionStyledSection'>
-            <SubscriptionWidget></SubscriptionWidget>
+            <SubscriptionWidget utm_source={props.utm_source}></SubscriptionWidget>
             <RandomGameWidget></RandomGameWidget>
             <div className='MainSectionStyledWrapper'>
                 <Link href={addUTM("/steam_deposit", props.utm_source)} className="MainSectionStyledRubricatorItemLink">

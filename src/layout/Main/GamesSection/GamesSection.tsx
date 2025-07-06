@@ -27,9 +27,13 @@ export const GamesSection = (props: GameSectionProps) => {
                     </div>
                 </div>
             </div>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Популярные  ❯"} url={"/popular_items"} id="carousel-popular-items" utm_source={props.utm_source}/>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Новинки  ❯"} url={"/new_items"} id="carousel-new-items" utm_source={props.utm_source}/>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Со скидками  ❯"} url={"/sales_items"} id="carousel-sales-items" utm_source={props.utm_source}/>
+            {/* @ts-expect-error Server Component */}
             <BaseSection mainTitle={"Выбор редакции  ❯"} url={"/recomendation_items"} id="carousel-rec-items" utm_source={props.utm_source}/>
         </div>
     );
