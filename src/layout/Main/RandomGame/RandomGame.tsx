@@ -6,6 +6,7 @@ import { itemApi } from '../../../common/api/item/item-api';
 import { useUser } from '../../../common/context/user-context';
 import './RandomGameStyle.css'
 import { useEffect, useState, useRef } from 'react';
+import RandomBanner from '../../../components/randomBanner/RandomBanner';
 
 interface Game {
     id: number;
@@ -168,7 +169,9 @@ export const RandomGameWidget = () => {
     }
 
     return (
-        <div className='RandomGameWidget'>
+        <>
+            <RandomBanner></RandomBanner>
+            <div className='RandomGameWidget'>
             <h1 className='RandomGameWidgetTitle'>🎲 БАРАБАН УДАЧИ</h1>
             <div className='RandomGameWidgetHeader'>
                 <p className='RandomGameWidgetDescription'>Крути барабан и забирай заветную игру по выгодной цене в следующие 3 этапа</p>
@@ -231,5 +234,6 @@ export const RandomGameWidget = () => {
                 <div className='RandomGameWidgetBuyFormErr'>{error}</div>
             )}
         </div>
+        </>
     );
 }
