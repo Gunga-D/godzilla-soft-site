@@ -28,13 +28,13 @@ export const MainSection = (props: MainSectionProps) => {
                         <p className="MainSectionStyledRubricatorItemDescription">Быстро и удобно</p>
                     </div>
                 </Link>
-                <Link href={addUTM("/random", props.utm_source)} className="MainSectionStyledRubricatorItemLink">
+                {/* <Link href={addUTM("/random", props.utm_source)} className="MainSectionStyledRubricatorItemLink">
                     <div className="MainSectionStyledRubricatorItem">
                         <h2 className="MainSectionStyledRubricatorItemEmoji">🎲</h2>
                         <h2 className="MainSectionStyledRubricatorItemTitle">Случайная игра</h2>
                         <p className="MainSectionStyledRubricatorItemDescription">Не знаешь, во что сыграть?</p>
                     </div>
-                </Link>
+                </Link> */}
                 <Link href={{pathname: "/games", query: gamesLinkQuery}} className="MainSectionStyledRubricatorItemLink">
                     <div className="MainSectionStyledRubricatorItem">
                         <h2 className="MainSectionStyledRubricatorItemEmoji">🎮</h2>
