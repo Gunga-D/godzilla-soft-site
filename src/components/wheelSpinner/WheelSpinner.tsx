@@ -165,7 +165,7 @@ const WheelSpinner = (props: WheelSpinnerProps) => {
                 <div className='wheel-main-buy-form-button' onClick={handlePayment} ref={buyButtonRef}>
                     Крутить барабан за 208₽
                 </div>
-                <div className='wheel-main-buy-form-rules'>Нажимая кнопку "Крутить барабан", вы принимаете <a href="/2025_07_06_service_agreement.pdf" className='wheel-main-buy-form-rule-link'><br/>Договор-оферту&nbsp;оказания&nbsp;услуг</a> и <a href="/2025_07_06_privacy_security.pdf" className='wheel-main-buy-form-rule-link'>Политика&nbsp;конфиденциальности</a></div>
+                <div className='wheel-main-buy-form-rules'>Нажимая кнопку "Крутить барабан", вы принимаете <a href="/2025_07_09_service_agreement.pdf" className='wheel-main-buy-form-rule-link'><br/>Договор-оферту&nbsp;оказания&nbsp;услуг</a> и <a href="/2025_07_06_privacy_security.pdf" className='wheel-main-buy-form-rule-link'>Политика&nbsp;конфиденциальности</a></div>
             </div>
         </div>
         {error && (
